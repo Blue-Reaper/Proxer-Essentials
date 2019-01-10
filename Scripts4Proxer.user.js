@@ -19,15 +19,15 @@
 // ==/UserScript==
 
 // TODO: Alle Variablen müssen für jedes Script spezifisch gespeichert werden , z.B. status für Fullscreen, status für Clear-Look, etc.
+var anker_Modul_id = 'fullscreenManga';
+var anker_Modulname = 'Fullscreen-Manga';
+var anker_Modus = 3;
+// var anker_Changefunktion; //actionControl()
+// var anker_MemoryName; // status
+// var anker_MemoryDefault; // gibts nicht mehr, ist immer an
+var anker_Zusatz = document.createElement("div");
 
 document.addEventListener('DOMContentLoaded', function(event) {
-    var anker_Modul_id = 'fullscreenManga';
-    var anker_Modulname = 'Fullscreen-Manga';
-    var anker_Modus = 3;
-    // var anker_Changefunktion; //actionControl()
-    // var anker_MemoryName; // status
-    // var anker_MemoryDefault; // gibts nicht mehr, ist immer an
-    var anker_Zusatz = document.createElement("div");
 
 	addAnkerMember();
 
