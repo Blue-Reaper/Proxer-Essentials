@@ -1,20 +1,15 @@
-// ==UserScript==
-// @name        Proxer-Userscript-Anker
-// @namespace   Blue.Reaper.proxer.me
-// @version     5.1
-// @description Entwicklungsstand
-// @author      Blue.Reaper
-// @history		5.1 einheitliche "stauts" Speichervariable an = "on", aus = "off"
-// @history		5.0 globale Variablen
-// @history		0.4.2 Funktionen hinzugefügt: createExtAnkerCheckBox(anzeigeText, memoryName, abstand) und createExtAnkerAnleitung(linkUrl)
-// @history		0.4.1 Erst-Initialisierung Memory und Aufgeräumt
-// @history		0.4.0 Bei Ajax wird changefunktion("Ajax Aufruf") aufgerufen (benötigt jetzt auch // @grant unsafeWindow) und Methode für Versionsanzeige
-// @history		0.3.1 Einführen der Modi
-// @history		0.3.0 Anker Extended (nur eingeloggt)
-// @history		0.2.3 Member Separator und Einstellungen hinzugefügt
-// @history		0.2.2 Methoden zum Erzeugen von Dialogen und Message hinzugefügt
-// @history		0.2.1 alphabetische Sortierung, 'ankerTop' wird nur 1x erzeugt
-// ==/UserScript==
+
+// version     5.1
+// history		5.1 einheitliche "stauts" Speichervariable an = "on", aus = "off"
+// history		5.0 globale Variablen
+// history		0.4.2 Funktionen hinzugefügt: createExtAnkerCheckBox(anzeigeText, memoryName, abstand) und createExtAnkerAnleitung(linkUrl)
+// history		0.4.1 Erst-Initialisierung Memory und Aufgeräumt
+// history		0.4.0 Bei Ajax wird changefunktion("Ajax Aufruf") aufgerufen (benötigt jetzt auch // @grant unsafeWindow) und Methode für Versionsanzeige
+// history		0.3.1 Einführen der Modi
+// history		0.3.0 Anker Extended (nur eingeloggt)
+// history		0.2.3 Member Separator und Einstellungen hinzugefügt
+// history		0.2.2 Methoden zum Erzeugen von Dialogen und Message hinzugefügt
+// history		0.2.1 alphabetische Sortierung, 'ankerTop' wird nur 1x erzeugt
 
 //Starte die Funktion "addAnker" beim Laden der Seite
 document.addEventListener('DOMContentLoaded', function(event) {
