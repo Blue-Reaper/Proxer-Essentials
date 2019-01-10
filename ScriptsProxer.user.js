@@ -16,6 +16,7 @@
 // @grant        GM_log
 // lädt Anker
 // @require      Anker.js
+// ==/UserScript==
 
 // TODO: Alle Variablen müssen für jedes Script spezifisch gespeichert werden , z.B. status für Fullscreen, status für Clear-Look, etc.
 
