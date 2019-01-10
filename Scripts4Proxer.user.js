@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Scripts4Proxer
-// @version      0.1
+// @version      0.2
 // @description  Sammlung bewährter Userscripte
 // @author       Blue.Reaper
 // @namespace    Blue.Reaper.proxer.me
