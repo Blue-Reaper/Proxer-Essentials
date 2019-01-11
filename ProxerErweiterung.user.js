@@ -11,6 +11,9 @@
 // @grant        unsafeWindow
 // Konsolenausgabe für Debugging
 // @grant        GM_log
+// @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
+// @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
+// @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
 // ==/UserScript==
 
 // ######################################################################################################
@@ -48,6 +51,7 @@ function showMuster(change) {
 // ######################################################################################################
 // ######################################################################################################
 
+// Liste der einzelnen Module
 var pefModulList = [
 	{
 		id: "showMuster",
@@ -133,7 +137,7 @@ function createPefSettings(){
 			inhalt.removeChild(inhalt.lastChild);
 		}
 		// Setze den Titel des Tabs im Browser
-		// NOTE pageMetaAjax überhaupt nötig?
+		// QUESTION pageMetaAjax überhaupt nötig?
 		document.getElementById('pageMetaAjax').innerHTML = 'Proxer Erweiterung'; // Das ist der Titel, muss ich händisch machen
 		document.title = 'Proxer Erweiterung';
 
@@ -148,7 +152,7 @@ function createPefSettings(){
 		// Erzeugt den Ihalt des Tabs 'Erweiterungen'
 		if(location.search === "" || location.search === "?s=settings"){
 			pef_Settings.setAttribute("class","active");
-			// NOTE pageMetaAjax überhaupt nötig?
+			// QUESTION pageMetaAjax überhaupt nötig?
 			document.getElementById('pageMetaAjax').innerHTML = 'Proxer Erweiterung'; // Das ist der Titel, muss ich händisch machen
 			document.title = 'Proxer Erweiterung';
 
@@ -364,6 +368,12 @@ function createPefMessage(msg){
 	setTimeout(function(){ newMessage.click(); },5000);
 }
 
+function getStyleProp(elem, prop){
+	if(window.getComputedStyle)
+	return window.getComputedStyle(elem, null).getPropertyValue(prop);
+	else if(elem.currentStyle) return elem.currentStyle[prop]; //IE
+}
+
 // CHANGED alte Funktionen
 //############################# Versionsanzeige #############################
 
@@ -374,12 +384,6 @@ function neueVersion(version, msg){
 		createAnkerDialog(textmsg);
 		GM_setValue("version",version);
 	}
-}
-
-function getStyleProp(elem, prop){
-    if(window.getComputedStyle)
-        return window.getComputedStyle(elem, null).getPropertyValue(prop);
-    else if(elem.currentStyle) return elem.currentStyle[prop]; //IE
 }
 
 function createExtAnkerCheckBox(anzeigeText, memoryName, abstand){
