@@ -1,4 +1,58 @@
-.modulbox {
+.modulBox {
     width: 30%;
-    
+    border-width: 1px;
+    float: left;
+    margin: 1px;
+    padding: 5px;
+}
+
+.center {
+    text-align: center;
+}
+
+.clickImg20 {
+    margin-left: 1em;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.clickImg30 {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.dialogOverlay {
+    display: block;
+    background-color: #A2A4A8;
+    opacity: 0.6;
+}
+
+.dialogBox {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.marginTop10 {
+    margin-top: 10px;
+}
+
+.marginLeft30 {
+    margin-left: 30px;
+}
+
+.leanRight {
+    text-align: right;
+    padding-right: 30px;
+}
+
+.imgTick {
+    content:url("https://proxer.me/images/misc/haken.png");
+}
+
+.imgCross {
+    content:url("https://proxer.me/images/misc/kreuz.png");
 }
