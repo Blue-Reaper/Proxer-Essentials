@@ -25,8 +25,11 @@ function callClearLook(change) {
 
 // Hauptfunktion
 function clearLook(){
-	unsafeWindow.set_cookie('manga_reader','longstrip',unsafeWindow.cookie_expire);
-	unsafeWindow.set_cookie('cookieconsent_dismissed','yes',unsafeWindow.cookie_expire);
+	console.log("Script Clear Look aufgerufen");
+	$.cookie("cookieconsent_dismissed", "yes");
+
+	// unsafeWindow.set_cookie('manga_reader','longstrip',unsafeWindow.cookie_expire);
+	// unsafeWindow.set_cookie('cookieconsent_dismissed','yes',unsafeWindow.cookie_expire);
 }
 
 
