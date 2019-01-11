@@ -39,17 +39,17 @@ function clearLook(){
 // alter Code
 // #####################################################
 // #####################################################
-var me = document.createElement("a");
-me.innerHTML = "Test";
-// me.href = "https://proxer.me/forum/anwendungen";
-me.addEventListener("click",function () {
-	console.log("Link geklickt.");
-});
-// console.log("add");
-addAnkerMember('clearlook', 'Clear-Look', 4, clearlook_actionControl, 'clearlook', 1, me);
-/*	Wird vom Anker aufgerufen
-	change == true  --> Speicherwert wurde verändert
-	change == false  --> Speicherwert unverändert (Initalisierung)
+// var me = document.createElement("a");
+// me.innerHTML = "Test";
+// // me.href = "https://proxer.me/forum/anwendungen";
+// me.addEventListener("click",function () {
+// 	console.log("Link geklickt.");
+// });
+// // console.log("add");
+// addAnkerMember('clearlook', 'Clear-Look', 4, clearlook_actionControl, 'clearlook', 1, me);
+// /*	Wird vom Anker aufgerufen
+// 	change == true  --> Speicherwert wurde verändert
+// 	change == false  --> Speicherwert unverändert (Initalisierung)
 */
 function clearlook_actionControl(change){
 	if(change === true){
