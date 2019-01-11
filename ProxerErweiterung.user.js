@@ -22,26 +22,22 @@
 // ######################################################################################################
 // ######################################################################################################
 
-// Hauptmethode des Scripts
-function showMuster(change) {
+// Aufruf des Scripts
+function callShowMuster(change) {
 	switch(change) {
 		case "Initialisierung":
 			// Wird beim Laden der Seite Aufgerufen, immer der erste Aufruf für das Modul
 			// TODO
-			console.log("init");
 			break;
 		case "Ajax Aufruf":
 			// Wird durch einen Ajax-Aufruf auf der Seite getriggert
 			// TODO
-			console.log("ajax");
 			break;
 		case "Modul Stauts umschalten":
 			// Wird aufgerufen, wenn der User in den Einstellungen des PEF Module aus- oder anschaltet
 			// TODO
-			console.log("user");
 			break;
 		default:
-			console.error("Fehlerhafter Aufruf actionControl() mit '"+change+"'");
 	}
 }
 
@@ -53,6 +49,10 @@ function showMuster(change) {
 
 // Liste der einzelnen Module
 var pefModulList = [
+	{
+		id: "clearLook",
+		name : "Clear Look",
+	},
 	{
 		id: "showMuster",
 	  	name : "Musteranwendung für PEF",
@@ -74,7 +74,10 @@ function actionControl(change){
 		if (GM_getValue(pefModulList[i].id+"Status")=="on"){
 			switch (pefModulList[i].id) {
 				case "showMuster":
-				showMuster(change);
+				callShowMuster(change);
+				break;
+				case "clearLook":
+				callClearLook(change);
 				break;
 				// case "Id des Moduls (wurde in pefModulList eingetragen)":
 				// 	Hier die Hauptmethode des jeweiliegen Moduls eintragen.
