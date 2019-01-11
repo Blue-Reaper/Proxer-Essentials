@@ -56,9 +56,9 @@
 }
 
 .imgTick {
-    content:GM_getResourceText ("haken_img");
+    content:url(GM_getResourceURL("haken_img"));
 }
 
 .imgCross {
-    content:GM_getResourceText ("kreuz_img");
+    content:url(GM_getResourceURL("kreuz_img"));
 }
