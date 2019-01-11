@@ -25,11 +25,10 @@ function callClearLook(change) {
 
 // Hauptfunktion
 function clearLook(){
-	console.log("Script Clear Look aufgerufen");
-	$.cookie("cookieconsent_dismissed", "yes");
+	 document.cookie = 'cookieconsent_dismissed=yes';
+	 document.cookie = 'manga_reader=longstrip';
 
-	// unsafeWindow.set_cookie('manga_reader','longstrip',unsafeWindow.cookie_expire);
-	// unsafeWindow.set_cookie('cookieconsent_dismissed','yes',unsafeWindow.cookie_expire);
+
 }
 
 
@@ -41,7 +40,7 @@ function clearLook(){
 // #####################################################
 
 //Hauptfunktion
-function clearlook() {
+function clearlookold() {
 	//Lösche Chat
     document.getElementById("chat").style.display = "none";
 	// setzte Longstripreader in cookie
