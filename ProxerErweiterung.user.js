@@ -14,6 +14,7 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
+// @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Erweiterung/moduls-management/modules/Clear-Look.js
 // ==/UserScript==
 
 // ######################################################################################################
