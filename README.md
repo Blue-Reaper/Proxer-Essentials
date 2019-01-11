@@ -1,15 +1,21 @@
-# Scripts4Proxer
-Project to gather usercripts for proxer.me in one place.
+# ProxerExtended
+Eine Sammlung mehrerer Userscripte für Proxer.me die eine einheitliche Steuerung benutzen.
 
-## Goal 1 - Make it easy for the user
-  * only one download needet to get much content
-  
-## Goal 2 - Make it easy to add new scrits
-  * framework handles metha-data for angrymonkey and co
-  * easy to add userinterface for settings
-  
+## Ziel 1 - Make it easy for the user
+  * der User muss nur ein Userscript installieren und bekommt gleich mehrere Funktionen
 
-    
-Developed in angrymonkey and Chrome
+## Ziel 2 - Make it easy to add new scrits
+  * Framework händelt Metha-Daten für angrymonkey, etc.
+  * Einfache Möglichkeit die Einstellungen und Beschreibung des jeweiligen Scripts einzubinden
+  * Starten des Scripts durch Framework beim Laden, Ajax, etc.
 
-Tested in ...
+
+Entwickelt in angrymonkey und Chrome
+
+Getestet in ...
+
+
+### Syntax
+Namenskonvention
+* alle ids des Frameworks gebinnen mit pef_ (Proxer Erweiterung Framework)
+* Ob das Modul de- oder aktiviert ist steht in dem Speicherwert modulId + 'Status'
