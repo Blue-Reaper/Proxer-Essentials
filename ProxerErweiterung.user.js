@@ -9,13 +9,19 @@
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        unsafeWindow
+// @grant    	 GM_addStyle
+// @grant    	 GM_getResourceText
 // Konsolenausgabe für Debugging
 // @grant        GM_log
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
+// @resource pef_CSS  https://raw.githubusercontent.com/Blue-Reaper/Proxer-Erweiterung/moduls-management/resources/css/pef.css
+// Module
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Erweiterung/moduls-management/modules/Clear-Look.js
 // ==/UserScript==
+
+GM_addStyle (GM_getResourceText ("pef_CSS"));
 
 // ######################################################################################################
 // ######################################################################################################
@@ -104,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 	actionControl("Initialisierung");
 	monitorAjax();
 
+	createPefDialog("Ausgabe",function(){},function(){});
 });
 
 // Setzt für jede Änderung an der Oberfläche die Prüfvariable auf true
@@ -115,7 +122,7 @@ document.addEventListener("DOMSubtreeModified", function(event){
 // Erzeugt 'Erweiterungen' in Apps
 function addPefMenu() {
 	var li = document.createElement("li");
-	li.setAttribute("class","topmenu");
+	li.className = "topmenu";
 	li.innerHTML = '<a href="javascript:;">Apps ▾</a><ul id="pef_menu"></ul>';
 	leftNav.appendChild(li);
 	// Erzeugt 'Erweiterungen' in Apps
@@ -151,7 +158,7 @@ function createPefSettings(){
 
 		// Erzeugt den Ihalt des Tabs 'Erweiterungen'
 		if(location.search === "" || location.search === "?s=settings"){
-			pef_Settings.setAttribute("class","active");
+			pef_Settings.className = "active";
 			// QUESTION pageMetaAjax überhaupt nötig?
 			pageMetaAjax.innerHTML = 'Proxer Erweiterung'; // Das ist der Titel, muss ich händisch machen
 			document.title = 'Proxer Erweiterung';
@@ -163,16 +170,13 @@ function createPefSettings(){
 
 			// Inhalt für Modulanzeige
 			var pef_module = document.createElement("div");
-			pef_module.setAttribute("id","pef_module");
+			pef_module.id = "pef_module";
 			inhalt.appendChild(pef_module);
 			showModules(pef_module);
 
-
 			// Footer
 			var divEnd = document.createElement("div");
-			// TODO: in css auslagern
-			divEnd.style.margin = "1%";
-			divEnd.style.clear = "both";
+			divEnd.className = "modulEnd";
 			divEnd.innerHTML = "Noch mehr Userscripte findet ihr <a href='https://proxer.me/forum/anwendungen'>im Forum</a>.";
 			inhalt.appendChild(divEnd);
 		}
@@ -202,26 +206,17 @@ function showModules(pef_module){
 // Fügt jedes Modul hinzu
 	for(var i = 0; i < pefModulList.length; i++) {
 		var moduleBox = document.createElement("div");
-		// TODO: in CSS auslagern
-		moduleBox.style.width = "30%";
-		moduleBox.style.borderWidth = "1px";
-		moduleBox.style.float = "left";
-		moduleBox.style.margin = "1%";
-		moduleBox.style.padding = "5px";
+		moduleBox.className = "modulBox";
 		moduleBox.style.borderStyle = $('#main').css("border-top-style");
 		moduleBox.style.borderColor = $('#main').css("border-top-color");
 		moduleBox.style.borderRadius = $('#main').css("border-top-left-radius");
 
 		var moduleName = document.createElement("h3");
 		moduleName.innerHTML = pefModulList[i].name;
-		moduleName.style.textAlign = "center";
+		moduleName.className = "center";
 
 		var modulStatus = document.createElement("img");
 		modulStatus.id = pefModulList[i].id+'_StatusImg';
-		modulStatus.style.marginLeft = "1em";
-		modulStatus.width = 20;
-		modulStatus.heigth = 20;
-		modulStatus.style.cursor = "pointer"
 
 		moduleName.appendChild(modulStatus);
 		moduleBox.appendChild(moduleName);
@@ -253,9 +248,9 @@ function toggleModulStatus(modulId) {
 // Setzt den Haken / Kreuz nach das Member
 function updateModulTick(modulId) {
     if (GM_getValue(modulId+"Status") === "off") {
-		$("#"+modulId+"_StatusImg").attr("src", "https://proxer.me/images/misc/kreuz.png");
+		$("#"+modulId+"_StatusImg").attr("class", "imgCross clickImg20");
 	} else {
-		$("#"+modulId+"_StatusImg").attr("src", "https://proxer.me/images/misc/haken.png");
+		$("#"+modulId+"_StatusImg").attr("class", "imgTick clickImg20");
 	}
 };
 //###############################################################################
@@ -277,22 +272,13 @@ function createPefDialog(msg, methodYes, methodNo){
 	// Testet, ob ein Confirm-, oder ein AlertDialog angezeigt werden soll
 	var confirmDialog = (methodYes != null && methodNo != null) ? true : false;
 
-	var winH = window.innerHeight;
-
 	// Damit der Hintergurnd gesperrt wird
 	var dialogoverlay = document.createElement("div");
-	dialogoverlay.style.display = "block";
-	dialogoverlay.style.height = winH+"px";
-	dialogoverlay.style.backgroundColor = '#A2A4A8';
-	dialogoverlay.style.opacity = '0.6';
+	dialogoverlay.className = "dialogOverlay";
 
 	// Das Dialogfeld
 	var dialogbox = document.createElement("div");
-	dialogbox.style.display = "block";
-	dialogbox.style.position = "absolute";
-	dialogbox.style.top = "50%";
-	dialogbox.style.left = "50%";
-	dialogbox.setAttribute("class","message");
+	dialogbox.className = "message dialogBox";
 
 	// Die Angezeigte Nachricht
 	var dialogmessage = document.createElement("div");
@@ -301,27 +287,19 @@ function createPefDialog(msg, methodYes, methodNo){
 	// Die Antwortbutton
 	var dialogbuttons = document.createElement("div");
 	if(confirmDialog){
-		dialogbuttons.style.textAlign = "right";
-		dialogbuttons.style.paddingRight = "30px";
+		dialogbuttons.className = "leanRight";
 	}else{
-		dialogbuttons.style.textAlign = "center";
+		dialogbuttons.className = "center";
 	}
-	dialogbuttons.style.marginTop = "10px";
+	dialogbuttons.className = "marginTop10";
 
 	var dialogbuttonyes = document.createElement("img");
-	dialogbuttonyes.src = "https://proxer.me/images/misc/haken.png";
-	dialogbuttonyes.width = 30;
-	dialogbuttonyes.heigth = 30;
-	dialogbuttonyes.style.cursor = "pointer"
+	dialogbuttonyes.className = "clickImg30 imgTick";
 	dialogbuttons.appendChild(dialogbuttonyes);
 
 	if(confirmDialog){
 		var dialogbuttonno = document.createElement("img");
-		dialogbuttonno.src = "https://proxer.me/images/misc/kreuz.png";
-		dialogbuttonno.width = 30;
-		dialogbuttonno.heigth = 30;
-		dialogbuttonno.style.marginLeft = "30px";
-		dialogbuttonno.style.cursor = "pointer"
+		dialogbuttonno.className = "clickImg30 imgCross marginLeft30";
 		dialogbuttons.appendChild(dialogbuttonno);
 	}
 
@@ -329,6 +307,7 @@ function createPefDialog(msg, methodYes, methodNo){
 	dialogbox.appendChild(dialogmessage);
 	dialogbox.appendChild(dialogbuttons);
 
+	var messages = $('#messages')[0];
 	messages.appendChild(dialogoverlay);
 	messages.appendChild(dialogbox);
 
@@ -358,7 +337,7 @@ function createPefDialog(msg, methodYes, methodNo){
 //	Erzeugt eine Message, identisch zu der Proxer.me eigenen
 function createPefMessage(msg){
 	var newMessage = document.createElement("div");
-	newMessage.setAttribute("class","message ankerMessage");
+	newMessage.className = "message ankerMessage";
 	newMessage.setAttribute("onclick",'delete_message("ankerMessage")');
 	newMessage.innerHTML = msg;
 	messages.appendChild(newMessage)
