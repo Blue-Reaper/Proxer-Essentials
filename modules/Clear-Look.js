@@ -5,18 +5,18 @@ function callClearLook(change) {
 	switch(change) {
 		case "Initialisierung":
 			// Wird beim Laden der Seite Aufgerufen, immer der erste Aufruf für das Modul
-			// TODO
 			console.log("init");
+			clearLook();
 			break;
 		case "Ajax Aufruf":
 			// Wird durch einen Ajax-Aufruf auf der Seite getriggert
-			// TODO
 			console.log("ajax");
+			clearLook();
 			break;
 		case "Modul Stauts umschalten":
 			// Wird aufgerufen, wenn der User in den Einstellungen des PEF Module aus- oder anschaltet
-			// TODO
 			console.log("user");
+			clearLook();
 			break;
 		default:
 			console.error("Fehlerhafter Aufruf actionControl() mit '"+change+"'");
