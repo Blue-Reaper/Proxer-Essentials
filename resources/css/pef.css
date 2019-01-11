@@ -56,7 +56,7 @@
 }
 
 .imgTick {
-    content:url("https://proxer.me/images/misc/haken.png");
+    content:GM_getResourceText ("haken_img");
 }
 
 .imgCross {
