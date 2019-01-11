@@ -2,8 +2,13 @@
     width: 30%;
     border-width: 1px;
     float: left;
-    margin: 1px;
+    margin: 1%;
     padding: 5px;
+}
+
+.modulEnd {
+    margin: 1%;
+    clear: both;
 }
 
 .center {
@@ -27,6 +32,7 @@
     display: block;
     background-color: #A2A4A8;
     opacity: 0.6;
+    height: -webkit-fill-available;
 }
 
 .dialogBox {
