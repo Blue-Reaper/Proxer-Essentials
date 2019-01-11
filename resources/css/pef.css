@@ -60,5 +60,5 @@
 }
 
 .imgCross {
-    content:url("https://proxer.me/images/misc/kreuz.png");
+    content:GM_getResourceText ("kreuz_img");
 }
