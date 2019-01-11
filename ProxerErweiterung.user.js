@@ -114,11 +114,10 @@ document.addEventListener("DOMSubtreeModified", function(event){
 //Fügt den Button "Apps" zu "leftNav" hinzu
 // Erzeugt 'Erweiterungen' in Apps
 function addPefMenu() {
-	var ul = document.getElementById("leftNav");
 	var li = document.createElement("li");
 	li.setAttribute("class","topmenu");
 	li.innerHTML = '<a href="javascript:;">Apps ▾</a><ul id="pef_menu"></ul>';
-	ul.appendChild(li);
+	leftNav.appendChild(li);
 	// Erzeugt 'Erweiterungen' in Apps
 	var settings = document.createElement("li");
 	settings.innerHTML = '<a href="/pef?s=settings#top">Erweiterungen</a>';
@@ -130,34 +129,31 @@ function addPefMenu() {
 // Da es proxer.me/pef nicht gibt, wird die Startseite angezeigt
 function createPefSettings(){
 	if(window.location.pathname.split('/')[1] === 'pef'){
-		var navBar = document.getElementById('simple-navi');
-		// Lösche alle Tabs der Startseite aus Navigations-Leiste
-		while (navBar.hasChildNodes()) {
-		    navBar.removeChild(navBar.lastChild);
-		}
+		// // Lösche alle Tabs der Startseite aus Navigations-Leiste
+		$('#simple-navi').empty();
+		var navBar = $('#simple-navi')[0];
 // 		Lösche den Inhalt der Seite
-		var inhalt = document.querySelector('div.inner');
-		while (inhalt.hasChildNodes()) {
-			inhalt.removeChild(inhalt.lastChild);
-		}
+		$('div.inner').empty();
+		var inhalt = $('div.inner')[0];
+
 		// Setze den Titel des Tabs im Browser
 		// QUESTION pageMetaAjax überhaupt nötig?
-		document.getElementById('pageMetaAjax').innerHTML = 'Proxer Erweiterung'; // Das ist der Titel, muss ich händisch machen
+		pageMetaAjax.innerHTML = 'Proxer Erweiterung'; // Das ist der Titel, muss ich händisch machen
 		document.title = 'Proxer Erweiterung';
 
 // 		Erzeuge Tab Erweiterungen
 // 		Id: pef_Settings
 // 		URL: ?s=settings
 		var scriptTab = document.createElement("li");
-		scriptTab.setAttribute("id","pef_Settings");
-		navBar.appendChild(scriptTab);
+		scriptTab.id="pef_Settings";
 		scriptTab.innerHTML = '<a data-ajax="true" href="/pef?s=settings#top">Erweiterungen</a>';
+		navBar.appendChild(scriptTab);
 
 		// Erzeugt den Ihalt des Tabs 'Erweiterungen'
 		if(location.search === "" || location.search === "?s=settings"){
 			pef_Settings.setAttribute("class","active");
 			// QUESTION pageMetaAjax überhaupt nötig?
-			document.getElementById('pageMetaAjax').innerHTML = 'Proxer Erweiterung'; // Das ist der Titel, muss ich händisch machen
+			pageMetaAjax.innerHTML = 'Proxer Erweiterung'; // Das ist der Titel, muss ich händisch machen
 			document.title = 'Proxer Erweiterung';
 
 			// Überschrift
@@ -209,17 +205,16 @@ function showModules(pef_module){
 		// TODO: in CSS auslagern
 		moduleBox.style.width = "30%";
 		moduleBox.style.borderWidth = "1px";
-		moduleBox.style.borderStyle = getStyleProp(main, "border-top-style");
-		moduleBox.style.borderColor = getStyleProp(main, "border-top-color");
-		moduleBox.style.borderRadius = getStyleProp(main, "border-top-left-radius");
 		moduleBox.style.float = "left";
 		moduleBox.style.margin = "1%";
 		moduleBox.style.padding = "5px";
+		moduleBox.style.borderStyle = $('#main').css("border-top-style");
+		moduleBox.style.borderColor = $('#main').css("border-top-color");
+		moduleBox.style.borderRadius = $('#main').css("border-top-left-radius");
 
 		var moduleName = document.createElement("h3");
 		moduleName.innerHTML = pefModulList[i].name;
 		moduleName.style.textAlign = "center";
-		moduleName.style.color = getStyleProp(main, "color");
 
 		var modulStatus = document.createElement("img");
 		modulStatus.id = pefModulList[i].id+'_StatusImg';
@@ -237,7 +232,7 @@ function showModules(pef_module){
 		pef_module.appendChild(moduleBox);
 		updateModulTick(pefModulList[i].id);
 
-		modulStatus.addEventListener("click",function (event) {
+		$(modulStatus).click(function (event) {
 			// Bei klicken auf das Bild wird die Id ausgelesen und der "_StatusImg" Teil eintfernt, damit nur die Modul-Id über bleibt
 			toggleModulStatus(event.target.id.split("_")[0]);
 		});
@@ -258,9 +253,9 @@ function toggleModulStatus(modulId) {
 // Setzt den Haken / Kreuz nach das Member
 function updateModulTick(modulId) {
     if (GM_getValue(modulId+"Status") === "off") {
-		document.getElementById(modulId+'_StatusImg').src="https://proxer.me/images/misc/kreuz.png";
+		$("#"+modulId+"_StatusImg").attr("src", "https://proxer.me/images/misc/kreuz.png");
 	} else {
-		document.getElementById(modulId+'_StatusImg').src="https://proxer.me/images/misc/haken.png";
+		$("#"+modulId+"_StatusImg").attr("src", "https://proxer.me/images/misc/haken.png");
 	}
 };
 //###############################################################################
@@ -283,7 +278,6 @@ function createPefDialog(msg, methodYes, methodNo){
 	var confirmDialog = (methodYes != null && methodNo != null) ? true : false;
 
 	var winH = window.innerHeight;
-	var messages = document.getElementById('messages');
 
 	// Damit der Hintergurnd gesperrt wird
 	var dialogoverlay = document.createElement("div");
@@ -343,7 +337,7 @@ function createPefDialog(msg, methodYes, methodNo){
 	dialogbox.style.marginLeft = (dialogbox.clientWidth/-2)+"px";
 
 	// Klicken der Buttons löscht Dialog und ruft jeweilige Mothode auf
-	dialogbuttonyes.addEventListener("click",function () {
+	$(dialogbuttonyes).click(function () {
 		messages.removeChild(dialogoverlay);
 		messages.removeChild(dialogbox);
 		if(confirmDialog){
@@ -351,7 +345,7 @@ function createPefDialog(msg, methodYes, methodNo){
 		}
 	});
 	if(confirmDialog){
-		dialogbuttonno.addEventListener("click",function () {
+		$(dialogbuttonno).click(function () {
 			messages.removeChild(dialogoverlay);
 			messages.removeChild(dialogbox);
 			methodNo();
@@ -363,19 +357,12 @@ function createPefDialog(msg, methodYes, methodNo){
 
 //	Erzeugt eine Message, identisch zu der Proxer.me eigenen
 function createPefMessage(msg){
-	var messages = document.getElementById('messages');
 	var newMessage = document.createElement("div");
 	newMessage.setAttribute("class","message ankerMessage");
 	newMessage.setAttribute("onclick",'delete_message("ankerMessage")');
 	newMessage.innerHTML = msg;
 	messages.appendChild(newMessage)
 	setTimeout(function(){ newMessage.click(); },5000);
-}
-
-function getStyleProp(elem, prop){
-	if(window.getComputedStyle)
-	return window.getComputedStyle(elem, null).getPropertyValue(prop);
-	else if(elem.currentStyle) return elem.currentStyle[prop]; //IE
 }
 
 // CHANGED alte Funktionen
