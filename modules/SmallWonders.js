@@ -13,7 +13,7 @@ function callSmallWonders(change) {
 		case "Ajax Aufruf":
 			// smallWonders();
 			break;
-		case "User change Status":
+		case "User on-off":
 			// smallWonders();
 			break;
 		default:

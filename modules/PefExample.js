@@ -13,8 +13,8 @@ function callPefExample(change) {
             console.log("ajax");
             pefExample();
 			break;
-		case "User change Status":
-			// Wird aufgerufen, wenn der User in den Einstellungen ein PEF Modul ein- oder ausschaltet
+		case "User on-off":
+			// Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ein- oder ausschaltet
             console.log("user");
             pefExample();
 			break;
