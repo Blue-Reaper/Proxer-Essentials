@@ -22,8 +22,8 @@ function actionControl(change, modulId){
 		// Wird eine Modul-Id übergeben, wird vom Framework nur dieses Modul aufgerufen (wird bei "User on-off" verwendet)
 		if(modulId != null){
 			console.log("Aufruf Modul: "+modulId);
-			// unsafeWindow.callPefExample(change);
-			['callPefExample'](change);
+			 unsafeWindow["callPefExample"](change);
+			// ['callPefExample'](change);
 			// $(unsafeWindow)['callPefExample'](change);
 		}
 		// Ruft alle Module, die aktiviert sind
