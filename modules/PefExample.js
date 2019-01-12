@@ -1,7 +1,7 @@
 // Muser und Testscript
 
 // Aufruf des Scripts
-function callPefExample(change) {
+window.callPefExample = function (change) {
 	switch(change) {
 		case "Initialisierung":
 			// Wird beim Laden der Seite Aufgerufen, immer der erste Aufruf für das Modul
