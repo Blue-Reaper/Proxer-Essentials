@@ -1,6 +1,12 @@
 # Proxer Erweiterung
 Eine Sammlung mehrerer Userscripte für Proxer.me die eine einheitliche Steuerung benutzen.
 
+mögliche Namen:
+* Scripts4Proxer
+* Proxer Extended
+* Proxer Erweiterung
+* Proxer Essentials
+
 ## Ziel 1 - Einfache Benutzung
   * der User muss nur ein Userscript installieren und bekommt gleich mehrere Funktionen
 
