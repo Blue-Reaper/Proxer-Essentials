@@ -31,6 +31,19 @@
 
 GM_addStyle (GM_getResourceText ("pef_CSS"));
 
+// Liste der einzelnen Module
+var pefModulList = [
+	{
+		id: "smallWonders",
+		name : "kleine Wunder",
+	},
+	{
+		id: "pefExample",
+		name : "Beispielscript",
+	}
+
+];
+
 //Main Methode des Frameworks
 document.addEventListener('DOMContentLoaded', function(event) {
 	addPefMenu();
@@ -41,23 +54,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
 });
 
 // ######################################################################################################
-// ######################################################################################################
 // Modul Steuerung
 // ######################################################################################################
-// ######################################################################################################
-
-// Liste der einzelnen Module
-var pefModulList = [
-	{
-		id: "smallWonders",
-		name : "kleine Wunder",
-	},
-	{
-		id: "pefExample",
-	  	name : "Beispielscript",
-	}
-
-];
 
 //	Wird vom Framework aufgerufen, um die einzelnen Module aufzurufen
 function actionControl(change){
