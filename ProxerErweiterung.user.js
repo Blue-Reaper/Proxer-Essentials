@@ -11,12 +11,15 @@
 // @grant        unsafeWindow
 // @grant    	 GM_addStyle
 // @grant    	 GM_getResourceText
+// @grant 		 GM_getResourceURL
 // Konsolenausgabe für Debugging
 // @grant        GM_log
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
 // @resource pef_CSS  https://raw.githubusercontent.com/Blue-Reaper/Proxer-Erweiterung/moduls-management/resources/css/pef.css
+// @resource yes_img  https://proxer.me/images/misc/haken.png
+// @resource no_img  https://proxer.me/images/misc/kreuz.png
 // Module
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Erweiterung/moduls-management/modules/Clear-Look.js
 // ==/UserScript==
@@ -110,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
 	actionControl("Initialisierung");
 	monitorAjax();
 
-	createPefDialog("Ausgabe",function(){},function(){});
 });
 
 // Setzt für jede Änderung an der Oberfläche die Prüfvariable auf true
@@ -217,6 +219,7 @@ function showModules(pef_module){
 
 		var modulStatus = document.createElement("img");
 		modulStatus.id = pefModulList[i].id+'_StatusImg';
+		modulStatus.className ="clickImg20";
 
 		moduleName.appendChild(modulStatus);
 		moduleBox.appendChild(moduleName);
@@ -248,9 +251,9 @@ function toggleModulStatus(modulId) {
 // Setzt den Haken / Kreuz nach das Member
 function updateModulTick(modulId) {
     if (GM_getValue(modulId+"Status") === "off") {
-		$("#"+modulId+"_StatusImg").attr("class", "imgCross clickImg20");
+		$("#"+modulId+"_StatusImg").attr("src", GM_getResourceURL("no_img"));
 	} else {
-		$("#"+modulId+"_StatusImg").attr("class", "imgTick clickImg20");
+		$("#"+modulId+"_StatusImg").attr("src", GM_getResourceURL("yes_img"));
 	}
 };
 //###############################################################################
@@ -294,12 +297,14 @@ function createPefDialog(msg, methodYes, methodNo){
 	dialogbuttons.className = "marginTop10";
 
 	var dialogbuttonyes = document.createElement("img");
-	dialogbuttonyes.className = "clickImg30 imgTick";
+	dialogbuttonyes.className = "clickImg30";
+	dialogbuttonyes.src = GM_getResourceURL("yes_img");
 	dialogbuttons.appendChild(dialogbuttonyes);
 
 	if(confirmDialog){
 		var dialogbuttonno = document.createElement("img");
-		dialogbuttonno.className = "clickImg30 imgCross marginLeft30";
+		dialogbuttonno.className = "clickImg30 marginLeft30";
+		dialogbuttonno.src = GM_getResourceURL("no_img");
 		dialogbuttons.appendChild(dialogbuttonno);
 	}
 
