@@ -6,6 +6,7 @@ mögliche Namen:
 * Proxer Extended
 * Proxer Erweiterung
 * Proxer Essentials
+* Proxer Enhanced Experience
 
 ## Ziel 1 - Einfache Benutzung
   * der User muss nur ein Userscript installieren und bekommt gleich mehrere Funktionen
