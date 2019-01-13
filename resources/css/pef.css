@@ -27,7 +27,9 @@
 .clickImg30 {
     width: 30px;
     height: 30px;
-    cursor: pointer;
+    text-indent: -9999px;
+    background-size: cover;
+    position: fixed;
 }
 
 .dialogOverlay {

@@ -31,15 +31,19 @@ function createPefDialog(msg, methodYes, methodNo){
 	}
 	dialogbuttons.className = "marginTop10";
 
-	var dialogbuttonyes = document.createElement("img");
+	var dialogbuttonyes = document.createElement("a");
 	dialogbuttonyes.className = "clickImg30";
-	dialogbuttonyes.src = GM_getResourceURL("yes_img");
+	dialogbuttonyes.href = "javascript:;";
+	dialogbuttonyes.innerHTML = "Yes";
+	dialogbuttonyes.style.backgroundImage = 'url('+GM_getResourceURL("yes_img")+')';
 	dialogbuttons.appendChild(dialogbuttonyes);
 
 	if(confirmDialog){
-		var dialogbuttonno = document.createElement("img");
+		var dialogbuttonno = document.createElement("a");
 		dialogbuttonno.className = "clickImg30 marginLeft30";
-		dialogbuttonno.src = GM_getResourceURL("no_img");
+		dialogbuttonno.href = "javascript:;";
+		dialogbuttonno.innerHTML = "No";
+		dialogbuttonno.style.backgroundImage = 'url('+GM_getResourceURL("no_img")+')';
 		dialogbuttons.appendChild(dialogbuttonno);
 	}
 
@@ -82,4 +86,23 @@ function createPefMessage(msg){
 	newMessage.innerHTML = msg;
 	messages.appendChild(newMessage)
 	setTimeout(function(){ newMessage.click(); },5000);
+}
+
+//############################# Auslesen eines Cookies #############################
+
+// Gibt den Wert des übergebenen Coockienamens wieder
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
