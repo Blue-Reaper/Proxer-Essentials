@@ -19,7 +19,6 @@ window.smallWondersCall = function (change) {
 			smallWonders();
 			break;
 		case "ajax":
-			setImgBackToTop();
 			break;
 		case "off":
 			// smallWonders();
@@ -35,10 +34,18 @@ function smallWonders(){
 	document.cookie = 'manga_reader=longstrip';
 
 // Fügt einen "BackToTop" Button ein
-	var backToTopButton = ['<a href="#top" class="backToTop">Nach oben</a>'].join("");
+	var backToTopButton = ['<i class="backToTop pointer fa fa-2x fa-chevron-up"/>'].join("");
 	$("body").append(backToTopButton)
-	setImgBackToTop();
-// Funktion für das Scroll-Verhalten
+	$('.backToTop').hover(function(){
+		// Setzt Bild bei hover
+		$('.backToTop').removeClass("fa-2x fa-chevron-up");
+		$('.backToTop').addClass("fa-3x fa-chevron-circle-up");
+	}, function(){
+		// Setzt Bild nach hover zurück auf Standard
+		$('.backToTop').removeClass("fa-3x fa-chevron-circle-up");
+		$('.backToTop').addClass("fa-2x fa-chevron-up");
+	});
+// Funktion für das Scroll-Verhalten des BackToTop
 	$(function () {
 		$(window).scroll(function () {
 			if ($(this).scrollTop() > 100) { // Wenn 100 Pixel gescrolled wurde
@@ -55,55 +62,4 @@ function smallWonders(){
 		});
 	});
 
-}
-
-// Setzt die Bilder für den BackToTop Button, je nach eingestelltem Proxer-Style
-function setImgBackToTop(){
-	switch (getCookie('style')) {
-		case "gray":
-		// Setzt Bild
-			$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_gray")+')');
-			$('.backToTop').hover(function(){
-				// Setzt Bild bei hover
-				$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_hover_gray")+')');
-			}, function(){
-				// Setzt Bild nach hover
-				$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_gray")+')');
-			});
-			break;
-		case "black":
-			$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_white")+')');
-			$('.backToTop').hover(function(){
-				$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_hover_white")+')');
-			}, function(){
-				$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_white")+')');
-			});
-			break;
-		case "old_blue":
-			$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_oldBlue")+')');
-			$('.backToTop').hover(function(){
-				$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_hover_oldBlue")+')');
-			}, function(){
-				$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_oldBlue")+')');
-			});
-		break;
-		case "pantsu":
-			$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_pantsu")+')');
-			$('.backToTop').hover(function(){
-				$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_hover_pantsu")+')');
-			}, function(){
-				$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_pantsu")+')');
-			});
-			break;eak;
-		default:
-			$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_gray")+')');
-			$('.backToTop').hover(function(){
-				// Setzt Bild bei hover
-				$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_hover_gray")+')');
-			}, function(){
-				// Setzt Bild nach hover
-				$('.backToTop').css("background-image", 'url('+GM_getResourceURL("btt_gray")+')');
-			});
-			break;
-	}
 }

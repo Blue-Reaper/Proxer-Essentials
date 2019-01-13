@@ -59,9 +59,9 @@
     position:fixed;
     right:210px;
     bottom:20px;
-    display:none;
-    width:46px;
-    height:46px;
-    text-indent:-9999px;
-    background-size:cover;
+}
+
+.backToTop:hover {
+    right:206px;
+    bottom:10px;
 }

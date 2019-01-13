@@ -18,15 +18,7 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
 // Framework
-// @resource    pef_CSS            https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
-// @resource    btt_gray           https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButton_gray.png
-// @resource    btt_hover_gray     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButtonHover_gray.png
-// @resource    btt_white          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButton_white.png
-// @resource    btt_hover_white    https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButtonHover_white.png
-// @resource    btt_oldBlue        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButton_oldBlue.png
-// @resource    btt_hover_oldBlue  https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButtonHover_oldBlue.png
-// @resource    btt_pantsu         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButton_pantsu.png
-// @resource    btt_hover_pantsu   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButtonHover_pantsu.png
+// @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/AjaxMonitoring.js
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/MenuAndSettings.js
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/MethodLibary.js
