@@ -59,6 +59,7 @@
     position:fixed;
     right:210px;
     bottom:20px;
+    display:none;
 }
 
 .backToTop:hover {
