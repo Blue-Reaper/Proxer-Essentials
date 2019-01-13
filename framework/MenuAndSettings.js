@@ -92,7 +92,7 @@ function showModules(pef_module){
 		// TODO: Button für Details hinzufügen
 		var modulStatus = document.createElement("i");
 		modulStatus.id = pefModulList[i]+'_StatusImg';
-		modulStatus.calssName = "status fa fa-2x pointer";
+		modulStatus.className = "status fa fa-2x pointer";
 		moduleBox.appendChild(modulStatus);
 
 		pef_module.appendChild(moduleBox);
