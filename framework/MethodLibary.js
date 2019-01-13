@@ -31,19 +31,13 @@ function createPefDialog(msg, methodYes, methodNo){
 	}
 	dialogbuttons.className = "marginTop10";
 
-	var dialogbuttonyes = document.createElement("a");
-	dialogbuttonyes.className = "clickImg30";
-	dialogbuttonyes.href = "javascript:;";
-	dialogbuttonyes.innerHTML = "Yes";
-	dialogbuttonyes.style.backgroundImage = 'url('+GM_getResourceURL("yes_img")+')';
+	var dialogbuttonyes = document.createElement("i");
+	dialogbuttonyes.className = "fa fa-check fa-2x";
 	dialogbuttons.appendChild(dialogbuttonyes);
 
 	if(confirmDialog){
-		var dialogbuttonno = document.createElement("a");
-		dialogbuttonno.className = "clickImg30 marginLeft30";
-		dialogbuttonno.href = "javascript:;";
-		dialogbuttonno.innerHTML = "No";
-		dialogbuttonno.style.backgroundImage = 'url('+GM_getResourceURL("no_img")+')';
+		var dialogbuttonno = document.createElement("i");
+		dialogbuttonno.className = "marginLeft30 fa fa-times fa-2x";
 		dialogbuttons.appendChild(dialogbuttonno);
 	}
 

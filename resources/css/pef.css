@@ -15,21 +15,13 @@
     text-align: center;
 }
 
-.clickImg20 {
-    margin-left: 1em;
-    width: 20px;
-    height: 20px;
-    background-size: cover;
-    text-indent: -9999px;
-    position: absolute;
+.status {
+    margin-right: 1em;
+    float: right;
 }
 
-.clickImg30 {
-    width: 30px;
-    height: 30px;
-    text-indent: -9999px;
-    background-size: cover;
-    position: fixed;
+.off {
+    opacity: 0.5;
 }
 
 .dialogOverlay {

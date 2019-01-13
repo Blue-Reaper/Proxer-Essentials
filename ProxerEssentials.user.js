@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     1.1
+// @version     1.2
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -18,24 +18,22 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
 // Framework
-// @resource    yes_img            https://proxer.me/images/misc/haken.png
-// @resource    no_img             https://proxer.me/images/misc/kreuz.png
-// @resource    pef_CSS            resources/css/pef.css
-// @resource    btt_gray           resources/img/BackToTopButton_gray.png
-// @resource    btt_hover_gray     resources/img/BackToTopButtonHover_gray.png
-// @resource    btt_white          resources/img/BackToTopButton_white.png
-// @resource    btt_hover_white    resources/img/BackToTopButtonHover_white.png
-// @resource    btt_oldBlue        resources/img/BackToTopButton_oldBlue.png
-// @resource    btt_hover_oldBlue  resources/img/BackToTopButtonHover_oldBlue.png
-// @resource    btt_pantsu         resources/img/BackToTopButton_pantsu.png
-// @resource    btt_hover_pantsu   resources/img/BackToTopButtonHover_pantsu.png
-// @require     framework/AjaxMonitoring.js
-// @require     framework/MenuAndSettings.js
-// @require     framework/MethodLibary.js
-// @require     framework/ModulControl.js
+// @resource    pef_CSS            https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
+// @resource    btt_gray           https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButton_gray.png
+// @resource    btt_hover_gray     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButtonHover_gray.png
+// @resource    btt_white          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButton_white.png
+// @resource    btt_hover_white    https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButtonHover_white.png
+// @resource    btt_oldBlue        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButton_oldBlue.png
+// @resource    btt_hover_oldBlue  https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButtonHover_oldBlue.png
+// @resource    btt_pantsu         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButton_pantsu.png
+// @resource    btt_hover_pantsu   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButtonHover_pantsu.png
+// @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/AjaxMonitoring.js
+// #@require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/MenuAndSettings.js
+// @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/MethodLibary.js
+// @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/ModulControl.js
 // Module
-// @require     modules/PefExample.js
-// @require     modules/SmallWonders.js
+// @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/modules/PefExample.js
+// @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/modules/SmallWonders.js
 // ==/UserScript==
 
 GM_addStyle (GM_getResourceText ("pef_CSS"));
