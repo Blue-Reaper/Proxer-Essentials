@@ -1,13 +1,13 @@
-//Fügt den Button "Apps" zu "leftNav" hinzu
-// Erzeugt 'Essentials' in Apps
+//Fügt den Button "Essentials" zu "leftNav" hinzu
+// Erzeugt 'Einstellungen' in Essentials
 function addPefMenu() {
 	var li = document.createElement("li");
 	li.className = "topmenu";
-	li.innerHTML = '<a href="javascript:;">Apps ▾</a><ul id="pef_menu"></ul>';
+	li.innerHTML = '<a href="javascript:;">Essentials ▾</a><ul id="pef_menu"></ul>';
 	leftNav.appendChild(li);
-	// Erzeugt 'Essentials' in Apps
+	// Erzeugt 'Einstellungen' in Essentials
 	var settings = document.createElement("li");
-	settings.innerHTML = '<a href="/pef?s=settings#top">Essentials</a>';
+	settings.innerHTML = '<a href="/pef?s=settings#top">Einstellungen</a>';
 	pef_menu.appendChild(settings);
 };
 
@@ -28,15 +28,15 @@ function createPefSettings(){
 		pageMetaAjax.innerHTML = 'Proxer Essentials'; // Das ist der Titel, muss ich händisch machen
 		document.title = 'Proxer Essentials';
 
-// 		Erzeuge Tab Essentials
+// 		Erzeuge Tab Einstellungen
 // 		Id: pef_Settings
 // 		URL: ?s=settings
 		var scriptTab = document.createElement("li");
 		scriptTab.id="pef_Settings";
-		scriptTab.innerHTML = '<a data-ajax="true" href="/pef?s=settings#top">Essentials</a>';
+		scriptTab.innerHTML = '<a data-ajax="true" href="/pef?s=settings#top">Einstellungen</a>';
 		navBar.appendChild(scriptTab);
 
-		// Erzeugt den Ihalt des Tabs 'Essentials'
+		// Erzeugt den Ihalt des Tabs 'Einstellungen'
 		if(location.search === "" || location.search === "?s=settings"){
 			pef_Settings.className = "active";
 			// QUESTION pageMetaAjax überhaupt nötig?
