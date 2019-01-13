@@ -25,8 +25,8 @@ function createPefSettings(){
 
 		// Setze den Titel des Tabs im Browser
 		// QUESTION pageMetaAjax überhaupt nötig?
-		pageMetaAjax.innerHTML = 'Proxer Erweiterung'; // Das ist der Titel, muss ich händisch machen
-		document.title = 'Proxer Erweiterung';
+		pageMetaAjax.innerHTML = 'Proxer Essentials'; // Das ist der Titel, muss ich händisch machen
+		document.title = 'Proxer Essentials';
 
 // 		Erzeuge Tab Essentials
 // 		Id: pef_Settings
@@ -40,12 +40,12 @@ function createPefSettings(){
 		if(location.search === "" || location.search === "?s=settings"){
 			pef_Settings.className = "active";
 			// QUESTION pageMetaAjax überhaupt nötig?
-			pageMetaAjax.innerHTML = 'Proxer Erweiterung'; // Das ist der Titel, muss ich händisch machen
-			document.title = 'Proxer Erweiterung';
+			pageMetaAjax.innerHTML = 'Proxer Essentials'; // Das ist der Titel, muss ich händisch machen
+			document.title = 'Proxer Essentials';
 
 			// Überschrift
 			var h3 = document.createElement("h3");
-			h3.innerHTML = "Proxer Erweiterung";
+			h3.innerHTML = "Proxer Essentials";
 			inhalt.appendChild(h3);
 
 			// Inhalt für Modulanzeige
