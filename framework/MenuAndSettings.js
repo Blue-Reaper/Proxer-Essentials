@@ -78,8 +78,10 @@ function showModules(pef_module){
 		moduleName.innerHTML = window[pefModulList[i]+"Name"]();
 		moduleName.className = "center";
 
-		var modulStatus = document.createElement("img");
+		var modulStatus = document.createElement("a");
+		modulStatus.href = "javascript:;";
 		modulStatus.id = pefModulList[i]+'_StatusImg';
+		modulStatus.innerHTML = "Status";
 		modulStatus.className ="clickImg20";
 
 		moduleName.appendChild(modulStatus);
@@ -120,8 +122,8 @@ function toggleModulStatus(modulId) {
 // Setzt den Haken / Kreuz nach dem Modulnamen
 function updateModulTick(modulId) {
     if (GM_getValue(modulId+"Status") === "off") {
-		$("#"+modulId+"_StatusImg").attr("src", GM_getResourceURL("no_img"));
+		$("#"+modulId+"_StatusImg").css("background-image", 'url('+GM_getResourceURL("no_img")+')');
 	} else {
-		$("#"+modulId+"_StatusImg").attr("src", GM_getResourceURL("yes_img"));
+		$("#"+modulId+"_StatusImg").css("background-image", 'url('+GM_getResourceURL("yes_img")+')');
 	}
 };

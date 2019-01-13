@@ -19,13 +19,17 @@
     margin-left: 1em;
     width: 20px;
     height: 20px;
-    cursor: pointer;
+    background-size: cover;
+    text-indent: -9999px;
+    position: absolute;
 }
 
 .clickImg30 {
     width: 30px;
     height: 30px;
-    cursor: pointer;
+    text-indent: -9999px;
+    background-size: cover;
+    position: fixed;
 }
 
 .dialogOverlay {
@@ -53,4 +57,15 @@
 .leanRight {
     text-align: right;
     padding-right: 30px;
+}
+
+.backToTop {
+    position:fixed;
+    right:210px;
+    bottom:20px;
+    display:none;
+    width:46px;
+    height:46px;
+    text-indent:-9999px;
+    background-size:cover;
 }
