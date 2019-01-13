@@ -8,7 +8,7 @@ function monitorAjax(){
 	setInterval(function(){
 		if (ajaxEvent){
 			createPefSettings();
-			actionControl("Ajax Aufruf");
+			actionControl("ajax");
 			ajaxEvent = false;
 		}
 	},700);

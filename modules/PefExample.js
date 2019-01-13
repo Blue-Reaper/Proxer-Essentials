@@ -1,83 +1,54 @@
-// Muser und Testscript
+// Muster
 
-// Aufruf des Scripts
-window.callPefExample = function (change) {
+// Legt die Modul-Id fest und schreibt sie in die Liste aller Module
+pefModulList.push("pefExample");
+
+// Legt fest, welcher Name in den Einstellungen angezeigt Wird
+// Syntax für Methodenname: Modul-Id + "Name"
+window.pefExampleName = function () {
+	return "Beispiel Modul";
+}
+
+// Legt die Kurzbeschreibung fest, die in den Einstellungen angezeigt wird
+// Sysntax für Methodenname: Modul-Id + "Description"
+window.pefExampleDescription = function () {
+	return "Dieses Modul dient als Muster, zur Erstellung weiterer Scripte.";
+}
+
+// Aufruf des Scripts durch das Framework
+// Syntax für Methodenname: Modul-Id + "Call"
+window.pefExampleCall = function (change) {
 	switch(change) {
-		case "Initialisierung":
-			// Wird beim Laden der Seite Aufgerufen, immer der erste Aufruf für das Modul
-            console.log("init");
-            pefExample();
+		case "on":
+			// Wird nach dem Laden der Seite Aufgerufen, sollte das Modul aktiviert sein
+			// Wird auch aufgerufen, wenn der User das Modul in den Einstellungen aktiviert
+            console.log("on");
+            myExampleMethod();
 			break;
-		case "Ajax Aufruf":
+		case "ajax":
 			// Wird durch einen Ajax-Aufruf auf der Seite getriggert
+			// Nur wenn das Modul aktiv ist
+			// Es wird immer erst nach "on" aufgerufen
             console.log("ajax");
-            pefExample();
+            myExampleMethod();
 			break;
-		case "User on-off":
-			// Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ein- oder ausschaltet
-            console.log("user");
-            pefExample();
+		case "off":
+			// Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ausschaltet
+            console.log("off");
+            anotherExampleMethod();
 			break;
 		default:
             console.error("Fehlerhafter Aufruf actionControl() mit '"+change+"'");
 	}
 }
 
-// Hauptfunktion des Moduls
-function pefExample() {
- // Hier ist der Code des Scipts
+
+function myExampleMethod() {
+// Hier ist der Code des Scipts
+	console.log("Das Muster-Modul läuft");
 }
 
-
-
-
-// #####################################################
-// #####################################################
-// alter Test Code
-// #####################################################
-// #####################################################
-
-//Hauptfunktion
-function clearlookold() {
-	//Lösche Chat
-    document.getElementById("chat").style.display = "none";
-	// setzte Longstripreader in cookie
-	try{
-
-
-		neueVersion("0.0.2","<div>Mit dieser Version neu :</div>"+
-							"<div>- die Versionsanzeige (dieser Dialog)</div>"+
-							"<div>Sie erscheint nur 1x und informiert über Änderungen mit der neuen Version.</div>"+
-							"<a href=''>Aktuelle Anleitung im Forum.</a>"+
-							"<div>Gruß</div>"+
-							"<div>Blue.Reaper</div>");
-
-		 makeLogin();
-	}catch(err){
-		console.log("ERROR clear");
-	}
-};
-
-
-// async
-function makeLogin(){
-	//Wenn nicht eingeloggt
-	if (document.getElementById('messageNav') == null){
-		var username = "Blue.Reaper";
-		var userpass = "";
-		var xmlHttp = new XMLHttpRequest();
-		xmlHttp.open("POST", "https://proxer.me/login?format=json&action=login", true); // true for asynchronous
-		xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xmlHttp.send("username="+username+"&password="+userpass);
-		xmlHttp.onreadystatechange = function() {
-			if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
-				var answer = JSON.parse(xmlHttp.responseText);
-				if (answer.error == 1){
-					createAnkerMessage("Anmeldung fehlgeschlagen: "+answer.message);
-				}else if(answer.error == 0){
-					location.reload();
-				}
-			}
-		}
-	}
+function anotherExampleMethod() {
+// Wenn das Modul ausgeschaltet wird passiert evtl. etwas
+	console.log("Das Mustet-Modul wurde deaktiviert");
 }

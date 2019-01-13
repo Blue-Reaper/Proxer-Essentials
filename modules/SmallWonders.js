@@ -5,15 +5,24 @@
 // Setzt cookie um Longstrip Reader bei Mangas standardmäßig zu aktivieren
 // TODO: zurück nach oben Button
 
-function callSmallWonders(change) {
+pefModulList.push("smallWonders");
+window.smallWondersName = function () {
+	return "kleine Wunder";
+}
+
+window.smallWondersDescription = function () {
+	return "Kleine Änderungen, die Wunder wirken";
+}
+
+window.smallWondersCall = function (change) {
 	switch(change) {
-		case "Initialisierung":
+		case "on":
 			smallWonders();
 			break;
-		case "Ajax Aufruf":
+		case "ajax":
 			// smallWonders();
 			break;
-		case "User on-off":
+		case "off":
 			// smallWonders();
 			break;
 		default:

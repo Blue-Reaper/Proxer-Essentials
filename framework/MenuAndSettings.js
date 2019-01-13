@@ -1,4 +1,3 @@
-
 //Fügt den Button "Apps" zu "leftNav" hinzu
 // Erzeugt 'Erweiterungen' in Apps
 function addPefMenu() {
@@ -76,21 +75,28 @@ function showModules(pef_module){
 		moduleBox.style.borderRadius = $('#main').css("border-top-left-radius");
 
 		var moduleName = document.createElement("h3");
-		moduleName.innerHTML = pefModulList[i].name;
+		moduleName.innerHTML = window[pefModulList[i]+"Name"]();
 		moduleName.className = "center";
 
 		var modulStatus = document.createElement("img");
-		modulStatus.id = pefModulList[i].id+'_StatusImg';
+		modulStatus.id = pefModulList[i]+'_StatusImg';
 		modulStatus.className ="clickImg20";
 
 		moduleName.appendChild(modulStatus);
 		moduleBox.appendChild(moduleName);
 		moduleBox.appendChild(document.createElement("hr"));
 
-// TODO: Beschreibung, Version? und Button für Details hinzufügen
+		var moduleDescription = document.createElement("div");
+		try{
+			moduleDescription.innerHTML = window[pefModulList[i]+"Description"]();
+		}catch(err) {
+			console.log("Modul "+pefModulList[i]+" hat keine Beschreibung");
+		}
+		moduleBox.appendChild(moduleDescription);
+		// TODO: Button für Details hinzufügen
 
 		pef_module.appendChild(moduleBox);
-		updateModulTick(pefModulList[i].id);
+		updateModulTick(pefModulList[i]);
 
 		$(modulStatus).click(function (event) {
 			// Bei klicken auf das Bild wird die Id ausgelesen und der "_StatusImg" Teil eintfernt, damit nur die Modul-Id über bleibt
@@ -103,10 +109,11 @@ function showModules(pef_module){
 function toggleModulStatus(modulId) {
 	if (GM_getValue(modulId+"Status") === "off") {
 		GM_setValue(modulId+"Status","on");
+		actionControl("on", modulId);
 	} else {
 		GM_setValue(modulId+"Status","off");
+		actionControl("off", modulId);
 	}
-    actionControl("User change Status");
     updateModulTick(modulId);
 };
 

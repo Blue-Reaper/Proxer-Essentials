@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Scripts4Proxer
-// @version      0.4
+// @version      1.0
 // @description  Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author       Blue.Reaper
 // @namespace    https://blue-reaper.github.io/Scripts4Proxer/
@@ -32,12 +32,14 @@
 
 GM_addStyle (GM_getResourceText ("pef_CSS"));
 
+// Liste der einzelnen Module
+window.pefModulList = [];
 
 //Main Methode des Frameworks
 document.addEventListener('DOMContentLoaded', function(event) {
+	initStatusMemory();
 	addPefMenu();
 	createPefSettings();
-	actionControl("Initialisierung");
+	actionControl("on");
 	monitorAjax();
-
 });
