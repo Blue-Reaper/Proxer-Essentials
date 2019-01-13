@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## Einfache Benutzung
   * In nur einem Userscript viele Erweiterungen erhalten
   * Einzelne Module können bequem ein- und ausgeschaltet werden
