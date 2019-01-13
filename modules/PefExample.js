@@ -2,11 +2,9 @@
 
 // Neue Module müssen in ProxerEssentials.user.js mit einem neuen @require hinzugefügt werden
 
-// Legt die Modul-Id fest und schreibt sie in die Liste aller Module
-window.pefModulList.push("pefExample");
-
 // Legt fest, welcher Name in den Einstellungen angezeigt Wird
 // Syntax für Methodenname: Modul-Id + "Name"
+// Modul-Id wird in der Liste pefModulList in ProxerEssentials.user.js festgelegt
 window.pefExampleName = function () {
 	return "Beispiel Modul";
 }

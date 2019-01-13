@@ -5,7 +5,6 @@
 // Setzt cookie um Longstrip Reader bei Mangas standardmäßig zu aktivieren
 // TODO: zurück nach oben Button
 
-window.pefModulList.push("smallWonders");
 window.smallWondersName = function () {
 	return "kleine Wunder";
 }

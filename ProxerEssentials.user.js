@@ -32,8 +32,9 @@
 
 GM_addStyle (GM_getResourceText ("pef_CSS"));
 
-// Liste der einzelnen Module
-window.pefModulList = [];
+// Liste aller Module
+// Hier wird die jeweilige Modul-Id festgelegt
+window.pefModulList = ["pefExample", "smallWonders"];
 
 //Main Methode des Frameworks
 document.addEventListener('DOMContentLoaded', function(event) {
