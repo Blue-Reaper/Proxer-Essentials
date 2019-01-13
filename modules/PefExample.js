@@ -1,4 +1,6 @@
-// Muster
+// Muster (Proxer Essentials Framework Example)
+
+// Neue Module müssen in ProxerEssentials.user.js mit einem neuen @require hinzugefügt werden
 
 // Legt die Modul-Id fest und schreibt sie in die Liste aller Module
 pefModulList.push("pefExample");

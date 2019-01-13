@@ -1,12 +1,5 @@
-# Proxer Erweiterung
-Eine Sammlung mehrerer Userscripte für Proxer.me die eine einheitliche Steuerung benutzen.
-
-mögliche Namen:
-* Scripts4Proxer
-* Proxer Extended
-* Proxer Erweiterung
-* Proxer Essentials
-* Proxer Enhanced Experience
+# Proxer Essentials
+Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 
 ## Ziel 1 - Einfache Benutzung
   * der User muss nur ein Userscript installieren und bekommt gleich mehrere Funktionen
@@ -20,9 +13,3 @@ mögliche Namen:
 Entwickelt in angrymonkey und Chrome
 
 Getestet in ...
-
-
-### Syntax
-Namenskonvention
-* alle ids des Frameworks gebinnen mit pef_ (Proxer Erweiterung Framework)
-* Ob das Modul de- oder aktiviert ist steht in dem Speicherwert modulId + 'Status'
