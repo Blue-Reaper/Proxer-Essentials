@@ -19,7 +19,9 @@
     margin-left: 1em;
     width: 20px;
     height: 20px;
-    cursor: pointer;
+    background-size: cover;
+    text-indent: -9999px;
+    position: absolute;
 }
 
 .clickImg30 {
