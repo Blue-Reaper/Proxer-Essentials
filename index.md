@@ -1,6 +1,3 @@
-# Proxer Essentials
-Nützlicher Erweiterungen für Proxer die jeder braucht
-
 ## Einfache Benutzung
   * In nur einem Userscript viele Erweiterungen erhalten
   * Einzelne Module können bequem ein- und ausgeschaltet werden

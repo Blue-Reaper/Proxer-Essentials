@@ -1,1 +1,10 @@
+title: Proxer Essentials
+description: > # this means to ignore newlines until "baseurl:"
+  Nützlicher Erweiterungen für Proxer die jeder braucht
+
 theme: jekyll-theme-cayman
+
+#Install-Button
+show_install: true
+github:
+  install_url: https://github.com/Blue-Reaper/Proxer-Essentials/raw/master/ProxerEssentials.user.js
