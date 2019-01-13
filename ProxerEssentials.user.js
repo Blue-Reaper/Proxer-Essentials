@@ -28,7 +28,7 @@
 // @resource    btt_pantsu         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButton_pantsu.png
 // @resource    btt_hover_pantsu   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/img/BackToTopButtonHover_pantsu.png
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/AjaxMonitoring.js
-// #@require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/MenuAndSettings.js
+// @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/MenuAndSettings.js
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/MethodLibary.js
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/framework/ModulControl.js
 // Module
