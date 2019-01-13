@@ -6,5 +6,4 @@ theme: jekyll-theme-cayman
 
 #Install-Button
 show_install: true
-github:
-  install_url: https://github.com/Blue-Reaper/Proxer-Essentials/raw/master/ProxerEssentials.user.js
+install_url: https://github.com/Blue-Reaper/Proxer-Essentials/raw/master/ProxerEssentials.user.js
