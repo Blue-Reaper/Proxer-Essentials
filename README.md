@@ -1,10 +1,10 @@
-# ProxerExtended
-Eine Sammlung mehrerer Userscripte für Proxer.me die eine einheitliche Steuerung benutzen.
+# Proxer Essentials
+Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 
-## Ziel 1 - Make it easy for the user
+## Ziel 1 - Einfache Benutzung
   * der User muss nur ein Userscript installieren und bekommt gleich mehrere Funktionen
 
-## Ziel 2 - Make it easy to add new scrits
+## Ziel 2 - Einfaches hinzufügen neuer Scripte
   * Framework händelt Metha-Daten für angrymonkey, etc.
   * Einfache Möglichkeit die Einstellungen und Beschreibung des jeweiligen Scripts einzubinden
   * Starten des Scripts durch Framework beim Laden, Ajax, etc.
@@ -13,9 +13,3 @@ Eine Sammlung mehrerer Userscripte für Proxer.me die eine einheitliche Steuerun
 Entwickelt in angrymonkey und Chrome
 
 Getestet in ...
-
-
-### Syntax
-Namenskonvention
-* alle ids des Frameworks gebinnen mit pef_ (Proxer Erweiterung Framework)
-* Ob das Modul de- oder aktiviert ist steht in dem Speicherwert modulId + 'Status'
