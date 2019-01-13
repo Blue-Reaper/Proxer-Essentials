@@ -20,6 +20,10 @@
     float: right;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .off {
     opacity: 0.5;
 }

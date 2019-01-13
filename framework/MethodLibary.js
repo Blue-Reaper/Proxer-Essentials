@@ -32,12 +32,12 @@ function createPefDialog(msg, methodYes, methodNo){
 	dialogbuttons.className = "marginTop10";
 
 	var dialogbuttonyes = document.createElement("i");
-	dialogbuttonyes.className = "fa fa-check fa-2x";
+	dialogbuttonyes.className = "fa fa-check fa-2x pointer";
 	dialogbuttons.appendChild(dialogbuttonyes);
 
 	if(confirmDialog){
 		var dialogbuttonno = document.createElement("i");
-		dialogbuttonno.className = "marginLeft30 fa fa-times fa-2x";
+		dialogbuttonno.className = "marginLeft30 fa fa-times fa-2x pointer";
 		dialogbuttons.appendChild(dialogbuttonno);
 	}
 

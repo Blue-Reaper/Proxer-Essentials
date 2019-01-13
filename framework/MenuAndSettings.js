@@ -92,6 +92,7 @@ function showModules(pef_module){
 		// TODO: Button für Details hinzufügen
 		var modulStatus = document.createElement("i");
 		modulStatus.id = pefModulList[i]+'_StatusImg';
+		modulStatus.calssName = "status fa fa-2x pointer";
 		moduleBox.appendChild(modulStatus);
 
 		pef_module.appendChild(moduleBox);
@@ -119,10 +120,12 @@ function toggleModulStatus(modulId) {
 // Setzt den Haken / Kreuz nach dem Modulnamen
 function updateModulTick(modulId) {
     if (GM_getValue(modulId+"Status") === "off") {
-		$("#"+modulId+"_StatusImg").attr("class", 'status fa fa-times fa-2x');
+		$("#"+modulId+"_StatusImg").removeClass('fa-check');
+		$("#"+modulId+"_StatusImg").addClass('fa-times');
 		$("#"+modulId+"ModulBox").addClass('off');
 	} else {
-		$("#"+modulId+"_StatusImg").attr("class", 'status fa fa-check fa-2x');
+		$("#"+modulId+"_StatusImg").removeClass('fa-times');
+		$("#"+modulId+"_StatusImg").addClass('fa-check');
 		$("#"+modulId+"ModulBox").removeClass('off');
 	}
 };
