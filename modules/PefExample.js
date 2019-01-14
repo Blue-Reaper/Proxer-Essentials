@@ -45,10 +45,10 @@ window.pefExampleCall = function (change) {
 
 function myExampleMethod() {
 // Hier ist der Code des Scipts
-	console.log("Das Muster-Modul läuft");
+	// console.log("Das Muster-Modul läuft");
 }
 
 function anotherExampleMethod() {
 // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
-	console.log("Das Mustet-Modul wurde deaktiviert");
+	// console.log("Das Mustet-Modul wurde deaktiviert");
 }

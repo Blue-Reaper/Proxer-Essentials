@@ -33,33 +33,34 @@ function smallWonders(){
 	// Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
 	document.cookie = 'manga_reader=longstrip';
 
-// Fügt einen "BackToTop" Button ein
-	var backToTopButton = ['<i class="backToTop pointer fa fa-2x fa-chevron-up"/>'].join("");
+// ############### BackToTop ###############
+// button einfügen
+	var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
 	$("body").append(backToTopButton)
-	$('.backToTop').hover(function(){
+// hover
+	$(backToTopButton).hover(function(){
 		// Setzt Bild bei hover
-		$('.backToTop').removeClass("fa-2x fa-chevron-up");
-		$('.backToTop').addClass("fa-3x fa-chevron-circle-up");
+		$(backToTopButton).removeClass("fa-2x fa-chevron-up");
+		$(backToTopButton).addClass("fa-3x fa-chevron-circle-up");
 	}, function(){
 		// Setzt Bild nach hover zurück auf Standard
-		$('.backToTop').removeClass("fa-3x fa-chevron-circle-up");
-		$('.backToTop').addClass("fa-2x fa-chevron-up");
+		$(backToTopButton).removeClass("fa-3x fa-chevron-circle-up");
+		$(backToTopButton).addClass("fa-2x fa-chevron-up");
 	});
-// Funktion für das Scroll-Verhalten des BackToTop
-	$(function () {
-		$(window).scroll(function () {
-			if ($(this).scrollTop() > 100) { // Wenn 100 Pixel gescrolled wurde
-				$('.backToTop').fadeIn();
-			} else {
-				$('.backToTop').fadeOut();
-			}
-		});
-		$('.backToTop').click(function () { // Klick auf den Button
-			$('body,html').animate({
-				scrollTop: 0
-			}, 800);
-			return false;
-		});
+// scroll 100 Pixel
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > 100) {
+			$(backToTopButton).fadeIn();
+		} else {
+			$(backToTopButton).fadeOut();
+		}
+	});
+// click
+	$(backToTopButton).click(function () {
+		$('body,html').animate({
+			scrollTop: 0
+		}, 800);
+		return false;
 	});
 
 }

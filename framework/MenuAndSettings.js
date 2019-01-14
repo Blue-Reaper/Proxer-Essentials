@@ -120,6 +120,7 @@ function toggleModulStatus(modulId) {
 // Setzt den Haken / Kreuz nach dem Modulnamen
 function updateModulTick(modulId) {
     if (GM_getValue(modulId+"Status") === "off") {
+		// TODO use fa-toggle-off and fa-toggle-on animation possible?
 		$("#"+modulId+"_StatusImg").removeClass('fa-check');
 		$("#"+modulId+"_StatusImg").addClass('fa-times');
 		$("#"+modulId+"ModulBox").addClass('off');
