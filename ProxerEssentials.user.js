@@ -28,6 +28,8 @@
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/modules/SmallWonders.js
 // ==/UserScript==
 
+// TODO Typescript?
+
 GM_addStyle (GM_getResourceText ("pef_CSS"));
 
 // Liste aller Module
