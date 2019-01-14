@@ -26,13 +26,14 @@
 // Module
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/modules/PefExample.js
 // @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/modules/SmallWonders.js
+// @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/fullscreen-manga/modules/FullscreenManga.js
 // ==/UserScript==
 
 GM_addStyle (GM_getResourceText ("pef_CSS"));
 
 // Liste aller Module
 // Hier wird die jeweilige Modul-Id festgelegt
-window.pefModulList = ["smallWonders", "pefExample"];
+window.pefModulList = ["smallWonders", "fullscreenManga", "pefExample"];
 
 //Main Methode des Frameworks
 document.addEventListener('DOMContentLoaded', function(event) {
