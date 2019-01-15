@@ -26,21 +26,6 @@ GM_addStyle (GM_getResourceText ("pef_CSS"));
 // Liste aller Module
 let pefModulList :IPefModul[] = [];
 
-// Interface für Grunddaten der Module
-interface IPefModul {
-    id: string;
-    name: string;
-    description: string;
-    callMethod: (change:ModulCallEvent) => void;
-}
-
-// Mögliche Events mit denen die callMethod() aufgerufen wird
-const enum ModulCallEvent {
-    on,
-    off,
-    ajax
-}
-
 //Main Methode des Frameworks
 $(document).ready(function(){
 	initStatusMemory();

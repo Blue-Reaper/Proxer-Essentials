@@ -84,7 +84,7 @@ function createPefMessage(msg:string){
 //############################# Auslesen eines Cookies #############################
 
 // Gibt den Wert des übergebenen Coockienamens wieder
-function getCookie(cname) {
+function getCookie(cname:string) {
   // var name = cname + "=";
   // var decodedCookie = decodeURIComponent(document.cookie);
   // var ca = decodedCookie.split(';');
@@ -97,8 +97,8 @@ function getCookie(cname) {
   //     return c.substring(name.length, c.length);
   //   }
   // }
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + cname + "=");
+  let value = "; " + document.cookie;
+  let parts = value.split("; " + cname + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
   return "";
 }

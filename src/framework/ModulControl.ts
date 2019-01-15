@@ -1,3 +1,18 @@
+// Interface für Grunddaten der Module
+interface IPefModul {
+    id: string;
+    name: string;
+    description: string;
+    callMethod: (change:ModulCallEvent) => void;
+}
+
+// Mögliche Events mit denen die callMethod() aufgerufen wird
+const enum ModulCallEvent {
+    on,
+    off,
+    ajax
+}
+
 // Erst-Initialisierung der Speicherwerte
 function initStatusMemory(){
 	for(let singleModule of pefModulList){
