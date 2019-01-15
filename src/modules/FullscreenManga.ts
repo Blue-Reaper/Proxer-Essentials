@@ -50,9 +50,6 @@ function fullscreenManga(){
 	}
 
 	document.addEventListener("fullscreenchange", autoFullscreenEvent);
-	document.addEventListener("webkitfullscreenchange", autoFullscreenEvent);
-	document.addEventListener("mozfullscreenchange", autoFullscreenEvent);
-	document.addEventListener("MSFullscreenChange", autoFullscreenEvent);
 	$(window).scroll(getWindowScrollTop);
 
 	// FIXME .backtotop nur für test
@@ -74,7 +71,7 @@ function fullscreenManga(){
 
 // Wrid aufgerufen, wenn der Browser in oder aus Fullscreen wechselt
 function autoFullscreenEvent(){
-	if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+	if (document.fullscreenElement) {
         // Am Einschalten
         fullscreenOn();
 	}else {
@@ -85,12 +82,8 @@ function autoFullscreenEvent(){
 
 // wird aufgerufen um Fullscreen zu toogeln, triggert indirekt autoFullscreenEvent
 function toggleFullscreenManga(){
-	if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+	if (document.fullscreenElement) {
         // Fullscreen Ausschalten
-        console.log("normal: "+document.fullscreenElement);
-        console.log("webkit: "+document.webkitFullscreenElement);
-        console.log("moz: "+document.mozFullScreenElement);
-        console.log("ms: "+document.msFullscreenElement);
         fullscreenOff();
 	}else {
         // Fullscreen Einschalten
@@ -100,17 +93,13 @@ function toggleFullscreenManga(){
 
 function fullscreenOn(){
 	// TODO in css umwandeln
-	reader.setAttribute("style","overflow-y:auto; height:"+(screen.height-15)+"px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;");
+	// reader.setAttribute("style","overflow-y:auto; height:"+(screen.height-15)+"px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;");
 	reader.scrollTo(0, currentScroll);
 
 	$(window).off("scroll", getWindowScrollTop);
 	$('#reader').scroll(getReaderScrollTop);
     if (reader.requestFullscreen) {
         reader.requestFullscreen();
-    } else if (reader.mozRequestFullScreen) {
-        reader.mozRequestFullScreen();
-    } else if (reader.webkitRequestFullScreen) {
-        reader.webkitRequestFullScreen();
     }
 }
 
@@ -123,12 +112,6 @@ function fullscreenOff(){
 
     if (document.exitFullscreen) {
     	document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-    	document.webkitExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-    	document.mozCancelFullScreen();
-    } else if (document.msExitFullscreen) {
-    	document.msExitFullscreen();
     }
     // if (document.cancelFullScreen) {
     //     document.cancelFullScreen();

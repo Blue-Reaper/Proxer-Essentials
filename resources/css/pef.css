@@ -66,3 +66,7 @@
     right:206px;
     bottom:10px;
 }
+
+:fullscreen{
+    overflow-y:auto;
+}
