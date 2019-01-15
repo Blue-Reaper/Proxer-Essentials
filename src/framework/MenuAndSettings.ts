@@ -31,15 +31,15 @@ function createPefSettings(){
 			document.title = 'Proxer Essentials';
 
 			// Überschrift
-			$(inhalt).append($('<h3>Proxer Essentials</h3>'));
+			inhalt.append($('<h3>Proxer Essentials</h3>'));
 
 			// Inhalt für Modulanzeige
 			let pef_module = $('<div>');
-			$(inhalt).append($(pef_module));
+			inhalt.append(pef_module);
 			showModules(pef_module);
 
 			// Footer
-			$(inhalt).append($('<div class ="modulEnd">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+			inhalt.append($('<div class ="modulEnd">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
 		}
 	}
 }
@@ -50,14 +50,14 @@ function showModules(pef_module){
 // Fügt jedes Modul hinzu
 	for(let singleModule of pefModulList){
 		let moduleBox = $('<div id="'+singleModule.id+'ModulBox" class="modulBox"></div>');
-		$(moduleBox).css("border",$('#main').css("border"));
-		$(moduleBox).css("border-radius",$('#main').css("border-radius"));
+		moduleBox.css("border",$('#main').css("border"));
+		moduleBox.css("border-radius",$('#main').css("border-radius"));
 
-		$(moduleBox).append($('<h3 class="center">'+singleModule.name+'</h3>'));
+		moduleBox.append($('<h3 class="center">'+singleModule.name+'</h3>'));
 
 		moduleBox.append(document.createElement("hr"));
 
-		$(moduleBox).append($('<div>'+singleModule.description+'</div>'));
+		moduleBox.append($('<div>'+singleModule.description+'</div>'));
 		// TODO: Button für Details hinzufügen
 		let modulStatus = $('<i id="'+singleModule.id+'_StatusImg" class="status fa fa-2x pointer"></i>');
 		moduleBox.append(modulStatus);
@@ -65,7 +65,7 @@ function showModules(pef_module){
 		pef_module.append(moduleBox);
 		updateModulTick(singleModule.id);
 
-		$(modulStatus).click(()=>toggleModulStatus(singleModule));
+		modulStatus.click(()=>toggleModulStatus(singleModule));
 	}
 }
 
@@ -85,12 +85,10 @@ function toggleModulStatus(modul :IPefModul) {
 function updateModulTick(modulId :string) {
     if (GM_getValue(modulId+"Status") === "off") {
 		// TODO use fa-toggle-off and fa-toggle-on, animation possible?
-		$("#"+modulId+"_StatusImg").removeClass('fa-check');
-		$("#"+modulId+"_StatusImg").addClass('fa-times');
+		$("#"+modulId+"_StatusImg").removeClass('fa-check').addClass('fa-times');
 		$("#"+modulId+"ModulBox").addClass('off');
 	} else {
-		$("#"+modulId+"_StatusImg").removeClass('fa-times');
-		$("#"+modulId+"_StatusImg").addClass('fa-check');
+		$("#"+modulId+"_StatusImg").removeClass('fa-times').addClass('fa-check');
 		$("#"+modulId+"ModulBox").removeClass('off');
 	}
 };

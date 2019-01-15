@@ -27,8 +27,7 @@ function smallWonders(){
 // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
 	document.cookie = 'cookieconsent_dismissed=yes';
 	// Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
-	if(getCookie('manga_reader') != 'slide')
-		document.cookie = 'manga_reader=longstrip';
+    document.cookie = 'manga_reader=longstrip';
 
 // ############### BackToTop ###############
 // button einfügen

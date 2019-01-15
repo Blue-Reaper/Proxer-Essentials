@@ -9,7 +9,7 @@ function initStatusMemory(){
 
 //	Hier ruft das Framework die einzelnen Module auf
 function actionControl(change :ModulCallEvent, modul?:IPefModul){
-	// Wird eine Modul-Id übergeben, wird vom Framework nur dieses Modul aufgerufen
+	// Wird ein Modul übergeben, wird vom Framework nur dieses Modul aufgerufen
 	if(modul != null){
 		modul.callMethod(change);
 	} else{

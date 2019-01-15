@@ -75,13 +75,13 @@ function createPefSettings() {
             $('#pef_Settings').addClass("active");
             document.title = 'Proxer Essentials';
             // Überschrift
-            $(inhalt).append($('<h3>Proxer Essentials</h3>'));
+            inhalt.append($('<h3>Proxer Essentials</h3>'));
             // Inhalt für Modulanzeige
             var pef_module = $('<div>');
-            $(inhalt).append($(pef_module));
+            inhalt.append(pef_module);
             showModules(pef_module);
             // Footer
-            $(inhalt).append($('<div class ="modulEnd">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+            inhalt.append($('<div class ="modulEnd">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
         }
     }
 }
@@ -89,17 +89,17 @@ function createPefSettings() {
 function showModules(pef_module) {
     var _loop_1 = function (singleModule) {
         var moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="modulBox"></div>');
-        $(moduleBox).css("border", $('#main').css("border"));
-        $(moduleBox).css("border-radius", $('#main').css("border-radius"));
-        $(moduleBox).append($('<h3 class="center">' + singleModule.name + '</h3>'));
+        moduleBox.css("border", $('#main').css("border"));
+        moduleBox.css("border-radius", $('#main').css("border-radius"));
+        moduleBox.append($('<h3 class="center">' + singleModule.name + '</h3>'));
         moduleBox.append(document.createElement("hr"));
-        $(moduleBox).append($('<div>' + singleModule.description + '</div>'));
+        moduleBox.append($('<div>' + singleModule.description + '</div>'));
         // TODO: Button für Details hinzufügen
         var modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="status fa fa-2x pointer"></i>');
         moduleBox.append(modulStatus);
         pef_module.append(moduleBox);
         updateModulTick(singleModule.id);
-        $(modulStatus).click(function () { return toggleModulStatus(singleModule); });
+        modulStatus.click(function () { return toggleModulStatus(singleModule); });
     };
     // Fügt jedes Modul hinzu
     for (var _i = 0, pefModulList_1 = pefModulList; _i < pefModulList_1.length; _i++) {
@@ -124,13 +124,11 @@ function toggleModulStatus(modul) {
 function updateModulTick(modulId) {
     if (GM_getValue(modulId + "Status") === "off") {
         // TODO use fa-toggle-off and fa-toggle-on, animation possible?
-        $("#" + modulId + "_StatusImg").removeClass('fa-check');
-        $("#" + modulId + "_StatusImg").addClass('fa-times');
+        $("#" + modulId + "_StatusImg").removeClass('fa-check').addClass('fa-times');
         $("#" + modulId + "ModulBox").addClass('off');
     }
     else {
-        $("#" + modulId + "_StatusImg").removeClass('fa-times');
-        $("#" + modulId + "_StatusImg").addClass('fa-check');
+        $("#" + modulId + "_StatusImg").removeClass('fa-times').addClass('fa-check');
         $("#" + modulId + "ModulBox").removeClass('off');
     }
 }
@@ -146,7 +144,7 @@ function initStatusMemory() {
 }
 //	Hier ruft das Framework die einzelnen Module auf
 function actionControl(change, modul) {
-    // Wird eine Modul-Id übergeben, wird vom Framework nur dieses Modul aufgerufen
+    // Wird ein Modul übergeben, wird vom Framework nur dieses Modul aufgerufen
     if (modul != null) {
         modul.callMethod(change);
     }
@@ -316,8 +314,7 @@ function smallWonders() {
     // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
     document.cookie = 'cookieconsent_dismissed=yes';
     // Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
-    if (getCookie('manga_reader') != 'slide')
-        document.cookie = 'manga_reader=longstrip';
+    document.cookie = 'manga_reader=longstrip';
     // ############### BackToTop ###############
     // button einfügen
     var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
