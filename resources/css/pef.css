@@ -1,3 +1,4 @@
+/*Proxer Essentials Framework*/
 .modulBox {
     width: 30%;
     border-width: 1px;
@@ -55,6 +56,7 @@
     padding-right: 30px;
 }
 
+/* smallWonders backToTop */
 .backToTop {
     position:fixed;
     right:210px;
@@ -65,4 +67,21 @@
 .backToTop:hover {
     right:206px;
     bottom:10px;
+}
+
+/* Fullscreen Manga*/
+:fullscreen {
+    overflow-y:auto;
+}
+
+.openFullscreen {
+    position:fixed;
+    right:240px;
+    top:60px;
+}
+
+.exitFullscreen {
+    position: fixed;
+    right: 100px;
+    top: 30px;
 }

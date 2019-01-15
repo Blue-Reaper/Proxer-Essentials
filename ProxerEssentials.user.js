@@ -18,7 +18,7 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
+// @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/fullscreen-manga/resources/css/pef.css
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
 // Liste aller Module
@@ -133,74 +133,6 @@ function updateModulTick(modulId) {
     }
 }
 ;
-// Erst-Initialisierung der Speicherwerte
-function initStatusMemory() {
-    for (var _i = 0, pefModulList_2 = pefModulList; _i < pefModulList_2.length; _i++) {
-        var singleModule = pefModulList_2[_i];
-        if (GM_getValue(singleModule.id + "Status") == null) {
-            GM_setValue(singleModule.id + "Status", "on");
-        }
-    }
-}
-//	Hier ruft das Framework die einzelnen Module auf
-function actionControl(change, modul) {
-    // Wird ein Modul übergeben, wird vom Framework nur dieses Modul aufgerufen
-    if (modul != null) {
-        modul.callMethod(change);
-    }
-    else {
-        for (var _i = 0, pefModulList_3 = pefModulList; _i < pefModulList_3.length; _i++) {
-            var singleModule = pefModulList_3[_i];
-            // Ruft alle Module auf, die aktiviert sind
-            if (GM_getValue(singleModule.id + "Status") == "on") {
-                singleModule.callMethod(change);
-            }
-        }
-    }
-}
-// Muster (Proxer Essentials Framework Example)
-// Jedes Modul muss sich in die pefModulList eintragen
-pefModulList.push({
-    // Eindeutiger String, der als Id verwendet wird
-    id: "pefExample",
-    // Der angezeigte Name des Moduls
-    name: "Beispiel Modul",
-    // Die Kurzbeschreibung
-    description: "Ein Muster zur Erstellung weiterer Scripte",
-    // Mit dieser Methode wird das Modul aufgerufen
-    callMethod: function (change) { return pefExampleCall(change); }
-});
-// Aufruf des Scripts durch das Framework
-function pefExampleCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            // Wird nach dem Laden der Seite Aufgerufen, sollte das Modul aktiviert sein
-            // Wird auch aufgerufen, wenn der User das Modul in den Einstellungen aktiviert
-            console.log("on");
-            myExampleMethod();
-            break;
-        case 2 /* ajax */:
-            // Wird durch einen Ajax-Aufruf auf der Seite getriggert
-            // Nur wenn das Modul aktiv ist
-            // Es wird immer erst nach "on" aufgerufen
-            console.log("ajax");
-            myExampleMethod();
-            break;
-        case 1 /* off */:
-            // Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ausschaltet
-            console.log("off");
-            anotherExampleMethod();
-            break;
-    }
-}
-function myExampleMethod() {
-    // Hier ist der Code des Scipts
-    // console.log("Das Muster-Modul läuft");
-}
-function anotherExampleMethod() {
-    // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
-    // console.log("Das Mustet-Modul wurde deaktiviert");
-}
 //############################# Erstellen eines Dialogs #############################
 /*	Erzeugt einen Dialog
 Variante 1: ConfirmDialog
@@ -274,19 +206,180 @@ function createPefMessage(msg) {
 //############################# Auslesen eines Cookies #############################
 // Gibt den Wert des übergebenen Coockienamens wieder
 function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+    // var name = cname + "=";
+    // var decodedCookie = decodeURIComponent(document.cookie);
+    // var ca = decodedCookie.split(';');
+    // for(var i = 0; i <ca.length; i++) {
+    //   var c = ca[i];
+    //   while (c.charAt(0) == ' ') {
+    //     c = c.substring(1);
+    //   }
+    //   if (c.indexOf(name) == 0) {
+    //     return c.substring(name.length, c.length);
+    //   }
+    // }
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + cname + "=");
+    if (parts.length == 2)
+        return parts.pop().split(";").shift();
+    return "";
+}
+// Erst-Initialisierung der Speicherwerte
+function initStatusMemory() {
+    for (var _i = 0, pefModulList_2 = pefModulList; _i < pefModulList_2.length; _i++) {
+        var singleModule = pefModulList_2[_i];
+        if (GM_getValue(singleModule.id + "Status") == null) {
+            GM_setValue(singleModule.id + "Status", "on");
         }
     }
-    return "";
+}
+//	Hier ruft das Framework die einzelnen Module auf
+function actionControl(change, modul) {
+    // Wird ein Modul übergeben, wird vom Framework nur dieses Modul aufgerufen
+    if (modul != null) {
+        modul.callMethod(change);
+    }
+    else {
+        for (var _i = 0, pefModulList_3 = pefModulList; _i < pefModulList_3.length; _i++) {
+            var singleModule = pefModulList_3[_i];
+            // Ruft alle Module auf, die aktiviert sind
+            if (GM_getValue(singleModule.id + "Status") == "on") {
+                singleModule.callMethod(change);
+            }
+        }
+    }
+}
+// History old Script
+// @history      1.4 Bei Seitenwechsel im Fullscreen bei der neuen Seite wieder oben anfangen, document.getElementById("reader").childNode[0] zu reader.childNode[0], dynamische Kapitelanzeige oben in Fullscreen
+// @history      0.1.0 Maus wird jetzt im Fullscreen ausgeblendet und ansonsten ganz normal.
+// mögliche weitere Features:
+// IDEA Maus Ausblenden auf reader
+// IDEA Kapitelwechsel ohne Zwischenseite (optional)(Kurzes aufflackern des Kapitelnamens in Mitte des Blidschirms) trotzdem noch Bookmark
+// IDEA fullscreen auto-on (when 1. page hit top?)
+var currentScroll = 0;
+var scrollOffset = 0;
+pefModulList.push({
+    id: "mangaFullscreen",
+    name: "Manga Fullscreen",
+    description: "Möglichkeit Mangas in Fullscreen zu schalten",
+    callMethod: function (change) { return mangaFullscreenCall(change); }
+});
+function mangaFullscreenCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            mangaFullscreen();
+            break;
+        case 1 /* off */:
+            break;
+        case 2 /* ajax */:
+            break;
+    }
+}
+function mangaFullscreen() {
+    if (window.location.pathname.split('/')[1] !== 'read') {
+        return;
+    }
+    document.addEventListener("fullscreenchange", autoFullscreenEvent);
+    $(window).scroll(getWindowScrollTop);
+    var fullscreenButton = $('<i id="fullscreenButton" class="openFullscreen pointer fa fa-2x fa-arrows-alt"/>');
+    $('body').append(fullscreenButton);
+    fullscreenButton.click(toggleFullscreen);
+    $(window).keyup(function (event) {
+        // Beim Drücken von F
+        if (event.keyCode === 70) {
+            toggleFullscreen();
+        }
+    });
+    var rect = reader.getBoundingClientRect();
+    scrollOffset = rect.top + document.documentElement.scrollTop - nav.offsetHeight;
+}
+// wird aufgerufen um Fullscreen zu toogeln, triggert indirekt autoFullscreenEvent
+function toggleFullscreen() {
+    if (document.fullscreenElement) {
+        // Fullscreen Ausschalten
+        fullscreenOff();
+    }
+    else {
+        // Fullscreen Einschalten
+        fullscreenOn();
+    }
+}
+// Wrid aufgerufen, wenn der Browser in oder aus Fullscreen wechselt
+function autoFullscreenEvent() {
+    if (document.fullscreenElement) {
+        // Am Einschalten
+        fullscreenOn();
+    }
+    else {
+        // Am Ausschalten
+        fullscreenOff();
+    }
+    $('#reader').append($('#fullscreenButton'));
+}
+function fullscreenOn() {
+    reader.scrollTo(0, currentScroll);
+    $(window).off("scroll", getWindowScrollTop);
+    $('#reader').scroll(getReaderScrollTop);
+    reader.requestFullscreen();
+    $('#fullscreenButton').removeClass('fa-arrows-alt openFullscreen');
+    $('#fullscreenButton').addClass('fa-compress exitFullscreen');
+}
+function fullscreenOff() {
+    window.scrollTo(0, currentScroll + scrollOffset);
+    $('#reader').off("scroll", getReaderScrollTop);
+    $(window).scroll(getWindowScrollTop);
+    document.exitFullscreen();
+    $('#fullscreenButton').removeClass('fa-compress exitFullscreen');
+    $('#fullscreenButton').addClass('fa-arrows-alt openFullscreen');
+}
+function getWindowScrollTop() {
+    currentScroll = document.documentElement.scrollTop - scrollOffset;
+}
+function getReaderScrollTop() {
+    currentScroll = reader.scrollTop;
+}
+// Muster (Proxer Essentials Framework Example)
+// Jedes Modul muss sich in die pefModulList eintragen
+pefModulList.push({
+    // Eindeutiger String, der als Id verwendet wird
+    id: "pefExample",
+    // Der angezeigte Name des Moduls
+    name: "Beispiel Modul",
+    // Die Kurzbeschreibung
+    description: "Ein Muster zur Erstellung weiterer Scripte",
+    // Mit dieser Methode wird das Modul aufgerufen
+    callMethod: function (change) { return pefExampleCall(change); }
+});
+// Aufruf des Scripts durch das Framework
+function pefExampleCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            // Wird nach dem Laden der Seite Aufgerufen, sollte das Modul aktiviert sein
+            // Wird auch aufgerufen, wenn der User das Modul in den Einstellungen aktiviert
+            console.log("on");
+            myExampleMethod();
+            break;
+        case 2 /* ajax */:
+            // Wird durch einen Ajax-Aufruf auf der Seite getriggert
+            // Nur wenn das Modul aktiv ist
+            // Es wird immer erst nach "on" aufgerufen
+            console.log("ajax");
+            myExampleMethod();
+            break;
+        case 1 /* off */:
+            // Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ausschaltet
+            console.log("off");
+            anotherExampleMethod();
+            break;
+    }
+}
+function myExampleMethod() {
+    // Hier ist der Code des Scipts
+    // console.log("Das Muster-Modul läuft");
+}
+function anotherExampleMethod() {
+    // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
+    // console.log("Das Mustet-Modul wurde deaktiviert");
 }
 // Wunder:
 // Keine Benachrichtigung "Diese Webseite verwendet Cookies ... "
@@ -307,6 +400,7 @@ function smallWondersCall(change) {
             // smallWonders();
             break;
         case 2 /* ajax */:
+            // smallWonders();
             break;
     }
 }

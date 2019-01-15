@@ -85,17 +85,20 @@ function createPefMessage(msg:string){
 
 // Gibt den Wert des übergebenen Coockienamens wieder
 function getCookie(cname:string) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
+  // var name = cname + "=";
+  // var decodedCookie = decodeURIComponent(document.cookie);
+  // var ca = decodedCookie.split(';');
+  // for(var i = 0; i <ca.length; i++) {
+  //   var c = ca[i];
+  //   while (c.charAt(0) == ' ') {
+  //     c = c.substring(1);
+  //   }
+  //   if (c.indexOf(name) == 0) {
+  //     return c.substring(name.length, c.length);
+  //   }
+  // }
+  let value = "; " + document.cookie;
+  let parts = value.split("; " + cname + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
   return "";
 }
