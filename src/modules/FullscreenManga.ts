@@ -21,28 +21,25 @@
 // IDEA ein/ausschalten der SmartFullscreen Funktion im extended Anker.
 
 
-var currentScroll = 0;
-var scrollOffset = 0;
+let currentScroll = 0;
+let scrollOffset = 0;
 
-window.fullscreenMangaName = function () {
-	return "Fullscreen Manga";
-}
+pefModulList.push({
+    id:"mangaFullscreen",
+    name:"Manga Fullscreen",
+    description:"Möglichkeit Mangas in Fullscreen zu schalten",
+	callMethod:(change)=>fullscreenMangaCall(change)
+});
 
-window.fullscreenMangaDescription = function () {
-	return "Möglichkeit Mangas in Fullscreen zu schalten";
-}
-
-window.fullscreenMangaCall = function (change) {
+function fullscreenMangaCall (change:ModulCallEvent) {
 	switch(change) {
-		case "on":
+		case ModulCallEvent.on:
 			fullscreenManga();
 			break;
-		case "ajax":
-            // myExampleMethod();
+		case ModulCallEvent.off:
 			break;
-		case "off":
+		case ModulCallEvent.ajax:
 			break;
-		default:
 	}
 }
 
@@ -58,8 +55,8 @@ function fullscreenManga(){
 	document.addEventListener("MSFullscreenChange", autoFullscreenEvent);
 	$(window).scroll(getWindowScrollTop);
 
-	// FIXME backtotop nur für test
-	var fullsceenButton = $('<i class="fullscreen backToTop pointer fa fa-2x fa-arrows-alt"/>');
+	// FIXME .backtotop nur für test
+	let fullsceenButton = $('<i class="fullscreen backToTop pointer fa fa-2x fa-arrows-alt"/>');
 	$("body").append(fullsceenButton);
 	$(fullsceenButton).click(toggleFullscreenManga);
 	// TODO use fa-compress and fa-arrows-alt for button
@@ -70,40 +67,34 @@ function fullscreenManga(){
 		}
 	});
 
-	var rect = reader.getBoundingClientRect();
+	let rect = reader.getBoundingClientRect();
 	scrollOffset = rect.top + document.documentElement.scrollTop - nav.offsetHeight;
 
 }
 
+// Wrid aufgerufen, wenn der Browser in oder aus Fullscreen wechselt
 function autoFullscreenEvent(){
-	if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-		fullscreenOff();
+	if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+        // Am Einschalten
+        fullscreenOn();
 	}else {
-		fullscreenOn();
+        // Am Ausschalten
+        fullscreenOff();
 	}
 }
 
+// wird aufgerufen um Fullscreen zu toogeln, triggert indirekt autoFullscreenEvent
 function toggleFullscreenManga(){
-	if ((document.fullScreenElement && document.fullScreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-	// Fullscreen Einschalten
-		fullscreenOn();
-		if (reader.requestFullScreen) {
-			reader.requestFullScreen();
-		} else if (reader.mozRequestFullScreen) {
-			reader.mozRequestFullScreen();
-		} else if (reader.webkitRequestFullScreen) {
-			reader.webkitRequestFullScreen();
-		}
+	if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+        // Fullscreen Ausschalten
+        console.log("normal: "+document.fullscreenElement);
+        console.log("webkit: "+document.webkitFullscreenElement);
+        console.log("moz: "+document.mozFullScreenElement);
+        console.log("ms: "+document.msFullscreenElement);
+        fullscreenOff();
 	}else {
-	// Fullscreen Ausschalten
-		fullscreenOff();
-		if (document.cancelFullScreen) {
-		  document.cancelFullScreen();
-		} else if (document.mozCancelFullScreen) {
-		  document.mozCancelFullScreen();
-		} else if (document.webkitCancelFullScreen) {
-		  document.webkitCancelFullScreen();
-		}
+        // Fullscreen Einschalten
+        fullscreenOn();
 	}
 }
 
@@ -114,6 +105,13 @@ function fullscreenOn(){
 
 	$(window).off("scroll", getWindowScrollTop);
 	$('#reader').scroll(getReaderScrollTop);
+    if (reader.requestFullscreen) {
+        reader.requestFullscreen();
+    } else if (reader.mozRequestFullScreen) {
+        reader.mozRequestFullScreen();
+    } else if (reader.webkitRequestFullScreen) {
+        reader.webkitRequestFullScreen();
+    }
 }
 
 function fullscreenOff(){
@@ -122,6 +120,23 @@ function fullscreenOff(){
 
 	$('#reader').off("scroll", getReaderScrollTop);
 	$(window).scroll(getWindowScrollTop);
+
+    if (document.exitFullscreen) {
+    	document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+    	document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+    	document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+    	document.msExitFullscreen();
+    }
+    // if (document.cancelFullScreen) {
+    //     document.cancelFullScreen();
+    // } else if (document.mozCancelFullScreen) {
+    //     document.mozCancelFullScreen();
+    // } else if (document.webkitCancelFullScreen) {
+    //     document.webkitCancelFullScreen();
+    // }
 }
 
 function getWindowScrollTop(){
