@@ -1,16 +1,16 @@
 // Muster (Proxer Essentials Framework Example)
 
 // Jedes Modul muss sich in die pefModulList eintragen
-pefModulList.push({
-	// Eindeutiger String, der als Id verwendet wird
-    id:"pefExample",
-	// Der angezeigte Name des Moduls
-    name:"Beispiel Modul",
-	// Die Kurzbeschreibung
-    description:"Ein Muster zur Erstellung weiterer Scripte",
-	// Mit dieser Methode wird das Modul aufgerufen
-	callMethod:(change)=>pefExampleCall(change)
-});
+// pefModulList.push({
+// 	// Eindeutiger String, der als Id verwendet wird
+//     id:"pefExample",
+// 	// Der angezeigte Name des Moduls
+//     name:"Beispiel Modul",
+// 	// Die Kurzbeschreibung
+//     description:"Ein Muster zur Erstellung weiterer Scripte",
+// 	// Mit dieser Methode wird das Modul aufgerufen
+// 	callMethod:(change)=>pefExampleCall(change)
+// });
 
 // Aufruf des Scripts durch das Framework
 function pefExampleCall (change:ModulCallEvent){

@@ -18,7 +18,7 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/fullscreen-manga/resources/css/pef.css
+// @resource    pef_CSS   resources/css/pef.css
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
 // Liste aller Module
@@ -123,12 +123,11 @@ function toggleModulStatus(modul) {
 // Setzt den Haken / Kreuz nach dem Modulnamen
 function updateModulTick(modulId) {
     if (GM_getValue(modulId + "Status") === "off") {
-        // TODO use fa-toggle-off and fa-toggle-on, animation possible?
-        $("#" + modulId + "_StatusImg").removeClass('fa-check').addClass('fa-times');
+        $("#" + modulId + "_StatusImg").removeClass('fa-toggle-on').addClass('fa-toggle-off');
         $("#" + modulId + "ModulBox").addClass('off');
     }
     else {
-        $("#" + modulId + "_StatusImg").removeClass('fa-times').addClass('fa-check');
+        $("#" + modulId + "_StatusImg").removeClass('fa-toggle-off').addClass('fa-toggle-on');
         $("#" + modulId + "ModulBox").removeClass('off');
     }
 }
@@ -340,16 +339,16 @@ function getReaderScrollTop() {
 }
 // Muster (Proxer Essentials Framework Example)
 // Jedes Modul muss sich in die pefModulList eintragen
-pefModulList.push({
-    // Eindeutiger String, der als Id verwendet wird
-    id: "pefExample",
-    // Der angezeigte Name des Moduls
-    name: "Beispiel Modul",
-    // Die Kurzbeschreibung
-    description: "Ein Muster zur Erstellung weiterer Scripte",
-    // Mit dieser Methode wird das Modul aufgerufen
-    callMethod: function (change) { return pefExampleCall(change); }
-});
+// pefModulList.push({
+// 	// Eindeutiger String, der als Id verwendet wird
+//     id:"pefExample",
+// 	// Der angezeigte Name des Moduls
+//     name:"Beispiel Modul",
+// 	// Die Kurzbeschreibung
+//     description:"Ein Muster zur Erstellung weiterer Scripte",
+// 	// Mit dieser Methode wird das Modul aufgerufen
+// 	callMethod:(change)=>pefExampleCall(change)
+// });
 // Aufruf des Scripts durch das Framework
 function pefExampleCall(change) {
     switch (change) {
