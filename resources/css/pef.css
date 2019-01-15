@@ -67,6 +67,6 @@
     bottom:10px;
 }
 
-:fullscreen{
+#reader:fullscreen {
     overflow-y:auto;
 }
