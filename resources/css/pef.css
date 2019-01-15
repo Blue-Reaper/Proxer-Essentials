@@ -76,12 +76,12 @@
 
 .openFullscreen {
     position:fixed;
-    right:250px;
-    bottom:20px;
+    right:240px;
+    top:60px;
 }
 
 .exitFullscreen {
-    position:fixed;
-    right:210px;
-    top:20px;
+    position: fixed;
+    right: 100px;
+    top: 30px;
 }

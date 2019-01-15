@@ -1,25 +1,11 @@
-// @version      1.4
-// @description  Endlich Mangas auf proxer.me in Fullscreen genießen und nur noch den Manga sehen.
+// History old Script
 // @history      1.4 Bei Seitenwechsel im Fullscreen bei der neuen Seite wieder oben anfangen, document.getElementById("reader").childNode[0] zu reader.childNode[0], dynamische Kapitelanzeige oben in Fullscreen
-// @history      0.1.3 ... und Bilder im Fullscreen wieder mittig
-// @history      0.1.2 benutzt Seiten-lade Logik von internem Longstrip Reader
-// @history      0.1.1 Anpassung an Proxer internem Longstrip Reader
 // @history      0.1.0 Maus wird jetzt im Fullscreen ausgeblendet und ansonsten ganz normal.
-// @history      0.0.8 Beenden und Öffnen des Fullscreens verändert nicht mehr die (Scroll) Position, TopButton hinzugefügt
-// @history      0.0.7 Anker Extended einbinden
-// @history      0.0.6 Focus setzen, um mit den Pfeiltasten gleich scorllen zu können.
-// @history      0.0.5 Fullscreen Button hinzugefügt.
-// @history      0.0.4 Bug behoben: Nach dem Fullscreen konnte man nicht mehr auf das Bild klicken.
-// @history      0.0.3 ohne externe Bibliothek
-// @history      0.0.2 Scrollen hinzufügen
-// @history      0.0.1 Reader in Fullscreen
 
 // mögliche weitere Features:
 // IDEA Maus Ausblenden auf reader
 // IDEA Kapitelwechsel ohne Zwischenseite (optional)(Kurzes aufflackern des Kapitelnamens in Mitte des Blidschirms) trotzdem noch Bookmark
-// IDEA Scrollbalken eigenes Design
-// IDEA ein/ausschalten der SmartFullscreen Funktion im extended Anker.
-
+// IDEA fullscreen auto-on (when 1. page hit top?)
 
 let currentScroll = 0;
 let scrollOffset = 0;
@@ -28,13 +14,13 @@ pefModulList.push({
     id:"mangaFullscreen",
     name:"Manga Fullscreen",
     description:"Möglichkeit Mangas in Fullscreen zu schalten",
-	callMethod:(change)=>fullscreenMangaCall(change)
+	callMethod:(change)=>mangaFullscreenCall(change)
 });
 
-function fullscreenMangaCall (change:ModulCallEvent) {
+function mangaFullscreenCall (change:ModulCallEvent) {
 	switch(change) {
 		case ModulCallEvent.on:
-			fullscreenManga();
+			mangaFullscreen();
 			break;
 		case ModulCallEvent.off:
 			break;
@@ -43,7 +29,7 @@ function fullscreenMangaCall (change:ModulCallEvent) {
 	}
 }
 
-function fullscreenManga(){
+function mangaFullscreen(){
 
 	if (window.location.pathname.split('/')[1] !== 'read'){
 		return;
@@ -52,21 +38,30 @@ function fullscreenManga(){
 	document.addEventListener("fullscreenchange", autoFullscreenEvent);
 	$(window).scroll(getWindowScrollTop);
 
-	// FIXME .backtotop nur für test
-	let fullsceenButton = $('<i class="fullscreen backToTop pointer fa fa-2x fa-arrows-alt"/>');
-	$("body").append(fullsceenButton);
-	$(fullsceenButton).click(toggleFullscreenManga);
-	// TODO use fa-compress and fa-arrows-alt for button
+	let fullscreenButton = $('<i id="fullscreenButton" class="openFullscreen pointer fa fa-2x fa-arrows-alt"/>');
+	$('body').append(fullscreenButton);
+	fullscreenButton.click(toggleFullscreen);
+
 	$(window).keyup(function (event) {
 		// Beim Drücken von F
 		if (event.keyCode === 70) {
-			toggleFullscreenManga();
+			toggleFullscreen();
 		}
 	});
 
 	let rect = reader.getBoundingClientRect();
 	scrollOffset = rect.top + document.documentElement.scrollTop - nav.offsetHeight;
+}
 
+// wird aufgerufen um Fullscreen zu toogeln, triggert indirekt autoFullscreenEvent
+function toggleFullscreen(){
+    if (document.fullscreenElement) {
+        // Fullscreen Ausschalten
+        fullscreenOff();
+    }else {
+        // Fullscreen Einschalten
+        fullscreenOn();
+    }
 }
 
 // Wrid aufgerufen, wenn der Browser in oder aus Fullscreen wechselt
@@ -78,48 +73,25 @@ function autoFullscreenEvent(){
         // Am Ausschalten
         fullscreenOff();
 	}
-}
-
-// wird aufgerufen um Fullscreen zu toogeln, triggert indirekt autoFullscreenEvent
-function toggleFullscreenManga(){
-	if (document.fullscreenElement) {
-        // Fullscreen Ausschalten
-        fullscreenOff();
-	}else {
-        // Fullscreen Einschalten
-        fullscreenOn();
-	}
+    $('#reader').append($('#fullscreenButton'));
 }
 
 function fullscreenOn(){
-	// TODO in css umwandeln
-	// reader.setAttribute("style","overflow-y:auto; height:"+(screen.height-15)+"px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;");
 	reader.scrollTo(0, currentScroll);
-
 	$(window).off("scroll", getWindowScrollTop);
 	$('#reader').scroll(getReaderScrollTop);
-    if (reader.requestFullscreen) {
-        reader.requestFullscreen();
-    }
+    reader.requestFullscreen();
+    $('#fullscreenButton').removeClass('fa-arrows-alt openFullscreen');
+    $('#fullscreenButton').addClass('fa-compress exitFullscreen');
 }
 
 function fullscreenOff(){
-	reader.setAttribute("style","");
 	window.scrollTo(0, currentScroll + scrollOffset);
-
 	$('#reader').off("scroll", getReaderScrollTop);
 	$(window).scroll(getWindowScrollTop);
-
-    if (document.exitFullscreen) {
-    	document.exitFullscreen();
-    }
-    // if (document.cancelFullScreen) {
-    //     document.cancelFullScreen();
-    // } else if (document.mozCancelFullScreen) {
-    //     document.mozCancelFullScreen();
-    // } else if (document.webkitCancelFullScreen) {
-    //     document.webkitCancelFullScreen();
-    // }
+	document.exitFullscreen();
+    $('#fullscreenButton').removeClass('fa-compress exitFullscreen');
+    $('#fullscreenButton').addClass('fa-arrows-alt openFullscreen');
 }
 
 function getWindowScrollTop(){

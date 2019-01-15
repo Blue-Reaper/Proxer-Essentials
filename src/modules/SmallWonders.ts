@@ -19,6 +19,7 @@ function smallWondersCall (change:ModulCallEvent) {
 		// smallWonders();
 			break;
 		case ModulCallEvent.ajax:
+            // smallWonders();
 			break;
 	}
 }
@@ -32,7 +33,7 @@ function smallWonders(){
 // ############### BackToTop ###############
 // button einfügen
 	let backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
-	$("body").append(backToTopButton)
+	$("body").append(backToTopButton);
 // hover
 	backToTopButton.hover(()=>{
 		// Setzt Bild bei hover
