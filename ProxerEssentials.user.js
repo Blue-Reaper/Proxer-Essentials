@@ -18,7 +18,7 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
+// @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/fullscreen-manga/resources/css/pef.css
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
 // Liste aller Module
