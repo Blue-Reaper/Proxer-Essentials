@@ -1,3 +1,4 @@
+/*Proxer Essentials Framework*/
 .modulBox {
     width: 30%;
     border-width: 1px;
@@ -55,6 +56,7 @@
     padding-right: 30px;
 }
 
+/* smallWonders backToTop */
 .backToTop {
     position:fixed;
     right:210px;
@@ -67,6 +69,19 @@
     bottom:10px;
 }
 
+/* Fullscreen Manga*/
 :fullscreen {
     overflow-y:auto;
+}
+
+.openFullscreen {
+    position:fixed;
+    right:250px;
+    bottom:20px;
+}
+
+.exitFullscreen {
+    position:fixed;
+    right:210px;
+    top:20px;
 }
