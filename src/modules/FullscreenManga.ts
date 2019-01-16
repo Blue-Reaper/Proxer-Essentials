@@ -9,7 +9,7 @@
 
 let currentScroll = 0;
 let scrollOffset = 0;
-// FIXME Fullscreen lädt keine neuen Bilder
+
 pefModulList.push({
     id:"mangaFullscreen",
     name:"Manga Fullscreen",
@@ -83,6 +83,32 @@ function fullscreenOn(){
 	$(window).off("scroll", getWindowScrollTop);
 	$('#reader').scroll(getReaderScrollTop);
     reader.requestFullscreen();
+// Load pages (Proxer function)
+    $('#reader').on('scroll', function(e) {
+        let loop = true;
+        while (loop) {
+            let position = $('#chapterImage'+(current_page-1)).position().top;
+            let scrolled = $(window).scrollTop();
+            let curHeight = $('#chapterImage'+(current_page-1)).height();
+            let prevHeight = 10000;
+            if (current_page-2 >= 0) {
+                prevHeight = $('#chapterImage'+(current_page-2)).height()
+            }
+            if (scrollable && (scrolled-position) >= curHeight) {
+                scroll = false;
+                nextPage();
+            }else if (scrollable && (position-scrolled) >= prevHeight) {
+                scroll = false;
+                prevPage();
+            }else{
+                loop = false;
+            }
+        }
+        if (!scrollable && counter > 1) {
+            scrollable = true;
+        }
+        counter++;
+    });
 }
 
 function fullscreenOff(){

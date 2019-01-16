@@ -71,34 +71,16 @@ function createPefDialog(msg :string, methodYes? :()=>void, methodNo? :()=>void)
 
 //############################# Erstellen einer Message #############################
 
-//	Erzeugt eine Message, identisch zu der Proxer.me eigenen
+//	Erzeugt eine Message
 function createPefMessage(msg:string){
-	let newMessage = document.createElement("div");
-	newMessage.className = "message ankerMessage";
-	newMessage.setAttribute("onclick",'delete_message("ankerMessage")');
-	newMessage.innerHTML = msg;
-	messages.appendChild(newMessage)
-	setTimeout(function(){ newMessage.click(); },5000);
+	// Proxer eigene Funktion
+	create_message('key_suggestion', 7000, msg);
 }
 
 //############################# Auslesen eines Cookies #############################
 
 // Gibt den Wert des übergebenen Coockienamens wieder
 function getCookie(cname:string) {
-  // var name = cname + "=";
-  // var decodedCookie = decodeURIComponent(document.cookie);
-  // var ca = decodedCookie.split(';');
-  // for(var i = 0; i <ca.length; i++) {
-  //   var c = ca[i];
-  //   while (c.charAt(0) == ' ') {
-  //     c = c.substring(1);
-  //   }
-  //   if (c.indexOf(name) == 0) {
-  //     return c.substring(name.length, c.length);
-  //   }
-  // }
-  let value = "; " + document.cookie;
-  let parts = value.split("; " + cname + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
-  return "";
+// Proxer eigene Funktion
+  return get_cookie(cname);
 }
