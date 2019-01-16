@@ -37,12 +37,10 @@ function smallWonders(){
 // hover
 	backToTopButton.hover(()=>{
 		// Setzt Bild bei hover
-		backToTopButton.removeClass("fa-2x fa-chevron-up");
-		backToTopButton.addClass("fa-3x fa-chevron-circle-up");
+		backToTopButton.toggleClass("fa-2x fa-chevron-up fa-3x fa-chevron-circle-up");
 	}, ()=>{
 		// Setzt Bild nach hover zurück auf Standard
-		backToTopButton.removeClass("fa-3x fa-chevron-circle-up");
-		backToTopButton.addClass("fa-2x fa-chevron-up");
+        backToTopButton.toggleClass("fa-2x fa-chevron-up fa-3x fa-chevron-circle-up");
 	});
 // scroll 100 Pixel
 	$(window).scroll(()=> {

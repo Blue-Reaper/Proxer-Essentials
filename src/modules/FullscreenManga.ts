@@ -9,11 +9,11 @@
 
 let currentScroll = 0;
 let scrollOffset = 0;
-
+// FIXME Fullscreen lädt keine neuen Bilder
 pefModulList.push({
     id:"mangaFullscreen",
     name:"Manga Fullscreen",
-    description:"Möglichkeit Mangas in Fullscreen zu schalten",
+    description:"Mangas im Fullscreen genießen",
 	callMethod:(change)=>mangaFullscreenCall(change)
 });
 
@@ -35,17 +35,17 @@ function mangaFullscreen(){
 		return;
 	}
 
-	document.addEventListener("fullscreenchange", autoFullscreenEvent);
+	document.addEventListener("fullscreenchange", toggleFullscreenEvent);
 	$(window).scroll(getWindowScrollTop);
 
 	let fullscreenButton = $('<i id="fullscreenButton" class="openFullscreen pointer fa fa-2x fa-arrows-alt"/>');
 	$('body').append(fullscreenButton);
-	fullscreenButton.click(toggleFullscreen);
+	fullscreenButton.click(toggleFullscreenManual);
 
 	$(window).keyup(function (event) {
 		// Beim Drücken von F
 		if (event.keyCode === 70) {
-			toggleFullscreen();
+			toggleFullscreenManual();
 		}
 	});
 
@@ -53,8 +53,9 @@ function mangaFullscreen(){
 	scrollOffset = rect.top + document.documentElement.scrollTop - nav.offsetHeight;
 }
 
-// wird aufgerufen um Fullscreen zu toogeln, triggert indirekt autoFullscreenEvent
-function toggleFullscreen(){
+//Manuell den Fullscreen togglen, triggert indirekt toggleFullscreenEvent
+function toggleFullscreenManual(){
+// Is Fullscreen on?
     if (document.fullscreenElement) {
         // Fullscreen Ausschalten
         fullscreenOff();
@@ -65,7 +66,7 @@ function toggleFullscreen(){
 }
 
 // Wrid aufgerufen, wenn der Browser in oder aus Fullscreen wechselt
-function autoFullscreenEvent(){
+function toggleFullscreenEvent(){
 	if (document.fullscreenElement) {
         // Am Einschalten
         fullscreenOn();
@@ -74,6 +75,7 @@ function autoFullscreenEvent(){
         fullscreenOff();
 	}
     $('#reader').append($('#fullscreenButton'));
+    $('#fullscreenButton').toggleClass('fa-arrows-alt openFullscreen fa-compress exitFullscreen');
 }
 
 function fullscreenOn(){
@@ -81,8 +83,6 @@ function fullscreenOn(){
 	$(window).off("scroll", getWindowScrollTop);
 	$('#reader').scroll(getReaderScrollTop);
     reader.requestFullscreen();
-    $('#fullscreenButton').removeClass('fa-arrows-alt openFullscreen');
-    $('#fullscreenButton').addClass('fa-compress exitFullscreen');
 }
 
 function fullscreenOff(){
@@ -90,8 +90,6 @@ function fullscreenOff(){
 	$('#reader').off("scroll", getReaderScrollTop);
 	$(window).scroll(getWindowScrollTop);
 	document.exitFullscreen();
-    $('#fullscreenButton').removeClass('fa-compress exitFullscreen');
-    $('#fullscreenButton').addClass('fa-arrows-alt openFullscreen');
 }
 
 function getWindowScrollTop(){
