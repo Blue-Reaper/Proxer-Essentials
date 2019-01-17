@@ -3,6 +3,7 @@ interface IPefModul {
     id: string;
     name: string;
     description: string;
+    autor: string;
     callMethod: (change:ModulCallEvent) => void;
 }
 

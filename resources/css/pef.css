@@ -12,12 +12,15 @@
     cursor: pointer;
 }
 
+.floatLeft {
+    float: left;
+}
+
 /* Settings */
 
 .modulBox {
     width: 30%;
     border-width: 1px;
-    float: left;
     margin: 1%;
     padding: 5px;
 }
@@ -32,14 +35,19 @@
 }
 
 .version {
-    float: left;
     padding-top: 1.2em;
     margin-left: 1em;
 }
 
-.description{
+.description {
     margin-left: 0.5em;
     margin-top: 0.7em;
+}
+
+.autor {
+    float: left;
+    margin-left: 1.5em;
+    margin-top: 0.6em;
 }
 
 /* Dialog */

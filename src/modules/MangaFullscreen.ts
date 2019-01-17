@@ -14,6 +14,7 @@ pefModulList.push({
     id:"mangaFullscreen",
     name:"Manga Fullscreen",
     description:"Mangas im Fullscreen genießen",
+    autor:"Blue.Reaper",
 	callMethod:(change)=>mangaFullscreenCall(change)
 });
 

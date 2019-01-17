@@ -31,15 +31,16 @@ function createPefSettings(){
 			document.title = 'Proxer Essentials';
 
 			// Überschrift
-			inhalt.append($('<h3>Proxer Essentials</h3>'));
+			inhalt.append($('<h3 class="floatLeft">Proxer Essentials</h3>'));
+			inhalt.append($('<div class="floatLeft version">'+GM_info.script.version+'</div>'));
 
 			// Inhalt für Modulanzeige
-			let pef_module = $('<div>');
+			let pef_module = $('<div class="clear"/>');
 			inhalt.append(pef_module);
 			showModules(pef_module);
 
 			// Footer
-			inhalt.append($('<div class ="modulEnd">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+			inhalt.append($('<div class ="clear">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
 		}
 	}
 }
@@ -49,7 +50,7 @@ function showModules(pef_module){
 
 // Fügt jedes Modul hinzu
 	for(let singleModule of pefModulList){
-		let moduleBox = $('<div id="'+singleModule.id+'ModulBox" class="modulBox"></div>');
+		let moduleBox = $('<div id="'+singleModule.id+'ModulBox" class="floatLeft modulBox"></div>');
 		moduleBox.css("border",$('#main').css("border"));
 		moduleBox.css("border-radius",$('#main').css("border-radius"));
 
@@ -57,7 +58,8 @@ function showModules(pef_module){
 
 		moduleBox.append(document.createElement("hr"));
 
-		moduleBox.append($('<div>'+singleModule.description+'</div>'));
+		moduleBox.append($('<div class="description">'+singleModule.description+'</div>'));
+		moduleBox.append($('<div class="autor">von '+singleModule.autor+'</div>'));
 		// TODO: Button für Details hinzufügen
 		let modulStatus = $('<i id="'+singleModule.id+'_StatusImg" class="status fa fa-2x pointer"></i>');
 		moduleBox.append(modulStatus);

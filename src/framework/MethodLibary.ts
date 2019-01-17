@@ -25,11 +25,10 @@ function createPefDialog(msg :string, methodYes? :()=>void, methodNo? :()=>void)
 	// Die Antwortbutton
 	let dialogbuttons = document.createElement("div");
 	if(confirmDialog){
-		dialogbuttons.className = "leanRight";
+		dialogbuttons.className = "dialogYesNo";
 	}else{
-		dialogbuttons.className = "center";
+		dialogbuttons.className = "center dialogOk";
 	}
-	dialogbuttons.className = "marginTop10";
 
 	let dialogbuttonyes = document.createElement("i");
 	dialogbuttonyes.className = "fa fa-check fa-2x pointer";
@@ -37,7 +36,7 @@ function createPefDialog(msg :string, methodYes? :()=>void, methodNo? :()=>void)
 
 	if(confirmDialog){
 		let dialogbuttonno = document.createElement("i");
-		dialogbuttonno.className = "marginLeft30 fa fa-times fa-2x pointer";
+		dialogbuttonno.className = "dialogButtonNo fa fa-times fa-2x pointer";
 		dialogbuttons.appendChild(dialogbuttonno);
 
 		$(dialogbuttonno).click(function () {

@@ -75,25 +75,27 @@ function createPefSettings() {
             $('#pef_Settings').addClass("active");
             document.title = 'Proxer Essentials';
             // Überschrift
-            inhalt.append($('<h3>Proxer Essentials</h3>'));
+            inhalt.append($('<h3 class="floatLeft">Proxer Essentials</h3>'));
+            inhalt.append($('<div class="floatLeft version">' + GM_info.script.version + '</div>'));
             // Inhalt für Modulanzeige
-            var pef_module = $('<div>');
+            var pef_module = $('<div class="clear"/>');
             inhalt.append(pef_module);
             showModules(pef_module);
             // Footer
-            inhalt.append($('<div class ="modulEnd">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+            inhalt.append($('<div class ="clear">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
         }
     }
 }
 // Zeitgt die einzelnen Module auf der Einstellungs-Seite an
 function showModules(pef_module) {
     var _loop_1 = function (singleModule) {
-        var moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="modulBox"></div>');
+        var moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="floatLeft modulBox"></div>');
         moduleBox.css("border", $('#main').css("border"));
         moduleBox.css("border-radius", $('#main').css("border-radius"));
         moduleBox.append($('<h3 class="center">' + singleModule.name + '</h3>'));
         moduleBox.append(document.createElement("hr"));
-        moduleBox.append($('<div>' + singleModule.description + '</div>'));
+        moduleBox.append($('<div class="description">' + singleModule.description + '</div>'));
+        moduleBox.append($('<div class="autor">von ' + singleModule.autor + '</div>'));
         // TODO: Button für Details hinzufügen
         var modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="status fa fa-2x pointer"></i>');
         moduleBox.append(modulStatus);
@@ -154,18 +156,17 @@ function createPefDialog(msg, methodYes, methodNo) {
     // Die Antwortbutton
     var dialogbuttons = document.createElement("div");
     if (confirmDialog) {
-        dialogbuttons.className = "leanRight";
+        dialogbuttons.className = "dialogYesNo";
     }
     else {
-        dialogbuttons.className = "center";
+        dialogbuttons.className = "center dialogOk";
     }
-    dialogbuttons.className = "marginTop10";
     var dialogbuttonyes = document.createElement("i");
     dialogbuttonyes.className = "fa fa-check fa-2x pointer";
     dialogbuttons.appendChild(dialogbuttonyes);
     if (confirmDialog) {
         var dialogbuttonno = document.createElement("i");
-        dialogbuttonno.className = "marginLeft30 fa fa-times fa-2x pointer";
+        dialogbuttonno.className = "dialogButtonNo fa fa-times fa-2x pointer";
         dialogbuttons.appendChild(dialogbuttonno);
         $(dialogbuttonno).click(function () {
             messages.removeChild(dialogoverlay);
@@ -238,6 +239,8 @@ function actionControl(change, modul) {
 //     name:"Beispiel Modul",
 // 	// Die Kurzbeschreibung
 //     description:"Ein Muster zur Erstellung weiterer Scripte",
+// 	// Der Ersteller dieses Moduls
+// 	autor:"Blue.Reaper",
 // 	// Mit dieser Methode wird das Modul aufgerufen
 // 	callMethod:(change)=>pefExampleCall(change)
 // });
@@ -280,6 +283,7 @@ pefModulList.push({
     id: "smallWonders",
     name: "Kleine Wunder",
     description: "Kleine Änderungen, die Wunder wirken",
+    autor: "Blue.Reaper",
     callMethod: function (change) { return smallWondersCall(change); }
 });
 function smallWondersCall(change) {
@@ -342,6 +346,7 @@ pefModulList.push({
     id: "mangaFullscreen",
     name: "Manga Fullscreen",
     description: "Mangas im Fullscreen genießen",
+    autor: "Blue.Reaper",
     callMethod: function (change) { return mangaFullscreenCall(change); }
 });
 function mangaFullscreenCall(change) {

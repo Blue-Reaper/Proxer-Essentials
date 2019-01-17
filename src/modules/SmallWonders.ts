@@ -7,6 +7,7 @@ pefModulList.push({
     id:"smallWonders",
     name:"Kleine Wunder",
     description:"Kleine Änderungen, die Wunder wirken",
+    autor:"Blue.Reaper",
 	callMethod:(change)=>smallWondersCall(change)
 });
 
