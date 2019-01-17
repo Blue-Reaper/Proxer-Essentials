@@ -1,4 +1,19 @@
 /*Proxer Essentials Framework*/
+
+.clear {
+    clear: both;
+}
+
+.center {
+    text-align: center;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+/* Settings */
+
 .modulBox {
     width: 30%;
     border-width: 1px;
@@ -7,27 +22,27 @@
     padding: 5px;
 }
 
-.modulEnd {
-    margin: 1%;
-    clear: both;
-}
-
-.center {
-    text-align: center;
-}
-
 .status {
     margin-right: 1em;
     float: right;
 }
 
-.pointer {
-    cursor: pointer;
-}
-
 .off {
     opacity: 0.5;
 }
+
+.version {
+    float: left;
+    padding-top: 1.2em;
+    margin-left: 1em;
+}
+
+.description{
+    margin-left: 0.5em;
+    margin-top: 0.7em;
+}
+
+/* Dialog */
 
 .dialogOverlay {
     display: block;
@@ -43,20 +58,23 @@
     left: 50%;
 }
 
-.marginTop10 {
+.dialogOk {
     margin-top: 10px;
 }
 
-.marginLeft30 {
-    margin-left: 30px;
-}
-
-.leanRight {
+.dialogYesNo {
+    margin-top: 10px;
     text-align: right;
     padding-right: 30px;
 }
 
-/* smallWonders backToTop */
+.dialogButtonNo {
+    margin-left: 30px;
+}
+
+/* Modules */
+/* smallWonders */
+
 .backToTop {
     position:fixed;
     right:210px;
@@ -70,6 +88,7 @@
 }
 
 /* Fullscreen Manga*/
+
 :fullscreen {
     overflow-y:auto;
 }
