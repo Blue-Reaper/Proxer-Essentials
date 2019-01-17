@@ -25,8 +25,20 @@ function mangaFullscreenCall (change:ModulCallEvent) {
 		case ModulCallEvent.off:
 			break;
 		case ModulCallEvent.ajax:
+            mangaFullscreenAjax();
 			break;
 	}
+}
+
+function mangaFullscreenAjax(){
+    // Setze Button neu, wenn #reader befüllt wurde
+    $('#reader').append($('#fullscreenButton'));
+    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
+    $('#reader img').attr("onclick","");
+    $('#reader img').off("click", scrollToNextPage);
+    $('#reader img').click(scrollToNextPage);
+    // TODO wenn auf 404 gesprungen wird (kein weiteres Kapitel) dann auf Kapitelübersich springen
+    $('#reader img:last-child').attr("onclick","window.location=nextChapter.replace('chapter','read')+'#top'");
 }
 
 function mangaFullscreen(){
@@ -51,6 +63,7 @@ function mangaFullscreen(){
 
 	let rect = reader.getBoundingClientRect();
 	scrollOffset = rect.top + document.documentElement.scrollTop - nav.offsetHeight;
+
 }
 
 //Manuell den Fullscreen togglen, triggert indirekt toggleFullscreenEvent
@@ -74,7 +87,6 @@ function toggleFullscreenEvent(){
         // Am Ausschalten
         fullscreenOff();
 	}
-    $('#reader').append($('#fullscreenButton'));
     $('#fullscreenButton').toggleClass('fa-arrows-alt openFullscreen fa-compress exitFullscreen');
 }
 
@@ -116,6 +128,21 @@ function fullscreenOff(){
 	$('#reader').off("scroll", getReaderScrollTop);
 	$(window).scroll(getWindowScrollTop);
 	document.exitFullscreen();
+}
+
+function scrollToNextPage(){
+    // Is Fullscreen on?
+    if (document.fullscreenElement) {
+        $('#reader').animate({
+            // nicht page+1, da id bei 0 los zählt
+            scrollTop: $('#chapterImage'+(current_page)).offset().top - $('#reader').offset().top + $('#reader').scrollTop()
+        }, 800);
+    }else{
+        $('body,html').animate({
+            scrollTop: $('#chapterImage'+(current_page)).offset().top
+        }, 800);
+    }
+    current_page = current_page+1;
 }
 
 function getWindowScrollTop(){
