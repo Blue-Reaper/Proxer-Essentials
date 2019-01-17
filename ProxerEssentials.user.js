@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     3.1
+// @version     3.2
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -18,9 +18,14 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS   resources/css/pef.css
+// @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
+// Theatermodus
+// @include     https://stream.proxer.me/*
+// Theme Modern Dark
+// @resource    themeModernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/add-theme/resources/css/themeModernDark.css
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
+GM_addStyle(GM_getResourceText("pefthemeModernDark_CSS_CSS"));
 // Liste aller Module
 var pefModulList = [];
 //Main Methode des Frameworks
