@@ -33,4 +33,5 @@ $(document).ready(function(){
 	createPefSettings();
 	actionControl(ModulCallEvent.on);
 	monitorAjax();
+
 });
