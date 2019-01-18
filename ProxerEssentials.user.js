@@ -21,11 +21,10 @@
 // @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
-// Theme Modern Dark
-// @resource    themeModernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/add-theme/resources/css/themeModernDark.css
+// Themes
+// @resource    modernDark_CSS   https://logosart.de/proxer2-0/css/style.css
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
-GM_addStyle(GM_getResourceText("pefthemeModernDark_CSS_CSS"));
 // Liste aller Module
 var pefModulList = [];
 //Main Methode des Frameworks
@@ -478,4 +477,23 @@ function getWindowScrollTop() {
 }
 function getReaderScrollTop() {
     currentScroll = reader.scrollTop;
+}
+pefModulList.push({
+    id: "modernDark",
+    name: "Modern Dark",
+    description: "Neues Design für Proxer",
+    autor: "xYata",
+    callMethod: function (change) { return modernDarkCall(change); }
+});
+function modernDarkCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            GM_addStyle(GM_getResourceText("modernDark_CSS"));
+            break;
+        case 1 /* off */:
+            location.reload();
+            break;
+        case 2 /* ajax */:
+            break;
+    }
 }

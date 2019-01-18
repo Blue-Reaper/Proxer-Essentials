@@ -20,13 +20,11 @@
 // @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
-// Theme Modern Dark
-// @resource    themeModernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/add-theme/resources/css/themeModernDark.css
+// Themes
+// @resource    modernDark_CSS   https://logosart.de/proxer2-0/css/style.css
 // ==/UserScript==
 
 GM_addStyle (GM_getResourceText ("pef_CSS"));
-GM_addStyle (GM_getResourceText ("pefthemeModernDark_CSS_CSS"));
-
 
 // Liste aller Module
 let pefModulList :IPefModul[] = [];
