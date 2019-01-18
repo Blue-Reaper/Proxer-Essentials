@@ -1,6 +1,5 @@
 // Wunder:
 // Keine Benachrichtigung "Diese Webseite verwendet Cookies ... "
-// Manga Longstrip Reader als Standard
 // "zurück nach oben" Button
 
 pefModulList.push({
@@ -28,8 +27,6 @@ function smallWondersCall (change:ModulCallEvent) {
 function smallWonders(){
 // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
 	document.cookie = 'cookieconsent_dismissed=yes';
-	// Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
-    document.cookie = 'manga_reader=longstrip';
 
 // ############### BackToTop ###############
 // button einfügen

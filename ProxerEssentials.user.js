@@ -18,8 +18,10 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS          resources/css/pef.css
-// @resource    modernDark_CSS   resources/css/modernDark.css
+// @resource    pef_CSS          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/add-theme/resources/css/pef.css
+// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/add-theme/resources/css/modernDark.css
+// Theatermodus
+// @include     https://stream.proxer.me/*
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
 GM_addStyle(GM_getResourceText("modernDark_CSS"));
@@ -228,147 +230,6 @@ function actionControl(change, modul) {
         }
     }
 }
-// History old Script
-// @history      1.4 Bei Seitenwechsel im Fullscreen bei der neuen Seite wieder oben anfangen, document.getElementById("reader").childNode[0] zu reader.childNode[0], dynamische Kapitelanzeige oben in Fullscreen
-// @history      0.1.0 Maus wird jetzt im Fullscreen ausgeblendet und ansonsten ganz normal.
-// mögliche weitere Features:
-// IDEA Maus Ausblenden auf reader
-// IDEA Kapitelwechsel ohne Zwischenseite (optional)(Kurzes aufflackern des Kapitelnamens in Mitte des Blidschirms) trotzdem noch Bookmark
-// IDEA fullscreen auto-on (when 1. page hit top?)
-var currentScroll = 0;
-var scrollOffset = 0;
-pefModulList.push({
-    id: "mangaFullscreen",
-    name: "Manga Fullscreen",
-    description: "Mangas im Fullscreen genießen",
-    autor: "Blue.Reaper",
-    callMethod: function (change) { return mangaFullscreenCall(change); }
-});
-function mangaFullscreenCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            mangaFullscreen();
-            break;
-        case 1 /* off */:
-            break;
-        case 2 /* ajax */:
-            mangaFullscreenAjax();
-            break;
-    }
-}
-function mangaFullscreenAjax() {
-    // Setze Button neu, wenn #reader befüllt wurde
-    $('#reader').append($('#fullscreenButton'));
-    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
-    $('#reader img').attr("onclick", "");
-    $('#reader img').off("click", scrollToNextPage);
-    $('#reader img').click(scrollToNextPage);
-    // TODO wenn auf 404 gesprungen wird (kein weiteres Kapitel) dann auf Kapitelübersich springen
-    $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
-}
-function mangaFullscreen() {
-    if (window.location.pathname.split('/')[1] !== 'read') {
-        return;
-    }
-    document.addEventListener("fullscreenchange", toggleFullscreenEvent);
-    $(window).scroll(getWindowScrollTop);
-    var fullscreenButton = $('<i id="fullscreenButton" class="openFullscreen pointer fa fa-2x fa-arrows-alt"/>');
-    $('body').append(fullscreenButton);
-    fullscreenButton.click(toggleFullscreenManual);
-    $(window).keyup(function (event) {
-        // Beim Drücken von F
-        if (event.keyCode === 70) {
-            toggleFullscreenManual();
-        }
-    });
-    var rect = reader.getBoundingClientRect();
-    scrollOffset = rect.top + document.documentElement.scrollTop - nav.offsetHeight;
-}
-//Manuell den Fullscreen togglen, triggert indirekt toggleFullscreenEvent
-function toggleFullscreenManual() {
-    // Is Fullscreen on?
-    if (document.fullscreenElement) {
-        // Fullscreen Ausschalten
-        fullscreenOff();
-    }
-    else {
-        // Fullscreen Einschalten
-        fullscreenOn();
-    }
-}
-// Wrid aufgerufen, wenn der Browser in oder aus Fullscreen wechselt
-function toggleFullscreenEvent() {
-    if (document.fullscreenElement) {
-        // Am Einschalten
-        fullscreenOn();
-    }
-    else {
-        // Am Ausschalten
-        fullscreenOff();
-    }
-    $('#fullscreenButton').toggleClass('fa-arrows-alt openFullscreen fa-compress exitFullscreen');
-}
-function fullscreenOn() {
-    reader.scrollTo(0, currentScroll);
-    $(window).off("scroll", getWindowScrollTop);
-    $('#reader').scroll(getReaderScrollTop);
-    reader.requestFullscreen();
-    // Load pages (Proxer function)
-    $('#reader').on('scroll', function (e) {
-        var loop = true;
-        while (loop) {
-            var position = $('#chapterImage' + (current_page - 1)).position().top;
-            var scrolled = $(window).scrollTop();
-            var curHeight = $('#chapterImage' + (current_page - 1)).height();
-            var prevHeight = 10000;
-            if (current_page - 2 >= 0) {
-                prevHeight = $('#chapterImage' + (current_page - 2)).height();
-            }
-            if (scrollable && (scrolled - position) >= curHeight) {
-                scroll = false;
-                nextPage();
-            }
-            else if (scrollable && (position - scrolled) >= prevHeight) {
-                scroll = false;
-                prevPage();
-            }
-            else {
-                loop = false;
-            }
-        }
-        if (!scrollable && counter > 1) {
-            scrollable = true;
-        }
-        counter++;
-    });
-}
-function fullscreenOff() {
-    window.scrollTo(0, currentScroll + scrollOffset);
-    $('#reader').off("scroll", getReaderScrollTop);
-    $(window).scroll(getWindowScrollTop);
-    document.exitFullscreen();
-}
-function scrollToNextPage() {
-    // Is Fullscreen on?
-    if (document.fullscreenElement) {
-        $('#reader').animate({
-            // nicht page+1, da id bei 0 los zählt
-            scrollTop: $('#chapterImage' + (current_page)).offset().top - $('#reader').offset().top + $('#reader').scrollTop()
-        }, 800);
-    }
-    else {
-        $('body,html').animate({
-            scrollTop: $('#chapterImage' + (current_page)).offset().top
-        }, 800);
-    }
-    current_page = current_page + 1;
-}
-function getWindowScrollTop() {
-    currentScroll = document.documentElement.scrollTop - scrollOffset;
-}
-function getReaderScrollTop() {
-    currentScroll = reader.scrollTop;
-}
 // Muster (Proxer Essentials Framework Example)
 // Jedes Modul muss sich in die pefModulList eintragen
 // pefModulList.push({
@@ -416,7 +277,6 @@ function anotherExampleMethod() {
 }
 // Wunder:
 // Keine Benachrichtigung "Diese Webseite verwendet Cookies ... "
-// Manga Longstrip Reader als Standard
 // "zurück nach oben" Button
 pefModulList.push({
     id: "smallWonders",
@@ -441,8 +301,6 @@ function smallWondersCall(change) {
 function smallWonders() {
     // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
     document.cookie = 'cookieconsent_dismissed=yes';
-    // Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
-    document.cookie = 'manga_reader=longstrip';
     // ############### BackToTop ###############
     // button einfügen
     var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
@@ -463,4 +321,51 @@ function smallWonders() {
         }, 800);
         return false;
     });
+}
+// Longstrip Reader als Standard
+// Bei Longstrip wird bei klick auf Bild nur zum nächsten Bild gescrollt
+// IDEA Kapitelwechsel ohne Zwischenseite (optional)(Kurzes aufflackern des Kapitelnamens in Mitte des Blidschirms) trotzdem noch Bookmark
+pefModulList.push({
+    id: "mangaComfort",
+    name: "Manga Comfort",
+    description: "Scrollen, Menüführung, etc.",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return mangaComfortCall(change); }
+});
+function mangaComfortCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            mangaComfort();
+            break;
+        case 1 /* off */:
+            break;
+        case 2 /* ajax */:
+            mangaComfort();
+            break;
+    }
+}
+function mangaComfortAjax() {
+}
+function mangaComfort() {
+    if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
+        return;
+    }
+    // Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
+    document.cookie = 'manga_reader=longstrip';
+    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
+    $('#reader img').attr("onclick", "");
+    $('#reader img').off("click", scrollToNextPage);
+    $('#reader img').click(scrollToNextPage);
+    // Mauszeiger wird auch nur über Bild zur Hand
+    $('#reader img').addClass("pointer");
+    $('#reader a').addClass("cursorAuto");
+    // TODO wenn auf 404 gesprungen wird (kein weiteres Kapitel) dann auf Kapitelübersich springen
+    $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
+}
+function scrollToNextPage() {
+    $('body,html').animate({
+        // nicht page+1, da id bei 0 los zählt
+        scrollTop: $('#chapterImage' + (current_page)).offset().top
+    }, 800);
+    current_page = current_page + 1;
 }

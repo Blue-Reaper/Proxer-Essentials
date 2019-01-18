@@ -1,4 +1,5 @@
-// Bei Longstrip-Reader wird bei klick auf Bild nur zum nächsten Bild gescrollt
+// Longstrip Reader als Standard
+// Bei Longstrip wird bei klick auf Bild nur zum nächsten Bild gescrollt
 
 // IDEA Kapitelwechsel ohne Zwischenseite (optional)(Kurzes aufflackern des Kapitelnamens in Mitte des Blidschirms) trotzdem noch Bookmark
 pefModulList.push({
@@ -17,12 +18,23 @@ function mangaComfortCall (change:ModulCallEvent) {
 		case ModulCallEvent.off:
 			break;
 		case ModulCallEvent.ajax:
-            mangaComfortAjax();
+            mangaComfort();
 			break;
 	}
 }
 
 function mangaComfortAjax(){
+}
+
+function mangaComfort(){
+
+	if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter'){
+		return;
+	}
+
+    // Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
+    document.cookie = 'manga_reader=longstrip';
+
     // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
     $('#reader img').attr("onclick","");
     $('#reader img').off("click", scrollToNextPage);
@@ -33,13 +45,6 @@ function mangaComfortAjax(){
 
     // TODO wenn auf 404 gesprungen wird (kein weiteres Kapitel) dann auf Kapitelübersich springen
     $('#reader img:last-child').attr("onclick","window.location=nextChapter.replace('chapter','read')+'#top'");
-}
-
-function mangaComfort(){
-
-	if (window.location.pathname.split('/')[1] !== 'read'){
-		return;
-	}
 
 }
 
