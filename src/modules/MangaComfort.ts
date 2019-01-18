@@ -1,11 +1,11 @@
 // Longstrip Reader als Standard
-// Bei Longstrip wird bei klick auf Bild nur zum nächsten Bild gescrollt
+// Longstrip: klick auf Bild scrollt zum nächsten Bild
+// Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
 
-// IDEA Kapitelwechsel ohne Zwischenseite (optional)(Kurzes aufflackern des Kapitelnamens in Mitte des Blidschirms) trotzdem noch Bookmark
 pefModulList.push({
     id:"mangaComfort",
     name:"Manga Comfort",
-    description:"Scrollen, Menüführung, etc.",
+    description:"keine Zwischenseiten, etc.",
     autor:"Blue.Reaper",
 	callMethod:(change)=>mangaComfortCall(change)
 });
@@ -23,28 +23,34 @@ function mangaComfortCall (change:ModulCallEvent) {
 	}
 }
 
-function mangaComfortAjax(){
-}
-
 function mangaComfort(){
 
 	if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter'){
 		return;
 	}
 
-    // Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
-    document.cookie = 'manga_reader=longstrip';
+    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
+    if(getCookie("manga_reader") != "slide"){
+        setCookie('manga_reader','longstrip');
+    }
 
     // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
-    $('#reader img').attr("onclick","");
-    $('#reader img').off("click", scrollToNextPage);
-    $('#reader img').click(scrollToNextPage);
+    if(getCookie("manga_reader") == "longstrip"){
+        $('#reader img').attr("onclick","");
+        $('#reader img').off("click", scrollToNextPage);
+        $('#reader img').click(scrollToNextPage);
+        $('#reader img:last-child').attr("onclick","window.location=nextChapter.replace('chapter','read')+'#top'");
+    }
+
+    // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
+    if($('#main img[src="/images/misc/404.png"]').length){
+        window.location.pathname=window.location.pathname.replace('read','chapter');
+    }
+
     // Mauszeiger wird auch nur über Bild zur Hand
     $('#reader img').addClass("pointer");
     $('#reader a').addClass("cursorAuto");
 
-    // TODO wenn auf 404 gesprungen wird (kein weiteres Kapitel) dann auf Kapitelübersich springen
-    $('#reader img:last-child').attr("onclick","window.location=nextChapter.replace('chapter','read')+'#top'");
 
 }
 

@@ -1,5 +1,4 @@
 // Wunder:
-// Keine Benachrichtigung "Diese Webseite verwendet Cookies ... "
 // "zurück nach oben" Button
 
 pefModulList.push({
@@ -25,9 +24,6 @@ function smallWondersCall (change:ModulCallEvent) {
 }
 
 function smallWonders(){
-// Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
-	document.cookie = 'cookieconsent_dismissed=yes';
-
 // ############### BackToTop ###############
 // button einfügen
 	let backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');

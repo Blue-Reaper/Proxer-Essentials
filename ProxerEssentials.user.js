@@ -98,7 +98,7 @@ function showModules(pef_module) {
         moduleBox.append($('<h3>' + singleModule.name + '</h3>'));
         moduleBox.append($('<div>' + singleModule.description + '</div>'));
         moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));
-        // TODO: Button für Details hinzufügen
+        // IDEA: Button für Details hinzufügen
         var modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="fa fa-2x pointer"/>');
         moduleBox.append(modulStatus);
         pef_module.append(moduleBox);
@@ -199,14 +199,21 @@ function createPefMessage(msg) {
     // Proxer eigene Funktion
     create_message('key_suggestion', 7000, msg);
 }
-//############################# Auslesen eines Cookies #############################
+//############################# Cookies #############################
 // Gibt den Wert des übergebenen Coockienamens wieder
-function getCookie(cname) {
+function getCookie(name) {
     // Proxer eigene Funktion
-    return get_cookie(cname);
+    return get_cookie(name);
+}
+// Setzt ein Cookie
+function setCookie(name, value) {
+    // Proxer eigene Funktion
+    set_cookie(name, value, cookie_expire);
 }
 // Erst-Initialisierung der Speicherwerte
 function initStatusMemory() {
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    setCookie('cookieconsent_dismissed', 'yes');
     for (var _i = 0, pefModulList_2 = pefModulList; _i < pefModulList_2.length; _i++) {
         var singleModule = pefModulList_2[_i];
         if (GM_getValue(singleModule.id + "Status") == null) {
@@ -276,7 +283,6 @@ function anotherExampleMethod() {
     // console.log("Das Mustet-Modul wurde deaktiviert");
 }
 // Wunder:
-// Keine Benachrichtigung "Diese Webseite verwendet Cookies ... "
 // "zurück nach oben" Button
 pefModulList.push({
     id: "smallWonders",
@@ -299,8 +305,6 @@ function smallWondersCall(change) {
     }
 }
 function smallWonders() {
-    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
-    document.cookie = 'cookieconsent_dismissed=yes';
     // ############### BackToTop ###############
     // button einfügen
     var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
@@ -323,12 +327,12 @@ function smallWonders() {
     });
 }
 // Longstrip Reader als Standard
-// Bei Longstrip wird bei klick auf Bild nur zum nächsten Bild gescrollt
-// IDEA Kapitelwechsel ohne Zwischenseite (optional)(Kurzes aufflackern des Kapitelnamens in Mitte des Blidschirms) trotzdem noch Bookmark
+// Longstrip: klick auf Bild scrollt zum nächsten Bild
+// Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
 pefModulList.push({
     id: "mangaComfort",
     name: "Manga Comfort",
-    description: "Scrollen, Menüführung, etc.",
+    description: "keine Zwischenseiten, etc.",
     autor: "Blue.Reaper",
     callMethod: function (change) { return mangaComfortCall(change); }
 });
@@ -344,23 +348,28 @@ function mangaComfortCall(change) {
             break;
     }
 }
-function mangaComfortAjax() {
-}
 function mangaComfort() {
     if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
         return;
     }
-    // Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
-    document.cookie = 'manga_reader=longstrip';
+    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
+    if (getCookie("manga_reader") != "slide") {
+        setCookie('manga_reader', 'longstrip');
+    }
     // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
-    $('#reader img').attr("onclick", "");
-    $('#reader img').off("click", scrollToNextPage);
-    $('#reader img').click(scrollToNextPage);
+    if (getCookie("manga_reader") == "longstrip") {
+        $('#reader img').attr("onclick", "");
+        $('#reader img').off("click", scrollToNextPage);
+        $('#reader img').click(scrollToNextPage);
+        $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
+    }
+    // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
+    if ($('#main img[src="/images/misc/404.png"]').length) {
+        window.location.pathname = window.location.pathname.replace('read', 'chapter');
+    }
     // Mauszeiger wird auch nur über Bild zur Hand
     $('#reader img').addClass("pointer");
     $('#reader a').addClass("cursorAuto");
-    // TODO wenn auf 404 gesprungen wird (kein weiteres Kapitel) dann auf Kapitelübersich springen
-    $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
 }
 function scrollToNextPage() {
     $('body,html').animate({
