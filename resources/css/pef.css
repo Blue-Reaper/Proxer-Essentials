@@ -12,6 +12,10 @@
     cursor: pointer;
 }
 
+.cursorAuto {
+    cursor: auto;
+}
+
 .floatLeft {
     float: left;
 }
