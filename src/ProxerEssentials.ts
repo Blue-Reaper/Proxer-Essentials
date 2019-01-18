@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     3.2
+// @version     4.0
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -17,14 +17,12 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
-// Theatermodus
-// @include     https://stream.proxer.me/*
-// Themes
-// @resource    modernDark_CSS   https://logosart.de/proxer2-0/css/style.css
+// @resource    pef_CSS          resources/css/pef.css
+// @resource    modernDark_CSS   resources/css/modernDark.css
 // ==/UserScript==
 
 GM_addStyle (GM_getResourceText ("pef_CSS"));
+GM_addStyle (GM_getResourceText ("modernDark_CSS"));
 
 // Liste aller Module
 let pefModulList :IPefModul[] = [];

@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     3.2
+// @version     4.0
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -18,13 +18,11 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
-// Theatermodus
-// @include     https://stream.proxer.me/*
-// Themes
-// @resource    modernDark_CSS   https://logosart.de/proxer2-0/css/style.css
+// @resource    pef_CSS          resources/css/pef.css
+// @resource    modernDark_CSS   resources/css/modernDark.css
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
+GM_addStyle(GM_getResourceText("modernDark_CSS"));
 // Liste aller Module
 var pefModulList = [];
 //Main Methode des Frameworks
@@ -86,7 +84,8 @@ function createPefSettings() {
             inhalt.append(pef_module);
             showModules(pef_module);
             // Footer
-            inhalt.append($('<div class ="clear">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+            // inhalt.append($('<div class ="clear">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+            inhalt.append($('<div class ="clear">Design by xYata</div>'));
         }
     }
 }
@@ -94,14 +93,11 @@ function createPefSettings() {
 function showModules(pef_module) {
     var _loop_1 = function (singleModule) {
         var moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="floatLeft modulBox"></div>');
-        moduleBox.css("border", $('#main').css("border"));
-        moduleBox.css("border-radius", $('#main').css("border-radius"));
-        moduleBox.append($('<h3 class="center">' + singleModule.name + '</h3>'));
-        moduleBox.append(document.createElement("hr"));
-        moduleBox.append($('<div class="description">' + singleModule.description + '</div>'));
-        moduleBox.append($('<div class="autor">von ' + singleModule.autor + '</div>'));
+        moduleBox.append($('<h3>' + singleModule.name + '</h3>'));
+        moduleBox.append($('<div>' + singleModule.description + '</div>'));
+        moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));
         // TODO: Button für Details hinzufügen
-        var modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="status fa fa-2x pointer"></i>');
+        var modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="fa fa-2x pointer"/>');
         moduleBox.append(modulStatus);
         pef_module.append(moduleBox);
         updateModulTick(singleModule.id);
@@ -129,12 +125,10 @@ function toggleModulStatus(modul) {
 // Setzt den Haken / Kreuz nach dem Modulnamen
 function updateModulTick(modulId) {
     if (GM_getValue(modulId + "Status") === "off") {
-        $("#" + modulId + "_StatusImg").removeClass('fa-toggle-on').addClass('fa-toggle-off');
-        $("#" + modulId + "ModulBox").addClass('off');
+        $("#" + modulId + "ModulBox").removeClass('active');
     }
     else {
-        $("#" + modulId + "_StatusImg").removeClass('fa-toggle-off').addClass('fa-toggle-on');
-        $("#" + modulId + "ModulBox").removeClass('off');
+        $("#" + modulId + "ModulBox").addClass('active');
     }
 }
 ;
@@ -233,109 +227,6 @@ function actionControl(change, modul) {
             }
         }
     }
-}
-// Muster (Proxer Essentials Framework Example)
-// Jedes Modul muss sich in die pefModulList eintragen
-// pefModulList.push({
-// 	// Eindeutiger String, der als Id verwendet wird
-//     id:"pefExample",
-// 	// Der angezeigte Name des Moduls
-//     name:"Beispiel Modul",
-// 	// Die Kurzbeschreibung
-//     description:"Ein Muster zur Erstellung weiterer Scripte",
-// 	// Der Ersteller dieses Moduls
-// 	autor:"Blue.Reaper",
-// 	// Mit dieser Methode wird das Modul aufgerufen
-// 	callMethod:(change)=>pefExampleCall(change)
-// });
-// Aufruf des Scripts durch das Framework
-function pefExampleCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            // Wird nach dem Laden der Seite Aufgerufen, sollte das Modul aktiviert sein
-            // Wird auch aufgerufen, wenn der User das Modul in den Einstellungen aktiviert
-            console.log("on");
-            myExampleMethod();
-            break;
-        case 2 /* ajax */:
-            // Wird durch einen Ajax-Aufruf auf der Seite getriggert
-            // Nur wenn das Modul aktiv ist
-            // Es wird immer erst nach "on" aufgerufen
-            console.log("ajax");
-            myExampleMethod();
-            break;
-        case 1 /* off */:
-            // Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ausschaltet
-            console.log("off");
-            anotherExampleMethod();
-            break;
-    }
-}
-function myExampleMethod() {
-    // Hier ist der Code des Scipts
-    // console.log("Das Muster-Modul läuft");
-}
-function anotherExampleMethod() {
-    // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
-    // console.log("Das Mustet-Modul wurde deaktiviert");
-}
-// Wunder:
-// Keine Benachrichtigung "Diese Webseite verwendet Cookies ... "
-// Manga Longstrip Reader als Standard
-// "zurück nach oben" Button
-pefModulList.push({
-    id: "smallWonders",
-    name: "Kleine Wunder",
-    description: "Kleine Änderungen, die Wunder wirken",
-    autor: "Blue.Reaper",
-    callMethod: function (change) { return smallWondersCall(change); }
-});
-function smallWondersCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            smallWonders();
-            break;
-        case 1 /* off */:
-            // smallWonders();
-            break;
-        case 2 /* ajax */:
-            // smallWonders();
-            break;
-    }
-}
-function smallWonders() {
-    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
-    document.cookie = 'cookieconsent_dismissed=yes';
-    // Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
-    document.cookie = 'manga_reader=longstrip';
-    // ############### BackToTop ###############
-    // button einfügen
-    var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
-    $("body").append(backToTopButton);
-    // hover
-    backToTopButton.hover(function () {
-        // Setzt Bild bei hover
-        backToTopButton.toggleClass("fa-2x fa-chevron-up fa-3x fa-chevron-circle-up");
-    }, function () {
-        // Setzt Bild nach hover zurück auf Standard
-        backToTopButton.toggleClass("fa-2x fa-chevron-up fa-3x fa-chevron-circle-up");
-    });
-    // scroll 100 Pixel
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > 100) {
-            backToTopButton.fadeIn();
-        }
-        else {
-            backToTopButton.fadeOut();
-        }
-    });
-    // click
-    backToTopButton.click(function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 800);
-        return false;
-    });
 }
 // History old Script
 // @history      1.4 Bei Seitenwechsel im Fullscreen bei der neuen Seite wieder oben anfangen, document.getElementById("reader").childNode[0] zu reader.childNode[0], dynamische Kapitelanzeige oben in Fullscreen
@@ -478,22 +369,98 @@ function getWindowScrollTop() {
 function getReaderScrollTop() {
     currentScroll = reader.scrollTop;
 }
-pefModulList.push({
-    id: "modernDark",
-    name: "Modern Dark",
-    description: "Neues Design für Proxer",
-    autor: "xYata",
-    callMethod: function (change) { return modernDarkCall(change); }
-});
-function modernDarkCall(change) {
+// Muster (Proxer Essentials Framework Example)
+// Jedes Modul muss sich in die pefModulList eintragen
+// pefModulList.push({
+// 	// Eindeutiger String, der als Id verwendet wird
+//     id:"pefExample",
+// 	// Der angezeigte Name des Moduls
+//     name:"Beispiel Modul",
+// 	// Die Kurzbeschreibung
+//     description:"Ein Muster zur Erstellung weiterer Scripte",
+// 	// Der Ersteller dieses Moduls
+// 	autor:"Blue.Reaper",
+// 	// Mit dieser Methode wird das Modul aufgerufen
+// 	callMethod:(change)=>pefExampleCall(change)
+// });
+// Aufruf des Scripts durch das Framework
+function pefExampleCall(change) {
     switch (change) {
         case 0 /* on */:
-            GM_addStyle(GM_getResourceText("modernDark_CSS"));
-            break;
-        case 1 /* off */:
-            location.reload();
+            // Wird nach dem Laden der Seite Aufgerufen, sollte das Modul aktiviert sein
+            // Wird auch aufgerufen, wenn der User das Modul in den Einstellungen aktiviert
+            console.log("on");
+            myExampleMethod();
             break;
         case 2 /* ajax */:
+            // Wird durch einen Ajax-Aufruf auf der Seite getriggert
+            // Nur wenn das Modul aktiv ist
+            // Es wird immer erst nach "on" aufgerufen
+            console.log("ajax");
+            myExampleMethod();
+            break;
+        case 1 /* off */:
+            // Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ausschaltet
+            console.log("off");
+            anotherExampleMethod();
             break;
     }
+}
+function myExampleMethod() {
+    // Hier ist der Code des Scipts
+    // console.log("Das Muster-Modul läuft");
+}
+function anotherExampleMethod() {
+    // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
+    // console.log("Das Mustet-Modul wurde deaktiviert");
+}
+// Wunder:
+// Keine Benachrichtigung "Diese Webseite verwendet Cookies ... "
+// Manga Longstrip Reader als Standard
+// "zurück nach oben" Button
+pefModulList.push({
+    id: "smallWonders",
+    name: "Kleine Wunder",
+    description: "Kleine Änderungen, die Wunder wirken",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return smallWondersCall(change); }
+});
+function smallWondersCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            smallWonders();
+            break;
+        case 1 /* off */:
+            // smallWonders();
+            break;
+        case 2 /* ajax */:
+            // smallWonders();
+            break;
+    }
+}
+function smallWonders() {
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    document.cookie = 'cookieconsent_dismissed=yes';
+    // Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
+    document.cookie = 'manga_reader=longstrip';
+    // ############### BackToTop ###############
+    // button einfügen
+    var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
+    $("body").append(backToTopButton);
+    // scroll 100 Pixel
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 1000) {
+            backToTopButton.fadeIn();
+        }
+        else {
+            backToTopButton.fadeOut();
+        }
+    });
+    // click
+    backToTopButton.click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
 }

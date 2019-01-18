@@ -35,17 +35,9 @@ function smallWonders(){
 // button einfügen
 	let backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
 	$("body").append(backToTopButton);
-// hover
-	backToTopButton.hover(()=>{
-		// Setzt Bild bei hover
-		backToTopButton.toggleClass("fa-2x fa-chevron-up fa-3x fa-chevron-circle-up");
-	}, ()=>{
-		// Setzt Bild nach hover zurück auf Standard
-        backToTopButton.toggleClass("fa-2x fa-chevron-up fa-3x fa-chevron-circle-up");
-	});
 // scroll 100 Pixel
 	$(window).scroll(()=> {
-		if ($(window).scrollTop() > 100) {
+		if ($(window).scrollTop() > 1000) {
 			backToTopButton.fadeIn();
 		} else {
 			backToTopButton.fadeOut();
