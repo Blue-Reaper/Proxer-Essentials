@@ -124,21 +124,3 @@
     transition: all ease 0.8s;
     color: #ef394a;
 }
-
-/* Fullscreen Manga*/
-
-:fullscreen {
-    overflow-y:auto;
-}
-
-.openFullscreen {
-    position:fixed;
-    right:240px;
-    top:60px;
-}
-
-.exitFullscreen {
-    position: fixed;
-    right: 100px;
-    top: 30px;
-}
