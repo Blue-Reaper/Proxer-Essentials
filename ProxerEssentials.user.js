@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     3.1
+// @version     4.0
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -18,9 +18,13 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS   resources/css/pef.css
+// @resource    pef_CSS          resources/css/pef.css
+// @resource    modernDark_CSS   resources/css/modernDark.css
+// Theatermodus
+// @include     https://stream.proxer.me/*
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
+GM_addStyle(GM_getResourceText("modernDark_CSS"));
 // Liste aller Module
 var pefModulList = [];
 //Main Methode des Frameworks
@@ -82,7 +86,8 @@ function createPefSettings() {
             inhalt.append(pef_module);
             showModules(pef_module);
             // Footer
-            inhalt.append($('<div class ="clear">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+            // inhalt.append($('<div class ="clear">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+            inhalt.append($('<div class ="clear">Design by xYata</div>'));
         }
     }
 }
@@ -90,14 +95,11 @@ function createPefSettings() {
 function showModules(pef_module) {
     var _loop_1 = function (singleModule) {
         var moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="floatLeft modulBox"></div>');
-        moduleBox.css("border", $('#main').css("border"));
-        moduleBox.css("border-radius", $('#main').css("border-radius"));
-        moduleBox.append($('<h3 class="center">' + singleModule.name + '</h3>'));
-        moduleBox.append(document.createElement("hr"));
-        moduleBox.append($('<div class="description">' + singleModule.description + '</div>'));
-        moduleBox.append($('<div class="autor">von ' + singleModule.autor + '</div>'));
-        // TODO: Button für Details hinzufügen
-        var modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="status fa fa-2x pointer"></i>');
+        moduleBox.append($('<h3>' + singleModule.name + '</h3>'));
+        moduleBox.append($('<div>' + singleModule.description + '</div>'));
+        moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));
+        // IDEA: Button für Details hinzufügen
+        var modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="fa fa-2x pointer"/>');
         moduleBox.append(modulStatus);
         pef_module.append(moduleBox);
         updateModulTick(singleModule.id);
@@ -125,12 +127,10 @@ function toggleModulStatus(modul) {
 // Setzt den Haken / Kreuz nach dem Modulnamen
 function updateModulTick(modulId) {
     if (GM_getValue(modulId + "Status") === "off") {
-        $("#" + modulId + "_StatusImg").removeClass('fa-toggle-on').addClass('fa-toggle-off');
-        $("#" + modulId + "ModulBox").addClass('off');
+        $("#" + modulId + "ModulBox").removeClass('active');
     }
     else {
-        $("#" + modulId + "_StatusImg").removeClass('fa-toggle-off').addClass('fa-toggle-on');
-        $("#" + modulId + "ModulBox").removeClass('off');
+        $("#" + modulId + "ModulBox").addClass('active');
     }
 }
 ;
@@ -199,14 +199,21 @@ function createPefMessage(msg) {
     // Proxer eigene Funktion
     create_message('key_suggestion', 7000, msg);
 }
-//############################# Auslesen eines Cookies #############################
+//############################# Cookies #############################
 // Gibt den Wert des übergebenen Coockienamens wieder
-function getCookie(cname) {
+function getCookie(name) {
     // Proxer eigene Funktion
-    return get_cookie(cname);
+    return get_cookie(name);
+}
+// Setzt ein Cookie
+function setCookie(name, value) {
+    // Proxer eigene Funktion
+    set_cookie(name, value, cookie_expire);
 }
 // Erst-Initialisierung der Speicherwerte
 function initStatusMemory() {
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    setCookie('cookieconsent_dismissed', 'yes');
     for (var _i = 0, pefModulList_2 = pefModulList; _i < pefModulList_2.length; _i++) {
         var singleModule = pefModulList_2[_i];
         if (GM_getValue(singleModule.id + "Status") == null) {
@@ -276,8 +283,6 @@ function anotherExampleMethod() {
     // console.log("Das Mustet-Modul wurde deaktiviert");
 }
 // Wunder:
-// Keine Benachrichtigung "Diese Webseite verwendet Cookies ... "
-// Manga Longstrip Reader als Standard
 // "zurück nach oben" Button
 pefModulList.push({
     id: "smallWonders",
@@ -300,25 +305,13 @@ function smallWondersCall(change) {
     }
 }
 function smallWonders() {
-    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
-    document.cookie = 'cookieconsent_dismissed=yes';
-    // Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
-    document.cookie = 'manga_reader=longstrip';
     // ############### BackToTop ###############
     // button einfügen
     var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
     $("body").append(backToTopButton);
-    // hover
-    backToTopButton.hover(function () {
-        // Setzt Bild bei hover
-        backToTopButton.toggleClass("fa-2x fa-chevron-up fa-3x fa-chevron-circle-up");
-    }, function () {
-        // Setzt Bild nach hover zurück auf Standard
-        backToTopButton.toggleClass("fa-2x fa-chevron-up fa-3x fa-chevron-circle-up");
-    });
     // scroll 100 Pixel
     $(window).scroll(function () {
-        if ($(window).scrollTop() > 100) {
+        if ($(window).scrollTop() > 1000) {
             backToTopButton.fadeIn();
         }
         else {
@@ -333,144 +326,55 @@ function smallWonders() {
         return false;
     });
 }
-// History old Script
-// @history      1.4 Bei Seitenwechsel im Fullscreen bei der neuen Seite wieder oben anfangen, document.getElementById("reader").childNode[0] zu reader.childNode[0], dynamische Kapitelanzeige oben in Fullscreen
-// @history      0.1.0 Maus wird jetzt im Fullscreen ausgeblendet und ansonsten ganz normal.
-// mögliche weitere Features:
-// IDEA Maus Ausblenden auf reader
-// IDEA Kapitelwechsel ohne Zwischenseite (optional)(Kurzes aufflackern des Kapitelnamens in Mitte des Blidschirms) trotzdem noch Bookmark
-// IDEA fullscreen auto-on (when 1. page hit top?)
-var currentScroll = 0;
-var scrollOffset = 0;
+// Longstrip Reader als Standard
+// Longstrip: klick auf Bild scrollt zum nächsten Bild
+// Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
 pefModulList.push({
-    id: "mangaFullscreen",
-    name: "Manga Fullscreen",
-    description: "Mangas im Fullscreen genießen",
+    id: "mangaComfort",
+    name: "Manga Comfort",
+    description: "keine Zwischenseiten, etc.",
     autor: "Blue.Reaper",
-    callMethod: function (change) { return mangaFullscreenCall(change); }
+    callMethod: function (change) { return mangaComfortCall(change); }
 });
-function mangaFullscreenCall(change) {
+function mangaComfortCall(change) {
     switch (change) {
         case 0 /* on */:
-            mangaFullscreen();
+            mangaComfort();
             break;
         case 1 /* off */:
             break;
         case 2 /* ajax */:
-            mangaFullscreenAjax();
+            mangaComfort();
             break;
     }
 }
-function mangaFullscreenAjax() {
-    // Setze Button neu, wenn #reader befüllt wurde
-    $('#reader').append($('#fullscreenButton'));
-    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
-    $('#reader img').attr("onclick", "");
-    $('#reader img').off("click", scrollToNextPage);
-    $('#reader img').click(scrollToNextPage);
-    // TODO wenn auf 404 gesprungen wird (kein weiteres Kapitel) dann auf Kapitelübersich springen
-    $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
-}
-function mangaFullscreen() {
-    if (window.location.pathname.split('/')[1] !== 'read') {
+function mangaComfort() {
+    if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
         return;
     }
-    document.addEventListener("fullscreenchange", toggleFullscreenEvent);
-    $(window).scroll(getWindowScrollTop);
-    var fullscreenButton = $('<i id="fullscreenButton" class="openFullscreen pointer fa fa-2x fa-arrows-alt"/>');
-    $('body').append(fullscreenButton);
-    fullscreenButton.click(toggleFullscreenManual);
-    $(window).keyup(function (event) {
-        // Beim Drücken von F
-        if (event.keyCode === 70) {
-            toggleFullscreenManual();
-        }
-    });
-    var rect = reader.getBoundingClientRect();
-    scrollOffset = rect.top + document.documentElement.scrollTop - nav.offsetHeight;
-}
-//Manuell den Fullscreen togglen, triggert indirekt toggleFullscreenEvent
-function toggleFullscreenManual() {
-    // Is Fullscreen on?
-    if (document.fullscreenElement) {
-        // Fullscreen Ausschalten
-        fullscreenOff();
+    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
+    if (getCookie("manga_reader") != "slide") {
+        setCookie('manga_reader', 'longstrip');
     }
-    else {
-        // Fullscreen Einschalten
-        fullscreenOn();
+    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
+    if (getCookie("manga_reader") == "longstrip") {
+        $('#reader img').attr("onclick", "");
+        $('#reader img').off("click", scrollToNextPage);
+        $('#reader img').click(scrollToNextPage);
+        $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
     }
-}
-// Wrid aufgerufen, wenn der Browser in oder aus Fullscreen wechselt
-function toggleFullscreenEvent() {
-    if (document.fullscreenElement) {
-        // Am Einschalten
-        fullscreenOn();
+    // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
+    if ($('#main img[src="/images/misc/404.png"]').length) {
+        window.location.pathname = window.location.pathname.replace('read', 'chapter');
     }
-    else {
-        // Am Ausschalten
-        fullscreenOff();
-    }
-    $('#fullscreenButton').toggleClass('fa-arrows-alt openFullscreen fa-compress exitFullscreen');
-}
-function fullscreenOn() {
-    reader.scrollTo(0, currentScroll);
-    $(window).off("scroll", getWindowScrollTop);
-    $('#reader').scroll(getReaderScrollTop);
-    reader.requestFullscreen();
-    // Load pages (Proxer function)
-    $('#reader').on('scroll', function (e) {
-        var loop = true;
-        while (loop) {
-            var position = $('#chapterImage' + (current_page - 1)).position().top;
-            var scrolled = $(window).scrollTop();
-            var curHeight = $('#chapterImage' + (current_page - 1)).height();
-            var prevHeight = 10000;
-            if (current_page - 2 >= 0) {
-                prevHeight = $('#chapterImage' + (current_page - 2)).height();
-            }
-            if (scrollable && (scrolled - position) >= curHeight) {
-                scroll = false;
-                nextPage();
-            }
-            else if (scrollable && (position - scrolled) >= prevHeight) {
-                scroll = false;
-                prevPage();
-            }
-            else {
-                loop = false;
-            }
-        }
-        if (!scrollable && counter > 1) {
-            scrollable = true;
-        }
-        counter++;
-    });
-}
-function fullscreenOff() {
-    window.scrollTo(0, currentScroll + scrollOffset);
-    $('#reader').off("scroll", getReaderScrollTop);
-    $(window).scroll(getWindowScrollTop);
-    document.exitFullscreen();
+    // Mauszeiger wird auch nur über Bild zur Hand
+    $('#reader img').addClass("pointer");
+    $('#reader a').addClass("cursorAuto");
 }
 function scrollToNextPage() {
-    // Is Fullscreen on?
-    if (document.fullscreenElement) {
-        $('#reader').animate({
-            // nicht page+1, da id bei 0 los zählt
-            scrollTop: $('#chapterImage' + (current_page)).offset().top - $('#reader').offset().top + $('#reader').scrollTop()
-        }, 800);
-    }
-    else {
-        $('body,html').animate({
-            scrollTop: $('#chapterImage' + (current_page)).offset().top
-        }, 800);
-    }
+    $('body,html').animate({
+        // nicht page+1, da id bei 0 los zählt
+        scrollTop: $('#chapterImage' + (current_page)).offset().top
+    }, 800);
     current_page = current_page + 1;
-}
-function getWindowScrollTop() {
-    currentScroll = document.documentElement.scrollTop - scrollOffset;
-}
-function getReaderScrollTop() {
-    currentScroll = reader.scrollTop;
 }

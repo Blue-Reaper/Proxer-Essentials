@@ -76,10 +76,16 @@ function createPefMessage(msg:string){
 	create_message('key_suggestion', 7000, msg);
 }
 
-//############################# Auslesen eines Cookies #############################
+//############################# Cookies #############################
 
 // Gibt den Wert des übergebenen Coockienamens wieder
-function getCookie(cname:string) {
+function getCookie(name:string):string {
 // Proxer eigene Funktion
-  return get_cookie(cname);
+  return get_cookie(name);
+}
+
+// Setzt ein Cookie
+function setCookie(name:string, value:string):void {
+// Proxer eigene Funktion
+	set_cookie(name,value,cookie_expire);
 }

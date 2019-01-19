@@ -12,42 +12,76 @@
     cursor: pointer;
 }
 
+.cursorAuto {
+    cursor: auto;
+}
+
 .floatLeft {
     float: left;
 }
 
 /* Settings */
 
+.version {
+    padding-top: 1.3em;
+    margin-left: 1em;
+}
+
 .modulBox {
     width: 30%;
     border-width: 1px;
     margin: 1%;
-    padding: 5px;
-}
-
-.status {
-    margin-right: 1em;
-    float: right;
-}
-
-.off {
+    padding-left: 1em;
+    border-radius: 10px;
+    transition: all ease 0.8s;
     opacity: 0.5;
 }
 
-.version {
-    padding-top: 1.2em;
-    margin-left: 1em;
+.modulBox i {
+    margin-right: 0.7em;
+    margin-bottom: 0.2em;
+    float: right;
 }
 
-.description {
-    margin-left: 0.5em;
-    margin-top: 0.7em;
+.modulBox i::before{
+    content: "\f204";
+}
+
+.modulBox i:hover {
+    color: #ef394a;
+}
+
+.modulBox.active {
+    opacity: 1;
+    background: #3b3c3e;
+}
+
+.modulBox.active:hover {
+    background: #505050;
+    color: #fff;
+}
+
+.modulBox.active h3 {
+    transition: all ease 0.8s;
+    color: #ef394a;
+}
+
+.modulBox.active:hover h3 {
+    color: #fff;
+}
+
+.modulBox.active i {
+    opacity: 0.7;
+}
+
+.modulBox.active i::before{
+    content: "\f205";
 }
 
 .autor {
     float: left;
-    margin-left: 1.5em;
-    margin-top: 0.6em;
+    margin-left: 0.4em;
+    margin-top: 0.3em;
 }
 
 /* Dialog */
@@ -84,31 +118,13 @@
 /* smallWonders */
 
 .backToTop {
-    position:fixed;
-    right:210px;
-    bottom:20px;
+    position: fixed;
+    top: 80%;
+    right: 14%;
     display:none;
 }
 
 .backToTop:hover {
-    right:206px;
-    bottom:10px;
-}
-
-/* Fullscreen Manga*/
-
-:fullscreen {
-    overflow-y:auto;
-}
-
-.openFullscreen {
-    position:fixed;
-    right:240px;
-    top:60px;
-}
-
-.exitFullscreen {
-    position: fixed;
-    right: 100px;
-    top: 30px;
+    transition: all ease 0.8s;
+    color: #ef394a;
 }

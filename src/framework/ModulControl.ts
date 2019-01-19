@@ -16,6 +16,8 @@ const enum ModulCallEvent {
 
 // Erst-Initialisierung der Speicherwerte
 function initStatusMemory(){
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    setCookie('cookieconsent_dismissed','yes');
 	for(let singleModule of pefModulList){
 		if (GM_getValue(singleModule.id+"Status")==null){
 			GM_setValue(singleModule.id+"Status","on");
