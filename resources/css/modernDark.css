@@ -419,6 +419,10 @@ textarea {
     border: 0;
 }
 
+.profile font {
+    background-color: transparent !important;
+}
+
 .inner>table>tbody>tr>td>img {
     border-radius: 100%;
     width: 50%;
