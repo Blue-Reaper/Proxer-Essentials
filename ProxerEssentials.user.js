@@ -18,13 +18,15 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS          resources/css/pef.css
-// @resource    modernDark_CSS   resources/css/modernDark.css
+// @resource    pef_CSS          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
+// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/modernDark.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
-GM_addStyle(GM_getResourceText("modernDark_CSS"));
+// Add Style after <head> to override css of side (and dont need !important everywhere)
+// But add Before sth is shown to the user
+$("html").append($('<style type="text/css">' + GM_getResourceText("modernDark_CSS") + '</style>'));
 // Liste aller Module
 var pefModulList = [];
 //Main Methode des Frameworks
@@ -237,6 +239,58 @@ function actionControl(change, modul) {
         }
     }
 }
+// Longstrip Reader als Standard
+// Longstrip: klick auf Bild scrollt zum nächsten Bild
+// Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
+pefModulList.push({
+    id: "mangaComfort",
+    name: "Manga Comfort",
+    description: "keine Zwischenseiten, etc.",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return mangaComfortCall(change); }
+});
+function mangaComfortCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            mangaComfort();
+            break;
+        case 1 /* off */:
+            break;
+        case 2 /* ajax */:
+            mangaComfort();
+            break;
+    }
+}
+function mangaComfort() {
+    if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
+        return;
+    }
+    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
+    if (getCookie("manga_reader") != "slide") {
+        setCookie('manga_reader', 'longstrip');
+    }
+    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
+    if (getCookie("manga_reader") == "longstrip") {
+        $('#reader img').attr("onclick", "");
+        $('#reader img').off("click", scrollToNextPage);
+        $('#reader img').click(scrollToNextPage);
+        $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
+    }
+    // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
+    if ($('#main img[src="/images/misc/404.png"]').length) {
+        window.location.pathname = window.location.pathname.replace('read', 'chapter');
+    }
+    // Mauszeiger wird auch nur über Bild zur Hand
+    $('#reader img').addClass("pointer");
+    $('#reader a').addClass("cursorAuto");
+}
+function scrollToNextPage() {
+    $('body,html').animate({
+        // nicht page+1, da id bei 0 los zählt
+        scrollTop: $('#chapterImage' + (current_page)).offset().top
+    }, 800);
+    current_page = current_page + 1;
+}
 // Muster (Proxer Essentials Framework Example)
 // Jedes Modul muss sich in die pefModulList eintragen
 // pefModulList.push({
@@ -325,56 +379,4 @@ function smallWonders() {
         }, 800);
         return false;
     });
-}
-// Longstrip Reader als Standard
-// Longstrip: klick auf Bild scrollt zum nächsten Bild
-// Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
-pefModulList.push({
-    id: "mangaComfort",
-    name: "Manga Comfort",
-    description: "keine Zwischenseiten, etc.",
-    autor: "Blue.Reaper",
-    callMethod: function (change) { return mangaComfortCall(change); }
-});
-function mangaComfortCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            mangaComfort();
-            break;
-        case 1 /* off */:
-            break;
-        case 2 /* ajax */:
-            mangaComfort();
-            break;
-    }
-}
-function mangaComfort() {
-    if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
-        return;
-    }
-    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
-    if (getCookie("manga_reader") != "slide") {
-        setCookie('manga_reader', 'longstrip');
-    }
-    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
-    if (getCookie("manga_reader") == "longstrip") {
-        $('#reader img').attr("onclick", "");
-        $('#reader img').off("click", scrollToNextPage);
-        $('#reader img').click(scrollToNextPage);
-        $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
-    }
-    // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
-    if ($('#main img[src="/images/misc/404.png"]').length) {
-        window.location.pathname = window.location.pathname.replace('read', 'chapter');
-    }
-    // Mauszeiger wird auch nur über Bild zur Hand
-    $('#reader img').addClass("pointer");
-    $('#reader a').addClass("cursorAuto");
-}
-function scrollToNextPage() {
-    $('body,html').animate({
-        // nicht page+1, da id bei 0 los zählt
-        scrollTop: $('#chapterImage' + (current_page)).offset().top
-    }, 800);
-    current_page = current_page + 1;
 }
