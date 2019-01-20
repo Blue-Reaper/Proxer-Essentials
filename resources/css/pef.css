@@ -148,9 +148,9 @@
     height: inherit;
 }
 
-video.heightVideo {
-    height: 100%;
-    height: -webkit-fill-available;
+.heightVideo {
+    height: 100% !important;
+    height: -webkit-fill-available !important;
 }
 
 .theaterActive {

@@ -244,102 +244,6 @@ function actionControl(change, modul) {
         }
     }
 }
-// Muster (Proxer Essentials Framework Example)
-// Jedes Modul muss sich in die pefModulList eintragen
-// pefModulList.push({
-// 	// Eindeutiger String, der als Id verwendet wird
-//     id:"pefExample",
-// 	// Der angezeigte Name des Moduls
-//     name:"Beispiel Modul",
-// 	// Die Kurzbeschreibung
-//     description:"Ein Muster zur Erstellung weiterer Scripte",
-// 	// Der Ersteller dieses Moduls
-// 	autor:"Blue.Reaper",
-// 	// Mit dieser Methode wird das Modul aufgerufen
-// 	callMethod:(change)=>pefExampleCall(change)
-// });
-// Aufruf des Scripts durch das Framework
-function pefExampleCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            // Wird nach dem Laden der Seite Aufgerufen, sollte das Modul aktiviert sein
-            // Wird auch aufgerufen, wenn der User das Modul in den Einstellungen aktiviert
-            console.log("on");
-            myExampleMethod();
-            break;
-        case 2 /* ajax */:
-            // Wird durch einen Ajax-Aufruf auf der Seite getriggert
-            // Nur wenn das Modul aktiv ist
-            // Es wird immer erst nach "on" aufgerufen
-            console.log("ajax");
-            myExampleMethod();
-            break;
-        case 1 /* off */:
-            // Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ausschaltet
-            console.log("off");
-            anotherExampleMethod();
-            break;
-    }
-}
-function myExampleMethod() {
-    // Hier ist der Code des Scipts
-    // console.log("Das Muster-Modul läuft");
-}
-function anotherExampleMethod() {
-    // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
-    // console.log("Das Mustet-Modul wurde deaktiviert");
-}
-// Wunder:
-// "zurück nach oben" Button
-// Grid-Anzeige als Standard, statt Listenansicht
-pefModulList.push({
-    id: "smallWonders",
-    name: "Kleine Wunder",
-    description: "Kleine Änderungen, die Wunder wirken",
-    autor: "Blue.Reaper",
-    callMethod: function (change) { return smallWondersCall(change); }
-});
-function smallWondersCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            smallWonders();
-            break;
-        case 1 /* off */:
-            // smallWonders();
-            break;
-        case 2 /* ajax */:
-            // smallWonders();
-            break;
-    }
-}
-function smallWonders() {
-    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
-    setCookie('cookieconsent_dismissed', 'yes');
-    // Cookie setzt Grid-Anzeige als Standard (im Gegensatz zu der Listenansicht), wenn noch kein Cookie gesetzt ist
-    if (getCookie("manga_reader") != "tablelist") {
-        setCookie('entryView', 'grid');
-    }
-    // ############### BackToTop ###############
-    // button einfügen
-    var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
-    $("body").append(backToTopButton);
-    // scroll 1000 Pixel
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > 1000) {
-            backToTopButton.fadeIn();
-        }
-        else {
-            backToTopButton.fadeOut();
-        }
-    });
-    // click
-    backToTopButton.click(function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 800);
-        return false;
-    });
-}
 // Wird benötigt, da z.B Firefox nicht alle CSS Funktionen unterstützt
 function supportDesign() {
     // Bilder ersetzen
@@ -419,6 +323,104 @@ function scrollToNextPage() {
         scrollTop: $('#chapterImage' + (current_page)).offset().top
     }, 800);
     current_page = current_page + 1;
+}
+// Muster (Proxer Essentials Framework Example)
+// Jedes Modul muss sich in die pefModulList eintragen
+// pefModulList.push({
+// 	// Eindeutiger String, der als Id verwendet wird
+//     id:"pefExample",
+// 	// Der angezeigte Name des Moduls
+//     name:"Beispiel Modul",
+// 	// Die Kurzbeschreibung
+//     description:"Ein Muster zur Erstellung weiterer Scripte",
+// 	// Der Ersteller dieses Moduls
+// 	autor:"Blue.Reaper",
+// 	// Mit dieser Methode wird das Modul aufgerufen
+// 	callMethod:(change)=>pefExampleCall(change)
+// });
+// Aufruf des Scripts durch das Framework
+function pefExampleCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            // Wird nach dem Laden der Seite Aufgerufen, sollte das Modul aktiviert sein
+            // Wird auch aufgerufen, wenn der User das Modul in den Einstellungen aktiviert
+            console.log("on");
+            myExampleMethod();
+            break;
+        case 2 /* ajax */:
+            // Wird durch einen Ajax-Aufruf auf der Seite getriggert
+            // Nur wenn das Modul aktiv ist
+            // Es wird immer erst nach "on" aufgerufen
+            console.log("ajax");
+            myExampleMethod();
+            break;
+        case 1 /* off */:
+            // Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ausschaltet
+            console.log("off");
+            anotherExampleMethod();
+            break;
+    }
+}
+function myExampleMethod() {
+    // Hier ist der Code des Scipts
+    // console.log("Das Muster-Modul läuft");
+}
+function anotherExampleMethod() {
+    // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
+    // console.log("Das Mustet-Modul wurde deaktiviert");
+}
+// Wunder:
+// "zurück nach oben" Button
+// Grid-Anzeige als Standard, statt Listenansicht
+pefModulList.push({
+    id: "smallWonders",
+    name: "Kleine Wunder",
+    description: "Kleine Änderungen, die Wunder wirken",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return smallWondersCall(change); }
+});
+function smallWondersCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            smallWonders();
+            break;
+        case 1 /* off */:
+            // smallWonders();
+            break;
+        case 2 /* ajax */:
+            // smallWonders();
+            break;
+    }
+}
+function smallWonders() {
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    setCookie('cookieconsent_dismissed', 'yes');
+    // Keine Erwachenen-Meldung mehr
+    setCookie('adult', '1');
+    // Cookie setzt Grid-Anzeige als Standard (im Gegensatz zu der Listenansicht), wenn noch kein Cookie gesetzt ist
+    if (getCookie("manga_reader") != "tablelist") {
+        setCookie('entryView', 'grid');
+    }
+    // ############### BackToTop ###############
+    // button einfügen
+    var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
+    $("body").append(backToTopButton);
+    // scroll 1000 Pixel
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 1000) {
+            backToTopButton.fadeIn();
+        }
+        else {
+            backToTopButton.fadeOut();
+        }
+    });
+    // click
+    backToTopButton.click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
 }
 // Theatermodus für Anime
 // IDEA 10 sek zurückspulen einbauen
