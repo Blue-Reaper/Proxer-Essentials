@@ -7,7 +7,7 @@ Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekomme
 
 Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des modularen Aufbaus sehr einfach und das Framework übernimmt bereits grundlegende Funktionen, wie das gesteuerte Aufruefen der Module und die Einstellungen für die Userscript-Manager.
 
-# aktueller Umgang 
+# aktueller Umfang 
 
 ## Design
 Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)), es gab bereits ein paar Verbesserungen wie z.B. die vollständige Firefox Unterstützung.
