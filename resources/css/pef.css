@@ -143,12 +143,12 @@
     color: #ef394a;
 }
 
-#player_code.inheritSize, .inheritSize{
+#player_code.inheritSize, .flowplayer .inheritSize{
     width: inherit;
     height: inherit;
 }
 
-video.heightVideo {
+.heightVideo video {
     height: 100%;
     height: -webkit-fill-available;
 }
