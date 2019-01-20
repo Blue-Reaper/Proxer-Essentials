@@ -17,10 +17,11 @@ Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Fo
 ![Bild der Module](screenshots/modules.PNG)
 * ### Kleine Wunder
   * "zurück nach Oben" Button
-![Back to Top](screenshots/Back-to-Top.png)
+  
+    <img src="screenshots/Back-to-Top.png" width="60%">
   * Grid-Anzeige als Standard (statt Listenansicht)
     
-    <img src="screenshots/grid.png" width="300px" height="200px">
+    <img src="screenshots/grid.png" width="50%">
   * setzt "Ja ich bin Erwachsen"
 * ### Manga Comfort
   * setzt Longstrip Reader als Standard
@@ -28,7 +29,8 @@ Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Fo
   * Longstrtip: letzte Bild springt in das nächste Kapitel (ohne dabei auf die Zwischenseite zu kommen)
 * ### Theatermodus
   * Theatermodus für Anime
-![Theatermodus](screenshots/theater.png)
+  
+    <img src="screenshots/theater.png" width="60%">
 
 ## Release Notes
 Die einzelnen Änderungen pro Release stehen [hier](https://github.com/Blue-Reaper/Proxer-Essentials/releases).
