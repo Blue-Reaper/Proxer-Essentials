@@ -242,52 +242,49 @@ input[type=button] {
     transition: all ease 0.5s;
 }
 
-input[type=radio]::before {
-    content: url('https://logosart.de/proxer2-0/proxer-radio.png');
+input[type="radio"] {
+    -webkit-appearance: none;
     display: inline-block;
     width: 15px;
     height: 15px;
     margin-right: 5px;
-    background: #2d2f33;
+    background: #232428;
+    border-radius: 50%;
 }
 
-input[type=radio]:checked::before {
-    content: url('https://logosart.de/proxer2-0/proxer-radio-checked.png');
-    margin-right: 5px;
+input[type="radio"]:checked {
+    background: #ef394a;
+    border: 2px solid #232428;
 }
 
-input[type=radio]:hover::before {
-    content: url('https://logosart.de/proxer2-0/proxer-radio-hover.png');
-    margin-right: 5px;
+input[type="radio"]:hover {
+    border: 1px solid #ef394a;
 }
 
-input[type=radio]:hover:checked::before {
-    content: url('https://logosart.de/proxer2-0/proxer-radio-hover-checked.png');
-    margin-right: 5px;
+input[type="radio"]:hover:checked {
+    border: 2px solid #ef394a;
 }
 
-input[type=checkbox]::before {
-    content: url('https://logosart.de/proxer2-0/proxer-checkbox.png');
+input[type="checkbox"] {
+    -webkit-appearance: none;
     display: inline-block;
     width: 15px;
     height: 15px;
+    float: left;
+    margin-top: 5px;
     margin-right: 5px;
-    background: #2d2f33;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    background: #232428;
 }
 
-input[type=checkbox]:checked::before {
-    content: url('https://logosart.de/proxer2-0/proxer-checkbox-checked.png');
-    margin-right: 5px;
+input[type="checkbox"]:checked {
+    background-image:url('https://logosart.de/proxer2-0/proxer-checkbox-checked.png');
+    background-position: center;
 }
 
-input[type=checkbox]:hover::before {
-    content: url('https://logosart.de/proxer2-0/proxer-checkbox-hover.png');
-    margin-right: 5px;
-}
-
-input[type=checkbox]:hover:checked::before {
-    content: url('https://logosart.de/proxer2-0/proxer-checkbox-hover-checked.png');
-    margin-right: 5px;
+input[type="checkbox"]:hover {
+    border: 1px solid #ef394a;
 }
 
 input[type=submit]:hover {
@@ -631,6 +628,7 @@ input[placeholder~="Suche"] {
     border-left: 2px solid #7F7;
     opacity: 0.8;
     display: none;
+    float:left;
 }
 
 .checkNo {
@@ -639,6 +637,7 @@ input[placeholder~="Suche"] {
     border-left: 2px solid #F77;
     opacity: 0.8;
     display: none;
+    float:left;
 }
 
 .fa-list::before {
