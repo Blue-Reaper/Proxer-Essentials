@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-Aus Docs Directory
+In Docs
 ## Einfache Benutzung
   * In nur einem Userscript viele Erweiterungen erhalten
   * Einzelne Module können bequem ein- und ausgeschaltet werden
