@@ -14,7 +14,7 @@ Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Fo
 <a href="#showDesign" data-toggle="collapse" aria-expanded="false" aria-controls="showDesign">Zeige Bild an</a>.
 
 <div id="showDesign" markdown="1" class="collapse">
-![Bild des Designs](screenshots/design.png)
+ <img src="screenshots/design.png" alt="Bild des Designs">
 </div>
 
 
