@@ -11,18 +11,15 @@ Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des
 
 ## Design
 Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)), es gab bereits ein paar Verbesserungen wie z.B. die vollständige Firefox Unterstützung.
-
-BILD
+![Bild des Designs](screenshots/design.png)
 
 ## Module
-
-BILD
-
+![Bild der Module](screenshots/modules.PNG)
 * ### Kleine Wunder
   * "zurück nach Oben" Button
-BILD
+![Back to Top](screenshots/Back-to-Top.png)
   * Grid-Anzeige als Standard (statt Listenansicht)
-BILD
+![Grid Ansicht](screenshots/grid.png)
   * setzt "Ja ich bin Erwachsen"
 * ### Manga Comfort
   * setzt Longstrip Reader als Standard
@@ -30,7 +27,7 @@ BILD
   * Longstrtip: letzte Bild springt in das nächste Kapitel (ohne dabei auf die Zwischenseite zu kommen)
 * ### Theatermodus
   * Theatermodus für Anime
-BILD
+![Theatermodus](screenshots/theater.png)
 
 ## Release Notes
 Die einzelnen Änderungen pro Release stehen [hier](https://github.com/Blue-Reaper/Proxer-Essentials/releases).
