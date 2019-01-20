@@ -593,113 +593,13 @@ input:focus {
     margin-top: 8px !important;
 }
 
-[src~="/images/status/abgeschlossen.png"] {
-    content: url(https://logosart.de/proxer2-0/abgeschlossen.png) !important;
+.smallImg{
     width: 15px !important;
     height: 15px !important;
 }
 
-[src~="/images/status/airing.png"] {
-    content: url(https://logosart.de/proxer2-0/airing.png) !important;
-    width: 15px !important;
-    height: 15px !important;
-}
-
-[src~="/images/status/abgebrochen.png"] {
-    content: url(https://logosart.de/proxer2-0/abgebrochen.png) !important;
-    width: 15px !important;
-    height: 15px !important;
-}
-
-[src~="/components/com_comprofiler/images/updateprofile.gif"] {
-    content: url(https://logosart.de/proxer2-0/edit.png) !important;
-}
-
-[src~="/images/misc/onlineicon.png"] {
-    content: url(https://logosart.de/proxer2-0/abgeschlossen.png) !important;
-}
-
-[src~="/images/misc/offlineicon.png"] {
-    content: url(https://logosart.de/proxer2-0/abgebrochen.png) !important;
-}
-
-[src~="/images/misc/haken.png"] {
-    content: url(https://logosart.de/proxer2-0/check.png) !important;
-}
-
-[src~="/images/misc/kreuz.png"] {
-    content: url(https://logosart.de/proxer2-0/cross.png) !important;
-}
-
-[src~="/images/misc/stern.png"] {
-    content: url(https://logosart.de/proxer2-0/star.png) !important;
-    width: 15px !important;
-    height: 15px !important;
-}
-
-[src~="/images/misc/stern_grau.png"] {
-    content: url(https://logosart.de/proxer2-0/star_empty.png) !important;
-    width: 15px !important;
-    height: 15px !important;
-}
-
-[src~="//cdn.proxer.me/cover/894.jpg"] {
-    content: url(https://logosart.de/proxer2-0/proxer-test.jpg) !important;
-}
-
-[src~="//cdn.proxer.me/cover/2275.jpg"] {
-    content: url(https://logosart.de/proxer2-0/proxer-test.jpg) !important;
-}
-
-[src~="//cdn.proxer.me/cover/2274.jpg"] {
-    content: url(https://logosart.de/proxer2-0/proxer-test.jpg) !important;
-}
-
-[src~="/images/misc/upload.png"] {
-    content: url(https://logosart.de/proxer2-0/upload.jpg) !important;
+.borderRadius6{
     border-radius: 6px;
-}
-
-[src~="/images/misc/play.png"] {
-    content: url(https://logosart.de/proxer2-0/play.jpg) !important;
-    border-radius: 6px;
-}
-
-[src~="/images/misc/info-icon.png"] {
-    content: url(https://logosart.de/proxer2-0/info.jpg) !important;
-    border-radius: 6px;
-}
-
-[src~="https://proxer.me/images/misc/proxerfanpage.png"] {
-    content: url(https://logosart.de/proxer2-0/proxerfanpage.png) !important;
-}
-
-[src~="/images/misc/proxerdonate.png"] {
-    content: url(https://logosart.de/proxer2-0/proxerdonate.png) !important;
-}
-
-[src~="/images/misc/proxeramazon.png"] {
-    content: url(https://logosart.de/proxer2-0/proxeramazon.png) !important;
-}
-
-[src~="/images/social/facebook.png"] {
-    content: url(https://logosart.de/proxer2-0/facebook.png) !important;
-}
-
-[src~="/images/social/twitter.png"] {
-    content: url(https://logosart.de/proxer2-0/twitter.png) !important;
-}
-
-[src~="/images/social/youtube2.png"] {
-    content: url(https://logosart.de/proxer2-0/youtube.png) !important;
-}
-
-[src~="/images/social/google-plus.png"] {
-    content: url(https://logosart.de/proxer2-0/gplus.png) !important;
-}
-
-[src~="/images/social/amazon.png"] {
-    content: url(https://logosart.de/proxer2-0/amazon.png) !important;
 }
 
 th[style~="color:#EEEE33;"] {
