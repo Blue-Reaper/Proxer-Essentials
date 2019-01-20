@@ -751,6 +751,12 @@ input[placeholder~="Suche"] {
     font-weight: lighter;
 }
 
+/* Scrollbar for Firefox */
+* {
+    scrollbar-color:rgba(243, 56, 74, 0.93) rgba(0, 0, 0, 0);
+    /* scrollbar-width: thin; */
+}
+
 *::-webkit-scrollbar {
     width: 0.6em;
 }
