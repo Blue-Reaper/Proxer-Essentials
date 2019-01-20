@@ -11,12 +11,7 @@ Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des
 
 ## Design
 Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)), es gab bereits ein paar Verbesserungen wie z.B. die vollständige Firefox Unterstützung.
-<a href="#showDesign" data-toggle="collapse" aria-expanded="false" aria-controls="showDesign">Zeige Bild an</a>.
-
-<div id="showDesign" markdown="1" class="collapse">
- <img src="screenshots/design.png" alt="Bild des Designs">
-</div>
-
+![Bild of Design](screenshots/design.png)
 
 ## Module
 ![Bild der Module](screenshots/modules.PNG)
@@ -24,7 +19,8 @@ Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Fo
   * "zurück nach Oben" Button
 ![Back to Top](screenshots/Back-to-Top.png)
   * Grid-Anzeige als Standard (statt Listenansicht)
-![Grid Ansicht](screenshots/grid.png)
+    
+    <img src="screenshots/grid.png" width="300px" height="200px">
   * setzt "Ja ich bin Erwachsen"
 * ### Manga Comfort
   * setzt Longstrip Reader als Standard
