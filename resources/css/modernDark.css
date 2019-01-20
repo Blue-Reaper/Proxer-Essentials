@@ -242,52 +242,49 @@ input[type=button] {
     transition: all ease 0.5s;
 }
 
-input[type=radio]::before {
-    content: url('https://logosart.de/proxer2-0/proxer-radio.png');
+input[type="radio"] {
+    -webkit-appearance: none;
     display: inline-block;
     width: 15px;
     height: 15px;
     margin-right: 5px;
-    background: #2d2f33;
+    background: #232428;
+    border-radius: 50%;
 }
 
-input[type=radio]:checked::before {
-    content: url('https://logosart.de/proxer2-0/proxer-radio-checked.png');
-    margin-right: 5px;
+input[type="radio"]:checked {
+    background: #ef394a;
+    border: 2px solid #232428;
 }
 
-input[type=radio]:hover::before {
-    content: url('https://logosart.de/proxer2-0/proxer-radio-hover.png');
-    margin-right: 5px;
+input[type="radio"]:hover {
+    border: 1px solid #ef394a;
 }
 
-input[type=radio]:hover:checked::before {
-    content: url('https://logosart.de/proxer2-0/proxer-radio-hover-checked.png');
-    margin-right: 5px;
+input[type="radio"]:hover:checked {
+    border: 2px solid #ef394a;
 }
 
-input[type=checkbox]::before {
-    content: url('https://logosart.de/proxer2-0/proxer-checkbox.png');
+input[type="checkbox"] {
+    -webkit-appearance: none;
     display: inline-block;
     width: 15px;
     height: 15px;
+    float: left;
+    margin-top: 5px;
     margin-right: 5px;
-    background: #2d2f33;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    background: #232428;
 }
 
-input[type=checkbox]:checked::before {
-    content: url('https://logosart.de/proxer2-0/proxer-checkbox-checked.png');
-    margin-right: 5px;
+input[type="checkbox"]:checked {
+    background-image:url('https://logosart.de/proxer2-0/proxer-checkbox-checked.png');
+    background-position: center;
 }
 
-input[type=checkbox]:hover::before {
-    content: url('https://logosart.de/proxer2-0/proxer-checkbox-hover.png');
-    margin-right: 5px;
-}
-
-input[type=checkbox]:hover:checked::before {
-    content: url('https://logosart.de/proxer2-0/proxer-checkbox-hover-checked.png');
-    margin-right: 5px;
+input[type="checkbox"]:hover {
+    border: 1px solid #ef394a;
 }
 
 input[type=submit]:hover {
@@ -593,113 +590,13 @@ input:focus {
     margin-top: 8px !important;
 }
 
-[src~="/images/status/abgeschlossen.png"] {
-    content: url(https://logosart.de/proxer2-0/abgeschlossen.png) !important;
+.smallImg{
     width: 15px !important;
     height: 15px !important;
 }
 
-[src~="/images/status/airing.png"] {
-    content: url(https://logosart.de/proxer2-0/airing.png) !important;
-    width: 15px !important;
-    height: 15px !important;
-}
-
-[src~="/images/status/abgebrochen.png"] {
-    content: url(https://logosart.de/proxer2-0/abgebrochen.png) !important;
-    width: 15px !important;
-    height: 15px !important;
-}
-
-[src~="/components/com_comprofiler/images/updateprofile.gif"] {
-    content: url(https://logosart.de/proxer2-0/edit.png) !important;
-}
-
-[src~="/images/misc/onlineicon.png"] {
-    content: url(https://logosart.de/proxer2-0/abgeschlossen.png) !important;
-}
-
-[src~="/images/misc/offlineicon.png"] {
-    content: url(https://logosart.de/proxer2-0/abgebrochen.png) !important;
-}
-
-[src~="/images/misc/haken.png"] {
-    content: url(https://logosart.de/proxer2-0/check.png) !important;
-}
-
-[src~="/images/misc/kreuz.png"] {
-    content: url(https://logosart.de/proxer2-0/cross.png) !important;
-}
-
-[src~="/images/misc/stern.png"] {
-    content: url(https://logosart.de/proxer2-0/star.png) !important;
-    width: 15px !important;
-    height: 15px !important;
-}
-
-[src~="/images/misc/stern_grau.png"] {
-    content: url(https://logosart.de/proxer2-0/star_empty.png) !important;
-    width: 15px !important;
-    height: 15px !important;
-}
-
-[src~="//cdn.proxer.me/cover/894.jpg"] {
-    content: url(https://logosart.de/proxer2-0/proxer-test.jpg) !important;
-}
-
-[src~="//cdn.proxer.me/cover/2275.jpg"] {
-    content: url(https://logosart.de/proxer2-0/proxer-test.jpg) !important;
-}
-
-[src~="//cdn.proxer.me/cover/2274.jpg"] {
-    content: url(https://logosart.de/proxer2-0/proxer-test.jpg) !important;
-}
-
-[src~="/images/misc/upload.png"] {
-    content: url(https://logosart.de/proxer2-0/upload.jpg) !important;
+.borderRadius6{
     border-radius: 6px;
-}
-
-[src~="/images/misc/play.png"] {
-    content: url(https://logosart.de/proxer2-0/play.jpg) !important;
-    border-radius: 6px;
-}
-
-[src~="/images/misc/info-icon.png"] {
-    content: url(https://logosart.de/proxer2-0/info.jpg) !important;
-    border-radius: 6px;
-}
-
-[src~="https://proxer.me/images/misc/proxerfanpage.png"] {
-    content: url(https://logosart.de/proxer2-0/proxerfanpage.png) !important;
-}
-
-[src~="/images/misc/proxerdonate.png"] {
-    content: url(https://logosart.de/proxer2-0/proxerdonate.png) !important;
-}
-
-[src~="/images/misc/proxeramazon.png"] {
-    content: url(https://logosart.de/proxer2-0/proxeramazon.png) !important;
-}
-
-[src~="/images/social/facebook.png"] {
-    content: url(https://logosart.de/proxer2-0/facebook.png) !important;
-}
-
-[src~="/images/social/twitter.png"] {
-    content: url(https://logosart.de/proxer2-0/twitter.png) !important;
-}
-
-[src~="/images/social/youtube2.png"] {
-    content: url(https://logosart.de/proxer2-0/youtube.png) !important;
-}
-
-[src~="/images/social/google-plus.png"] {
-    content: url(https://logosart.de/proxer2-0/gplus.png) !important;
-}
-
-[src~="/images/social/amazon.png"] {
-    content: url(https://logosart.de/proxer2-0/amazon.png) !important;
 }
 
 th[style~="color:#EEEE33;"] {
@@ -731,6 +628,7 @@ input[placeholder~="Suche"] {
     border-left: 2px solid #7F7;
     opacity: 0.8;
     display: none;
+    float:left;
 }
 
 .checkNo {
@@ -739,6 +637,7 @@ input[placeholder~="Suche"] {
     border-left: 2px solid #F77;
     opacity: 0.8;
     display: none;
+    float:left;
 }
 
 .fa-list::before {
@@ -749,6 +648,12 @@ input[placeholder~="Suche"] {
 .fa-th-large:before {
     content: "";
     font-weight: lighter;
+}
+
+/* Scrollbar for Firefox */
+* {
+    scrollbar-color:rgba(243, 56, 74, 0.93) rgba(0, 0, 0, 0);
+    scrollbar-width: thin;
 }
 
 *::-webkit-scrollbar {

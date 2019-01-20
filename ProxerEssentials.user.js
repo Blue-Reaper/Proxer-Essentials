@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.0
+// @version     4.1
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -18,13 +18,15 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS          resources/css/pef.css
-// @resource    modernDark_CSS   resources/css/modernDark.css
+// @resource    pef_CSS          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
+// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/modernDark.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
-GM_addStyle(GM_getResourceText("modernDark_CSS"));
+// Add Style after <head> to override css of side (and dont need !important everywhere)
+// But add Before sth is shown to the user
+$("html").append($('<style type="text/css">' + GM_getResourceText("modernDark_CSS") + '</style>'));
 // Liste aller Module
 var pefModulList = [];
 //Main Methode des Frameworks
@@ -44,6 +46,7 @@ document.addEventListener("DOMSubtreeModified", function () {
 function monitorAjax() {
     setInterval(function () {
         if (ajaxEvent) {
+            supportDesign();
             createPefSettings();
             actionControl(2 /* ajax */);
             ajaxEvent = false;
@@ -237,95 +240,6 @@ function actionControl(change, modul) {
         }
     }
 }
-// Muster (Proxer Essentials Framework Example)
-// Jedes Modul muss sich in die pefModulList eintragen
-// pefModulList.push({
-// 	// Eindeutiger String, der als Id verwendet wird
-//     id:"pefExample",
-// 	// Der angezeigte Name des Moduls
-//     name:"Beispiel Modul",
-// 	// Die Kurzbeschreibung
-//     description:"Ein Muster zur Erstellung weiterer Scripte",
-// 	// Der Ersteller dieses Moduls
-// 	autor:"Blue.Reaper",
-// 	// Mit dieser Methode wird das Modul aufgerufen
-// 	callMethod:(change)=>pefExampleCall(change)
-// });
-// Aufruf des Scripts durch das Framework
-function pefExampleCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            // Wird nach dem Laden der Seite Aufgerufen, sollte das Modul aktiviert sein
-            // Wird auch aufgerufen, wenn der User das Modul in den Einstellungen aktiviert
-            console.log("on");
-            myExampleMethod();
-            break;
-        case 2 /* ajax */:
-            // Wird durch einen Ajax-Aufruf auf der Seite getriggert
-            // Nur wenn das Modul aktiv ist
-            // Es wird immer erst nach "on" aufgerufen
-            console.log("ajax");
-            myExampleMethod();
-            break;
-        case 1 /* off */:
-            // Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ausschaltet
-            console.log("off");
-            anotherExampleMethod();
-            break;
-    }
-}
-function myExampleMethod() {
-    // Hier ist der Code des Scipts
-    // console.log("Das Muster-Modul läuft");
-}
-function anotherExampleMethod() {
-    // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
-    // console.log("Das Mustet-Modul wurde deaktiviert");
-}
-// Wunder:
-// "zurück nach oben" Button
-pefModulList.push({
-    id: "smallWonders",
-    name: "Kleine Wunder",
-    description: "Kleine Änderungen, die Wunder wirken",
-    autor: "Blue.Reaper",
-    callMethod: function (change) { return smallWondersCall(change); }
-});
-function smallWondersCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            smallWonders();
-            break;
-        case 1 /* off */:
-            // smallWonders();
-            break;
-        case 2 /* ajax */:
-            // smallWonders();
-            break;
-    }
-}
-function smallWonders() {
-    // ############### BackToTop ###############
-    // button einfügen
-    var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
-    $("body").append(backToTopButton);
-    // scroll 100 Pixel
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > 1000) {
-            backToTopButton.fadeIn();
-        }
-        else {
-            backToTopButton.fadeOut();
-        }
-    });
-    // click
-    backToTopButton.click(function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 800);
-        return false;
-    });
-}
 // Longstrip Reader als Standard
 // Longstrip: klick auf Bild scrollt zum nächsten Bild
 // Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
@@ -377,4 +291,128 @@ function scrollToNextPage() {
         scrollTop: $('#chapterImage' + (current_page)).offset().top
     }, 800);
     current_page = current_page + 1;
+}
+// Muster (Proxer Essentials Framework Example)
+// Jedes Modul muss sich in die pefModulList eintragen
+// pefModulList.push({
+// 	// Eindeutiger String, der als Id verwendet wird
+//     id:"pefExample",
+// 	// Der angezeigte Name des Moduls
+//     name:"Beispiel Modul",
+// 	// Die Kurzbeschreibung
+//     description:"Ein Muster zur Erstellung weiterer Scripte",
+// 	// Der Ersteller dieses Moduls
+// 	autor:"Blue.Reaper",
+// 	// Mit dieser Methode wird das Modul aufgerufen
+// 	callMethod:(change)=>pefExampleCall(change)
+// });
+// Aufruf des Scripts durch das Framework
+function pefExampleCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            // Wird nach dem Laden der Seite Aufgerufen, sollte das Modul aktiviert sein
+            // Wird auch aufgerufen, wenn der User das Modul in den Einstellungen aktiviert
+            console.log("on");
+            myExampleMethod();
+            break;
+        case 2 /* ajax */:
+            // Wird durch einen Ajax-Aufruf auf der Seite getriggert
+            // Nur wenn das Modul aktiv ist
+            // Es wird immer erst nach "on" aufgerufen
+            console.log("ajax");
+            myExampleMethod();
+            break;
+        case 1 /* off */:
+            // Wird aufgerufen, wenn der User in den Einstellungen dieses Modul ausschaltet
+            console.log("off");
+            anotherExampleMethod();
+            break;
+    }
+}
+function myExampleMethod() {
+    // Hier ist der Code des Scipts
+    // console.log("Das Muster-Modul läuft");
+}
+function anotherExampleMethod() {
+    // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
+    // console.log("Das Mustet-Modul wurde deaktiviert");
+}
+// Wunder:
+// "zurück nach oben" Button
+// Grid-Anzeige als Standard, statt Listenansicht
+pefModulList.push({
+    id: "smallWonders",
+    name: "Kleine Wunder",
+    description: "Kleine Änderungen, die Wunder wirken",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return smallWondersCall(change); }
+});
+function smallWondersCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            smallWonders();
+            break;
+        case 1 /* off */:
+            // smallWonders();
+            break;
+        case 2 /* ajax */:
+            // smallWonders();
+            break;
+    }
+}
+function smallWonders() {
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    setCookie('cookieconsent_dismissed', 'yes');
+    // Cookie setzt Grid-Anzeige als Standard (im Gegensatz zu der Listenansicht), wenn noch kein Cookie gesetzt ist
+    if (getCookie("manga_reader") != "tablelist") {
+        setCookie('entryView', 'grid');
+    }
+    // ############### BackToTop ###############
+    // button einfügen
+    var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
+    $("body").append(backToTopButton);
+    // scroll 100 Pixel
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 1000) {
+            backToTopButton.fadeIn();
+        }
+        else {
+            backToTopButton.fadeOut();
+        }
+    });
+    // click
+    backToTopButton.click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
+}
+// Wird benötigt, da z.B Firefox nicht alle CSS Funktionen unterstützt
+function supportDesign() {
+    // Bilder ersetzen
+    $('[src~="/images/status/abgeschlossen.png"]').attr('src', 'https://logosart.de/proxer2-0/abgeschlossen.png').addClass('smallImg');
+    $('[src~="/images/status/airing.png"]').attr('src', 'https://logosart.de/proxer2-0/airing.png').addClass('smallImg');
+    $('[src~="/images/status/abgebrochen.png"]').attr('src', 'https://logosart.de/proxer2-0/abgebrochen.png').addClass('smallImg');
+    $('[src~="/components/com_comprofiler/images/updateprofile.gif"]').attr('src', 'https://logosart.de/proxer2-0/edit.png');
+    $('[src~="/images/misc/onlineicon.png"]').attr('src', 'https://logosart.de/proxer2-0/abgeschlossen.png');
+    $('[src~="/images/misc/offlineicon.png"]').attr('src', 'https://logosart.de/proxer2-0/abgebrochen.png');
+    $('[src~="/images/misc/haken.png"]').attr('src', 'https://logosart.de/proxer2-0/check.png');
+    $('[src~="/images/misc/kreuz.png"]').attr('src', 'https://logosart.de/proxer2-0/cross.png');
+    $('[src~="/images/misc/stern.png"]').attr('src', 'https://logosart.de/proxer2-0/star.png').addClass('smallImg');
+    $('[src~="/images/misc/stern_grau.png"]').attr('src', 'https://logosart.de/proxer2-0/star_empty.png').addClass('smallImg');
+    $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
+    $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
+    $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
+    $('[src~="/images/misc/upload.png"]').attr('src', 'https://logosart.de/proxer2-0/upload.jpg').addClass('borderRadius6');
+    $('[src~="/images/misc/play.png"]').attr('src', 'https://logosart.de/proxer2-0/play.jpg').addClass('borderRadius6');
+    $('[src~="/images/misc/info-icon.png"]').attr('src', 'https://logosart.de/proxer2-0/info.jpg').addClass('borderRadius6');
+    $('[src~="https://proxer.me/images/misc/proxerfanpage.png"]').attr('src', 'https://logosart.de/proxer2-0/proxerfanpage.png');
+    $('[src~="/images/misc/proxerdonate.png"]').attr('src', 'https://logosart.de/proxer2-0/proxerdonate.png');
+    $('[src~="/images/misc/proxeramazon.png"]').attr('src', 'https://logosart.de/proxer2-0/proxeramazon.png');
+    $('[src~="/images/social/facebook.png"]').attr('src', 'https://logosart.de/proxer2-0/facebook.png');
+    $('[src~="/images/social/twitter.png"]').attr('src', 'https://logosart.de/proxer2-0/twitter.png');
+    $('[src~="/images/social/youtube2.png"]').attr('src', 'https://logosart.de/proxer2-0/youtube.png');
+    $('[src~="/images/social/google-plus.png"]').attr('src', 'https://logosart.de/proxer2-0/gplus.png');
+    $('[src~="/images/social/amazon.png"]').attr('src', 'https://logosart.de/proxer2-0/amazon.png');
 }
