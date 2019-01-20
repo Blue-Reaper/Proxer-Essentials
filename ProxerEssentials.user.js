@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     2.1
+// @version     4.1
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -18,9 +18,15 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS   resources/css/pef.css
+// @resource    pef_CSS          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
+// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/modernDark.css
+// Theatermodus
+// @include     https://stream.proxer.me/*
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("pef_CSS"));
+// Add Style after <head> to override css of side (and dont need !important everywhere)
+// But add Before sth is shown to the user
+$("html").append($('<style type="text/css">' + GM_getResourceText("modernDark_CSS") + '</style>'));
 // Liste aller Module
 var pefModulList = [];
 //Main Methode des Frameworks
@@ -40,6 +46,7 @@ document.addEventListener("DOMSubtreeModified", function () {
 function monitorAjax() {
     setInterval(function () {
         if (ajaxEvent) {
+            supportDesign();
             createPefSettings();
             actionControl(2 /* ajax */);
             ajaxEvent = false;
@@ -75,27 +82,27 @@ function createPefSettings() {
             $('#pef_Settings').addClass("active");
             document.title = 'Proxer Essentials';
             // Überschrift
-            inhalt.append($('<h3>Proxer Essentials</h3>'));
+            inhalt.append($('<h3 class="floatLeft">Proxer Essentials</h3>'));
+            inhalt.append($('<div class="floatLeft version">' + GM_info.script.version + '</div>'));
             // Inhalt für Modulanzeige
-            var pef_module = $('<div>');
+            var pef_module = $('<div class="clear"/>');
             inhalt.append(pef_module);
             showModules(pef_module);
             // Footer
-            inhalt.append($('<div class ="modulEnd">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+            // inhalt.append($('<div class ="clear">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+            inhalt.append($('<div class ="clear">Design by xYata</div>'));
         }
     }
 }
 // Zeitgt die einzelnen Module auf der Einstellungs-Seite an
 function showModules(pef_module) {
     var _loop_1 = function (singleModule) {
-        var moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="modulBox"></div>');
-        moduleBox.css("border", $('#main').css("border"));
-        moduleBox.css("border-radius", $('#main').css("border-radius"));
-        moduleBox.append($('<h3 class="center">' + singleModule.name + '</h3>'));
-        moduleBox.append(document.createElement("hr"));
+        var moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="floatLeft modulBox"></div>');
+        moduleBox.append($('<h3>' + singleModule.name + '</h3>'));
         moduleBox.append($('<div>' + singleModule.description + '</div>'));
-        // TODO: Button für Details hinzufügen
-        var modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="status fa fa-2x pointer"></i>');
+        moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));
+        // IDEA: Button für Details hinzufügen
+        var modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="fa fa-2x pointer"/>');
         moduleBox.append(modulStatus);
         pef_module.append(moduleBox);
         updateModulTick(singleModule.id);
@@ -123,12 +130,10 @@ function toggleModulStatus(modul) {
 // Setzt den Haken / Kreuz nach dem Modulnamen
 function updateModulTick(modulId) {
     if (GM_getValue(modulId + "Status") === "off") {
-        $("#" + modulId + "_StatusImg").removeClass('fa-toggle-on').addClass('fa-toggle-off');
-        $("#" + modulId + "ModulBox").addClass('off');
+        $("#" + modulId + "ModulBox").removeClass('active');
     }
     else {
-        $("#" + modulId + "_StatusImg").removeClass('fa-toggle-off').addClass('fa-toggle-on');
-        $("#" + modulId + "ModulBox").removeClass('off');
+        $("#" + modulId + "ModulBox").addClass('active');
     }
 }
 ;
@@ -154,18 +159,17 @@ function createPefDialog(msg, methodYes, methodNo) {
     // Die Antwortbutton
     var dialogbuttons = document.createElement("div");
     if (confirmDialog) {
-        dialogbuttons.className = "leanRight";
+        dialogbuttons.className = "dialogYesNo";
     }
     else {
-        dialogbuttons.className = "center";
+        dialogbuttons.className = "center dialogOk";
     }
-    dialogbuttons.className = "marginTop10";
     var dialogbuttonyes = document.createElement("i");
     dialogbuttonyes.className = "fa fa-check fa-2x pointer";
     dialogbuttons.appendChild(dialogbuttonyes);
     if (confirmDialog) {
         var dialogbuttonno = document.createElement("i");
-        dialogbuttonno.className = "marginLeft30 fa fa-times fa-2x pointer";
+        dialogbuttonno.className = "dialogButtonNo fa fa-times fa-2x pointer";
         dialogbuttons.appendChild(dialogbuttonno);
         $(dialogbuttonno).click(function () {
             messages.removeChild(dialogoverlay);
@@ -193,38 +197,26 @@ function createPefDialog(msg, methodYes, methodNo) {
 }
 ;
 //############################# Erstellen einer Message #############################
-//	Erzeugt eine Message, identisch zu der Proxer.me eigenen
+//	Erzeugt eine Message
 function createPefMessage(msg) {
-    var newMessage = document.createElement("div");
-    newMessage.className = "message ankerMessage";
-    newMessage.setAttribute("onclick", 'delete_message("ankerMessage")');
-    newMessage.innerHTML = msg;
-    messages.appendChild(newMessage);
-    setTimeout(function () { newMessage.click(); }, 5000);
+    // Proxer eigene Funktion
+    create_message('key_suggestion', 7000, msg);
 }
-//############################# Auslesen eines Cookies #############################
+//############################# Cookies #############################
 // Gibt den Wert des übergebenen Coockienamens wieder
-function getCookie(cname) {
-    // var name = cname + "=";
-    // var decodedCookie = decodeURIComponent(document.cookie);
-    // var ca = decodedCookie.split(';');
-    // for(var i = 0; i <ca.length; i++) {
-    //   var c = ca[i];
-    //   while (c.charAt(0) == ' ') {
-    //     c = c.substring(1);
-    //   }
-    //   if (c.indexOf(name) == 0) {
-    //     return c.substring(name.length, c.length);
-    //   }
-    // }
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + cname + "=");
-    if (parts.length == 2)
-        return parts.pop().split(";").shift();
-    return "";
+function getCookie(name) {
+    // Proxer eigene Funktion
+    return get_cookie(name);
+}
+// Setzt ein Cookie
+function setCookie(name, value) {
+    // Proxer eigene Funktion
+    set_cookie(name, value, cookie_expire);
 }
 // Erst-Initialisierung der Speicherwerte
 function initStatusMemory() {
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    setCookie('cookieconsent_dismissed', 'yes');
     for (var _i = 0, pefModulList_2 = pefModulList; _i < pefModulList_2.length; _i++) {
         var singleModule = pefModulList_2[_i];
         if (GM_getValue(singleModule.id + "Status") == null) {
@@ -248,94 +240,57 @@ function actionControl(change, modul) {
         }
     }
 }
-// History old Script
-// @history      1.4 Bei Seitenwechsel im Fullscreen bei der neuen Seite wieder oben anfangen, document.getElementById("reader").childNode[0] zu reader.childNode[0], dynamische Kapitelanzeige oben in Fullscreen
-// @history      0.1.0 Maus wird jetzt im Fullscreen ausgeblendet und ansonsten ganz normal.
-// mögliche weitere Features:
-// IDEA Maus Ausblenden auf reader
-// IDEA Kapitelwechsel ohne Zwischenseite (optional)(Kurzes aufflackern des Kapitelnamens in Mitte des Blidschirms) trotzdem noch Bookmark
-// IDEA fullscreen auto-on (when 1. page hit top?)
-var currentScroll = 0;
-var scrollOffset = 0;
+// Longstrip Reader als Standard
+// Longstrip: klick auf Bild scrollt zum nächsten Bild
+// Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
 pefModulList.push({
-    id: "mangaFullscreen",
-    name: "Manga Fullscreen",
-    description: "Möglichkeit Mangas in Fullscreen zu schalten",
-    callMethod: function (change) { return mangaFullscreenCall(change); }
+    id: "mangaComfort",
+    name: "Manga Comfort",
+    description: "keine Zwischenseiten, etc.",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return mangaComfortCall(change); }
 });
-function mangaFullscreenCall(change) {
+function mangaComfortCall(change) {
     switch (change) {
         case 0 /* on */:
-            mangaFullscreen();
+            mangaComfort();
             break;
         case 1 /* off */:
             break;
         case 2 /* ajax */:
+            mangaComfort();
             break;
     }
 }
-function mangaFullscreen() {
-    if (window.location.pathname.split('/')[1] !== 'read') {
+function mangaComfort() {
+    if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
         return;
     }
-    document.addEventListener("fullscreenchange", autoFullscreenEvent);
-    $(window).scroll(getWindowScrollTop);
-    var fullscreenButton = $('<i id="fullscreenButton" class="openFullscreen pointer fa fa-2x fa-arrows-alt"/>');
-    $('body').append(fullscreenButton);
-    fullscreenButton.click(toggleFullscreen);
-    $(window).keyup(function (event) {
-        // Beim Drücken von F
-        if (event.keyCode === 70) {
-            toggleFullscreen();
-        }
-    });
-    var rect = reader.getBoundingClientRect();
-    scrollOffset = rect.top + document.documentElement.scrollTop - nav.offsetHeight;
-}
-// wird aufgerufen um Fullscreen zu toogeln, triggert indirekt autoFullscreenEvent
-function toggleFullscreen() {
-    if (document.fullscreenElement) {
-        // Fullscreen Ausschalten
-        fullscreenOff();
+    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
+    if (getCookie("manga_reader") != "slide") {
+        setCookie('manga_reader', 'longstrip');
     }
-    else {
-        // Fullscreen Einschalten
-        fullscreenOn();
+    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
+    if (getCookie("manga_reader") == "longstrip") {
+        $('#reader img').attr("onclick", "");
+        $('#reader img').off("click", scrollToNextPage);
+        $('#reader img').click(scrollToNextPage);
+        $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
     }
-}
-// Wrid aufgerufen, wenn der Browser in oder aus Fullscreen wechselt
-function autoFullscreenEvent() {
-    if (document.fullscreenElement) {
-        // Am Einschalten
-        fullscreenOn();
+    // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
+    if ($('#main img[src="/images/misc/404.png"]').length) {
+        window.location.pathname = window.location.pathname.replace('read', 'chapter');
     }
-    else {
-        // Am Ausschalten
-        fullscreenOff();
-    }
-    $('#reader').append($('#fullscreenButton'));
+    // Mauszeiger wird auch nur über Bild zur Hand
+    $('#reader img').addClass("pointer");
+    $('#reader a').addClass("cursorAuto");
 }
-function fullscreenOn() {
-    reader.scrollTo(0, currentScroll);
-    $(window).off("scroll", getWindowScrollTop);
-    $('#reader').scroll(getReaderScrollTop);
-    reader.requestFullscreen();
-    $('#fullscreenButton').removeClass('fa-arrows-alt openFullscreen');
-    $('#fullscreenButton').addClass('fa-compress exitFullscreen');
-}
-function fullscreenOff() {
-    window.scrollTo(0, currentScroll + scrollOffset);
-    $('#reader').off("scroll", getReaderScrollTop);
-    $(window).scroll(getWindowScrollTop);
-    document.exitFullscreen();
-    $('#fullscreenButton').removeClass('fa-compress exitFullscreen');
-    $('#fullscreenButton').addClass('fa-arrows-alt openFullscreen');
-}
-function getWindowScrollTop() {
-    currentScroll = document.documentElement.scrollTop - scrollOffset;
-}
-function getReaderScrollTop() {
-    currentScroll = reader.scrollTop;
+function scrollToNextPage() {
+    $('body,html').animate({
+        // nicht page+1, da id bei 0 los zählt
+        scrollTop: $('#chapterImage' + (current_page)).offset().top
+    }, 800);
+    current_page = current_page + 1;
 }
 // Muster (Proxer Essentials Framework Example)
 // Jedes Modul muss sich in die pefModulList eintragen
@@ -346,6 +301,8 @@ function getReaderScrollTop() {
 //     name:"Beispiel Modul",
 // 	// Die Kurzbeschreibung
 //     description:"Ein Muster zur Erstellung weiterer Scripte",
+// 	// Der Ersteller dieses Moduls
+// 	autor:"Blue.Reaper",
 // 	// Mit dieser Methode wird das Modul aufgerufen
 // 	callMethod:(change)=>pefExampleCall(change)
 // });
@@ -381,13 +338,13 @@ function anotherExampleMethod() {
     // console.log("Das Mustet-Modul wurde deaktiviert");
 }
 // Wunder:
-// Keine Benachrichtigung "Diese Webseite verwendet Cookies ... "
-// Manga Longstrip Reader als Standard
 // "zurück nach oben" Button
+// Grid-Anzeige als Standard, statt Listenansicht
 pefModulList.push({
     id: "smallWonders",
     name: "Kleine Wunder",
     description: "Kleine Änderungen, die Wunder wirken",
+    autor: "Blue.Reaper",
     callMethod: function (change) { return smallWondersCall(change); }
 });
 function smallWondersCall(change) {
@@ -405,26 +362,18 @@ function smallWondersCall(change) {
 }
 function smallWonders() {
     // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
-    document.cookie = 'cookieconsent_dismissed=yes';
-    // Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
-    document.cookie = 'manga_reader=longstrip';
+    setCookie('cookieconsent_dismissed', 'yes');
+    // Cookie setzt Grid-Anzeige als Standard (im Gegensatz zu der Listenansicht), wenn noch kein Cookie gesetzt ist
+    if (getCookie("manga_reader") != "tablelist") {
+        setCookie('entryView', 'grid');
+    }
     // ############### BackToTop ###############
     // button einfügen
     var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
     $("body").append(backToTopButton);
-    // hover
-    backToTopButton.hover(function () {
-        // Setzt Bild bei hover
-        backToTopButton.removeClass("fa-2x fa-chevron-up");
-        backToTopButton.addClass("fa-3x fa-chevron-circle-up");
-    }, function () {
-        // Setzt Bild nach hover zurück auf Standard
-        backToTopButton.removeClass("fa-3x fa-chevron-circle-up");
-        backToTopButton.addClass("fa-2x fa-chevron-up");
-    });
     // scroll 100 Pixel
     $(window).scroll(function () {
-        if ($(window).scrollTop() > 100) {
+        if ($(window).scrollTop() > 1000) {
             backToTopButton.fadeIn();
         }
         else {
@@ -438,4 +387,32 @@ function smallWonders() {
         }, 800);
         return false;
     });
+}
+// Wird benötigt, da z.B Firefox nicht alle CSS Funktionen unterstützt
+function supportDesign() {
+    // Bilder ersetzen
+    $('[src~="/images/status/abgeschlossen.png"]').attr('src', 'https://logosart.de/proxer2-0/abgeschlossen.png').addClass('smallImg');
+    $('[src~="/images/status/airing.png"]').attr('src', 'https://logosart.de/proxer2-0/airing.png').addClass('smallImg');
+    $('[src~="/images/status/abgebrochen.png"]').attr('src', 'https://logosart.de/proxer2-0/abgebrochen.png').addClass('smallImg');
+    $('[src~="/components/com_comprofiler/images/updateprofile.gif"]').attr('src', 'https://logosart.de/proxer2-0/edit.png');
+    $('[src~="/images/misc/onlineicon.png"]').attr('src', 'https://logosart.de/proxer2-0/abgeschlossen.png');
+    $('[src~="/images/misc/offlineicon.png"]').attr('src', 'https://logosart.de/proxer2-0/abgebrochen.png');
+    $('[src~="/images/misc/haken.png"]').attr('src', 'https://logosart.de/proxer2-0/check.png');
+    $('[src~="/images/misc/kreuz.png"]').attr('src', 'https://logosart.de/proxer2-0/cross.png');
+    $('[src~="/images/misc/stern.png"]').attr('src', 'https://logosart.de/proxer2-0/star.png').addClass('smallImg');
+    $('[src~="/images/misc/stern_grau.png"]').attr('src', 'https://logosart.de/proxer2-0/star_empty.png').addClass('smallImg');
+    $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
+    $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
+    $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
+    $('[src~="/images/misc/upload.png"]').attr('src', 'https://logosart.de/proxer2-0/upload.jpg').addClass('borderRadius6');
+    $('[src~="/images/misc/play.png"]').attr('src', 'https://logosart.de/proxer2-0/play.jpg').addClass('borderRadius6');
+    $('[src~="/images/misc/info-icon.png"]').attr('src', 'https://logosart.de/proxer2-0/info.jpg').addClass('borderRadius6');
+    $('[src~="https://proxer.me/images/misc/proxerfanpage.png"]').attr('src', 'https://logosart.de/proxer2-0/proxerfanpage.png');
+    $('[src~="/images/misc/proxerdonate.png"]').attr('src', 'https://logosart.de/proxer2-0/proxerdonate.png');
+    $('[src~="/images/misc/proxeramazon.png"]').attr('src', 'https://logosart.de/proxer2-0/proxeramazon.png');
+    $('[src~="/images/social/facebook.png"]').attr('src', 'https://logosart.de/proxer2-0/facebook.png');
+    $('[src~="/images/social/twitter.png"]').attr('src', 'https://logosart.de/proxer2-0/twitter.png');
+    $('[src~="/images/social/youtube2.png"]').attr('src', 'https://logosart.de/proxer2-0/youtube.png');
+    $('[src~="/images/social/google-plus.png"]').attr('src', 'https://logosart.de/proxer2-0/gplus.png');
+    $('[src~="/images/social/amazon.png"]').attr('src', 'https://logosart.de/proxer2-0/amazon.png');
 }

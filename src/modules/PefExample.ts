@@ -8,6 +8,8 @@
 //     name:"Beispiel Modul",
 // 	// Die Kurzbeschreibung
 //     description:"Ein Muster zur Erstellung weiterer Scripte",
+// 	// Der Ersteller dieses Moduls
+// 	autor:"Blue.Reaper",
 // 	// Mit dieser Methode wird das Modul aufgerufen
 // 	callMethod:(change)=>pefExampleCall(change)
 // });

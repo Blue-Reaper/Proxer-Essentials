@@ -1,12 +1,12 @@
 // Wunder:
-// Keine Benachrichtigung "Diese Webseite verwendet Cookies ... "
-// Manga Longstrip Reader als Standard
 // "zurück nach oben" Button
+// Grid-Anzeige als Standard, statt Listenansicht
 
 pefModulList.push({
     id:"smallWonders",
     name:"Kleine Wunder",
     description:"Kleine Änderungen, die Wunder wirken",
+    autor:"Blue.Reaper",
 	callMethod:(change)=>smallWondersCall(change)
 });
 
@@ -25,26 +25,21 @@ function smallWondersCall (change:ModulCallEvent) {
 }
 
 function smallWonders(){
-// Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
-	document.cookie = 'cookieconsent_dismissed=yes';
-	// Cookie um für Mangas den Longstrip-Reader als Standard zu setzen
-    document.cookie = 'manga_reader=longstrip';
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    setCookie('cookieconsent_dismissed','yes');
+
+    // Cookie setzt Grid-Anzeige als Standard (im Gegensatz zu der Listenansicht), wenn noch kein Cookie gesetzt ist
+    if(getCookie("manga_reader") != "tablelist"){
+        setCookie('entryView','grid');
+    }
 
 // ############### BackToTop ###############
 // button einfügen
 	let backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
 	$("body").append(backToTopButton);
-// hover
-	backToTopButton.hover(()=>{
-		// Setzt Bild bei hover
-		backToTopButton.toggleClass("fa-2x fa-chevron-up fa-3x fa-chevron-circle-up");
-	}, ()=>{
-		// Setzt Bild nach hover zurück auf Standard
-        backToTopButton.toggleClass("fa-2x fa-chevron-up fa-3x fa-chevron-circle-up");
-	});
 // scroll 100 Pixel
 	$(window).scroll(()=> {
-		if ($(window).scrollTop() > 100) {
+		if ($(window).scrollTop() > 1000) {
 			backToTopButton.fadeIn();
 		} else {
 			backToTopButton.fadeOut();

@@ -31,15 +31,17 @@ function createPefSettings(){
 			document.title = 'Proxer Essentials';
 
 			// Überschrift
-			inhalt.append($('<h3>Proxer Essentials</h3>'));
+			inhalt.append($('<h3 class="floatLeft">Proxer Essentials</h3>'));
+			inhalt.append($('<div class="floatLeft version">'+GM_info.script.version+'</div>'));
 
 			// Inhalt für Modulanzeige
-			let pef_module = $('<div>');
+			let pef_module = $('<div class="clear"/>');
 			inhalt.append(pef_module);
 			showModules(pef_module);
 
 			// Footer
-			inhalt.append($('<div class ="modulEnd">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+			// inhalt.append($('<div class ="clear">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
+			inhalt.append($('<div class ="clear">Design by xYata</div>'));
 		}
 	}
 }
@@ -49,17 +51,14 @@ function showModules(pef_module){
 
 // Fügt jedes Modul hinzu
 	for(let singleModule of pefModulList){
-		let moduleBox = $('<div id="'+singleModule.id+'ModulBox" class="modulBox"></div>');
-		moduleBox.css("border",$('#main').css("border"));
-		moduleBox.css("border-radius",$('#main').css("border-radius"));
+		let moduleBox = $('<div id="'+singleModule.id+'ModulBox" class="floatLeft modulBox"></div>');
 
-		moduleBox.append($('<h3 class="center">'+singleModule.name+'</h3>'));
-
-		moduleBox.append(document.createElement("hr"));
+		moduleBox.append($('<h3>'+singleModule.name+'</h3>'));
 
 		moduleBox.append($('<div>'+singleModule.description+'</div>'));
-		// TODO: Button für Details hinzufügen
-		let modulStatus = $('<i id="'+singleModule.id+'_StatusImg" class="status fa fa-2x pointer"></i>');
+		moduleBox.append($('<div class="autor">by '+singleModule.autor+'</div>'));
+		// IDEA: Button für Details hinzufügen
+		let modulStatus = $('<i id="'+singleModule.id+'_StatusImg" class="fa fa-2x pointer"/>');
 		moduleBox.append(modulStatus);
 
 		pef_module.append(moduleBox);
@@ -84,10 +83,8 @@ function toggleModulStatus(modul :IPefModul) {
 // Setzt den Haken / Kreuz nach dem Modulnamen
 function updateModulTick(modulId :string) {
     if (GM_getValue(modulId+"Status") === "off") {
-		$("#"+modulId+"_StatusImg").removeClass('fa-toggle-on').addClass('fa-toggle-off');
-		$("#"+modulId+"ModulBox").addClass('off');
+		$("#"+modulId+"ModulBox").removeClass('active');
 	} else {
-		$("#"+modulId+"_StatusImg").removeClass('fa-toggle-off').addClass('fa-toggle-on');
-		$("#"+modulId+"ModulBox").removeClass('off');
+		$("#"+modulId+"ModulBox").addClass('active');
 	}
 };
