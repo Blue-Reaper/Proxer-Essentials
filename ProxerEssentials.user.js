@@ -447,7 +447,7 @@ function theatermodus() {
     if (window.location.hostname === "stream.proxer.me") {
         $('#player_code').addClass("inheritSize");
         $('.flowplayer').addClass("inheritSize");
-        $('.plyr video').addClass("heigthVideo");
+        $('.plyr video').addClass("heightVideo");
     }
     // normale Proxer Seite
     if (window.location.pathname.split('/')[1] === 'watch') {
