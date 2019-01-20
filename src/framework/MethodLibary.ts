@@ -73,7 +73,9 @@ function createPefDialog(msg :string, methodYes? :()=>void, methodNo? :()=>void)
 //	Erzeugt eine Message
 function createPefMessage(msg:string){
 	// Proxer eigene Funktion
-	create_message('key_suggestion', 7000, msg);
+	if(window.location.hostname !== "stream.proxer.me"){
+		create_message('key_suggestion', 7000, msg);
+	}
 }
 
 //############################# Cookies #############################
@@ -81,11 +83,15 @@ function createPefMessage(msg:string){
 // Gibt den Wert des übergebenen Coockienamens wieder
 function getCookie(name:string):string {
 // Proxer eigene Funktion
-  return get_cookie(name);
+	if(window.location.hostname !== "stream.proxer.me"){
+	  return get_cookie(name);
+	}
 }
 
 // Setzt ein Cookie
 function setCookie(name:string, value:string):void {
 // Proxer eigene Funktion
-	set_cookie(name,value,cookie_expire);
+	if(window.location.hostname !== "stream.proxer.me"){
+		set_cookie(name,value,cookie_expire);
+	}
 }

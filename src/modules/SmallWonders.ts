@@ -37,7 +37,7 @@ function smallWonders(){
 // button einfügen
 	let backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
 	$("body").append(backToTopButton);
-// scroll 100 Pixel
+// scroll 1000 Pixel
 	$(window).scroll(()=> {
 		if ($(window).scrollTop() > 1000) {
 			backToTopButton.fadeIn();

@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.1
+// @version     4.2
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -200,23 +200,27 @@ function createPefDialog(msg, methodYes, methodNo) {
 //	Erzeugt eine Message
 function createPefMessage(msg) {
     // Proxer eigene Funktion
-    create_message('key_suggestion', 7000, msg);
+    if (window.location.hostname !== "stream.proxer.me") {
+        create_message('key_suggestion', 7000, msg);
+    }
 }
 //############################# Cookies #############################
 // Gibt den Wert des übergebenen Coockienamens wieder
 function getCookie(name) {
     // Proxer eigene Funktion
-    return get_cookie(name);
+    if (window.location.hostname !== "stream.proxer.me") {
+        return get_cookie(name);
+    }
 }
 // Setzt ein Cookie
 function setCookie(name, value) {
     // Proxer eigene Funktion
-    set_cookie(name, value, cookie_expire);
+    if (window.location.hostname !== "stream.proxer.me") {
+        set_cookie(name, value, cookie_expire);
+    }
 }
 // Erst-Initialisierung der Speicherwerte
 function initStatusMemory() {
-    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
-    setCookie('cookieconsent_dismissed', 'yes');
     for (var _i = 0, pefModulList_2 = pefModulList; _i < pefModulList_2.length; _i++) {
         var singleModule = pefModulList_2[_i];
         if (GM_getValue(singleModule.id + "Status") == null) {
@@ -239,58 +243,6 @@ function actionControl(change, modul) {
             }
         }
     }
-}
-// Longstrip Reader als Standard
-// Longstrip: klick auf Bild scrollt zum nächsten Bild
-// Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
-pefModulList.push({
-    id: "mangaComfort",
-    name: "Manga Comfort",
-    description: "keine Zwischenseiten, etc.",
-    autor: "Blue.Reaper",
-    callMethod: function (change) { return mangaComfortCall(change); }
-});
-function mangaComfortCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            mangaComfort();
-            break;
-        case 1 /* off */:
-            break;
-        case 2 /* ajax */:
-            mangaComfort();
-            break;
-    }
-}
-function mangaComfort() {
-    if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
-        return;
-    }
-    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
-    if (getCookie("manga_reader") != "slide") {
-        setCookie('manga_reader', 'longstrip');
-    }
-    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
-    if (getCookie("manga_reader") == "longstrip") {
-        $('#reader img').attr("onclick", "");
-        $('#reader img').off("click", scrollToNextPage);
-        $('#reader img').click(scrollToNextPage);
-        $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
-    }
-    // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
-    if ($('#main img[src="/images/misc/404.png"]').length) {
-        window.location.pathname = window.location.pathname.replace('read', 'chapter');
-    }
-    // Mauszeiger wird auch nur über Bild zur Hand
-    $('#reader img').addClass("pointer");
-    $('#reader a').addClass("cursorAuto");
-}
-function scrollToNextPage() {
-    $('body,html').animate({
-        // nicht page+1, da id bei 0 los zählt
-        scrollTop: $('#chapterImage' + (current_page)).offset().top
-    }, 800);
-    current_page = current_page + 1;
 }
 // Muster (Proxer Essentials Framework Example)
 // Jedes Modul muss sich in die pefModulList eintragen
@@ -371,7 +323,7 @@ function smallWonders() {
     // button einfügen
     var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
     $("body").append(backToTopButton);
-    // scroll 100 Pixel
+    // scroll 1000 Pixel
     $(window).scroll(function () {
         if ($(window).scrollTop() > 1000) {
             backToTopButton.fadeIn();
@@ -415,4 +367,95 @@ function supportDesign() {
     $('[src~="/images/social/youtube2.png"]').attr('src', 'https://logosart.de/proxer2-0/youtube.png');
     $('[src~="/images/social/google-plus.png"]').attr('src', 'https://logosart.de/proxer2-0/gplus.png');
     $('[src~="/images/social/amazon.png"]').attr('src', 'https://logosart.de/proxer2-0/amazon.png');
+}
+// Longstrip Reader als Standard
+// Longstrip: klick auf Bild scrollt zum nächsten Bild
+// Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
+pefModulList.push({
+    id: "mangaComfort",
+    name: "Manga Comfort",
+    description: "keine Zwischenseiten, etc.",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return mangaComfortCall(change); }
+});
+function mangaComfortCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            mangaComfort();
+            break;
+        case 1 /* off */:
+            break;
+        case 2 /* ajax */:
+            mangaComfort();
+            break;
+    }
+}
+function mangaComfort() {
+    if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
+        return;
+    }
+    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
+    if (getCookie("manga_reader") != "slide") {
+        setCookie('manga_reader', 'longstrip');
+    }
+    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
+    if (getCookie("manga_reader") == "longstrip") {
+        $('#reader img').attr("onclick", "");
+        $('#reader img').off("click", scrollToNextPage);
+        $('#reader img').click(scrollToNextPage);
+        $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
+    }
+    // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
+    if ($('#main img[src="/images/misc/404.png"]').length) {
+        window.location.pathname = window.location.pathname.replace('read', 'chapter');
+    }
+    // Mauszeiger wird auch nur über Bild zur Hand
+    $('#reader img').addClass("pointer");
+    $('#reader a').addClass("cursorAuto");
+}
+function scrollToNextPage() {
+    $('body,html').animate({
+        // nicht page+1, da id bei 0 los zählt
+        scrollTop: $('#chapterImage' + (current_page)).offset().top
+    }, 800);
+    current_page = current_page + 1;
+}
+// Theatermodus für Anime
+// IDEA 10 sek zurückspulen einbauen
+pefModulList.push({
+    id: "theaterMode",
+    name: "Theatermodus",
+    description: "Theatermodus für Animes",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return theatreModeCall(change); }
+});
+function theatreModeCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            theatermodus();
+            break;
+        case 1 /* off */:
+            // theatermodus();
+            break;
+        case 2 /* ajax */:
+            theatermodus();
+            break;
+    }
+}
+function theatermodus() {
+    // Innerhalb des Iframes
+    if (window.location.hostname === "stream.proxer.me") {
+        console.log("im Iframe");
+        $('#player_code').css({ 'width': 'inherit', 'height': 'inherit' });
+        $('.flowplayer').css({ 'width': 'inherit', 'height': 'inherit' });
+        $('.plyr video').css({ 'height': '-webkit-fill-available' });
+    }
+    // normale Proxer Seite
+    if (window.location.pathname.split('/')[1] === 'watch') {
+        var backToTopButton = $('<i class="toggleTheater pointer fa fa-2x fa-arrows-alt"/>');
+        $("body").append(backToTopButton);
+        backToTopButton.click(function () {
+            $('iframe').toggleClass("theaterActive");
+        });
+    }
 }

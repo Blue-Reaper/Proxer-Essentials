@@ -28,7 +28,7 @@
 }
 
 .modulBox {
-    width: 30%;
+    width: 29%;
     border-width: 1px;
     margin: 1%;
     padding-left: 1em;
@@ -127,4 +127,27 @@
 .backToTop:hover {
     transition: all ease 0.8s;
     color: #ef394a;
+}
+
+/* Theatermodus */
+
+.toggleTheater {
+    position: fixed;
+    top: 10%;
+    right: 14%;
+    z-index: 2;
+}
+
+.toggleTheater:hover {
+    transition: all ease 0.8s;
+    color: #ef394a;
+}
+
+.theaterActive {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: -webkit-fill-available;
+    width: 100%;
+    z-index: 1
 }
