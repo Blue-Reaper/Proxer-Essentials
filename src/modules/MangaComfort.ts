@@ -5,7 +5,7 @@
 pefModulList.push({
     id:"mangaComfort",
     name:"Manga Comfort",
-    description:"keine Zwischenseiten, etc.",
+    description:"mehr Komfort beim Manga Lesen",
     autor:"Blue.Reaper",
 	callMethod:(change)=>mangaComfortCall(change)
 });

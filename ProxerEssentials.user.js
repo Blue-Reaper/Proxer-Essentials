@@ -278,7 +278,7 @@ function supportDesign() {
 pefModulList.push({
     id: "mangaComfort",
     name: "Manga Comfort",
-    description: "keine Zwischenseiten, etc.",
+    description: "mehr Komfort beim Manga Lesen",
     autor: "Blue.Reaper",
     callMethod: function (change) { return mangaComfortCall(change); }
 });
@@ -372,6 +372,7 @@ function anotherExampleMethod() {
 // Wunder:
 // "zurück nach oben" Button
 // Grid-Anzeige als Standard, statt Listenansicht
+// setzt "Ja ich bin Erwachsen"
 pefModulList.push({
     id: "smallWonders",
     name: "Kleine Wunder",

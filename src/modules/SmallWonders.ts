@@ -1,6 +1,7 @@
 // Wunder:
 // "zurück nach oben" Button
 // Grid-Anzeige als Standard, statt Listenansicht
+// setzt "Ja ich bin Erwachsen"
 
 pefModulList.push({
     id:"smallWonders",
