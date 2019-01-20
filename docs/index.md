@@ -11,6 +11,7 @@ Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des
 
 ## Design
 Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)), es gab bereits ein paar Verbesserungen wie z.B. die vollständige Firefox Unterstützung.
+
 ![Bild of Design](screenshots/design.png)
 
 ## Module
