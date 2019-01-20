@@ -143,10 +143,21 @@
     color: #ef394a;
 }
 
+.inheritSize{
+    width: inherit;
+    height: inherit;
+}
+
+.heigthVideo{
+    heigth: 100%;
+    height' -webkit-fill-available;
+}
+
 .theaterActive {
     position: fixed;
     top: 0px;
     left: 0px;
+    heigth: 100%;
     height: -webkit-fill-available;
     width: 100%;
     z-index: 1

@@ -27,10 +27,9 @@ function theatreModeCall (change:ModulCallEvent) {
 function theatermodus(){
 	// Innerhalb des Iframes
 	if(window.location.hostname === "stream.proxer.me"){
-		console.log("im Iframe");
-        $('#player_code').css({'width':'inherit', 'height':'inherit'});
-        $('.flowplayer').css({'width':'inherit', 'height':'inherit'});
-        $('.plyr video').css({'height':'-webkit-fill-available'});
+        $('#player_code').addClass("inheritSize");
+        $('.flowplayer').addClass("inheritSize");
+        $('.plyr video').addClass("heigthVideo");
 	}
 	// normale Proxer Seite
 	if (window.location.pathname.split('/')[1] === 'watch'){
