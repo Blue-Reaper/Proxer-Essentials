@@ -7,6 +7,7 @@ document.addEventListener("DOMSubtreeModified", function(){
 function monitorAjax(){
 	setInterval(()=>{
 		if (ajaxEvent){
+			supportDesign();
 			createPefSettings();
 			actionControl(ModulCallEvent.ajax);
 			ajaxEvent = false;
