@@ -402,25 +402,28 @@ function smallWonders() {
         setCookie('entryView', 'grid');
     }
     // ############### BackToTop ###############
-    // button einfügen
-    var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
-    $("body").append(backToTopButton);
-    // scroll 1000 Pixel
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > 1000) {
-            backToTopButton.fadeIn();
-        }
-        else {
-            backToTopButton.fadeOut();
-        }
-    });
-    // click
-    backToTopButton.click(function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 800);
-        return false;
-    });
+    // Check if Button already added
+    if (!$('.backToTop').length) {
+        // button einfügen
+        var backToTopButton_1 = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
+        $("body").append(backToTopButton_1);
+        // scroll 1000 Pixel
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 1000) {
+                backToTopButton_1.fadeIn();
+            }
+            else {
+                backToTopButton_1.fadeOut();
+            }
+        });
+        // click
+        backToTopButton_1.click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    }
 }
 // Theatermodus für Anime
 // IDEA 10 sek zurückspulen einbauen
@@ -437,7 +440,7 @@ function theatreModeCall(change) {
             theatermodus();
             break;
         case 1 /* off */:
-            // theatermodus();
+            theatermodusOff();
             break;
         case 2 /* ajax */:
             theatermodus();
@@ -445,6 +448,9 @@ function theatreModeCall(change) {
     }
 }
 function theatermodus() {
+    if (window.location.hostname !== "stream.proxer.me" && window.location.pathname.split('/')[1] !== 'watch') {
+        theatermodusOff();
+    }
     // Innerhalb des Iframes
     if (window.location.hostname === "stream.proxer.me") {
         $('#player_code').addClass("inheritSize");
@@ -453,10 +459,17 @@ function theatermodus() {
     }
     // normale Proxer Seite
     if (window.location.pathname.split('/')[1] === 'watch') {
-        var backToTopButton = $('<i class="toggleTheater pointer fa fa-2x fa-arrows-alt"/>');
-        $("body").append(backToTopButton);
-        backToTopButton.click(function () {
-            $('iframe').toggleClass("theaterActive");
-        });
+        // Check if button is already added
+        if (!$('.toggleTheater').length) {
+            var backToTopButton = $('<i class="toggleTheater pointer fa fa-2x fa-arrows-alt"/>');
+            $("body").append(backToTopButton);
+            backToTopButton.click(function () {
+                $('iframe').toggleClass("theaterActive");
+            });
+        }
     }
+}
+function theatermodusOff() {
+    // Entferne Button wieder
+    $('.toggleTheater').remove();
 }

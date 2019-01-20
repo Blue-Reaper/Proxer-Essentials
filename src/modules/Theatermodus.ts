@@ -16,7 +16,7 @@ function theatreModeCall (change:ModulCallEvent) {
 			theatermodus();
 			break;
 		case ModulCallEvent.off:
-			// theatermodus();
+			theatermodusOff();
 			break;
 		case ModulCallEvent.ajax:
 			theatermodus();
@@ -25,6 +25,10 @@ function theatreModeCall (change:ModulCallEvent) {
 }
 
 function theatermodus(){
+    if (window.location.hostname !== "stream.proxer.me" && window.location.pathname.split('/')[1] !== 'watch'){
+        theatermodusOff();
+    }
+
 	// Innerhalb des Iframes
 	if(window.location.hostname === "stream.proxer.me"){
         $('#player_code').addClass("inheritSize");
@@ -33,11 +37,18 @@ function theatermodus(){
 	}
 	// normale Proxer Seite
 	if (window.location.pathname.split('/')[1] === 'watch'){
-        let backToTopButton = $('<i class="toggleTheater pointer fa fa-2x fa-arrows-alt"/>');
-    	$("body").append(backToTopButton);
-        backToTopButton.click(()=> {
-		          $('iframe').toggleClass("theaterActive");
-        });
+        // Check if button is already added
+        if(!$('.toggleTheater').length){
+            let backToTopButton = $('<i class="toggleTheater pointer fa fa-2x fa-arrows-alt"/>');
+            $("body").append(backToTopButton);
+            backToTopButton.click(()=> {
+                $('iframe').toggleClass("theaterActive");
+            });
+        }
 	}
+}
 
+function theatermodusOff(){
+    // Entferne Button wieder
+    $('.toggleTheater').remove();
 }

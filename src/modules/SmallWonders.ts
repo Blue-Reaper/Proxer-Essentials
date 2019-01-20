@@ -36,23 +36,25 @@ function smallWonders(){
     }
 
 // ############### BackToTop ###############
-// button einfügen
-	let backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
-	$("body").append(backToTopButton);
-// scroll 1000 Pixel
-	$(window).scroll(()=> {
-		if ($(window).scrollTop() > 1000) {
-			backToTopButton.fadeIn();
-		} else {
-			backToTopButton.fadeOut();
-		}
-	});
-// click
-	backToTopButton.click(()=> {
-		$('body,html').animate({
-			scrollTop: 0
-		}, 800);
-		return false;
-	});
-
+    // Check if Button already added
+    if(!$('.backToTop').length){
+        // button einfügen
+    	let backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
+    	$("body").append(backToTopButton);
+    // scroll 1000 Pixel
+    	$(window).scroll(()=> {
+    		if ($(window).scrollTop() > 1000) {
+    			backToTopButton.fadeIn();
+    		} else {
+    			backToTopButton.fadeOut();
+    		}
+    	});
+    // click
+    	backToTopButton.click(()=> {
+    		$('body,html').animate({
+    			scrollTop: 0
+    		}, 800);
+    		return false;
+    	});
+    }
 }
