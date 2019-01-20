@@ -11,7 +11,12 @@ Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des
 
 ## Design
 Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)), es gab bereits ein paar Verbesserungen wie z.B. die vollständige Firefox Unterstützung.
+<a href="#showDesign" data-toggle="collapse" aria-expanded="false" aria-controls="showDesign">Zeige Bild an</a>.
+
+<div id="showDesign" markdown="1" class="collapse">
 ![Bild des Designs](screenshots/design.png)
+</div>
+
 
 ## Module
 ![Bild der Module](screenshots/modules.PNG)
