@@ -19,7 +19,7 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
 // @resource    pef_CSS          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
-// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/design-fix/resources/css/modernDark.css
+// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/modernDark.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
 // ==/UserScript==
@@ -339,6 +339,7 @@ function anotherExampleMethod() {
 }
 // Wunder:
 // "zurück nach oben" Button
+// Grid-Anzeige als Standard, statt Listenansicht
 pefModulList.push({
     id: "smallWonders",
     name: "Kleine Wunder",
@@ -360,6 +361,12 @@ function smallWondersCall(change) {
     }
 }
 function smallWonders() {
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    setCookie('cookieconsent_dismissed', 'yes');
+    // Cookie setzt Grid-Anzeige als Standard (im Gegensatz zu der Listenansicht), wenn noch kein Cookie gesetzt ist
+    if (getCookie("manga_reader") != "tablelist") {
+        setCookie('entryView', 'grid');
+    }
     // ############### BackToTop ###############
     // button einfügen
     var backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
