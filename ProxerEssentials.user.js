@@ -18,14 +18,14 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/anime-theater/resources/css/pef.css
-// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/anime-theater/resources/css/modernDark.css
+// @resource    pef_CSS          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/pef.css
+// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/resources/css/modernDark.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
 // ==/UserScript==
+GM_addStyle(GM_getResourceText("pef_CSS"));
 // Add Style after <head> to override css of side (and dont need !important everywhere)
 // But add Before sth is shown to the user
-$("html").append($('<style type="text/css">' + GM_getResourceText("pef_CSS") + '</style>'));
 $("html").append($('<style type="text/css">' + GM_getResourceText("modernDark_CSS") + '</style>'));
 // Liste aller Module
 var pefModulList = [];
