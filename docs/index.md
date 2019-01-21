@@ -16,11 +16,12 @@ Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Fo
 
 Das Design wurde auf Wunsch optional, um auch zukünftigen Umsetzungs- und Test-Aufwand gering zu halten bleibt Modern Dark als Hauptdesign und alle durch Module oder das Framework hinzugefügte Elemente bleiben in diesem Design.
 
-Um das Design ein- bzw. auszuschalten muss man nur unter "Essentials -> Einstellungen" (auch mit https://proxer.me/pef?s=settings zu erreichen) auf die Schrift "Design by xYata" klicken.
+Um das Design ein- bzw. auszuschalten muss man nur im Menü unter "Essentials -> Einstellungen" (auch mit https://proxer.me/pef?s=settings zu erreichen) auf die Schrift "Design by xYata" klicken.
 
-<img src="screenshots/designOptional.png" width="30%">
+<img src="screenshots/designOptional.png" width="15%">
 
 ## Module
+<img src="screenshots/menu.png" width="30%">
 ![Bild der Module](screenshots/modules.PNG)
 * ### Kleine Wunder
   * "zurück nach Oben" Button
@@ -28,7 +29,7 @@ Um das Design ein- bzw. auszuschalten muss man nur unter "Essentials -> Einstell
     <img src="screenshots/Back-to-Top.png" width="60%">
   * Grid-Anzeige als Standard (statt Listenansicht)
     
-    <img src="screenshots/grid.png" width="50%">
+    <img src="screenshots/grid.png" width="40%">
   * setzt "Ja ich bin Erwachsen"
 * ### Manga Comfort
   * setzt Longstrip Reader als Standard
