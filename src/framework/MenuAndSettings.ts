@@ -40,8 +40,19 @@ function createPefSettings(){
 			showModules(pef_module);
 
 			// Footer
-			// inhalt.append($('<div class ="clear">Noch mehr Userscripte findet ihr <a href="https://proxer.me/forum/anwendungen">im Forum</a>.</div>'));
-			inhalt.append($('<div class ="clear">Design by xYata</div>'));
+			let designLink = $('<a href="javascript:;">Design by xYata</a>');
+			let footer = $('<div class ="clear"></div>');
+			footer.append(designLink);
+			inhalt.append(footer);
+
+			designLink.click(()=>{
+				if (GM_getValue("ModernDarkStatus") === "off") {
+					GM_setValue("ModernDarkStatus","on");
+				} else {
+					GM_setValue("ModernDarkStatus","off");
+				}
+				location.reload();
+			});
 		}
 	}
 }

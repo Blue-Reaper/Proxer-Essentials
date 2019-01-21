@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.2
+// @version     4.3
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -24,15 +24,13 @@
 // ==/UserScript==
 
 GM_addStyle (GM_getResourceText ("pef_CSS"));
-// Add Style after <head> to override css of side (and dont need !important everywhere)
-// But add Before sth is shown to the user
-$("html").append($('<style type="text/css">'+GM_getResourceText ("modernDark_CSS")+'</style>'));
 
 // Liste aller Module
 let pefModulList :IPefModul[] = [];
 
 //Main Methode des Frameworks
 $(document).ready(function(){
+	supportDesign();
 	initStatusMemory();
 	addPefMenu();
 	createPefSettings();
