@@ -14,6 +14,12 @@ Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Fo
 
 ![Bild of Design](screenshots/design.png)
 
+Das Design wurde auf Wunsch optional, um auch zukünftigen Umsetzungs- und Test-Aufwand gering zu halten bleibt Modern Dark als Hauptdesign und alle durch Module oder das Framework hinzugefügte Elemente bleiben in diesem Design.
+
+Um das Design ein- bzw. auszuschalten muss man nur unter "Essentials -> Einstellungen" (auch mit https://proxer.me/pef?s=settings zu erreichen) auf die Schrift "Design by xYata" klicken.
+
+<img src="screenshots/designOptional.png" width="30%">
+
 ## Module
 ![Bild der Module](screenshots/modules.PNG)
 * ### Kleine Wunder
