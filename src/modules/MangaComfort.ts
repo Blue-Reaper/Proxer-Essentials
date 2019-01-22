@@ -1,6 +1,7 @@
 // Longstrip Reader als Standard
 // Longstrip: klick auf Bild scrollt zum nächsten Bild
 // Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
+// Fügt Mangaupdates neben Animeupdates auf Startseite hinzu
 
 pefModulList.push({
     id:"mangaComfort",
@@ -24,6 +25,12 @@ function mangaComfortCall (change:ModulCallEvent) {
 }
 
 function mangaComfort(){
+
+    // On Home Page and Links doesn't exist
+    if (window.location.pathname === '/' && !$('li>a[href="/manga/updates#top').length){
+        // Add Mangaupdaets like existing Animeupdates and after that
+        $('li>a[href="/anime/updates#top"]').parent().after($('<li id="pef_mangaupdates"><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
+    }
 
 	if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter'){
 		return;
