@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.3
+// @version     4.4.1-beta
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -486,9 +486,10 @@ function supportDesign() {
         $('[src~="/images/misc/kreuz.png"]').attr('src', 'https://logosart.de/proxer2-0/cross.png');
         $('[src~="/images/misc/stern.png"]').attr('src', 'https://logosart.de/proxer2-0/star.png').addClass('smallImg');
         $('[src~="/images/misc/stern_grau.png"]').attr('src', 'https://logosart.de/proxer2-0/star_empty.png').addClass('smallImg');
-        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
-        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
-        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
+        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-manga.jpg');
+        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
         $('[src~="/images/misc/upload.png"]').attr('src', 'https://logosart.de/proxer2-0/upload.jpg').addClass('borderRadius6');
         $('[src~="/images/misc/play.png"]').attr('src', 'https://logosart.de/proxer2-0/play.jpg').addClass('borderRadius6');
         $('[src~="/images/misc/info-icon.png"]').attr('src', 'https://logosart.de/proxer2-0/info.jpg').addClass('borderRadius6');
