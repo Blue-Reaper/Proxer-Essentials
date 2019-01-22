@@ -1,6 +1,10 @@
 # Proxer Essentials
 Nützlicher Erweiterungen für Proxer die jeder braucht
 
-[TODO: update Readme]
+Always be up to date with the beta:
+https://github.com/Blue-Reaper/Proxer-Essentials/raw/beta/ProxerEssentials.user.js
+
+All info about releases here:https://github.com/Blue-Reaper/Proxer-Essentials/releases
+
 
 More Info: https://blue-reaper.github.io/Proxer-Essentials/
