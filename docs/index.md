@@ -48,7 +48,7 @@ Die einzelnen Änderungen pro Release stehen [hier](https://github.com/Blue-Reap
   * [![Chrome](https://img.shields.io/badge/Chrome-getestet-brightgreen.svg)](https://www.google.de/chrome/index.html)
 * [Tampermonkey](https://tampermonkey.net/)
   * [![Firefox](https://img.shields.io/badge/Firefox-ungetestet-lightgrey.svg)](https://www.mozilla.org/de/firefox/)
-  * [![Chrome](https://img.shields.io/badge/Chrome-ungetestet-lightgrey.svg)](https://www.google.de/chrome/index.html)
+  * [![Chrome](https://img.shields.io/badge/Chrome-getestet-brightgreen.svg)](https://www.google.de/chrome/index.html)
 * [Greasemonkey](https://www.greasespot.net/)
   * [![Firefox](https://img.shields.io/badge/Firefox-ungetestet-lightgrey.svg)](https://www.mozilla.org/de/firefox/)
 
