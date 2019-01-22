@@ -61,7 +61,6 @@ hr {
 
 a:hover {
     color: #ef394a;
-    transition: all 0.7s;
 }
 
 h3 {
@@ -71,7 +70,7 @@ h3 {
 
 a {
     color: #bdbdbd;
-    transition: all 0.7s;
+    transition: color 0.7s;
 }
 
 ul#simple-navi li.active a {
@@ -88,13 +87,13 @@ ul#simple-navi-wiki li a:hover {
     color: #8f8f90;
     border-bottom: 1px #8f8f90 solid;
     font-weight: lighter;
-    transition: all 1s;
+    transition: color 1s ease, border 1s ease;
 }
 
 ul#simple-navi-wiki li a,
 ul#simple-navi li a.active,
 ul#simple-navi li a:hover {
-    transition: all 1s;
+    transition: color 1s ease, border 1s ease;
     color: #fff;
     background: transparent;
     border-bottom: 1px #fff solid;
@@ -155,14 +154,13 @@ a.menu {
     background: #3e3e3e;
     border-radius: 0;
     color: #a0a0a0;
-    transition: all ease 0.8s;
+    transition: background ease 0.8s, color ease 0.8s;
 }
 
 a.menu.active,
 a.menu:hover {
     background: #ef394a !important;
     color: #fafafa !important;
-    transition: all ease 0.8s;
 }
 
 .infocell>div {
@@ -175,7 +173,7 @@ a.menu:hover {
 .infocell {
     cursor: pointer;
     border-color: #656565;
-    transition: all 0.8s;
+    transition: background 0.8s ease, color 0.8s ease;
 }
 
 .infocell:hover {
@@ -434,7 +432,7 @@ textarea {
 }
 
 #box-table-a td {
-    transition: all ease 0.8s;
+    transition: background ease 0.8s, color ease 0.8s;
     color: #969696;
     border-bottom: 1px solid #1b1b1b;
     background: #2d2f33;
@@ -557,12 +555,12 @@ input:focus {
 }
 
 #arrowleft {
-    transition: all 0.8s;
+    transition: background 0.8s;
     background-image: url(https://logosart.de/proxer2-0/proxerSliderArrow.png) !important;
 }
 
 #arrowright {
-    transition: all 0.8s;
+    transition: background 0.8s;
     background-image: url(https://logosart.de/proxer2-0/proxerSliderArrow.png) !important;
 }
 
@@ -736,7 +734,7 @@ input[placeholder~="Suche"] {
     min-height: 50px;
     padding: 5px;
     border-bottom: 2px solid #212121;
-    transition: all ease 0.8s;
+    transition: background ease 0.8s;
 }
 
 .chatapp_messageitem:hover {
