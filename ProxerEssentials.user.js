@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.4.1-beta
+// @version     4.4-beta.2
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -460,6 +460,69 @@ function theatermodus() {
 function theatermodusOff() {
     // Entferne Button wieder
     $('.toggleTheater').remove();
+}
+// Zeigt Bilder in den Listenansichten an
+// IDEA use same Cookie than grid-list and add Buttons to switch List -> Grid
+pefModulList.push({
+    id: "picList",
+    name: "Picture List",
+    description: "Bilder statt Listen",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return picListCall(change); }
+});
+function picListCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            picList();
+            break;
+        case 1 /* off */:
+            break;
+        case 2 /* ajax */:
+            picList();
+            break;
+    }
+}
+function picList() {
+    // console.log(window.location.pathname);
+    // only in specific locations
+    if ((window.location.pathname !== '/manga/updates' && window.location.pathname !== '/anime/updates')) {
+        return;
+    }
+    // don't show Table-Liste
+    $('.inner table').css("display", "none");
+    // Grid-List not added
+    if (!$('.infocell').length) {
+        var temp = $('tr');
+        temp.each(function (idx, tr) {
+            // skip table header
+            if ($(tr).find('th').length) {
+                console.log("skip header");
+                return true;
+            }
+            var mainLink = $(tr).find('td:nth-child(2) a');
+            var box = $('<div class="infocell"></div>');
+            var boxLink = $('<a href="' + mainLink.attr("href") + '" data-ajax="true"></a>');
+            // Cover
+            boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/' + mainLink.attr("href").split('/')[2] + '.jpg">'));
+            box.append(boxLink);
+            // Title and Status (eg: Airing)
+            box.append($('<div>').append(mainLink).append($(tr).find('td:nth-child(1) img')));
+            // language and Date
+            box.append($('<div>').append($(tr).find('td:nth-child(3) img')).append($(tr).find('td:nth-child(6)').text()));
+            // Uploader
+            box.append($('<div>').append($(tr).find('td:nth-child(5) a')));
+            $('.inner').append(box);
+            // UserStatus (eg: Rading)
+        });
+        $('.inner').append($('<div class="clear"/>'));
+    }
+    else {
+        // add read-status
+        var temp = $('.infocelltriangle');
+        temp.each(function (idx, status) {
+            $('.infocell').eq(idx).css("border-top-color", $(status).css("border-top-color"));
+        });
+    }
 }
 // Theme can't be activatet with modules, because it must be loaded before the content is shown
 // Init Memory
