@@ -106,6 +106,10 @@ ul#simple-navi li a:hover {
     border-bottom: 0px;
 }
 
+#nav ul{
+    height:inherit;
+}
+
 #wrapper {
     background-position-x: 55%;
     background-size: 110%;
