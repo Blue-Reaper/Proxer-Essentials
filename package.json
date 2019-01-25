@@ -1,0 +1,32 @@
+{
+  "name": "proxer-essentials",
+  "version": "4.3.0",
+  "description": "Proxer Essentials",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "rimraf ProxerEssentials.user.js && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blue-Reaper/Proxer-Essentials.git"
+  },
+  "keywords": [
+    "proxer",
+    "proxer-essentials",
+    "proxer-redesign"
+  ],
+  "author": "Blue.Reaper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Blue-Reaper/Proxer-Essentials/issues"
+  },
+  "homepage": "https://github.com/Blue-Reaper/Proxer-Essentials#readme",
+  "dependencies": {
+    "@types/greasemonkey": "0.0.28",
+    "@types/jquery": "^3.3.29",
+    "rimraf": "^2.6.3",
+    "typescript": "^3.2.4"
+  }
+}
