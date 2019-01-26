@@ -10,6 +10,6 @@ More Info: https://blue-reaper.github.io/Proxer-Essentials/
 
 # How to build
 
-- Run `npm i` to install al dependencies
+- Run `npm i` to install all dependencies
 - Run `npm run build` to build the compiled userscript
 - Or use [atom](https://atom.io/) with [atom-typescript](https://atom.io/packages/atom-typescript) and compile on save
