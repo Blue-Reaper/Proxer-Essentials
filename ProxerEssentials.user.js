@@ -618,6 +618,8 @@ if (GM_getValue("DesignStatus") == "on") {
     // Add Style after <head> to override css of side (and dont need !important everywhere)
     // But add Before sth is shown to the user
     $("html").append($('<style type="text/css">' + GM_getResourceText("design_CSS") + '</style>'));
+    // Set Proxer-Style to gray, needed for Design
+    setCookie("style", "gray");
 }
 function resetDesign() {
     GM_setValue("DesignStatus", "on");
