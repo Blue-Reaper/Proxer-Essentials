@@ -7,6 +7,22 @@ if (GM_getValue("ModernDarkStatus")==null){
 
 // add Theme
 if (GM_getValue("ModernDarkStatus")=="on"){
+    // Add colors for theme
+    GM_addStyle (
+        `:root {
+            /* accent color */
+            --accent-color: #ef394a;
+            /* background color */
+            --main-bg-color:    #232428;
+            --bg-color: #2d2f33;
+            /* Button */
+            --button-color: #3e3e3e;
+            /* Text */
+            --text-color:   #909090;
+            --link-color:   #bdbdbd;
+            --highlight-text-color: #fff;
+        }`
+    );
     // Add Style after <head> to override css of side (and dont need !important everywhere)
     // But add Before sth is shown to the user
     $("html").append($('<style type="text/css">'+GM_getResourceText ("modernDark_CSS")+'</style>'));

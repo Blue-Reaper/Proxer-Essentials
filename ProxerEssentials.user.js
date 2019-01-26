@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.4
+// @version     4.5-beta.1
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -18,8 +18,8 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS          src/css/pef.css
-// @resource    modernDark_CSS   src/css/modernDark.css
+// @resource    pef_CSS          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/theme-settings/src/css/pef.css
+// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/theme-settings/src/css/modernDark.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
 // ==/UserScript==
@@ -469,14 +469,13 @@ function theatermodusOff() {
 }
 // Zeigt Bilder in den Listenansichten an
 // IDEA use same Cookie than grid-list and add Buttons to switch List -> Grid
-// Not Ready for v4.4
-// pefModulList.push({
-//     id:"picList",
-//     name:"Picture List",
-//     description:"Bilder statt Listen",
-//     autor:"Blue.Reaper",
-// 	callMethod:(change)=>picListCall(change)
-// });
+pefModulList.push({
+    id: "picList",
+    name: "Picture List",
+    description: "Bilder statt Listen",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return picListCall(change); }
+});
 function picListCall(change) {
     switch (change) {
         case 0 /* on */:
@@ -538,6 +537,8 @@ if (GM_getValue("ModernDarkStatus") == null) {
 }
 // add Theme
 if (GM_getValue("ModernDarkStatus") == "on") {
+    // Add colors for theme
+    GM_addStyle(":root {\n            /* accent color */\n            --accent-color: #ef394a;\n            /* background color */\n            --main-bg-color:    #232428;\n            --bg-color: #2d2f33;\n            /* Button */\n            --button-color: #3e3e3e;\n            /* Text */\n            --text-color:   #909090;\n            --link-color:   #bdbdbd;\n            --highlight-text-color: #fff;\n        }");
     // Add Style after <head> to override css of side (and dont need !important everywhere)
     // But add Before sth is shown to the user
     $("html").append($('<style type="text/css">' + GM_getResourceText("modernDark_CSS") + '</style>'));
