@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.3
+// @version     4.4
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -18,8 +18,8 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/css/pef.css
-// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/css/modernDark.css
+// @resource    pef_CSS          src/css/pef.css
+// @resource    modernDark_CSS   src/css/modernDark.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
 // ==/UserScript==
@@ -256,6 +256,7 @@ function actionControl(change, modul) {
 // Longstrip Reader als Standard
 // Longstrip: klick auf Bild scrollt zum nächsten Bild
 // Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
+// Fügt Mangaupdates neben Animeupdates auf Startseite hinzu
 pefModulList.push({
     id: "mangaComfort",
     name: "Manga Comfort",
@@ -276,6 +277,11 @@ function mangaComfortCall(change) {
     }
 }
 function mangaComfort() {
+    // On Home Page and Links doesn't exist
+    if (window.location.pathname === '/' && !$('li>a[href="/manga/updates#top').length) {
+        // Add Mangaupdaets like existing Animeupdates and after that
+        $('li>a[href="/anime/updates#top"]').parent().after($('<li id="pef_mangaupdates"><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
+    }
     if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
         return;
     }
@@ -480,9 +486,10 @@ function supportDesign() {
         $('[src~="/images/misc/kreuz.png"]').attr('src', 'https://logosart.de/proxer2-0/cross.png');
         $('[src~="/images/misc/stern.png"]').attr('src', 'https://logosart.de/proxer2-0/star.png').addClass('smallImg');
         $('[src~="/images/misc/stern_grau.png"]').attr('src', 'https://logosart.de/proxer2-0/star_empty.png').addClass('smallImg');
-        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
-        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
-        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
+        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-manga.jpg');
+        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
         $('[src~="/images/misc/upload.png"]').attr('src', 'https://logosart.de/proxer2-0/upload.jpg').addClass('borderRadius6');
         $('[src~="/images/misc/play.png"]').attr('src', 'https://logosart.de/proxer2-0/play.jpg').addClass('borderRadius6');
         $('[src~="/images/misc/info-icon.png"]').attr('src', 'https://logosart.de/proxer2-0/info.jpg').addClass('borderRadius6');
@@ -494,5 +501,69 @@ function supportDesign() {
         $('[src~="/images/social/youtube2.png"]').attr('src', 'https://logosart.de/proxer2-0/youtube.png');
         $('[src~="/images/social/google-plus.png"]').attr('src', 'https://logosart.de/proxer2-0/gplus.png');
         $('[src~="/images/social/amazon.png"]').attr('src', 'https://logosart.de/proxer2-0/amazon.png');
+    }
+}
+// Zeigt Bilder in den Listenansichten an
+// IDEA use same Cookie than grid-list and add Buttons to switch List -> Grid
+// Not Ready for v4.4
+// pefModulList.push({
+//     id:"picList",
+//     name:"Picture List",
+//     description:"Bilder statt Listen",
+//     autor:"Blue.Reaper",
+// 	callMethod:(change)=>picListCall(change)
+// });
+function picListCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            picList();
+            break;
+        case 1 /* off */:
+            break;
+        case 2 /* ajax */:
+            picList();
+            break;
+    }
+}
+function picList() {
+    // console.log(window.location.pathname);
+    // only in specific locations
+    if ((window.location.pathname !== '/manga/updates' && window.location.pathname !== '/anime/updates')) {
+        return;
+    }
+    // don't show Table-Liste
+    $('.inner table').css("display", "none");
+    // Grid-List not added
+    if (!$('.infocell').length) {
+        var temp = $('tr');
+        temp.each(function (idx, tr) {
+            // skip table header
+            if ($(tr).find('th').length) {
+                console.log("skip header");
+                return true;
+            }
+            var mainLink = $(tr).find('td:nth-child(2) a');
+            var box = $('<div class="infocell"></div>');
+            var boxLink = $('<a href="' + mainLink.attr("href") + '" data-ajax="true"></a>');
+            // Cover
+            boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/' + mainLink.attr("href").split('/')[2] + '.jpg">'));
+            box.append(boxLink);
+            // Title and Status (eg: Airing)
+            box.append($('<div>').append(mainLink).append($(tr).find('td:nth-child(1) img')));
+            // language and Date
+            box.append($('<div>').append($(tr).find('td:nth-child(3) img')).append($(tr).find('td:nth-child(6)').text()));
+            // Uploader
+            box.append($('<div>').append($(tr).find('td:nth-child(5) a')));
+            $('.inner').append(box);
+            // UserStatus (eg: Rading)
+        });
+        $('.inner').append($('<div class="clear"/>'));
+    }
+    else {
+        // add read-status
+        var temp = $('.infocelltriangle');
+        temp.each(function (idx, status) {
+            $('.infocell').eq(idx).css("border-top-color", $(status).css("border-top-color"));
+        });
     }
 }
