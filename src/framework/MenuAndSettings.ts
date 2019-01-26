@@ -100,16 +100,16 @@ function tabPefDesign(){
 
     inhalt.append($('<div class="clear">Essentials Design verwenden <i class="fa fa-2x pointer designStatus"/></div>'));
 
-    if (GM_getValue('ModernDarkStatus') === 'on') {
+    if (GM_getValue('DesignStatus') === 'on') {
         $('.designStatus').addClass('active');
     }
 
     $('.designStatus').click(() => {
-        if (GM_getValue('ModernDarkStatus') === 'off') {
-            GM_setValue('ModernDarkStatus', 'on');
+        if (GM_getValue('DesignStatus') === 'off') {
+            GM_setValue('DesignStatus', 'on');
             $('.designStatus').addClass('active');
         } else {
-            GM_setValue('ModernDarkStatus', 'off');
+            GM_setValue('DesignStatus', 'off');
             $('.designStatus').removeClass('active');
         }
         location.reload();
