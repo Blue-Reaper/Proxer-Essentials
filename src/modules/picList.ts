@@ -2,14 +2,13 @@
 
 // IDEA use same Cookie than grid-list and add Buttons to switch List -> Grid
 
-// only in beta
-// pefModulList.push({
-//     id:"picList",
-//     name:"Picture List",
-//     description:"Bilder statt Listen",
-//     autor:"Blue.Reaper",
-// 	callMethod:(change)=>picListCall(change)
-// });
+pefModulList.push({
+    id:"picList",
+    name:"Picture List",
+    description:"Bilder statt Listen",
+    autor:"Blue.Reaper",
+	callMethod:(change)=>picListCall(change)
+});
 
 function picListCall (change:ModulCallEvent) {
 	switch(change) {

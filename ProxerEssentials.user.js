@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.5
+// @version     4.5-beta.2
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -545,14 +545,13 @@ function theatermodusOff() {
 }
 // Zeigt Bilder in den Listenansichten an
 // IDEA use same Cookie than grid-list and add Buttons to switch List -> Grid
-// only in beta
-// pefModulList.push({
-//     id:"picList",
-//     name:"Picture List",
-//     description:"Bilder statt Listen",
-//     autor:"Blue.Reaper",
-// 	callMethod:(change)=>picListCall(change)
-// });
+pefModulList.push({
+    id: "picList",
+    name: "Picture List",
+    description: "Bilder statt Listen",
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return picListCall(change); }
+});
 function picListCall(change) {
     switch (change) {
         case 0 /* on */:
