@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.3
+// @version     4.4
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -18,8 +18,8 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS          https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/css/pef.css
-// @resource    modernDark_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/css/modernDark.css
+// @resource    pef_CSS          src/css/pef.css
+// @resource    modernDark_CSS   src/css/modernDark.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
 // ==/UserScript==
@@ -58,7 +58,6 @@ function addPefMenu() {
     // Erzeugt 'Einstellungen' in Essentials
     $('#pef_menu').append($('<li><a href="/pef?s=settings#top">Einstellungen</a></li>'));
 }
-;
 // Zeigt die Settings des PEF an
 // Erzeugt die Einstellungs-Seite für PEF
 // Da es proxer.me/pef nicht gibt, wird die Startseite angezeigt
@@ -76,8 +75,8 @@ function createPefSettings() {
         // 		URL: ?s=settings
         $('#simple-navi').append($('<li id ="pef_Settings"><a data-ajax="true" href="/pef?s=settings#top">Einstellungen</a></li>'));
         // Erzeugt den Ihalt des Tabs 'Einstellungen'
-        if (location.search === "" || location.search === "?s=settings") {
-            $('#pef_Settings').addClass("active");
+        if (location.search === '' || location.search === '?s=settings') {
+            $('#pef_Settings').addClass('active');
             document.title = 'Proxer Essentials';
             // Überschrift
             inhalt.append($('<h3 class="floatLeft">Proxer Essentials</h3>'));
@@ -92,11 +91,11 @@ function createPefSettings() {
             footer.append(designLink);
             inhalt.append(footer);
             designLink.click(function () {
-                if (GM_getValue("ModernDarkStatus") === "off") {
-                    GM_setValue("ModernDarkStatus", "on");
+                if (GM_getValue('ModernDarkStatus') === 'off') {
+                    GM_setValue('ModernDarkStatus', 'on');
                 }
                 else {
-                    GM_setValue("ModernDarkStatus", "off");
+                    GM_setValue('ModernDarkStatus', 'off');
                 }
                 location.reload();
             });
@@ -106,7 +105,9 @@ function createPefSettings() {
 // Zeitgt die einzelnen Module auf der Einstellungs-Seite an
 function showModules(pef_module) {
     var _loop_1 = function (singleModule) {
-        var moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="floatLeft modulBox"></div>');
+        var moduleBox = $('<div id="' +
+            singleModule.id +
+            'ModulBox" class="floatLeft modulBox"></div>');
         moduleBox.append($('<h3>' + singleModule.name + '</h3>'));
         moduleBox.append($('<div>' + singleModule.description + '</div>'));
         moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));
@@ -125,27 +126,25 @@ function showModules(pef_module) {
 }
 // Troogelt den Speicherwert und ruft das Modul auf
 function toggleModulStatus(modul) {
-    if (GM_getValue(modul.id + "Status") === "off") {
-        GM_setValue(modul.id + "Status", "on");
+    if (GM_getValue(modul.id + 'Status') === 'off') {
+        GM_setValue(modul.id + 'Status', 'on');
         actionControl(0 /* on */, modul);
     }
     else {
-        GM_setValue(modul.id + "Status", "off");
+        GM_setValue(modul.id + 'Status', 'off');
         actionControl(1 /* off */, modul);
     }
     updateModulTick(modul.id);
 }
-;
 // Setzt den Haken / Kreuz nach dem Modulnamen
 function updateModulTick(modulId) {
-    if (GM_getValue(modulId + "Status") === "off") {
-        $("#" + modulId + "ModulBox").removeClass('active');
+    if (GM_getValue(modulId + 'Status') === 'off') {
+        $('#' + modulId + 'ModulBox').removeClass('active');
     }
     else {
-        $("#" + modulId + "ModulBox").addClass('active');
+        $('#' + modulId + 'ModulBox').addClass('active');
     }
 }
-;
 //############################# Erstellen eines Dialogs #############################
 /*	Erzeugt einen Dialog
 Variante 1: ConfirmDialog
@@ -155,35 +154,35 @@ Variante 2: AlertDialog
 */
 function createPefDialog(msg, methodYes, methodNo) {
     // Testet, ob ein Confirm-, oder ein AlertDialog angezeigt werden soll
-    var confirmDialog = (methodYes != null && methodNo != null) ? true : false;
+    var confirmDialog = methodYes != null && methodNo != null ? true : false;
     // Damit der Hintergurnd gesperrt wird
-    var dialogoverlay = document.createElement("div");
-    dialogoverlay.className = "dialogOverlay";
+    var dialogoverlay = document.createElement('div');
+    dialogoverlay.className = 'dialogOverlay';
     // Das Dialogfeld
-    var dialogbox = document.createElement("div");
-    dialogbox.className = "message dialogBox";
+    var dialogbox = document.createElement('div');
+    dialogbox.className = 'message dialogBox';
     // Die Angezeigte Nachricht
-    var dialogmessage = document.createElement("div");
+    var dialogmessage = document.createElement('div');
     dialogmessage.innerHTML = msg;
     // Die Antwortbutton
-    var dialogbuttons = document.createElement("div");
+    var dialogbuttons = document.createElement('div');
     if (confirmDialog) {
-        dialogbuttons.className = "dialogYesNo";
+        dialogbuttons.className = 'dialogYesNo';
     }
     else {
-        dialogbuttons.className = "center dialogOk";
+        dialogbuttons.className = 'center dialogOk';
     }
-    var dialogbuttonyes = document.createElement("i");
-    dialogbuttonyes.className = "fa fa-check fa-2x pointer";
+    var dialogbuttonyes = document.createElement('i');
+    dialogbuttonyes.className = 'fa fa-check fa-2x pointer';
     dialogbuttons.appendChild(dialogbuttonyes);
     if (confirmDialog) {
-        var dialogbuttonno = document.createElement("i");
-        dialogbuttonno.className = "dialogButtonNo fa fa-times fa-2x pointer";
+        var dialogbuttonno = document.createElement('i');
+        dialogbuttonno.className = 'dialogButtonNo fa fa-times fa-2x pointer';
         dialogbuttons.appendChild(dialogbuttonno);
         $(dialogbuttonno).click(function () {
             messages.removeChild(dialogoverlay);
             messages.removeChild(dialogbox);
-            methodNo();
+            methodNo && methodNo();
         });
     }
     // Hinzufügen der Elemente
@@ -193,23 +192,23 @@ function createPefDialog(msg, methodYes, methodNo) {
     messages.appendChild(dialogoverlay);
     messages.appendChild(dialogbox);
     // Dialog mittig setzen
-    dialogbox.style.marginTop = (dialogbox.clientHeight / -2) + "px";
-    dialogbox.style.marginLeft = (dialogbox.clientWidth / -2) + "px";
+    dialogbox.style.marginTop = dialogbox.clientHeight / -2 + 'px';
+    dialogbox.style.marginLeft = dialogbox.clientWidth / -2 + 'px';
     // Klicken der Buttons löscht Dialog und ruft jeweilige Mothode auf
     $(dialogbuttonyes).click(function () {
         messages.removeChild(dialogoverlay);
         messages.removeChild(dialogbox);
         if (confirmDialog) {
-            methodYes();
+            methodYes && methodYes();
         }
     });
 }
-;
 //############################# Erstellen einer Message #############################
 //	Erzeugt eine Message
 function createPefMessage(msg) {
     // Proxer eigene Funktion
-    if (window.location.hostname !== "stream.proxer.me") {
+    if (window.location.hostname !== 'stream.proxer.me') {
+        // @ts-ignore
         create_message('key_suggestion', 7000, msg);
     }
 }
@@ -217,14 +216,17 @@ function createPefMessage(msg) {
 // Gibt den Wert des übergebenen Coockienamens wieder
 function getCookie(name) {
     // Proxer eigene Funktion
-    if (window.location.hostname !== "stream.proxer.me") {
+    if (window.location.hostname !== 'stream.proxer.me') {
+        // @ts-ignore
         return get_cookie(name);
     }
+    return '';
 }
 // Setzt ein Cookie
 function setCookie(name, value) {
     // Proxer eigene Funktion
-    if (window.location.hostname !== "stream.proxer.me") {
+    if (window.location.hostname !== 'stream.proxer.me') {
+        // @ts-ignore
         set_cookie(name, value, cookie_expire);
     }
 }
@@ -256,11 +258,12 @@ function actionControl(change, modul) {
 // Longstrip Reader als Standard
 // Longstrip: klick auf Bild scrollt zum nächsten Bild
 // Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
+// Fügt Mangaupdates neben Animeupdates auf Startseite hinzu
 pefModulList.push({
-    id: "mangaComfort",
-    name: "Manga Comfort",
-    description: "mehr Komfort beim Manga Lesen",
-    autor: "Blue.Reaper",
+    id: 'mangaComfort',
+    name: 'Manga Comfort',
+    description: 'mehr Komfort beim Manga Lesen',
+    autor: 'Blue.Reaper',
     callMethod: function (change) { return mangaComfortCall(change); }
 });
 function mangaComfortCall(change) {
@@ -276,33 +279,41 @@ function mangaComfortCall(change) {
     }
 }
 function mangaComfort() {
+    // On Home Page and Links doesn't exist
+    if (window.location.pathname === '/' && !$('li>a[href="/manga/updates#top').length) {
+        // Add Mangaupdaets like existing Animeupdates and after that
+        $('li>a[href="/anime/updates#top"]').parent().after($('<li id="pef_mangaupdates"><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
+    }
     if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
         return;
     }
     // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
-    if (getCookie("manga_reader") != "slide") {
+    if (getCookie('manga_reader') != 'slide') {
         setCookie('manga_reader', 'longstrip');
     }
     // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
-    if (getCookie("manga_reader") == "longstrip") {
-        $('#reader img').attr("onclick", "");
-        $('#reader img').off("click", scrollToNextPage);
+    if (getCookie('manga_reader') == 'longstrip') {
+        $('#reader img').attr('onclick', '');
+        $('#reader img').off('click', scrollToNextPage);
         $('#reader img').click(scrollToNextPage);
-        $('#reader img:last-child').attr("onclick", "window.location=nextChapter.replace('chapter','read')+'#top'");
+        $('#reader img:last-child').attr('onclick', "window.location=nextChapter.replace('chapter','read')+'#top'");
     }
     // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
     if ($('#main img[src="/images/misc/404.png"]').length) {
         window.location.pathname = window.location.pathname.replace('read', 'chapter');
     }
     // Mauszeiger wird auch nur über Bild zur Hand
-    $('#reader img').addClass("pointer");
-    $('#reader a').addClass("cursorAuto");
+    $('#reader img').addClass('pointer');
+    $('#reader a').addClass('cursorAuto');
 }
 function scrollToNextPage() {
+    // @ts-ignore
+    var image = $('#chapterImage' + current_page).offset();
     $('body,html').animate({
         // nicht page+1, da id bei 0 los zählt
-        scrollTop: $('#chapterImage' + (current_page)).offset().top
+        scrollTop: image ? image.top : 0
     }, 800);
+    // @ts-ignore
     current_page = current_page + 1;
 }
 // Muster (Proxer Essentials Framework Example)
@@ -355,10 +366,10 @@ function anotherExampleMethod() {
 // Grid-Anzeige als Standard, statt Listenansicht
 // setzt "Ja ich bin Erwachsen"
 pefModulList.push({
-    id: "smallWonders",
-    name: "Kleine Wunder",
-    description: "Kleine Änderungen, die Wunder wirken",
-    autor: "Blue.Reaper",
+    id: 'smallWonders',
+    name: 'Kleine Wunder',
+    description: 'Kleine Änderungen, die Wunder wirken',
+    autor: 'Blue.Reaper',
     callMethod: function (change) { return smallWondersCall(change); }
 });
 function smallWondersCall(change) {
@@ -380,7 +391,7 @@ function smallWonders() {
     // Keine Erwachenen-Meldung mehr
     setCookie('adult', '1');
     // Cookie setzt Grid-Anzeige als Standard (im Gegensatz zu der Listenansicht), wenn noch kein Cookie gesetzt ist
-    if (getCookie("manga_reader") != "tablelist") {
+    if (getCookie('manga_reader') != 'tablelist') {
         setCookie('entryView', 'grid');
     }
     // ############### BackToTop ###############
@@ -388,10 +399,11 @@ function smallWonders() {
     if (!$('.backToTop').length) {
         // button einfügen
         var backToTopButton_1 = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
-        $("body").append(backToTopButton_1);
+        $('body').append(backToTopButton_1);
         // scroll 1000 Pixel
         $(window).scroll(function () {
-            if ($(window).scrollTop() > 1000) {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop && scrollTop > 1000) {
                 backToTopButton_1.fadeIn();
             }
             else {
@@ -455,6 +467,70 @@ function theatermodusOff() {
     // Entferne Button wieder
     $('.toggleTheater').remove();
 }
+// Zeigt Bilder in den Listenansichten an
+// IDEA use same Cookie than grid-list and add Buttons to switch List -> Grid
+// Not Ready for v4.4
+// pefModulList.push({
+//     id:"picList",
+//     name:"Picture List",
+//     description:"Bilder statt Listen",
+//     autor:"Blue.Reaper",
+// 	callMethod:(change)=>picListCall(change)
+// });
+function picListCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            picList();
+            break;
+        case 1 /* off */:
+            break;
+        case 2 /* ajax */:
+            picList();
+            break;
+    }
+}
+function picList() {
+    // console.log(window.location.pathname);
+    // only in specific locations
+    if ((window.location.pathname !== '/manga/updates' && window.location.pathname !== '/anime/updates')) {
+        return;
+    }
+    // don't show Table-Liste
+    $('.inner table').css("display", "none");
+    // Grid-List not added
+    if (!$('.infocell').length) {
+        var temp = $('tr');
+        temp.each(function (idx, tr) {
+            // skip table header
+            if ($(tr).find('th').length) {
+                console.log("skip header");
+                return true;
+            }
+            var mainLink = $(tr).find('td:nth-child(2) a');
+            var box = $('<div class="infocell"></div>');
+            var boxLink = $('<a href="' + mainLink.attr("href") + '" data-ajax="true"></a>');
+            // Cover
+            boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/' + mainLink.attr("href").split('/')[2] + '.jpg">'));
+            box.append(boxLink);
+            // Title and Status (eg: Airing)
+            box.append($('<div>').append(mainLink).append($(tr).find('td:nth-child(1) img')));
+            // language and Date
+            box.append($('<div>').append($(tr).find('td:nth-child(3) img')).append($(tr).find('td:nth-child(6)').text()));
+            // Uploader
+            box.append($('<div>').append($(tr).find('td:nth-child(5) a')));
+            $('.inner').append(box);
+            // UserStatus (eg: Rading)
+        });
+        $('.inner').append($('<div class="clear"/>'));
+    }
+    else {
+        // add read-status
+        var temp = $('.infocelltriangle');
+        temp.each(function (idx, status) {
+            $('.infocell').eq(idx).css("border-top-color", $(status).css("border-top-color"));
+        });
+    }
+}
 // Theme can't be activatet with modules, because it must be loaded before the content is shown
 // Init Memory
 if (GM_getValue("ModernDarkStatus") == null) {
@@ -480,9 +556,10 @@ function supportDesign() {
         $('[src~="/images/misc/kreuz.png"]').attr('src', 'https://logosart.de/proxer2-0/cross.png');
         $('[src~="/images/misc/stern.png"]').attr('src', 'https://logosart.de/proxer2-0/star.png').addClass('smallImg');
         $('[src~="/images/misc/stern_grau.png"]').attr('src', 'https://logosart.de/proxer2-0/star_empty.png').addClass('smallImg');
-        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
-        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
-        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test.jpg');
+        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-manga.jpg');
+        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
         $('[src~="/images/misc/upload.png"]').attr('src', 'https://logosart.de/proxer2-0/upload.jpg').addClass('borderRadius6');
         $('[src~="/images/misc/play.png"]').attr('src', 'https://logosart.de/proxer2-0/play.jpg').addClass('borderRadius6');
         $('[src~="/images/misc/info-icon.png"]').attr('src', 'https://logosart.de/proxer2-0/info.jpg').addClass('borderRadius6');
