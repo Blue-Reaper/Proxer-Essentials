@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.5-beta.1
+// @version     4.5-beta.2
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -18,8 +18,8 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS          src/css/pef.css
-// @resource    modernDark_CSS   src/css/modernDark.css
+// @resource    pef_CSS      src/css/pef.css
+// @resource    design_CSS   src/css/design.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
 // ==/UserScript==
@@ -51,63 +51,139 @@ function monitorAjax() {
         }
     }, 700);
 }
-//Fügt den Button "Essentials" zu "leftNav" hinzu
-// Erzeugt 'Einstellungen' in Essentials
+// Adds Essentials Menu
 function addPefMenu() {
-    $('#leftNav').append($('<li class="topmenu"><a href="javascript:;">Essentials ▾</a><ul id="pef_menu"></ul></li>'));
-    // Erzeugt 'Einstellungen' in Essentials
+    // add Essentials to Navigation
+    $('#leftNav').append($('<li class="topmenu"><a data-ajax="true" href="/pef">Essentials ▾</a><ul id="pef_menu"></ul></li>'));
+    // add Menu Entries
+    // Einstellungen
     $('#pef_menu').append($('<li><a href="/pef?s=settings#top">Einstellungen</a></li>'));
+    // Module
+    $('#pef_menu').append($('<li><a href="/pef?s=modules#top">Module</a></li>'));
+    // Design
+    $('#pef_menu').append($('<li><a href="/pef?s=design#top">Design</a></li>'));
 }
 // Zeigt die Settings des PEF an
 // Erzeugt die Einstellungs-Seite für PEF
 // Da es proxer.me/pef nicht gibt, wird die Startseite angezeigt
 function createPefSettings() {
-    if (window.location.pathname.split('/')[1] === 'pef') {
+    if (window.location.pathname.split('/')[1] === 'pef' && !$('#pef_Settings').length) {
         // // Lösche alle Tabs der Startseite aus Navigations-Leiste
         $('#simple-navi').empty();
         // 		Lösche den Inhalt der Seite
         $('div.inner').empty();
-        var inhalt = $('div.inner');
         // Setze den Titel des Tabs im Browser
         document.title = 'Proxer Essentials';
-        // 		Erzeuge Tab Einstellungen
-        // 		Id: pef_Settings
-        // 		URL: ?s=settings
+        // Erzeuge Tabs
+        // Einstellungen
         $('#simple-navi').append($('<li id ="pef_Settings"><a data-ajax="true" href="/pef?s=settings#top">Einstellungen</a></li>'));
-        // Erzeugt den Ihalt des Tabs 'Einstellungen'
-        if (location.search === '' || location.search === '?s=settings') {
-            $('#pef_Settings').addClass('active');
-            document.title = 'Proxer Essentials';
-            // Überschrift
-            inhalt.append($('<h3 class="floatLeft">Proxer Essentials</h3>'));
-            inhalt.append($('<div class="floatLeft version">' + GM_info.script.version + '</div>'));
-            // Inhalt für Modulanzeige
-            var pef_module = $('<div class="clear"/>');
-            inhalt.append(pef_module);
-            showModules(pef_module);
-            // Footer
-            var designLink = $('<a href="javascript:;">Design by xYata</a>');
-            var footer = $('<div class ="clear"></div>');
-            footer.append(designLink);
-            inhalt.append(footer);
-            designLink.click(function () {
-                if (GM_getValue('ModernDarkStatus') === 'off') {
-                    GM_setValue('ModernDarkStatus', 'on');
-                }
-                else {
-                    GM_setValue('ModernDarkStatus', 'off');
-                }
-                location.reload();
-            });
-        }
+        // 	Module
+        $('#simple-navi').append($('<li id ="pef_Modules"><a data-ajax="true" href="/pef?s=modules#top">Module</a></li>'));
+        // 	Design
+        $('#simple-navi').append($('<li id ="pef_Design"><a data-ajax="true" href="/pef?s=design#top">Design</a></li>'));
+        setActivePefTab();
     }
+}
+function setActivePefTab() {
+    if (location.search === '' || location.search === '?s=settings') {
+        $('#pef_Settings').addClass('active');
+        tabPefSettings();
+    }
+    else if (location.search === '?s=modules') {
+        $('#pef_Modules').addClass('active');
+        tabPefModules();
+    }
+    else if (location.search === '?s=design') {
+        $('#pef_Design').addClass('active');
+        tabPefDesign();
+    }
+}
+// Content of tab 'Einstellungen'
+function tabPefSettings() {
+    var inhalt = $('div.inner');
+    // Header
+    inhalt.append($('<h3 class="floatLeft">Proxer Essentials</h3>'));
+    inhalt.append($('<div class="floatLeft creator">by Blue.Reaper</div>'));
+    inhalt.append($('<div class="clear">Version: ' + GM_info.script.version + '</div>'));
+    inhalt.append($('<h4>Einstellungen</h4>'));
+    inhalt.append($('<a data-ajax="true" href="/pef?s=modules#top" class="menu">Module</a>'));
+    inhalt.append($('<a data-ajax="true" href="/pef?s=design#top" class="menu">Design</a>'));
+    inhalt.append($('<h4>Nützliche Links</h4>'));
+    inhalt.append($('<div>Alle Infos über Proxer Essentials gibt es <a href="https://blue-reaper.github.io/Proxer-Essentials/">hier</a>.</div>'));
+    inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/raw/beta/ProxerEssentials.user.js">Beta Version</a></div>'));
+    inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/releases">Release Notes</a></div>'));
+    inhalt.append($('<div><a href="https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials">Forumsbeitrag</a></div>'));
+}
+// Content of tab 'Module'
+function tabPefModules() {
+    var inhalt = $('div.inner');
+    // Header
+    inhalt.append($('<h3>Module</h3>'));
+    // Inhalt für Modulanzeige
+    var pef_module = $('<div class="clear"/>');
+    inhalt.append(pef_module);
+    showModules(pef_module);
+    // Footer
+    inhalt.append($('<div class ="clear"></div>'));
+}
+// Content of tab 'Design'
+function tabPefDesign() {
+    var inhalt = $('div.inner');
+    // Header
+    inhalt.append($('<h3 class="floatLeft">Design</h3>'));
+    inhalt.append($('<div class="floatLeft creator">by xYata</div>'));
+    inhalt.append($('<div class="clear">Essentials Design verwenden <i class="fa fa-2x pointer designStatus"/></div>'));
+    if (GM_getValue('DesignStatus') === 'on') {
+        $('.designStatus').addClass('active');
+    }
+    $('.designStatus').click(function () {
+        if (GM_getValue('DesignStatus') === 'off') {
+            GM_setValue('DesignStatus', 'on');
+            $('.designStatus').addClass('active');
+        }
+        else {
+            GM_setValue('DesignStatus', 'off');
+            $('.designStatus').removeClass('active');
+        }
+        location.reload();
+    });
+    inhalt.append($('<h4>Farbwahl</h4>'));
+    inhalt.append($('<div>Hier können die Farben des Designs eingestellt werden, dazu einfach den gewünschten Hexwert eingeben.</div>'));
+    inhalt.append($('<div>Den Hexwert einer Farbe kann man z.B. <a href="https://html-color-codes.info/webfarben_hexcodes/">hier</a> herausfinden.</div>'));
+    var colorpick = $('<div class="colorpick"/>');
+    colorpick.append($('<div class="clear">Akzent: <input id="pefAccentColor" type="text" class="floatRight" value="' + GM_getValue("AccentColor") + '"/></div>'));
+    colorpick.append($('<div class="clear">Haupt-Hintergrund: <input id="pefMainBgColor" type="text" class="floatRight" value="' + GM_getValue("MainBgColor") + '"/></div>'));
+    colorpick.append($('<div class="clear">Hintergrund: <input id="pefBgColor" type="text" class="floatRight" value="' + GM_getValue("BgColor") + '"/></div>'));
+    colorpick.append($('<div class="clear">Schaltflächen: <input id="pefButtonColor" type="text" class="floatRight" value="' + GM_getValue("ButtonColor") + '"/></div>'));
+    colorpick.append($('<div class="clear">Text: <input id="pefTextColor" type="text" class="floatRight" value="' + GM_getValue("TextColor") + '"/></div>'));
+    colorpick.append($('<div class="clear">Links: <input id="pefLinkColor" type="text" class="floatRight" value="' + GM_getValue("LinkColor") + '"/></div>'));
+    colorpick.append($('<div class="clear">hervorgehobener Text: <input id="pefTextHighlightColor" type="text" class="floatRight" value="' + GM_getValue("TextHighlightColor") + '"/></div>'));
+    var buttons = $('<div class ="clear"/>');
+    var reset = $('<a href="javascript:;" class="menu active">Zurücksetzen</a>');
+    var save = $('<a href="javascript:;" class="menu floatRight">Farben speichern</a>');
+    buttons.append(reset);
+    buttons.append(save);
+    colorpick.append(buttons);
+    inhalt.append(colorpick);
+    reset.click(function () {
+        resetDesign();
+        location.reload();
+    });
+    save.click(function () {
+        GM_setValue("AccentColor", $('#pefAccentColor').val());
+        GM_setValue("MainBgColor", $('#pefMainBgColor').val());
+        GM_setValue("BgColor", $('#pefBgColor').val());
+        GM_setValue("ButtonColor", $('#pefButtonColor').val());
+        GM_setValue("TextColor", $('#pefTextColor').val());
+        GM_setValue("LinkColor", $('#pefLinkColor').val());
+        GM_setValue("TextHighlightColor", $('#pefTextHighlightColor').val());
+        location.reload();
+    });
 }
 // Zeitgt die einzelnen Module auf der Einstellungs-Seite an
 function showModules(pef_module) {
     var _loop_1 = function (singleModule) {
-        var moduleBox = $('<div id="' +
-            singleModule.id +
-            'ModulBox" class="floatLeft modulBox"></div>');
+        var moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="floatLeft modulBox"></div>');
         moduleBox.append($('<h3>' + singleModule.name + '</h3>'));
         moduleBox.append($('<div>' + singleModule.description + '</div>'));
         moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));
@@ -136,7 +212,7 @@ function toggleModulStatus(modul) {
     }
     updateModulTick(modul.id);
 }
-// Setzt den Haken / Kreuz nach dem Modulnamen
+// Setzt ModulBox active or not
 function updateModulTick(modulId) {
     if (GM_getValue(modulId + 'Status') === 'off') {
         $('#' + modulId + 'ModulBox').removeClass('active');
@@ -532,18 +608,32 @@ function picList() {
 }
 // Theme can't be activatet with modules, because it must be loaded before the content is shown
 // Init Memory
-if (GM_getValue("ModernDarkStatus") == null) {
-    GM_setValue("ModernDarkStatus", "on");
+if (GM_getValue("DesignStatus") == null) {
+    resetDesign();
 }
 // add Theme
-if (GM_getValue("ModernDarkStatus") == "on") {
+if (GM_getValue("DesignStatus") == "on") {
+    // Add colors for design
+    GM_addStyle(":root {\n            /* accent color */\n            --accent-color:" + GM_getValue("AccentColor") + ";\n            /* background color */\n            --main-bg-color:" + GM_getValue("MainBgColor") + ";\n            --bg-color:" + GM_getValue("BgColor") + ";\n            /* Button */\n            --button-color:" + GM_getValue("ButtonColor") + ";\n            /* Text */\n            --text-color:" + GM_getValue("TextColor") + ";\n            --link-color:" + GM_getValue("LinkColor") + ";\n            --highlight-text-color:" + GM_getValue("TextHighlightColor") + ";\n        }");
     // Add Style after <head> to override css of side (and dont need !important everywhere)
     // But add Before sth is shown to the user
-    $("html").append($('<style type="text/css">' + GM_getResourceText("modernDark_CSS") + '</style>'));
+    $("html").append($('<style type="text/css">' + GM_getResourceText("design_CSS") + '</style>'));
+    // Set Proxer-Style to gray, needed for Design
+    setCookie("style", "gray");
+}
+function resetDesign() {
+    GM_setValue("DesignStatus", "on");
+    GM_setValue("AccentColor", "#ef394a");
+    GM_setValue("MainBgColor", "#232428");
+    GM_setValue("BgColor", "#2d2f33");
+    GM_setValue("ButtonColor", "#3e3e3e");
+    GM_setValue("TextColor", "#909090");
+    GM_setValue("LinkColor", "#bdbdbd");
+    GM_setValue("TextHighlightColor", "#fff");
 }
 // Wird benötigt, da z.B Firefox nicht alle CSS Funktionen unterstützt
 function supportDesign() {
-    if (GM_getValue("ModernDarkStatus") == "on") {
+    if (GM_getValue("DesignStatus") == "on") {
         // Bilder ersetzen
         $('[src~="/images/status/abgeschlossen.png"]').attr('src', 'https://logosart.de/proxer2-0/abgeschlossen.png').addClass('smallImg');
         $('[src~="/images/status/airing.png"]').attr('src', 'https://logosart.de/proxer2-0/airing.png').addClass('smallImg');
