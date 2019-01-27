@@ -20,11 +20,12 @@ Es gab bereits einige Verbesserungen z.B.
 
 Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
 
-<img src="screenshots/designOptional.png" width="15%">
+<img src="screenshots/designOptional.png" width="50%">
 
 ## Module
 <img src="screenshots/menu.png" width="30%">
 ![Bild der Module](screenshots/modules.png)
+
 * ### Kleine Wunder
   * "zurück nach Oben" Button
   
