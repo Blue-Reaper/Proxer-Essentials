@@ -1,7 +1,7 @@
 // Longstrip Reader als Standard
 // Longstrip: klick auf Bild scrollt zum nächsten Bild
 // Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
-// Fügt Mangaupdates neben Animeupdates auf Startseite hinzu
+// Fügt Mangaupdates im Menü Manga und auf Startseite neben Animeupdates hinzu
 
 pefModulList.push({
     id: 'mangaComfort',
@@ -26,10 +26,14 @@ function mangaComfortCall(change: ModulCallEvent) {
 
 function mangaComfort(){
 
+    // add Mangaupdate in Menu
+    if(!$('#leftNav li:nth-child(3) ul li>a[href="/manga/updates#top').length){
+        $('#leftNav li:nth-child(3) ul').append($('<li><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
+    }
     // On Home Page and Links doesn't exist
-    if (window.location.pathname === '/' && !$('li>a[href="/manga/updates#top').length){
+    if (window.location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length){
         // Add Mangaupdaets like existing Animeupdates and after that
-        $('li>a[href="/anime/updates#top"]').parent().after($('<li id="pef_mangaupdates"><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
+        $('#main li>a[href="/anime/updates#top"]').parent().after($('<li id="pef_mangaupdates"><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
     }
 
 	if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter'){

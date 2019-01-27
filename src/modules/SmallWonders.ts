@@ -1,6 +1,5 @@
 // Wunder:
 // "zurück nach oben" Button
-// Grid-Anzeige als Standard, statt Listenansicht
 // setzt "Ja ich bin Erwachsen"
 
 pefModulList.push({
@@ -30,11 +29,6 @@ function smallWonders() {
   setCookie('cookieconsent_dismissed', 'yes');
   // Keine Erwachenen-Meldung mehr
   setCookie('adult', '1');
-
-  // Cookie setzt Grid-Anzeige als Standard (im Gegensatz zu der Listenansicht), wenn noch kein Cookie gesetzt ist
-  if (getCookie('manga_reader') != 'tablelist') {
-    setCookie('entryView', 'grid');
-  }
 
   // ############### BackToTop ###############
   // Check if Button already added
