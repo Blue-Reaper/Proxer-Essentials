@@ -17,8 +17,8 @@
 // @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
 // @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
-// @resource    pef_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/picture-list-2/src/css/pef.css
-// @resource    design_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/picture-list-2/src/css/design.css
+// @resource    pef_CSS      src/css/pef.css
+// @resource    design_CSS   src/css/design.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
 // ==/UserScript==
