@@ -32,8 +32,8 @@ function picList(){
 	// add buttons for table- or grid-view
 	if(!$('#pefViewControl').length){
 		$('#main #simple-navi').after($(`<div id="pefViewControl" class="clear">
-				<a id="pefGrid" data-ajax="true" class="marginLeft05 floatRight menu fa fa-th-large" onclick="set_cookie('entryView','grid',cookie_expire);" href="/manga/updates#top"/>
-				<a id="pefList" data-ajax="true" class="floatRight menu fa fa-list" onclick="set_cookie('entryView','tablelist',cookie_expire);" href="/manga/updates#top"/>
+				<a id="pefGrid" data-ajax="true" class="marginLeft05 floatRight menu fa fa-th-large" onclick="set_cookie('entryView','grid',cookie_expire);location.reload();" href="javascript:;"/>
+				<a id="pefList" data-ajax="true" class="floatRight menu fa fa-list" onclick="set_cookie('entryView','tablelist',cookie_expire);location.reload();" href="javascript:;"/>
 			</div>`));
 	}
 
@@ -76,14 +76,9 @@ function picList(){
 				$('.inner').append(box);
 			});
 			$('.inner').append($('<div class="clear"/>'))
+			updateReadingStatus();
 		} else {
-			// add read-status (e.g. Reading)
-			let temp = $('.infocelltriangle');
-			temp.each((idx, status)=>{
-				if($(status).css("border-top-color") != "rgba(0, 0, 0, 0)"){
-					$('.infocell').eq(idx).css("border-top-color",$(status).css("border-top-color"));
-				}
-			});
+			updateReadingStatus();
 		}
 	}else {
 // Table List
@@ -91,6 +86,14 @@ function picList(){
 		$('#pefGrid').removeClass("active");
 		$('#pefList').addClass("active");
 	}
+}
 
-
+// add read-status (e.g. Reading)
+function updateReadingStatus(){
+	let temp = $('.infocelltriangle');
+	temp.each((idx, status)=>{
+		if($(status).css("border-top-color") != "rgba(0, 0, 0, 0)"){
+			$('.infocell').eq(idx).css("border-top-color",$(status).css("border-top-color"));
+		}
+	});
 }

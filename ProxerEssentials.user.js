@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.5-beta.3
+// @version     4.5
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -355,9 +355,9 @@ function mangaComfortCall(change) {
     }
 }
 function mangaComfort() {
-    // add Mangaupdate in Menu
+    // add Updates in Menu Manga
     if (!$('#leftNav li:nth-child(3) ul li>a[href="/manga/updates#top').length) {
-        $('#leftNav li:nth-child(3) ul').append($('<li><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
+        $('#leftNav li:nth-child(3) ul').append($('<li><a data-ajax="true" href="/manga/updates#top">Updates</a></li>'));
     }
     // On Home Page and Links doesn't exist
     if (window.location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length) {
@@ -571,7 +571,7 @@ function picList() {
     }
     // add buttons for table- or grid-view
     if (!$('#pefViewControl').length) {
-        $('#main #simple-navi').after($("<div id=\"pefViewControl\" class=\"clear\">\n\t\t\t\t<a id=\"pefGrid\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-th-large\" onclick=\"set_cookie('entryView','grid',cookie_expire);\" href=\"/manga/updates#top\"/>\n\t\t\t\t<a id=\"pefList\" data-ajax=\"true\" class=\"floatRight menu fa fa-list\" onclick=\"set_cookie('entryView','tablelist',cookie_expire);\" href=\"/manga/updates#top\"/>\n\t\t\t</div>"));
+        $('#main #simple-navi').after($("<div id=\"pefViewControl\" class=\"clear\">\n\t\t\t\t<a id=\"pefGrid\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-th-large\" onclick=\"set_cookie('entryView','grid',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n\t\t\t\t<a id=\"pefList\" data-ajax=\"true\" class=\"floatRight menu fa fa-list\" onclick=\"set_cookie('entryView','tablelist',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n\t\t\t</div>"));
     }
     // Picture (=Grid) List
     if (getCookie('entryView') != 'tablelist') {
@@ -608,15 +608,10 @@ function picList() {
                 $('.inner').append(box);
             });
             $('.inner').append($('<div class="clear"/>'));
+            updateReadingStatus();
         }
         else {
-            // add read-status (e.g. Reading)
-            var temp = $('.infocelltriangle');
-            temp.each(function (idx, status) {
-                if ($(status).css("border-top-color") != "rgba(0, 0, 0, 0)") {
-                    $('.infocell').eq(idx).css("border-top-color", $(status).css("border-top-color"));
-                }
-            });
+            updateReadingStatus();
         }
     }
     else {
@@ -625,6 +620,15 @@ function picList() {
         $('#pefGrid').removeClass("active");
         $('#pefList').addClass("active");
     }
+}
+// add read-status (e.g. Reading)
+function updateReadingStatus() {
+    var temp = $('.infocelltriangle');
+    temp.each(function (idx, status) {
+        if ($(status).css("border-top-color") != "rgba(0, 0, 0, 0)") {
+            $('.infocell').eq(idx).css("border-top-color", $(status).css("border-top-color"));
+        }
+    });
 }
 // Theme can't be activatet with modules, because it must be loaded before the content is shown
 // Init Memory
