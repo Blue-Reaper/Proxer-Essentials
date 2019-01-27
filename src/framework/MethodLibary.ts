@@ -6,11 +6,7 @@ Variante 1: ConfirmDialog
 Variante 2: AlertDialog
 -createPefDialog(msg)
 */
-function createPefDialog(
-    msg: string,
-    methodYes?: () => void,
-    methodNo?: () => void
-) {
+function createPefDialog(msg: string, methodYes?: () => void, methodNo?: () => void) {
     // Testet, ob ein Confirm-, oder ein AlertDialog angezeigt werden soll
     let confirmDialog = methodYes != null && methodNo != null ? true : false;
 

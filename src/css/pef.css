@@ -24,6 +24,10 @@
     float: right;
 }
 
+.marginLeft05 {
+    margin-left: 0.5em;
+}
+
 /* Tab Einstellungen */
 .creator {
     padding-top: 1.3em;
@@ -180,4 +184,10 @@
     height: 100vh;
     width: 100%;
     z-index: 1
+}
+
+/* Picture List */
+#pefViewControl {
+    width: 55%;
+    padding-top: 1em;
 }

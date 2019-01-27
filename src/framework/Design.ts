@@ -26,9 +26,6 @@ if (GM_getValue("DesignStatus")=="on"){
     // Add Style after <head> to override css of side (and dont need !important everywhere)
     // But add Before sth is shown to the user
     $("html").append($('<style type="text/css">'+GM_getResourceText ("design_CSS")+'</style>'));
-
-    // Set Proxer-Style to gray, needed for Design
-    setCookie("style","gray");
 }
 
 function resetDesign(){
@@ -45,6 +42,8 @@ function resetDesign(){
 // Wird benötigt, da z.B Firefox nicht alle CSS Funktionen unterstützt
 function supportDesign(){
     if (GM_getValue("DesignStatus")=="on"){
+        // Set Proxer-Style to gray, needed for Design
+        setCookie("style","gray");
         // Bilder ersetzen
         $('[src~="/images/status/abgeschlossen.png"]').attr('src','https://logosart.de/proxer2-0/abgeschlossen.png').addClass('smallImg');
         $('[src~="/images/status/airing.png"]').attr('src','https://logosart.de/proxer2-0/airing.png').addClass('smallImg');
