@@ -63,7 +63,7 @@ function tabPefSettings(){
 
     inhalt.append($('<h4>Einstellungen</h4>'));
     inhalt.append($('<a data-ajax="true" href="/pef?s=modules#top" class="menu">Module</a>'));
-    inhalt.append($('<a data-ajax="true" href="/pef?s=design#top" class="menu">Design</a>'));
+    inhalt.append($('<a data-ajax="true" href="/pef?s=design#top" class="menu marginLeft05">Design</a>'));
 
     inhalt.append($('<h4>Nützliche Links</h4>'));
     inhalt.append($('<div>Alle Infos über Proxer Essentials gibt es <a href="https://blue-reaper.github.io/Proxer-Essentials/">hier</a>.</div>'));

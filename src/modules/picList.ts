@@ -1,6 +1,5 @@
 // Zeigt Bilder in den Listenansichten an
-
-// IDEA use same Cookie than grid-list and add Buttons to switch List -> Grid
+// Grid-Anzeige als Standard, statt Listenansicht
 
 pefModulList.push({
     id:"picList",
@@ -30,42 +29,68 @@ function picList(){
 		return;
 	}
 
-    // don't show Table-Liste
-    $('.inner table').css("display","none");
+	// add buttons for table- or grid-view
+	if(!$('#pefViewControl').length){
+		$('#main #simple-navi').after($(`<div id="pefViewControl" class="clear">
+				<a id="pefGrid" data-ajax="true" class="marginLeft05 floatRight menu fa fa-th-large" onclick="set_cookie('entryView','grid',cookie_expire);" href="/manga/updates#top"/>
+				<a id="pefList" data-ajax="true" class="floatRight menu fa fa-list" onclick="set_cookie('entryView','tablelist',cookie_expire);" href="/manga/updates#top"/>
+			</div>`));
+	}
 
-    // Grid-List not added
-    if(!$('.infocell').length){
-        let temp = $('tr');
-        temp.each((idx, tr)=>{
-            // skip table header
-            if($(tr).find('th').length){
-                console.log("skip header");
-                return true;
-            }
-                let mainLink = $(tr).find('td:nth-child(2) a');
+// Picture (=Grid) List
+	if (getCookie('entryView') != 'tablelist') {
+		// Cookie setzt Grid-Anzeige als Standard (im Gegensatz zu der Listenansicht), wenn noch kein Cookie gesetzt ist
+		setCookie('entryView', 'grid');
+		// show which view is active
+		$('#pefGrid').addClass("active");
+		$('#pefList').removeClass("active");
 
-                let box = $('<div class="infocell"></div>');
+		// don't show Table-Liste
+		$('.inner table').css("display","none");
 
-                let boxLink = $('<a href="'+mainLink.attr("href")+'" data-ajax="true"></a>');
-                // Cover
-                boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/'+mainLink.attr("href").split('/')[2]+'.jpg">'));
-                box.append(boxLink);
-                // Title and Status (eg: Airing)
-                box.append($('<div>').append(mainLink).append($(tr).find('td:nth-child(1) img')));
-                // language and Date
-                box.append($('<div>').append($(tr).find('td:nth-child(3) img')).append($(tr).find('td:nth-child(6)').text()));
-                // Uploader
-                box.append($('<div>').append($(tr).find('td:nth-child(5) a')));
-                $('.inner').append(box);
-                // UserStatus (eg: Rading)
-        });
-        $('.inner').append($('<div class="clear"/>'))
-    } else {
-        // add read-status
-        let temp = $('.infocelltriangle');
-        temp.each((idx, status)=>{
-            $('.infocell').eq(idx).css("border-top-color",$(status).css("border-top-color"));
-        });
-    }
+		// Grid-List not added
+		if(!$('.infocell').length){
+			let temp = $('tr');
+			temp.each((idx, tr)=>{
+				// skip table header
+				if($(tr).find('th').length){
+					console.log("skip header");
+					return true;
+				}
+				let mainLink = $(tr).find('td:nth-child(2) a');
+
+				let box = $('<div class="infocell"></div>');
+
+				let boxLink = $('<a href="'+mainLink.attr("href")+'" data-ajax="true"></a>');
+				// Cover
+				boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/'+mainLink.attr("href").split('/')[2]+'.jpg">'));
+				box.append(boxLink);
+				// Title and Status (e.g. Airing)
+				box.append($('<div>').append(mainLink).append($(tr).find('td:nth-child(1) img').addClass("marginLeft05")));
+				// language
+				box.append($('<div>').append($(tr).find('td:nth-child(3) img')));
+				// Date
+				box.append($('<div>').append($(tr).find('td:nth-child(6)').text()));
+				// Uploader
+				box.append($('<div>').append('Uploader:').append($(tr).find('td:nth-child(5) a').addClass("marginLeft05")));
+				$('.inner').append(box);
+			});
+			$('.inner').append($('<div class="clear"/>'))
+		} else {
+			// add read-status (e.g. Reading)
+			let temp = $('.infocelltriangle');
+			temp.each((idx, status)=>{
+				if($(status).css("border-top-color") != "rgba(0, 0, 0, 0)"){
+					$('.infocell').eq(idx).css("border-top-color",$(status).css("border-top-color"));
+				}
+			});
+		}
+	}else {
+// Table List
+		// show which view is active
+		$('#pefGrid').removeClass("active");
+		$('#pefList').addClass("active");
+	}
+
 
 }
