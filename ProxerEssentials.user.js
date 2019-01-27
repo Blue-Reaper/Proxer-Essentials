@@ -355,6 +355,10 @@ function mangaComfortCall(change) {
     }
 }
 function mangaComfort() {
+    // add Mangaupdate in Menu
+    if (!$('#leftNav li:nth-child(3) ul li>a[href="/manga/updates#top').length) {
+        $('#leftNav li:nth-child(3) ul').append($('<li><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
+    }
     // On Home Page and Links doesn't exist
     if (window.location.pathname === '/' && !$('li>a[href="/manga/updates#top').length) {
         // Add Mangaupdaets like existing Animeupdates and after that
