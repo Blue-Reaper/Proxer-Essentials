@@ -26,9 +26,9 @@ function mangaComfortCall(change: ModulCallEvent) {
 
 function mangaComfort(){
 
-    // add Mangaupdate in Menu
+    // add Updates in Menu Manga
     if(!$('#leftNav li:nth-child(3) ul li>a[href="/manga/updates#top').length){
-        $('#leftNav li:nth-child(3) ul').append($('<li><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
+        $('#leftNav li:nth-child(3) ul').append($('<li><a data-ajax="true" href="/manga/updates#top">Updates</a></li>'));
     }
     // On Home Page and Links doesn't exist
     if (window.location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length){
