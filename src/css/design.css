@@ -6,16 +6,16 @@
 
 body {
     font-size: 1.05em;
-    color: #909090;
+    color:  var(--text-color);
     font-family: "Segoe UI Light", sans-serif !important;
     font-weight: lighter !important;
     font-variant: normal;
-    background: #232428 !important;
+    background:  var(--main-bg-color) !important;
 
 }
 
 .calendarHeadNav table {
-    background-color: #232428;
+    background-color:  var(--main-bg-color);
     border-radius: 0;
     border: 0;
 }
@@ -23,17 +23,11 @@ body {
 h1 {
     font-family: "Segoe UI Light", sans-serif;
     font-weight: lighter;
-    color: #ef394a;
-}
-
-#headerInfo {
-    border-radius: 0;
-    border: 1px #232428 solid;
-    background: transparent;
+    color:  var(--accent-color);
 }
 
 .headDate {
-    border-color: #232428;
+    border-color:  var(--main-bg-color);
 }
 
 ul#simple-navi li,
@@ -43,7 +37,7 @@ ul#simple-navi-wiki li {
 }
 
 .details td {
-    background-color: #2d2f33;
+    background-color:  var(--bg-color);
 }
 
 #notificationBubble,
@@ -60,23 +54,23 @@ hr {
 }
 
 a:hover {
-    color: #ef394a;
+    color:  var(--accent-color);
 }
 
 h3 {
-    color: #fff;
+    color:  var(--highlight-text-color);
     font-weight: lighter;
 }
 
 a {
-    color: #bdbdbd;
+    color:  var(--link-color);
     transition: color 0.7s;
 }
 
 ul#simple-navi li.active a {
-    color: #ef394a;
+    color:  var(--accent-color);
     background: transparent;
-    border-bottom: 1px #ef394a solid;
+    border-bottom: 1px  var(--accent-color) solid;
 }
 
 ul#simple-navi li a,
@@ -84,8 +78,8 @@ ul#simple-navi-wiki li.active a,
 ul#simple-navi-wiki li a.active,
 ul#simple-navi-wiki li a:hover {
     background: transparent;
-    color: #8f8f90;
-    border-bottom: 1px #8f8f90 solid;
+    color: var(--text-color);
+    border-bottom: 1px var(--text-color) solid;
     font-weight: lighter;
     transition: color 1s ease, border 1s ease;
 }
@@ -94,9 +88,9 @@ ul#simple-navi-wiki li a,
 ul#simple-navi li a.active,
 ul#simple-navi li a:hover {
     transition: color 1s ease, border 1s ease;
-    color: #fff;
+    color:  var(--highlight-text-color);
     background: transparent;
-    border-bottom: 1px #fff solid;
+    border-bottom: 1px  var(--highlight-text-color) solid;
 }
 
 #nav {
@@ -121,7 +115,7 @@ ul#simple-navi,
 ul#simple-navi-wiki {
 
     border-radius: 0;
-    background-color: #2d2f33;
+    background-color:  var(--bg-color);
     border: 0;
 
     margin-left: 5px;
@@ -134,19 +128,19 @@ ul#simple-navi-wiki {
     margin-right: 0;
     padding-bottom: 5vh;
     border-radius: 0;
-    background-color: #2d2f33;
+    background-color:  var(--bg-color);
     border: 0;
 }
 
 .topmenu ul {
-    background: #2d2f33;
+    background:  var(--bg-color);
     opacity: 0.9;
     border: 0;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
 }
 
 .topmenu>ul>li:hover {
-    background: #ea0b3f;
+    background:  var(--accent-color);
 }
 
 .colorbox {
@@ -154,17 +148,17 @@ ul#simple-navi-wiki {
 }
 
 a.menu {
-    border: 0px solid #3e3e3e;
-    background: #3e3e3e;
+    border: 0px solid  var(--button-color);
+    background:  var(--button-color);
     border-radius: 0;
-    color: #a0a0a0;
+    color:  var(--link-color);
     transition: background ease 0.8s, color ease 0.8s;
 }
 
 a.menu.active,
 a.menu:hover {
-    background: #ef394a !important;
-    color: #fafafa !important;
+    background:  var(--accent-color) !important;
+    color: var(--highlight-text-color) !important;
 }
 
 .infocell>div {
@@ -175,18 +169,17 @@ a.menu:hover {
 }
 
 .infocell {
-    cursor: pointer;
     border-color: #656565;
     transition: background 0.8s ease, color 0.8s ease;
 }
 
 .infocell:hover {
-    background: #505050;
-    color: #fff;
+    background:  var(--button-color);
+    color:  var(--highlight-text-color);
 }
 
 .infocell:hover a {
-    color: #fff;
+    color:  var(--highlight-text-color);
 }
 
 .navlogo {
@@ -201,34 +194,34 @@ select {
     font-family: "Segoe UI Light", sans-serif;
     font-size: 0.8em !important;
     font-weight: lighter;
-    background: #232428;
-    color: #fff;
-    border: 1px solid #3e3e3e;
+    background:  var(--main-bg-color);
+    color:  var(--highlight-text-color);
+    border: 1px solid  var(--button-color);
     padding: 4px 7px;
 }
 
 input[type=text] {
     font-family: "Segoe UI Light", sans-serif;
     padding: 4px 7px;
-    background: #232428;
-    color: #fff;
-    border: 1px solid #3e3e3e;
+    background:  var(--main-bg-color);
+    color:  var(--highlight-text-color);
+    border: 1px solid  var(--button-color);
 }
 
 input[type=password] {
     font-family: "Segoe UI Light", sans-serif;
     padding: 4px 7px;
-    background: #232428;
-    color: #fff;
-    border: 1px solid #3e3e3e;
+    background:  var(--main-bg-color);
+    color:  var(--highlight-text-color);
+    border: 1px solid  var(--button-color);
 }
 
 input[type=submit] {
     font-family: "Segoe UI Light", sans-serif;
     cursor: pointer;
     padding: 4px 15px;
-    background: #ef394a;
-    color: #fff;
+    background:  var(--accent-color);
+    color:  var(--highlight-text-color);
     border: 0;
     transition: all ease 0.5s;
 }
@@ -238,9 +231,9 @@ input[type=button] {
     cursor: pointer;
     padding: 4px 15px;
     border: 0;
-    background: #ef394a;
+    background:  var(--accent-color);
     border-radius: 0;
-    color: #fff;
+    color:  var(--highlight-text-color);
     transition: all ease 0.5s;
 }
 
@@ -250,21 +243,21 @@ input[type="radio"] {
     width: 15px;
     height: 15px;
     margin-right: 5px;
-    background: #232428;
+    background:  var(--main-bg-color);
     border-radius: 50%;
 }
 
 input[type="radio"]:checked {
-    background: #ef394a;
-    border: 2px solid #232428;
+    background:  var(--accent-color);
+    border: 2px solid  var(--main-bg-color);
 }
 
 input[type="radio"]:hover {
-    border: 1px solid #ef394a;
+    border: 1px solid  var(--accent-color);
 }
 
 input[type="radio"]:hover:checked {
-    border: 2px solid #ef394a;
+    border: 2px solid  var(--accent-color);
 }
 
 input[type="checkbox"] {
@@ -277,7 +270,7 @@ input[type="checkbox"] {
     margin-right: 5px;
     margin-bottom: 0px;
     margin-left: 0px;
-    background: #232428;
+    background:  var(--main-bg-color);
 }
 
 input[type="checkbox"]:checked {
@@ -286,7 +279,7 @@ input[type="checkbox"]:checked {
 }
 
 input[type="checkbox"]:hover {
-    border: 1px solid #ef394a;
+    border: 1px solid  var(--accent-color);
 }
 
 input[type=submit]:hover {
@@ -298,25 +291,25 @@ input[type=button]:hover {
 }
 
 textarea {
-    background: #2d2f33;
-    border: 1px solid #3e3e3e;
-    color: #fafafa;
+    background:  var(--bg-color);
+    border: 1px solid  var(--button-color);
+    color: var(--highlight-text-color);
 }
 
 .ui-tooltip {
-    background: #2d2f33;
+    background:  var(--bg-color);
     border: 0;
     font-family: "Segoe UI Light", sans-serif !important;
-    color: #fafafa;
+    color: var(--highlight-text-color);
     font-weight: lighter;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border-radius: 0;
 }
 
 .message {
-    background: #2d2f33 !important;
+    background:  var(--bg-color) !important;
     border: 0 !important;
-    color: #fafafa !important;
+    color: var(--highlight-text-color) !important;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2) !important;
     border-radius: 0 !important;
 }
@@ -349,11 +342,14 @@ textarea {
 }
 
 #notificationBubble {
-    width: 39% !important;
     border-radius: 3px;
-    background: #2d2f33;
+    background:  var(--bg-color);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border: 0;
+}
+
+.searchNav {
+    width: 39% !important;
 }
 
 #miscNav {
@@ -379,7 +375,7 @@ textarea {
 .hreview-aggregate>span {
     text-align: center;
     font-size: 1.8em !important;
-    color: #da0c44;
+    color:  var(--accent-color);
 }
 
 
@@ -403,11 +399,11 @@ textarea {
 }
 
 #loginBubble {
-    background: #2d2f33;
+    background:  var(--bg-color);
     text-shadow: none !important;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border: 0;
-    color: #a2a2a2;
+    color: var(--text-color);
 }
 
 .news {
@@ -429,7 +425,7 @@ textarea {
 
 #box-table-a th {
     font-size: 17px;
-    background: #2d2f33;
+    background:  var(--bg-color);
     font-variant: normal;
     font-weight: normal;
     border-bottom: 1px solid #1b1b1b;
@@ -437,9 +433,9 @@ textarea {
 
 #box-table-a td {
     transition: background ease 0.8s, color ease 0.8s;
-    color: #969696;
+    color: var(--text-color);
     border-bottom: 1px solid #1b1b1b;
-    background: #2d2f33;
+    background:  var(--bg-color);
 }
 
 #box-table-a tr {
@@ -447,12 +443,12 @@ textarea {
 }
 
 #box-table-a tr:hover td {
-    background: #3b3c3e;
-    color: #ef394a;
+    background: var(--button-color);
+    color:  var(--accent-color);
 }
 
 #box-table-a tr:hover a {
-    color: #ef394a;
+    color:  var(--accent-color);
 }
 
 .borderLeft {
@@ -462,7 +458,7 @@ textarea {
 .pInfo {
     border: 0px solid;
     background-color: #777777;
-    color: #FFF;
+    color:  var(--highlight-text-color);
 }
 
 #main>div {
@@ -476,19 +472,19 @@ textarea {
 }
 
 .infocell a {
-    color: #a9a9a9;
+    color:  var(--link-color);
 }
 
 #chat {
-    color: #fafafa;
-    background: #3b3c3e;
+    color: var(--highlight-text-color);
+    background: var(--button-color);
     border-radius: 0;
     border: 0;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
 }
 
 #loading {
-    background: #262626;
+    background: var(--main-bg-color);
     background-image: url(https://logosart.de/proxer2-0/proxer-loader.gif);
     background-position: center center;
     background-repeat: no-repeat;
@@ -530,7 +526,7 @@ input:focus {
 }
 
 .countNav {
-    background: #ef394a;
+    background:  var(--accent-color);
 }
 
 #notificationBubble,
@@ -542,8 +538,9 @@ input:focus {
 }
 
 #headerInfo {
+    border-radius: 0;
     top: 80px;
-    background: rgba(37, 37, 37, 0.74);
+    background: var(--main-bg-color);
     border: 0;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
 }
@@ -554,7 +551,7 @@ input:focus {
 }
 
 .proxerSliderBlack {
-    color: #ef394a !important;
+    color:  var(--accent-color) !important;
     background-color: rgba(45, 47, 51, 0.88) !important;
 }
 
@@ -579,7 +576,7 @@ input:focus {
 #notificationBubble:after,
 #loginBubble:after,
 .pointerBubble:after {
-    border-color: #2d2f33 transparent;
+    border-color:  var(--bg-color) transparent;
 }
 
 #simple-navi {
@@ -602,7 +599,7 @@ input:focus {
 }
 
 th[style~="color:#EEEE33;"] {
-    color: #ef394a !important;
+    color:  var(--accent-color) !important;
 }
 
 input[placeholder~="Freitextsuche"] {
@@ -615,8 +612,8 @@ input[placeholder~="Suche"] {
 
 
 .fastSearchEntry {
-    color: #fafafa;
-    background: #232428;
+    color: var(--highlight-text-color);
+    background:  var(--main-bg-color);
     border: 0;
 }
 
@@ -626,7 +623,7 @@ input[placeholder~="Suche"] {
 
 .checkYes {
     padding: 2px;
-    background-color: #2d2f33;
+    background-color:  var(--bg-color);
     border-left: 2px solid #7F7;
     opacity: 0.8;
     display: none;
@@ -635,7 +632,7 @@ input[placeholder~="Suche"] {
 
 .checkNo {
     padding: 2px;
-    background-color: #2d2f33;
+    background-color:  var(--bg-color);
     border-left: 2px solid #F77;
     opacity: 0.8;
     display: none;
@@ -654,7 +651,7 @@ input[placeholder~="Suche"] {
 
 /* Scrollbar for Firefox */
 * {
-    scrollbar-color:rgba(243, 56, 74, 0.93) rgba(0, 0, 0, 0);
+    scrollbar-color:var(--accent-color) rgba(0, 0, 0, 0);
     scrollbar-width: thin;
 }
 
@@ -667,12 +664,12 @@ input[placeholder~="Suche"] {
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: rgba(243, 56, 74, 0.93);
+    background-color: var(--accent-color);
 }
 
 .chatapp_roomtextfield {
     width: 250px;
-    border-top: 1px solid #e53749;
+    border-top: 1px solid  var(--accent-color);
     margin: 0;
     height: 30px;
     font-family: "Segoe UI Light", sans-serif;
@@ -683,31 +680,23 @@ input[placeholder~="Suche"] {
 }
 
 .chatapp_roomtitle {
-    background: #232428;
+    background:  var(--main-bg-color);
     border-bottom: 0px solid;
-    border-color: #232428;
-    color: #e53749;
-}
-
-.chatapp_room {
-    border: 0px solid;
-    border-color: #777777;
-    background-color: #5E5E5E;
-    z-index: 999;
+    border-color:  var(--main-bg-color);
+    color:  var(--accent-color);
 }
 
 #chatapp_sidebar {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border-left: 0px solid;
-    border-color: #e43748;
-    background-color: #232428;
+    border-color:  var(--accent-color);
+    background-color:  var(--main-bg-color);
 }
 
 .chatapp_room {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border: 0px solid;
-    border-color: #777777;
-    background-color: #2d2f33;
+    background-color: var(--bg-color);
     z-index: 999;
 }
 
@@ -719,35 +708,35 @@ input[placeholder~="Suche"] {
     width: auto;
     border: 0px solid;
     border-color: #777777;
-    background-color: #232428;
-    color: #e53749;
+    background-color:  var(--main-bg-color);
+    color:  var(--accent-color);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
 }
 
 #chatapp_sidebarrooms li.chatapp_roomhead {
-    color: #e53749;
+    color:  var(--accent-color);
 }
 
 #chatapp_sidebarclose {
     border-top: 1px solid;
-    border-color: #e53749;
+    border-color:  var(--accent-color);
 }
 
 .chatapp_messageitem {
     clear: both;
     min-height: 50px;
     padding: 5px;
-    border-bottom: 2px solid #212121;
+    border-bottom: 2px solid var(--main-bg-color);
     transition: background ease 0.8s;
 }
 
 .chatapp_messageitem:hover {
-    background: #3b3c3e;
+    background: var(--button-color);
 }
 
 .fa-warning:before,
 .fa-exclamation-triangle:before {
-    color: #e53749;
+    color:  var(--accent-color);
 }
 
 .fa-arrows-alt:before {
@@ -780,7 +769,7 @@ input#submitSearch0 {
 
 /* Genre Tooltip */
 #genreBubble {
-    background: #2d2f33;
+    background:  var(--bg-color);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border: 0;
 }
@@ -788,42 +777,42 @@ input#submitSearch0 {
 /* FORUM */
 
 #kunena {
-    background: #2d2f33;
+    background:  var(--bg-color);
     width: 99vw !important;
 }
 
 #kunena.layout #ktop {
-    background-color: #232428 !important;
+    background-color:  var(--main-bg-color) !important;
     border: 0 !important;
 }
 
 .layout#kunena #ktab a {
-    background-color: #232428 !important;
+    background-color:  var(--main-bg-color) !important;
 }
 
 .layout#kunena #ktab ul.menu li.active a,
 .layout#kunena #ktab li#current.selected a {
-    background-color: #2d2f33 !important;
+    background-color:  var(--bg-color) !important;
 }
 
 #kunena.layout .kforum-pathway {
-    background-color: #2d2f33 !important;
+    background-color:  var(--bg-color) !important;
     border: 0 !important;
 }
 
 .layout#kunena a:link,
 .layout#kunena a:visited,
 .layout#kunena a:active {
-    color: #e43748 !important;
+    color:  var(--accent-color) !important;
 }
 
 .layout#kunena div.kannouncement div.kheader {
-    background: #e43748 !important;
+    background:  var(--accent-color) !important;
 }
 
 .layout#kunena div#kannouncement .kanndesc {
-    background: #2d2f33 !important;
-    color: #909090;
+    background:  var(--bg-color) !important;
+    color:  var(--text-color);
 }
 
 #kunena.layout div.kblock div.kbody {
@@ -833,7 +822,7 @@ input#submitSearch0 {
 #kunena.layout select,
 #kunena.layout select:focus,
 #kunena.layout select:hover {
-    color: #fff;
+    color:  var(--highlight-text-color);
     border: 1px solid #BFC3C6;
     padding: 0;
 }
@@ -842,14 +831,14 @@ input#submitSearch0 {
 #kunena.layout option:focus,
 #kunena.layout option:active,
 #kunena.layout option:hover {
-    color: #fff;
+    color:  var(--highlight-text-color);
     background: none repeat scroll 0 0;
     font-size: .917em;
     padding: 0 10px 0 2px;
 }
 
 #kunena.layout .klist-markallcatsread {
-    background-color: #2d2f33 !important;
+    background-color:  var(--bg-color) !important;
     min-height: 27px;
     overflow: hidden;
     border: 0;
@@ -858,8 +847,8 @@ input#submitSearch0 {
 
 #kunena.layout .button,
 #kunena.layout .kbutton {
-    background-color: #232428 !important;
-    color: #fff !important;
+    background-color:  var(--main-bg-color) !important;
+    color:  var(--highlight-text-color) !important;
     font-size: .917em;
     border: 1px solid #4a4a4a !important;
     margin-right: 10px;
@@ -868,35 +857,35 @@ input#submitSearch0 {
 
 .layout#kunena div.kblock>div.kheader,
 .layout#kunena .kblock div.kheader {
-    background: #e43748 !important;
+    background:  var(--accent-color) !important;
 }
 
 tr.krow2.krow2 {
-    background: #2d2f33 !important;
+    background:  var(--bg-color) !important;
 }
 
 #kunena.layout tr.krow1 td {
-    background-color: #232428 !important;
+    background-color:  var(--main-bg-color) !important;
 }
 
 #kunena.layout div.kblock {
-    background-color: #2d2f33 !important;
+    background-color:  var(--bg-color) !important;
     border: 0 !important;
 }
 
 #kunena.layout td.kcol-mid,
 #kunena.layout td.kcol-last {
     border-left: 0px solid #bfc3c6 !important;
-    border-bottom: 1px solid #232428 !important;
+    border-bottom: 1px solid  var(--main-bg-color) !important;
 }
 
 #kunena.layout td.kcol-first {
     border-left: none;
-    border-bottom: 1px solid #232428 !important;
+    border-bottom: 1px solid  var(--main-bg-color) !important;
 }
 
 #kunena.layout div.kthead-child {
-    border-top: 1px solid #ef394a;
+    border-top: 1px solid  var(--accent-color);
 }
 
 #kunena.layout .kcontenttablespacer {
@@ -912,19 +901,19 @@ tr.krow2.krow2 {
 }
 
 #kunena.layout .klist-actions {
-    background-color: #2d2f33 !important;
-    color: #fff;
+    background-color:  var(--bg-color) !important;
+    color:  var(--highlight-text-color);
     border: 0 !important;
 }
 
 #kunena.layout .kpagination a {
-    background-color: #232428 !important;
-    border: 1px solid #232428 !important;
+    background-color:  var(--main-bg-color) !important;
+    border: 1px solid  var(--main-bg-color) !important;
 }
 
 #kunena.layout .kpagination span {
-    border: 1px solid #e43748 !important;
-    background-color: #e43748 !important;
+    border: 1px solid  var(--accent-color) !important;
+    background-color:  var(--accent-color) !important;
 }
 
 #kunena.layout .klist-actions-goto {
@@ -943,7 +932,7 @@ tr.krow2.krow2 {
 #kunena.layout #btn_favorite,
 #kunena.layout #btn_unsubscribe,
 #kunena.layout #btn_subscribe {
-    background-color: #e43748 !important;
+    background-color:  var(--accent-color) !important;
 }
 
 #kunena.layout #btn_thankyou,
@@ -953,16 +942,16 @@ tr.krow2.krow2 {
 #kunena.layout .kmessage-left .btn,
 #kunena.layout #topic-actions .btn,
 #kunena.layout .kmessage-buttons-row .btn {
-    background-color: #232428;
+    background-color:  var(--main-bg-color);
 }
 
 .layout#kunena #ktab a:hover {
-    background-color: #e43748 !important;
+    background-color:  var(--accent-color) !important;
 }
 
 #kunena.layout .kpagination a:hover {
-    color: #fff !important;
-    background-color: #e43748 !important;
+    color:  var(--highlight-text-color) !important;
+    background-color:  var(--accent-color) !important;
     border: 1px solid #5388B4;
 }
 
@@ -976,11 +965,11 @@ tr.krow2.krow2 {
     border-top: 1px solid #000;
     min-height: 5px;
     width: 100%;
-    background-color: #232428 !important;
+    background-color:  var(--main-bg-color) !important;
 }
 
 #kunena.layout td.kprofile-left {
-    background-color: #232428 !important;
+    background-color:  var(--main-bg-color) !important;
     border-right: 0px solid #BFC3C6;
 }
 
@@ -992,33 +981,33 @@ tr.krow2.krow2 {
 #kunena.layout h2,
 #kunena.layout h3,
 #kunena.layout h4 {
-    color: #fff;
+    color:  var(--highlight-text-color);
 }
 
 #kunena.layout div.kmsgsignature {
-    border-top: 1px solid #e43748;
+    border-top: 1px solid  var(--accent-color);
 }
 
 #kunena.layout div.kmessage-editmarkup-cover {
-    border-bottom: 1px solid #e43748;
+    border-bottom: 1px solid  var(--accent-color);
 }
 
 #kunena.layout div.kmessage-thankyou {
-    border-top: 1px solid #e43748;
+    border-top: 1px solid  var(--accent-color);
 }
 
 #kunena.layout span.kmessage-editmarkup {
-    background: #232428 no-repeat left center;
-    border-top: 1px solid #232428;
-    border-right: 1px solid #232428;
-    border-left: 1px solid #232428;
+    background:  var(--main-bg-color) no-repeat left center;
+    border-top: 1px solid  var(--main-bg-color);
+    border-right: 1px solid  var(--main-bg-color);
+    border-left: 1px solid  var(--main-bg-color);
 }
 
 #kunena.layout span.kmessage-informmarkup {
-    background: #232428 no-repeat left center;
-    border-top: 1px solid #232428;
-    border-right: 1px solid #232428;
-    border-left: 1px solid #232428;
+    background:  var(--main-bg-color) no-repeat left center;
+    border-top: 1px solid  var(--main-bg-color);
+    border-right: 1px solid  var(--main-bg-color);
+    border-left: 1px solid  var(--main-bg-color);
 }
 
 #kunena.layout .kspoiler-title,
@@ -1040,4 +1029,59 @@ tr.krow2.krow2 {
 
 #adventskalender {
     display: none;
+}
+
+/* fix Impressum */
+img[src="/images/misc/miau.png"] {
+    width: initial !important;
+    border-radius: 0 !important;
+}
+
+
+#kunena.layout div.kmsgtext-article, #kunena.layout div.kmsgtext-quote, #kunena.layout div.kmsgtext-hide, #kunena.layout div.kmsgtext-confidential {
+    background-color: var(--main-bg-color) !important;
+    border: 1px solid var(--main-bg-color) !important;
+}
+
+.calendarHeadNav table {
+    background-color: var(--main-bg-color) !important;
+    border: 1px solid var(--main-bg-color) !important;
+}
+
+.calendarEntryList {
+    background: var(--main-bg-color);
+    border: 1px solid var(--main-bg-color);
+}
+
+.dayTable tr:nth-child(even) {
+    background: var(--main-bg-color);
+}
+
+.dayTable tr:nth-child(odd) {
+    background: var(--bg-color);
+}
+
+.calendarEntryList th {
+    background: var(--main-bg-color);
+    border: 1px solid var(--main-bg-color);
+}
+
+.today .dayTable tr:nth-child(odd) {
+    background: var(--bg-color) !important;
+}
+
+.today .dayTable tr:nth-child(even) {
+    background: var(--main-bg-color)!important;
+}
+
+.animeLink {
+    color: var(--accent-color) !important;
+}
+
+#kunena.layout div.kmsgattach {
+    border: 1px solid var(--accent-color) !important;
+}
+
+#kunena.layout #btn_sticky, #kunena.layout #btn_unsticky, #kunena.layout #btn_unlock, #kunena.layout #btn_lock, #kunena.layout #btn_moderate, #kunena.layout #btn_delete, #kunena.layout #btn_edit {
+    background-color: var(--accent-color) !important;
 }

@@ -10,19 +10,24 @@ Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des
 # aktueller Umfang 
 
 ## Design
-Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)), es gab bereits ein paar Verbesserungen wie z.B. die vollständige Firefox Unterstützung.
+Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)).
 
-![Bild of Design](screenshots/design.png)
+<img src="screenshots/design.png" width="30%">
+Es gab bereits einige Verbesserungen z.B.
 
-Das Design wurde auf Wunsch optional, um auch zukünftigen Umsetzungs- und Test-Aufwand gering zu halten bleibt Modern Dark als Hauptdesign und alle durch Module oder das Framework hinzugefügte Elemente bleiben in diesem Design.
+* vollständige Firefox Unterstützung
+* Überarbeitung der Animationen
+* Farben sind einstellbar
 
-Um das Design ein- bzw. auszuschalten muss man nur im Menü unter "Essentials -> Einstellungen" (auch mit https://proxer.me/pef?s=settings zu erreichen) auf die Schrift "Design by xYata" klicken.
+Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
 
-<img src="screenshots/designOptional.png" width="15%">
+<img src="screenshots/designOptional.png" width="50%">
 
 ## Module
 <img src="screenshots/menu.png" width="30%">
-![Bild der Module](screenshots/modules.PNG)
+
+![Bild der Module](screenshots/modules.png)
+
 * ### Kleine Wunder
   * "zurück nach Oben" Button
   
@@ -35,6 +40,7 @@ Um das Design ein- bzw. auszuschalten muss man nur im Menü unter "Essentials ->
   * setzt Longstrip Reader als Standard
   * Longstrip: klick auf Bild scrollt zum nächsten Bild (und springt nicht zum nächsten Kapitel)
   * Longstrtip: letzte Bild springt in das nächste Kapitel (ohne dabei auf die Zwischenseite zu kommen)
+  * Fügt `Mangaupdates` im Menü `Manga` und auf Startseite neben `Animeupdates` hinzu
 * ### Theatermodus
   * Theatermodus für Anime
   

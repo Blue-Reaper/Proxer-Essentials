@@ -1,7 +1,8 @@
 // Zeigt Bilder in den Listenansichten an
 
 // IDEA use same Cookie than grid-list and add Buttons to switch List -> Grid
-// Not Ready for v4.4
+
+// only in beta
 // pefModulList.push({
 //     id:"picList",
 //     name:"Picture List",
