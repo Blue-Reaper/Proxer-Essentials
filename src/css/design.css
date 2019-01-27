@@ -342,11 +342,14 @@ textarea {
 }
 
 #notificationBubble {
-    width: 39% !important;
     border-radius: 3px;
     background:  var(--bg-color);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border: 0;
+}
+
+.searchNav {
+    width: 39% !important;
 }
 
 #miscNav {
@@ -1026,4 +1029,59 @@ tr.krow2.krow2 {
 
 #adventskalender {
     display: none;
+}
+
+/* fix Impressum */
+img[src="/images/misc/miau.png"] {
+    width: initial !important;
+    border-radius: 0 !important;
+}
+
+
+#kunena.layout div.kmsgtext-article, #kunena.layout div.kmsgtext-quote, #kunena.layout div.kmsgtext-hide, #kunena.layout div.kmsgtext-confidential {
+    background-color: var(--main-bg-color) !important;
+    border: 1px solid var(--main-bg-color) !important;
+}
+
+.calendarHeadNav table {
+    background-color: var(--main-bg-color) !important;
+    border: 1px solid var(--main-bg-color) !important;
+}
+
+.calendarEntryList {
+    background: var(--main-bg-color);
+    border: 1px solid var(--main-bg-color);
+}
+
+.dayTable tr:nth-child(even) {
+    background: var(--main-bg-color);
+}
+
+.dayTable tr:nth-child(odd) {
+    background: var(--bg-color);
+}
+
+.calendarEntryList th {
+    background: var(--main-bg-color);
+    border: 1px solid var(--main-bg-color);
+}
+
+.today .dayTable tr:nth-child(odd) {
+    background: var(--bg-color) !important;
+}
+
+.today .dayTable tr:nth-child(even) {
+    background: var(--main-bg-color)!important;
+}
+
+.animeLink {
+    color: var(--accent-color) !important;
+}
+
+#kunena.layout div.kmsgattach {
+    border: 1px solid var(--accent-color) !important;
+}
+
+#kunena.layout #btn_sticky, #kunena.layout #btn_unsticky, #kunena.layout #btn_unlock, #kunena.layout #btn_lock, #kunena.layout #btn_moderate, #kunena.layout #btn_delete, #kunena.layout #btn_edit {
+    background-color: var(--accent-color) !important;
 }

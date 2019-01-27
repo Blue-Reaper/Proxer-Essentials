@@ -40,7 +40,7 @@ Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
   * setzt Longstrip Reader als Standard
   * Longstrip: klick auf Bild scrollt zum nächsten Bild (und springt nicht zum nächsten Kapitel)
   * Longstrtip: letzte Bild springt in das nächste Kapitel (ohne dabei auf die Zwischenseite zu kommen)
-  * Fügt `Mangaupdates` neben `Animeupdates` auf Startseite hinzu
+  * Fügt `Mangaupdates` im Menü `Manga` und auf Startseite neben `Animeupdates` hinzu
 * ### Theatermodus
   * Theatermodus für Anime
   
