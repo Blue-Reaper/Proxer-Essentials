@@ -14,6 +14,7 @@ Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Fo
 
 <img src="screenshots/design.png" width="30%">
 Es gab bereits einige Verbesserungen z.B.
+
 * vollständige Firefox Unterstützung
 * Überarbeitung der Animationen
 * Farben sind einstellbar
@@ -24,6 +25,7 @@ Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
 
 ## Module
 <img src="screenshots/menu.png" width="30%">
+
 ![Bild der Module](screenshots/modules.png)
 
 * ### Kleine Wunder
@@ -38,6 +40,7 @@ Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
   * setzt Longstrip Reader als Standard
   * Longstrip: klick auf Bild scrollt zum nächsten Bild (und springt nicht zum nächsten Kapitel)
   * Longstrtip: letzte Bild springt in das nächste Kapitel (ohne dabei auf die Zwischenseite zu kommen)
+  * Fügt `Mangaupdates` neben `Animeupdates` auf Startseite hinzu
 * ### Theatermodus
   * Theatermodus für Anime
   
