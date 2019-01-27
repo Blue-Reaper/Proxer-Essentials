@@ -1030,3 +1030,9 @@ tr.krow2.krow2 {
 #adventskalender {
     display: none;
 }
+
+/* fix Impressum */
+img[src="/images/misc/miau.png"] {
+    width: initial !important;
+    border-radius: 0 !important;
+}
