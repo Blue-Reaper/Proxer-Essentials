@@ -6,6 +6,7 @@
 // blende Werbung auf Anime-Seite aus
 // blende Social Media aus
 // blende Tab Artikel (=Amazon) aus
+// blednde News und Freundschafts Icon aus (oben rechts)
 
 pefModulList.push({
     id: 'smallWonders',
