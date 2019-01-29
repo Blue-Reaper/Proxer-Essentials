@@ -1,0 +1,28 @@
+.backToTop {
+    position: fixed;
+    top: 80%;
+    right: 14%;
+    display:none;
+}
+
+.backToTop:hover {
+    transition: all ease 0.8s;
+    color: var(--accent-color);
+}
+
+/* hide 'Abonnieren' button on /info site */
+a.menu.entry_subscribe,
+/* hide add on /watch site */
+a[href^="https://publisher.anime-unicorn.com"],
+/* hide social media */
+li.facebook,
+li.twitter,
+li.whatsapp,
+li.googleplus,
+li.tumblr,
+li.googleplus + li.info,
+/* hide tab 'Artikel' */
+a[href$="article#top"]
+{
+    display: none !important;
+}
