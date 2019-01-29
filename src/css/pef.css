@@ -4,6 +4,10 @@
     clear: both;
 }
 
+.hide {
+    display: none;
+}
+
 .center {
     text-align: center;
 }

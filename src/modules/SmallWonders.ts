@@ -1,6 +1,9 @@
 // Wunder:
 // "zurück nach oben" Button
+// Nachricht "Diese Website verwendet Cookies..." wird ausgeblendet
 // setzt "Ja ich bin Erwachsen"
+// blende Abonnieren Button aus (Infoseite), da keine Funktion? https://proxer.me/forum/213-allgemein/386170-abbonieren-button-in-details-seiten-beschreibung
+// blende Werbung auf Anime-Seite aus
 
 pefModulList.push({
   id: 'smallWonders',
@@ -19,21 +22,22 @@ function smallWondersCall(change: ModulCallEvent) {
       // smallWonders();
       break;
     case ModulCallEvent.ajax:
-      // smallWonders();
+      smallWondersAjax();
       break;
   }
 }
 
 function smallWonders() {
+// ############### set cookies ###############
   // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
   setCookie('cookieconsent_dismissed', 'yes');
   // Keine Erwachenen-Meldung mehr
   setCookie('adult', '1');
 
-  // ############### BackToTop ###############
+// ############### BackToTop ###############
   // Check if Button already added
   if (!$('.backToTop').length) {
-    // button einfügen
+    // add button
     let backToTopButton = $(
       '<i class="backToTop pointer fa fa-2x fa-chevron-up"/>'
     );
@@ -58,4 +62,16 @@ function smallWonders() {
       return false;
     });
   }
+}
+
+function smallWondersAjax(){
+// ############### hide elements ###############
+    // hide 'Abonnieren' button
+    if(location.pathname.split('/')[1] === 'info'){
+        $('a.menu.entry_subscribe').addClass('hide');
+    }
+    // hide add on anime site
+    if(location.pathname.split('/')[1] === 'watch'){
+        $('a[href^="https://publisher.anime-unicorn.com"]').addClass('hide');
+    }
 }
