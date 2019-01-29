@@ -31,9 +31,10 @@ function theatermodus(){
 
 	// Innerhalb des Iframes
 	if(window.location.hostname === "stream.proxer.me"){
-        $('#player_code').addClass("inheritSize");
-        $('.flowplayer').addClass("inheritSize");
-        $('.plyr video').addClass("heightVideo");
+        GM_addStyle (GM_getResourceText ("theater_CSS"));
+        // $('#player_code').addClass("inheritSize");
+        // $('.flowplayer').addClass("inheritSize");
+        // $('.plyr video').addClass("heightVideo");
 	}
 	// normale Proxer Seite
 	if (window.location.pathname.split('/')[1] === 'watch'){

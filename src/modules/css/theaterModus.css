@@ -1,0 +1,9 @@
+#player_code,
+.flowplayer{
+    width: inherit;
+    height: inherit;
+}
+
+video {
+    height: 100vh !important;
+}

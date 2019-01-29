@@ -1,0 +1,27 @@
+/* Theatermodus */
+.toggleTheater {
+    position: fixed;
+    top: 10%;
+    right: 14%;
+    z-index: 2;
+}
+
+.toggleTheater:hover {
+    transition: all ease 0.8s;
+    color: var(--accent-color);
+}
+
+.theaterActive {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100%;
+    z-index: 1
+}
+
+/* Picture List */
+#pefViewControl {
+    width: 55%;
+    padding-top: 1em;
+}
