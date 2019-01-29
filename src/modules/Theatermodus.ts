@@ -1,4 +1,5 @@
 // Theatermodus für Anime
+// blende "Flash-Player | Ladezeit melden! | Hilfe" im Player aus
 
 // IDEA 10 sek zurückspulen einbauen
 
@@ -19,7 +20,7 @@ function theatreModeCall (change:ModulCallEvent) {
 			theatermodusOff();
 			break;
 		case ModulCallEvent.ajax:
-			theatermodus();
+			// theatermodus();
 			break;
 	}
 }
@@ -32,9 +33,6 @@ function theatermodus(){
 	// Innerhalb des Iframes
 	if(window.location.hostname === "stream.proxer.me"){
         GM_addStyle (GM_getResourceText ("theater_CSS"));
-        // $('#player_code').addClass("inheritSize");
-        // $('.flowplayer').addClass("inheritSize");
-        // $('.plyr video').addClass("heightVideo");
 	}
 	// normale Proxer Seite
 	if (window.location.pathname.split('/')[1] === 'watch'){

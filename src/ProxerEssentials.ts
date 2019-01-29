@@ -24,7 +24,7 @@
 // @resource    smallWonders_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/smallWonders.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
-// @resource    theater_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/theaterModus.css
+// @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/theaterModus.css
 // ==/UserScript==
 
 GM_addStyle (GM_getResourceText ("framework_CSS"));

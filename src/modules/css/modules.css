@@ -22,6 +22,6 @@
 
 /* Picture List */
 #pefViewControl {
-    width: 55%;
+    width: 55% !important;
     padding-top: 1em;
 }
