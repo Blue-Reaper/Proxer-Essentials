@@ -485,7 +485,7 @@ textarea {
 
 #loading {
     background: var(--main-bg-color);
-    background-image: url(https://logosart.de/proxer2-0/proxer-loader.gif);
+    background-image: url(https://logosart.de/proxer2-0/proxer-loader_bak1.gif);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 400px 400px;
