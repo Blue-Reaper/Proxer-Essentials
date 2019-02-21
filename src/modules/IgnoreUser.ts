@@ -28,7 +28,7 @@ function ignoreUser() {
     }
     // button to hide user-comments
     $('div.kpost-thankyou').each((idx, div)=>{
-        let ignoreUserButton = $('<i id="pefIgnoreUser" class="btn marginLeft05">User ausblenden</i>');
+        let ignoreUserButton = $('<i id="pefIgnoreUser" class="btn">User ausblenden</i>');
         let userId = $(div).parents('table.kpublished').find('li.kpost-username a').attr('href').slice(6, -4);
         ignoreUserButton.click(()=>{
             addIgnoredUser(userId);
@@ -48,7 +48,7 @@ function ignoreUser() {
         let blockedUser =  $('li.kpost-username a[href^="/user/'+user+'"]');
         let comment = blockedUser.parents(".kbody");
         // TODO CSS
-        comment.parent().append($('<div class="center">Beitrag von '+blockedUser.text()+' ausgeblendet</div>').css("border-top","1px solid var(--accent-color)"));
+        comment.parent().append($('<div class="ignoredComment">Beitrag von '+blockedUser.text()+' ausgeblendet</div>'));
         let showUser = $('<i class="btn">User einblenden</i>');
         showUser.click(()=>{
             removeIgnoredUser(user);
