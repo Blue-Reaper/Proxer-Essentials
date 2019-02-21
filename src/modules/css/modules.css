@@ -25,3 +25,22 @@
     width: 55% !important;
     padding-top: 1em;
 }
+
+/* Ignore User */
+#pefIgnoreUser {
+    background-color: var(--main-bg-color);
+    border-radius: 5px !important;
+    color: #fff !important;
+    margin-left: 0.5em
+}
+
+#pefIgnoreUser:hover {
+    text-decoration: underline;
+}
+
+.ignoredComment {
+    text-align: center;
+    border-top: 1px solid var(--accent-color);
+    padding-top: 0.5em;
+    color: var(--text-color);
+}
