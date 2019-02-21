@@ -23,10 +23,15 @@ li.tumblr,
 li.googleplus + li.info,
 /* hide tab 'Artikel' */
 a[href$="article#top"],
+/* hide 'Artikel' on chapter Page */
+div.article,
 /* hide friend-requrest icon (top right) */
 #requestNav,
 /* hide news icon (top right) */
-#newsNav
+#newsNav,
+/* hide chat */
+#chatapp_sidebar,
+#chatapp_toggle
 {
     display: none !important;
 }

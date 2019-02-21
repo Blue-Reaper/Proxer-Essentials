@@ -5,8 +5,9 @@
 // blende Abonnieren Button aus (Infoseite), da keine Funktion? https://proxer.me/forum/213-allgemein/386170-abbonieren-button-in-details-seiten-beschreibung
 // blende Werbung auf Anime-Seite aus
 // blende Social Media aus
-// blende Tab Artikel (=Amazon) aus
+// blende Artikel (=Amazon) aus
 // blednde News und Freundschafts Icon aus (oben rechts)
+// blendet Chat aus
 
 pefModulList.push({
     id: 'smallWonders',
