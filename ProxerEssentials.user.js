@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     4.5-beta.4
+// @version     4.5-beta.5
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -396,6 +396,7 @@ function actionControl(change, modul) {
 // Longstrip: klick auf Bild scrollt zum nächsten Bild
 // Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
 // Fügt Mangaupdates im Menü Manga und auf Startseite neben Animeupdates hinzu
+// IDEA chapter next/last buttons under scrollTop
 pefModulList.push({
     id: 'mangaComfort',
     name: 'Manga Comfort',
@@ -509,7 +510,9 @@ function anotherExampleMethod() {
 // blende Abonnieren Button aus (Infoseite), da keine Funktion? https://proxer.me/forum/213-allgemein/386170-abbonieren-button-in-details-seiten-beschreibung
 // blende Werbung auf Anime-Seite aus
 // blende Social Media aus
-// blende Tab Artikel (=Amazon) aus
+// blende Artikel (=Amazon) aus
+// blednde News und Freundschafts Icon aus (oben rechts)
+// blendet Chat aus
 pefModulList.push({
     id: 'smallWonders',
     name: 'Kleine Wunder',
@@ -697,4 +700,76 @@ function updateReadingStatus() {
             $('.infocell').eq(idx).css("border-top-color", $(status).css("border-top-color"));
         }
     });
+}
+pefModulList.push({
+    id: 'ignoreUser',
+    name: 'User ignorieren',
+    description: 'Bestimmte User im Forum ausblenden',
+    autor: 'Blue.Reaper',
+    callMethod: function (change) { return ignoreUserCall(change); }
+});
+function ignoreUserCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            ignoreUser();
+            break;
+        case 1 /* off */:
+            // ignoreUser();
+            break;
+        case 2 /* ajax */:
+            // ignoreUser();
+            break;
+    }
+}
+function ignoreUser() {
+    // Only in Forum
+    if (window.location.pathname.split('/')[1] !== 'forum') {
+        return;
+    }
+    // button to hide user-comments
+    $('div.kpost-thankyou').each(function (idx, div) {
+        var ignoreUserButton = $('<i id="pefIgnoreUser" class="btn">User ausblenden</i>');
+        var userId = $(div).parents('table.kpublished').find('li.kpost-username a').attr('href').slice(6, -4);
+        ignoreUserButton.click(function () {
+            addIgnoredUser(userId);
+            location.reload();
+        });
+        $(div).append(ignoreUserButton);
+    });
+    // init ignore-List
+    if (GM_getValue("ignoreUserList") == null) {
+        GM_setValue("ignoreUserList", []);
+    }
+    var userList = GM_getValue("ignoreUserList");
+    // hide comments
+    userList.forEach(function (user) {
+        var blockedUser = $('li.kpost-username a[href^="/user/' + user + '"]');
+        var comment = blockedUser.parents(".kbody");
+        // TODO CSS
+        comment.parent().append($('<div class="ignoredComment">Beitrag von ' + blockedUser.text() + ' ausgeblendet</div>'));
+        var showUser = $('<i class="btn">User einblenden</i>');
+        showUser.click(function () {
+            removeIgnoredUser(user);
+            location.reload();
+        });
+        var buttons = $('<div class="kmessage-buttons-row center"></div>');
+        buttons.append(showUser);
+        comment.parent().append(buttons);
+        comment.hide();
+    });
+}
+function addIgnoredUser(userId) {
+    var userIgnoreList = GM_getValue("ignoreUserList");
+    if (userIgnoreList.indexOf(userId) == -1) {
+        userIgnoreList.push(userId);
+        GM_setValue("ignoreUserList", userIgnoreList);
+    }
+}
+function removeIgnoredUser(userId) {
+    var userIgnoreList = GM_getValue("ignoreUserList");
+    var index = userIgnoreList.indexOf(userId);
+    if (index > -1) {
+        userIgnoreList.splice(index, 1);
+        GM_setValue("ignoreUserList", userIgnoreList);
+    }
 }
