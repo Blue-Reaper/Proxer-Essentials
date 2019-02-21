@@ -5,7 +5,7 @@
 }
 
 .center {
-    text-align: center !important;
+    text-align: center;
 }
 
 .pointer {
@@ -25,7 +25,7 @@
 }
 
 .marginLeft05 {
-    margin-left: 0.5em !important;
+    margin-left: 0.5em;
 }
 
 /* Tab Einstellungen */
