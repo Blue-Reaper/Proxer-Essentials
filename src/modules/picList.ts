@@ -50,6 +50,7 @@ function picList(){
 
 		// Grid-List not added
 		if(!$('.infocell').length){
+            GM_addStyle (GM_getResourceText ("picList_CSS"));
 			let temp = $('tr');
 			temp.each((idx, tr)=>{
 				// skip table header
@@ -65,14 +66,10 @@ function picList(){
 				// Cover
 				boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/'+mainLink.attr("href").split('/')[2]+'.jpg">'));
 				box.append(boxLink);
-				// Title and Status (e.g. Airing)
-				box.append($('<div>').append(mainLink).append($(tr).find('td:nth-child(1) img').addClass("marginLeft05")));
-				// language
-				box.append($('<div>').append($(tr).find('td:nth-child(3) img')));
+				// Title
+				box.append($('<div class="picText">').append(mainLink));
 				// Date
-				box.append($('<div>').append($(tr).find('td:nth-child(6)').text()));
-				// Uploader
-				box.append($('<div>').append('Uploader:').append($(tr).find('td:nth-child(5) a').addClass("marginLeft05")));
+				box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(6)').text()));
 				$('.inner').append(box);
 			});
 			$('.inner').append($('<div class="clear"/>'))

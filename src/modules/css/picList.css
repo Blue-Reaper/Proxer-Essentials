@@ -1,0 +1,32 @@
+/* CSS is only loaded when needed, because of changes in standard-classes */
+
+#pefViewControl {
+    width: 55% !important;
+    padding-top: 1em;
+}
+
+.inner {
+    width:90% !important;
+    max-width: none;
+}
+
+.infocell {
+    position: relative;
+    width: auto;
+    margin-bottom: 0.7em;
+}
+
+.picText {
+    position: absolute;
+    background-color: var(--main-bg-color);
+    width: 200px !important;
+    padding: 0 !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.picBottom {
+    bottom:0;
+}
