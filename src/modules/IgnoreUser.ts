@@ -47,7 +47,6 @@ function ignoreUser() {
     userList.forEach((user) => {
         let blockedUser =  $('li.kpost-username a[href^="/user/'+user+'"]');
         let comment = blockedUser.parents(".kbody");
-        // TODO CSS
         comment.parent().append($('<div class="ignoredComment">Beitrag von '+blockedUser.text()+' ausgeblendet</div>'));
         let showUser = $('<i class="btn">User einblenden</i>');
         showUser.click(()=>{

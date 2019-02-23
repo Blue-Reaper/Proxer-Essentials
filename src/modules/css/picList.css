@@ -1,5 +1,4 @@
 /* CSS is only loaded when needed, because of changes in standard-classes */
-
 #pefViewControl {
     width: 55% !important;
     padding-top: 1em;
@@ -10,10 +9,40 @@
     max-width: none;
 }
 
-.infocell {
+/* hide tablelist */
+.inner table,
+.inner a.menu.accordion,
+.inner br {
+    display:none;
+}
+
+.acc {
+    display:block !important;
+    cursor: pointer;
+}
+
+.accContent {
+    display:none;
+}
+
+.picList {
     position: relative;
+    margin: 0 5px 5px;
+    float: left;
     width: auto;
     margin-bottom: 0.7em;
+    transition: color 0.8s ease;
+}
+
+.picList:hover,
+.picList:hover a {
+    color: var(--highlight-text-color);
+}
+
+.picTopBorder {
+    border-color: #656565;
+    border-width: 6px 0 0;
+    border-style: solid;
 }
 
 .picText {
@@ -25,6 +54,10 @@
     overflow: hidden;
     white-space: nowrap;
     text-align: center;
+}
+
+.picText td{
+    display: inline-block;
 }
 
 .picBottom {
