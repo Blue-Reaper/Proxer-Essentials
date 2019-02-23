@@ -20,12 +20,6 @@
     z-index: 1
 }
 
-/* Picture List */
-#pefViewControl {
-    width: 55% !important;
-    padding-top: 1em;
-}
-
 /* Ignore User */
 #pefIgnoreUser {
     background-color: var(--main-bg-color);
