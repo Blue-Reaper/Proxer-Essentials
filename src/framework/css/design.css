@@ -109,6 +109,7 @@ ul#simple-navi li a:hover {
     max-width: none !important;
     background-position-y: 0;
     background-attachment: fixed;
+    width: 100% !important;
 }
 
 ul#simple-navi,
