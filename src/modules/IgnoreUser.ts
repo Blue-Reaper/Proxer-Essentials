@@ -2,7 +2,7 @@
 pefModulList.push({
     id: 'ignoreUser',
     name: 'User ignorieren',
-    description: 'Bestimmte User im Forum ausblenden',
+    description: 'User im Forum ausblenden',
     autor: 'Blue.Reaper',
     callMethod: change => ignoreUserCall(change)
 });
