@@ -5,7 +5,7 @@ layout: default
 Es ist ein Userscript in dem verschiedene Erweiterungen an Proxer.me in einzelnen Modulen zusammengefügt sind.
 Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekommen und bei Bedarf auch einzelne Module deaktiviern. 
 
-Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des modularen Aufbaus sehr einfach und das Framework übernimmt bereits grundlegende Funktionen, wie das gesteuerte Aufruefen der Module und die Einstellungen für die Userscript-Manager.
+Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des modularen Aufbaus sehr einfach und das Framework übernimmt bereits grundlegende Funktionen, wie das gesteuerte Aufrufen der Module und die Einstellungen für die Userscript-Manager.
 
 # aktueller Umfang 
 
