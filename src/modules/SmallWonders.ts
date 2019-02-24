@@ -8,6 +8,7 @@
 // blende Artikel (=Amazon) aus
 // blednde News und Freundschafts Icon aus (oben rechts)
 // blendet Chat aus
+// blendet Spendenaufruf auf Videoplayer aus
 
 pefModulList.push({
     id: 'smallWonders',
@@ -37,6 +38,8 @@ function smallWonders() {
     setCookie('cookieconsent_dismissed', 'yes');
     // Keine Erwachenen-Meldung mehr
     setCookie('adult', '1');
+    // no donate call on videoplayer
+    setCookie('stream_donatecall1','1');
 
 // ############### hide elements ###############
     GM_addStyle (GM_getResourceText ("smallWonders_CSS"));
