@@ -26,6 +26,7 @@ Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
 ## Module
 <img src="screenshots/menu.png" width="30%">
 Module können einzeln abgeschaltet werden.
+
 ![Bild der Module](screenshots/modules.png)
 
 * ### [Kleine Wunder](modules/smallWonders.md)
