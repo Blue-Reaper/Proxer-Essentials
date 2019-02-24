@@ -12,7 +12,7 @@ Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des
 ## Design
 Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)).
 
-<img src="screenshots/design.png" width="30%">
+<img src="screenshots/design.png" width="50%">
 Es gab bereits einige Verbesserungen z.B.
 
 * vollständige Firefox Unterstützung
@@ -21,30 +21,18 @@ Es gab bereits einige Verbesserungen z.B.
 
 Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
 
-<img src="screenshots/designOptional.png" width="50%">
+<img src="screenshots/design_edit.png" width="70%">
 
 ## Module
 <img src="screenshots/menu.png" width="30%">
-
+Module können einzeln abgeschaltet werden.
 ![Bild der Module](screenshots/modules.png)
 
-* ### Kleine Wunder
-  * "zurück nach Oben" Button
-  
-    <img src="screenshots/Back-to-Top.png" width="60%">
-  * Grid-Anzeige als Standard (statt Listenansicht)
-    
-    <img src="screenshots/grid.png" width="40%">
-  * setzt "Ja ich bin Erwachsen"
-* ### Manga Comfort
-  * setzt Longstrip Reader als Standard
-  * Longstrip: klick auf Bild scrollt zum nächsten Bild (und springt nicht zum nächsten Kapitel)
-  * Longstrtip: letzte Bild springt in das nächste Kapitel (ohne dabei auf die Zwischenseite zu kommen)
-  * Fügt `Mangaupdates` im Menü `Manga` und auf Startseite neben `Animeupdates` hinzu
-* ### Theatermodus
-  * Theatermodus für Anime
-  
-    <img src="screenshots/theater.png" width="60%">
+* ### [Kleine Wunder](modules/smallWonders.md)
+* ### [Manga Komfort](modules/mangaComfort.md)
+* ### [Picture List](modules/pictureList.md)
+* ### [Theatermodus](modules/theatermodus.md)
+* ### [User ignorieren](modules/ignoreUser.md)
 
 ## Release Notes
 Die einzelnen Änderungen pro Release stehen [hier](https://github.com/Blue-Reaper/Proxer-Essentials/releases).
