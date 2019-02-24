@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     8-Beta
+// @version     9-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -172,8 +172,7 @@ function tabPefSettings() {
     inhalt.append($('<a data-ajax="true" href="/pef?s=modules#top" class="menu">Module</a>'));
     inhalt.append($('<a data-ajax="true" href="/pef?s=design#top" class="menu marginLeft05">Design</a>'));
     inhalt.append($('<h4>Nützliche Links</h4>'));
-    inhalt.append($('<div>Alle Infos über Proxer Essentials gibt es <a href="https://blue-reaper.github.io/Proxer-Essentials/">hier</a>.</div>'));
-    inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/raw/beta/ProxerEssentials.user.js">Beta Version</a></div>'));
+    inhalt.append($('<div><a href="https://blue-reaper.github.io/Proxer-Essentials/">Alle Infos über Proxer Essentials</a></div>'));
     inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/releases">Release Notes</a></div>'));
     inhalt.append($('<div><a href="https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials">Forumsbeitrag</a></div>'));
 }
@@ -182,6 +181,7 @@ function tabPefModules() {
     var inhalt = $('div.inner');
     // Header
     inhalt.append($('<h3>Module</h3>'));
+    inhalt.append($('<div>Für mehr Details auf den Modulnamen klicken.</div>'));
     // Inhalt für Modulanzeige
     var pef_module = $('<div class="clear"/>');
     inhalt.append(pef_module);
@@ -247,7 +247,7 @@ function tabPefDesign() {
 function showModules(pef_module) {
     var _loop_1 = function (singleModule) {
         var moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="floatLeft modulBox"></div>');
-        moduleBox.append($('<h3>' + singleModule.name + '</h3>'));
+        moduleBox.append($('<h3><a class="pointer" target="_blank" href="' + singleModule.link + '">' + singleModule.name + '</a></h3>'));
         moduleBox.append($('<div>' + singleModule.description + '</div>'));
         moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));
         // IDEA: Button für Details hinzufügen
@@ -398,6 +398,7 @@ pefModulList.push({
     id: 'ignoreUser',
     name: 'User ignorieren',
     description: 'User im Forum ausblenden',
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/ignoreUser',
     autor: 'Blue.Reaper',
     callMethod: function (change) { return ignoreUserCall(change); }
 });
@@ -472,8 +473,9 @@ function removeIgnoredUser(userId) {
 // IDEA chapter next/last buttons under scrollTop
 pefModulList.push({
     id: 'mangaComfort',
-    name: 'Manga Comfort',
-    description: 'mehr Komfort beim Manga Lesen',
+    name: 'Manga Komfort',
+    description: 'Mehr Komfort beim Manga Lesen',
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/mangaComfort',
     autor: 'Blue.Reaper',
     callMethod: function (change) { return mangaComfortCall(change); }
 });
@@ -540,6 +542,8 @@ function scrollToNextPage() {
 //     name:"Beispiel Modul",
 // 	// Die Kurzbeschreibung
 //     description:"Ein Muster zur Erstellung weiterer Scripte",
+//  // Link zur Infoseite mit den Details
+//     link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/...',
 // 	// Der Ersteller dieses Moduls
 // 	autor:"Blue.Reaper",
 // 	// Mit dieser Methode wird das Modul aufgerufen
@@ -591,6 +595,7 @@ pefModulList.push({
     id: 'smallWonders',
     name: 'Kleine Wunder',
     description: 'Kleine Änderungen, die Wunder wirken',
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/smallWonders',
     autor: 'Blue.Reaper',
     callMethod: function (change) { return smallWondersCall(change); }
 });
@@ -649,6 +654,7 @@ pefModulList.push({
     id: "theaterMode",
     name: "Theatermodus",
     description: "Theatermodus für Animes",
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/theatermodus',
     autor: "Blue.Reaper",
     callMethod: function (change) { return theatreModeCall(change); }
 });
@@ -697,7 +703,8 @@ function theatermodusOff() {
 pefModulList.push({
     id: "picList",
     name: "Picture List",
-    description: "Bilder statt Listen",
+    description: "Bilder statt Tabellen",
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/pictureList',
     autor: "Blue.Reaper",
     callMethod: function (change) { return picListCall(change); }
 });
