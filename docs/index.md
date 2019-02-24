@@ -11,11 +11,7 @@ Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des
 Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)).
 
 <img src="screenshots/design.png" width="50%">
-Es gab bereits einige Verbesserungen z.B.
-
-* vollständige Firefox Unterstützung
-* Überarbeitung der Animationen
-* Farben sind einstellbar
+Die Farben sind vollkommen frei einstellbar und es gibt laufend Weiterenwicklungen.
 
 Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
 
