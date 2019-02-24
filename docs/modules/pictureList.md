@@ -7,3 +7,5 @@
   + Lesezeichen
   ![Bild](../screenshots/pictureList.png)
 + Bild-Anzeige als Standard, statt Tabellen-Ansicht
+
+[Zurück](../)
