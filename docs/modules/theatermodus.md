@@ -1,5 +1,6 @@
 # Theatermodus
 ##### Theatermodus für Animes
 ## Funktion
-+ Theatermodus für Anime
-+ blende "Flash-Player | Ladezeit melden! | Hilfe" im Video-Player aus
++ Möglichkeit Videos in den Theatermodus zu schalten
+![Bild Theatermodus](../screenshots/theater.png)
++ blendet Anzeige "Flash-Player | Ladezeit melden! | Hilfe" im Video-Player (oben links) aus
