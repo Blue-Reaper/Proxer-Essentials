@@ -19,7 +19,7 @@ Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
 
 ## Module
 <img src="screenshots/menu.png" width="30%">
-Module können einzeln abgeschaltet werden.
+Es ist möglich einzelne Module auszuschalten.
 
 ![Bild der Module](screenshots/modules.png)
 
