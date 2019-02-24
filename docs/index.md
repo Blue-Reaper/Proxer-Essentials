@@ -23,11 +23,11 @@ Es ist möglich einzelne Module auszuschalten.
 
 ![Bild der Module](screenshots/modules.png)
 
-* ### [Kleine Wunder](modules/smallWonders.md)
-* ### [Manga Komfort](modules/mangaComfort.md)
-* ### [Picture List](modules/pictureList.md)
-* ### [Theatermodus](modules/theatermodus.md)
-* ### [User ignorieren](modules/ignoreUser.md)
+### [Kleine Wunder](modules/smallWonders.md)
+### [Manga Komfort](modules/mangaComfort.md)
+### [Picture List](modules/pictureList.md)
+### [Theatermodus](modules/theatermodus.md)
+### [User ignorieren](modules/ignoreUser.md)
 
 ## Release Notes
 Die einzelnen Änderungen pro Release stehen [hier](https://github.com/Blue-Reaper/Proxer-Essentials/releases).
