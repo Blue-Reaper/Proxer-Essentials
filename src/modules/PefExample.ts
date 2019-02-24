@@ -9,7 +9,7 @@
 // 	// Die Kurzbeschreibung
 //     description:"Ein Muster zur Erstellung weiterer Scripte",
 //  // Link zur Infoseite mit den Details
-//     link: 'https://...',
+//     link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/...',
 // 	// Der Ersteller dieses Moduls
 // 	autor:"Blue.Reaper",
 // 	// Mit dieser Methode wird das Modul aufgerufen

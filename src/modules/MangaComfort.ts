@@ -9,7 +9,7 @@ pefModulList.push({
     id: 'mangaComfort',
     name: 'Manga Komfort',
     description: 'Mehr Komfort beim Manga Lesen',
-    link: 'https://github.com/Blue-Reaper/Proxer-Essentials/blob/dev/docs/modules/mangaComfort.md',
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/mangaComfort',
     autor: 'Blue.Reaper',
     callMethod: change => mangaComfortCall(change)
 });
