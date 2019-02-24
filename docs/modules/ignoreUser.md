@@ -3,3 +3,5 @@
 ## Funktion
 + Beiträge einzelner User im Forum ausblenden
 ![Example](../screenshots/ignoreUser.png)
+
+[Zurück](../)
