@@ -7,8 +7,9 @@
 // IDEA chapter next/last buttons under scrollTop
 pefModulList.push({
     id: 'mangaComfort',
-    name: 'Manga Comfort',
-    description: 'mehr Komfort beim Manga Lesen',
+    name: 'Manga Komfort',
+    description: 'Mehr Komfort beim Manga Lesen',
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/mangaComfort',
     autor: 'Blue.Reaper',
     callMethod: change => mangaComfortCall(change)
 });

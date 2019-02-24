@@ -3,6 +3,7 @@ pefModulList.push({
     id: 'ignoreUser',
     name: 'User ignorieren',
     description: 'User im Forum ausblenden',
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/ignoreUser',
     autor: 'Blue.Reaper',
     callMethod: change => ignoreUserCall(change)
 });
