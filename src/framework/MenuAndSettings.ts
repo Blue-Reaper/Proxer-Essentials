@@ -66,8 +66,7 @@ function tabPefSettings(){
     inhalt.append($('<a data-ajax="true" href="/pef?s=design#top" class="menu marginLeft05">Design</a>'));
 
     inhalt.append($('<h4>Nützliche Links</h4>'));
-    inhalt.append($('<div>Alle Infos über Proxer Essentials gibt es <a href="https://blue-reaper.github.io/Proxer-Essentials/">hier</a>.</div>'));
-    inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/raw/beta/ProxerEssentials.user.js">Beta Version</a></div>'));
+    inhalt.append($('<div><a href="https://blue-reaper.github.io/Proxer-Essentials/">Alle Infos über Proxer Essentials</a></div>'));
     inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/releases">Release Notes</a></div>'));
     inhalt.append($('<div><a href="https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials">Forumsbeitrag</a></div>'));
 }
@@ -79,7 +78,7 @@ function tabPefModules(){
 
     // Header
     inhalt.append($('<h3>Module</h3>'));
-
+    inhalt.append($('<div>Für mehr Details auf den Modulnamen klicken.</div>'));
     // Inhalt für Modulanzeige
     let pef_module = $('<div class="clear"/>');
     inhalt.append(pef_module);
@@ -159,7 +158,7 @@ function showModules(pef_module: any) {
     for (let singleModule of pefModulList) {
         let moduleBox = $('<div id="' + singleModule.id + 'ModulBox" class="floatLeft modulBox"></div>');
 
-        moduleBox.append($('<h3>' + singleModule.name + '</h3>'));
+        moduleBox.append($('<h3><a class="pointer" target="_blank" href="'+singleModule.link+'">' + singleModule.name + '</a></h3>'));
 
         moduleBox.append($('<div>' + singleModule.description + '</div>'));
         moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));

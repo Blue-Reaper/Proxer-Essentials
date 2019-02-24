@@ -7,7 +7,8 @@
 pefModulList.push({
     id:"picList",
     name:"Picture List",
-    description:"Bilder statt Listen",
+    description:"Bilder statt Tabellen",
+    link: 'https://github.com/Blue-Reaper/Proxer-Essentials/blob/dev/docs/modules/pictureList.md',
     autor:"Blue.Reaper",
 	callMethod:(change)=>picListCall(change)
 });

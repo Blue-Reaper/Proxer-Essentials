@@ -43,10 +43,6 @@
     transition: all ease 0.8s;
 }
 
-.modulBox h3{
-    color: var(--text-color);
-}
-
 .modulBox i {
     margin-right: 0.7em;
     margin-bottom: 0.2em;
@@ -59,7 +55,9 @@
 }
 
 .modulBox i:hover,
-.modulBox.active:hover i {
+.modulBox.active:hover i,
+.modulBox a:hover,
+.modulBox.active a {
     color: var(--accent-color);
 }
 
@@ -67,14 +65,8 @@
     background: var(--button-color);
 }
 
-.modulBox.active:hover,
-.modulBox.active:hover h3 {
+.modulBox.active:hover {
     color: var(--highlight-text-color);
-}
-
-.modulBox.active h3 {
-    transition: all ease 0.8s;
-    color: var(--accent-color);
 }
 
 .modulBox.active i::before{

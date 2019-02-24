@@ -10,6 +10,8 @@
     color: var(--accent-color);
 }
 
+/* hide cookie warning */
+.cc_banner-wrapper,
 /* hide 'Abonnieren' button on /info site */
 a.menu.entry_subscribe,
 /* hide add on /watch site */

@@ -7,6 +7,7 @@ pefModulList.push({
     id:"theaterMode",
     name:"Theatermodus",
     description:"Theatermodus für Animes",
+    link: 'https://github.com/Blue-Reaper/Proxer-Essentials/blob/dev/docs/modules/theatermodus.md',
     autor:"Blue.Reaper",
 	callMethod:(change)=>theatreModeCall(change)
 });

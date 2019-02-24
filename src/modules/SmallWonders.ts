@@ -14,6 +14,7 @@ pefModulList.push({
     id: 'smallWonders',
     name: 'Kleine Wunder',
     description: 'Kleine Änderungen, die Wunder wirken',
+    link: 'https://github.com/Blue-Reaper/Proxer-Essentials/blob/dev/docs/modules/smallWonders.md',
     autor: 'Blue.Reaper',
     callMethod: change => smallWondersCall(change)
 });
