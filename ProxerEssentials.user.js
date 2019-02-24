@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     7-Beta
+// @version     8-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -586,6 +586,7 @@ function anotherExampleMethod() {
 // blende Artikel (=Amazon) aus
 // blednde News und Freundschafts Icon aus (oben rechts)
 // blendet Chat aus
+// blendet Spendenaufruf auf Videoplayer aus
 pefModulList.push({
     id: 'smallWonders',
     name: 'Kleine Wunder',
@@ -612,6 +613,8 @@ function smallWonders() {
     setCookie('cookieconsent_dismissed', 'yes');
     // Keine Erwachenen-Meldung mehr
     setCookie('adult', '1');
+    // no donate call on videoplayer
+    setCookie('stream_donatecall1', '1');
     // ############### hide elements ###############
     GM_addStyle(GM_getResourceText("smallWonders_CSS"));
     // ############### BackToTop ###############
