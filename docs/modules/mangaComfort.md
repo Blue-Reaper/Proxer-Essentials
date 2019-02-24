@@ -1,4 +1,4 @@
-# Manga Comfort
+# Manga Komfort
 ##### Mehr Komfort beim Manga Lesen
 ## Funktion
 + setzt Longstrip-Reader als Standard
