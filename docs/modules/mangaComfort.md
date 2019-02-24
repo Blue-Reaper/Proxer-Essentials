@@ -7,3 +7,5 @@
   + letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
 + Fügt `Mangaupdates` im Menü `Manga` und auf Startseite neben `Animeupdates` hinzu
 ![Bild](../screenshots/mangaUpdate.png)
+
+[Zurück](../)
