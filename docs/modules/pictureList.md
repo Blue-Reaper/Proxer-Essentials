@@ -1,8 +1,8 @@
 # Picture List
 ##### Bilder statt Tabellen
 ## Funktion
-+ Zeigt Bilder in den Listenansichten an bei:
++ Möglichkeit Bild-Listen statt Tabellen anzuzeigen bei:
   + Updates
   + Manga/Animelist
   + Lesezeichen
-+ Grid-Anzeige als Standard, statt Listenansicht
++ Bild-Anzeige als Standard, statt Tabellen-Ansicht
