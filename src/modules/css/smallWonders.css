@@ -1,0 +1,41 @@
+.backToTop {
+    position: fixed;
+    top: 80%;
+    right: 3%;
+    display:none;
+}
+
+.backToTop:hover {
+    transition: all ease 0.8s;
+    color: var(--accent-color);
+}
+
+/* hide cookie warning */
+.cc_banner-wrapper,
+/* hide 'Abonnieren' button on /info site */
+a.menu.entry_subscribe,
+/* hide add on /watch site */
+img[src="/images/misc/proxerblock.png"],
+a[href^="https://publisher.anime-unicorn.com"],
+div.mn-related-container,
+/* hide social media */
+li.facebook,
+li.twitter,
+li.whatsapp,
+li.googleplus,
+li.tumblr,
+li.googleplus + li.info,
+/* hide tab 'Artikel' */
+a[href$="article#top"],
+/* hide 'Artikel' on chapter Page */
+div.article,
+/* hide friend-requrest icon (top right) */
+#requestNav,
+/* hide news icon (top right) */
+#newsNav,
+/* hide chat */
+#chatapp_sidebar,
+#chatapp_toggle
+{
+    display: none !important;
+}

@@ -1,0 +1,13 @@
+#player_code,
+.flowplayer{
+    width: inherit !important;
+    height: inherit !important;
+}
+
+video {
+    height: 100vh !important;
+}
+
+#psplayercontrols {
+    display:none;
+}

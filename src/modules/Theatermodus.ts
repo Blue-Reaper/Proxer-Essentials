@@ -1,4 +1,5 @@
 // Theatermodus für Anime
+// blende "Flash-Player | Ladezeit melden! | Hilfe" im Player aus
 
 // IDEA 10 sek zurückspulen einbauen
 
@@ -6,6 +7,7 @@ pefModulList.push({
     id:"theaterMode",
     name:"Theatermodus",
     description:"Theatermodus für Animes",
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/theatermodus',
     autor:"Blue.Reaper",
 	callMethod:(change)=>theatreModeCall(change)
 });
@@ -19,7 +21,7 @@ function theatreModeCall (change:ModulCallEvent) {
 			theatermodusOff();
 			break;
 		case ModulCallEvent.ajax:
-			theatermodus();
+			// theatermodus();
 			break;
 	}
 }
@@ -31,9 +33,7 @@ function theatermodus(){
 
 	// Innerhalb des Iframes
 	if(window.location.hostname === "stream.proxer.me"){
-        $('#player_code').addClass("inheritSize");
-        $('.flowplayer').addClass("inheritSize");
-        $('.plyr video').addClass("heightVideo");
+        GM_addStyle (GM_getResourceText ("theater_CSS"));
 	}
 	// normale Proxer Seite
 	if (window.location.pathname.split('/')[1] === 'watch'){
