@@ -38,9 +38,9 @@ function smallWonders() {
     // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
     setCookie('cookieconsent_dismissed', 'yes');
     // Keine Erwachenen-Meldung mehr
-    setCookie('adult', '1');
+    // setCookie('adult', '1');
     // no donate call on videoplayer
-    setCookie('stream_donatecall1','1');
+    // setCookie('stream_donatecall1','1');
 
 // ############### hide elements ###############
     GM_addStyle (GM_getResourceText ("smallWonders_CSS"));
