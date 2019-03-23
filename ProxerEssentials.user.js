@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     9-Beta
+// @version     10-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -617,9 +617,9 @@ function smallWonders() {
     // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
     setCookie('cookieconsent_dismissed', 'yes');
     // Keine Erwachenen-Meldung mehr
-    setCookie('adult', '1');
+    // setCookie('adult', '1');
     // no donate call on videoplayer
-    setCookie('stream_donatecall1', '1');
+    // setCookie('stream_donatecall1','1');
     // ############### hide elements ###############
     GM_addStyle(GM_getResourceText("smallWonders_CSS"));
     // ############### BackToTop ###############
