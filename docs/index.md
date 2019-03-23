@@ -11,6 +11,7 @@ Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des
 Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)).
 
 <img src="screenshots/design.png" width="50%">
+
 Die Farben sind vollkommen frei einstellbar und es gibt laufend Weiterenwicklungen.
 
 Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
@@ -19,6 +20,7 @@ Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
 
 ## Module
 <img src="screenshots/menu.png" width="30%">
+
 Es ist möglich einzelne Module auszuschalten.
 
 ![Bild der Module](screenshots/modules.png)
