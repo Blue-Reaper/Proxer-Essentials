@@ -37,10 +37,16 @@ function smallWonders() {
 // ############### set cookies ###############
     // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
     setCookie('cookieconsent_dismissed', 'yes');
-    // Keine Erwachenen-Meldung mehr
-    // setCookie('adult', '1');
-    // no donate call on videoplayer
-    // setCookie('stream_donatecall1','1');
+    
+    if ($('#nav a[title="Blue.Reaper"]').length){
+        // Keine Erwachenen-Meldung mehr
+        setCookie('adult', '1');
+        // no donate call on videoplayer
+        setCookie('stream_donatecall1','1');
+        // hide tab 'Artikel'
+        // hide 'Artikel' on chapter Page
+        GM_addStyle ('a[href$="article#top"], div.article {display: none !important;}');
+    }
 
 // ############### hide elements ###############
     GM_addStyle (GM_getResourceText ("smallWonders_CSS"));
