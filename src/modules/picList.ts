@@ -3,6 +3,12 @@
 // - Manga/Animelist
 // - Lesezeichen
 // Grid-Anzeige als Standard, statt Listenansicht
+// In Anime- / Manga-Liste (Grid Modus) Sortier und Filter Optionen
+
+const enum SortOption {
+    alphabetical,
+    stars
+}
 
 pefModulList.push({
     id:"picList",
@@ -49,15 +55,15 @@ function isLocationReadlist():boolean{
 }
 
 function picList(){
-    console.log(location.pathname);
-    console.log(location.search);
+    // console.log(location.pathname);
+    // console.log(location.search);
     if (isLocationUpdates() || isLocationStatus() || isLocationReadlist()){
 
     	// add buttons for table- or grid-view
     	if(!$('#pefViewControl').length){
     		$('#main #simple-navi').after($(`<div id="pefViewControl" class="clear">
     				<a id="pefGrid" data-ajax="true" class="marginLeft05 floatRight menu fa fa-th-large" onclick="set_cookie('entryView','grid',cookie_expire);location.reload();" href="javascript:;"/>
-    				<a id="pefList" data-ajax="true" class="floatRight menu fa fa-list" onclick="set_cookie('entryView','tablelist',cookie_expire);location.reload();" href="javascript:;"/>
+    				<a id="pefList" data-ajax="true" class="marginLeft05 floatRight menu fa fa-list" onclick="set_cookie('entryView','tablelist',cookie_expire);location.reload();" href="javascript:;"/>
     			</div>`));
     	}
 
@@ -71,6 +77,26 @@ function picList(){
 
     		// Grid-List not added
     		if(!$('.picList').length){
+
+                // sort/filter options
+                if(isLocationStatus()){
+                    let filterMedium = $('<select id="mediumFilter" class = "marginLeft05 floatRight"/>');
+                    filterMedium.append($('<option value=""  selected >Medium Filter</option>'));
+                    filterMedium.on('input', () => filterList());
+                    $('#pefViewControl').append(filterMedium);
+
+                    let filterTitle = $('<input id="titleFilter" type="text" placeholder="Titel Filter" class="marginLeft05 floatRight"/>');
+                    filterTitle.on('input', () => filterList());
+                    $('#pefViewControl').append(filterTitle);
+
+                    let sortAlpha = $('<a id="pefSortAlpha" class="marginLeft05 floatRight menu fa fa-sort-alpha-asc active" href="javascript:;"/>');
+                    let sortStar = $('<a id="pefSortStar" class="marginLeft05 floatRight menu fa fa-long-arrow-down" href="javascript:;"><i class="fa  fa-star"/><a/>');
+                    sortAlpha.click(() => sortList(SortOption.alphabetical));
+                    sortStar.click(() => sortList(SortOption.stars));
+                    $('#pefViewControl').append(sortAlpha);
+                    $('#pefViewControl').append(sortStar);
+                }
+
                 GM_addStyle (GM_getResourceText ("picList_CSS"));
                 if(isLocationUpdates()){
                     showGridUpdates();
@@ -135,7 +161,8 @@ function showGridStatus(){
                 return true;
             }
             let mainLink = $(tr).find('td:nth-child(2) a').attr( "title",'');
-            let box = $('<div class="picList"></div>');
+            // Medium
+            let box = $('<div class="picList" data-medium="'+$(tr).find('td:nth-child(3)').text()+'"></div>');
             let boxLink = $('<a href="'+mainLink.attr("href")+'" data-ajax="true"></a>');
             // Cover
             boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/'+mainLink.attr("href").replace(new RegExp("/|info|list|#top","g"),"")+'.jpg">'));
@@ -148,8 +175,12 @@ function showGridStatus(){
 
         });
         accContent.append($('<div class="clear"/>'));
-        accordion.append($('<div class="floatRight">'+$(accContent).find('.picList').length+'</div>'));
+        accordion.append($('<div class="counter floatRight">'+$(accContent).find('.picList').length+'</div>'));
     });
+
+    // add options for medium filter
+    let options = $('[data-medium]').map(function(){return $(this).data('medium');}).get().filter((elem, index, self)=> index === self.indexOf(elem));
+    options.forEach(element => $('#mediumFilter').append($('<option value="'+element+'">'+element+'</option>')));
 }
 
 function showGridReadlist(){
@@ -195,4 +226,43 @@ function updateReadingStatus(){
 			$('.picTopBorder').eq(idx).css("border-top-color",$(status).css("border-top-color"));
 		}
 	});
+}
+
+function sortList(sortOption :SortOption){
+    $('.accContent').each((idx,container)=>{
+        let items = $(container).children('.picList').sort((a, b)=> {
+            if(sortOption == SortOption.stars){
+                $('#pefSortStar').addClass("active");
+                $('#pefSortAlpha').removeClass("active");
+                return $(b).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png']").length-$(a).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png']").length;
+            }else {
+                $('#pefSortAlpha').addClass("active");
+                $('#pefSortStar').removeClass("active");
+                let aName = $(a).find(".picText .tip").text().toLowerCase();
+                let bName = $(b).find(".picText .tip").text().toLowerCase();
+                return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+            }
+        });
+        $(container).find('.clear').before(items);
+    });
+}
+
+function filterList(){
+    $('.picList').show();
+
+    let titleFilter = new RegExp($('#titleFilter').val(),'i');
+    // hide alle elements that don't match the filters
+    $('.picList').filter((index,item)=> {
+        if($('#mediumFilter').val() == "")
+        // if meduim filter is not active only filter title
+            return !titleFilter.test($(item).find(".picText .tip").text());
+        else
+        // filter title and medium
+            return (!titleFilter.test($(item).find(".picText .tip").text())) || ($(item).data('medium') != $('#mediumFilter').val());
+    }).hide();
+
+    // update accordion counter after filtering
+    $('.acc').each((idx,container)=>{
+        $(container).find('.counter').text($(container).next('.accContent').find('.picList:not([style*="display: none"])').length);
+    });
 }
