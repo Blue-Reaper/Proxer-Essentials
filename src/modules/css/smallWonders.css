@@ -25,10 +25,6 @@ li.whatsapp,
 li.googleplus,
 li.tumblr,
 li.googleplus + li.info,
-/* hide tab 'Artikel' */
-/* a[href$="article#top"], */
-/* hide 'Artikel' on chapter Page */
-/* div.article, */
 /* hide friend-requrest icon (top right) */
 #requestNav,
 /* hide news icon (top right) */
