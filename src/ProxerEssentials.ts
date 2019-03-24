@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     11-Beta
+// @version     12-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/

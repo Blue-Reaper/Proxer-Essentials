@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     11-Beta
+// @version     12-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -705,6 +705,7 @@ function theatermodusOff() {
 // - Manga/Animelist
 // - Lesezeichen
 // Grid-Anzeige als Standard, statt Listenansicht
+// In Anime- / Manga-Liste (Grid Modus) Sortier und Filter Optionen
 pefModulList.push({
     id: "picList",
     name: "Picture List",
@@ -747,12 +748,12 @@ function isLocationReadlist() {
     return false;
 }
 function picList() {
-    console.log(location.pathname);
-    console.log(location.search);
+    // console.log(location.pathname);
+    // console.log(location.search);
     if (isLocationUpdates() || isLocationStatus() || isLocationReadlist()) {
         // add buttons for table- or grid-view
         if (!$('#pefViewControl').length) {
-            $('#main #simple-navi').after($("<div id=\"pefViewControl\" class=\"clear\">\n    \t\t\t\t<a id=\"pefGrid\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-th-large\" onclick=\"set_cookie('entryView','grid',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t\t<a id=\"pefList\" data-ajax=\"true\" class=\"floatRight menu fa fa-list\" onclick=\"set_cookie('entryView','tablelist',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t</div>"));
+            $('#main #simple-navi').after($("<div id=\"pefViewControl\" class=\"clear\">\n    \t\t\t\t<a id=\"pefGrid\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-th-large\" onclick=\"set_cookie('entryView','grid',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t\t<a id=\"pefList\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-list\" onclick=\"set_cookie('entryView','tablelist',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t</div>"));
         }
         // Picture (=Grid) List
         if (getCookie('entryView') != 'tablelist') {
@@ -763,6 +764,22 @@ function picList() {
             $('#pefList').removeClass("active");
             // Grid-List not added
             if (!$('.picList').length) {
+                // sort/filter options
+                if (isLocationStatus()) {
+                    var filterMedium = $('<select id="mediumFilter" class = "marginLeft05 floatRight"/>');
+                    filterMedium.append($('<option value=""  selected >Medium Filter</option>'));
+                    filterMedium.on('input', function () { return filterList(); });
+                    $('#pefViewControl').append(filterMedium);
+                    var filterTitle = $('<input id="titleFilter" type="text" placeholder="Titel Filter" class="marginLeft05 floatRight"/>');
+                    filterTitle.on('input', function () { return filterList(); });
+                    $('#pefViewControl').append(filterTitle);
+                    var sortAlpha = $('<a id="pefSortAlpha" class="marginLeft05 floatRight menu fa fa-sort-alpha-asc active" href="javascript:;"/>');
+                    var sortStar = $('<a id="pefSortStar" class="marginLeft05 floatRight menu fa fa-long-arrow-down" href="javascript:;"><i class="fa  fa-star"/><a/>');
+                    sortAlpha.click(function () { return sortList(0 /* alphabetical */); });
+                    sortStar.click(function () { return sortList(1 /* stars */); });
+                    $('#pefViewControl').append(sortAlpha);
+                    $('#pefViewControl').append(sortStar);
+                }
                 GM_addStyle(GM_getResourceText("picList_CSS"));
                 if (isLocationUpdates()) {
                     showGridUpdates();
@@ -825,7 +842,8 @@ function showGridStatus() {
                 return true;
             }
             var mainLink = $(tr).find('td:nth-child(2) a').attr("title", '');
-            var box = $('<div class="picList"></div>');
+            // Medium
+            var box = $('<div class="picList" data-medium="' + $(tr).find('td:nth-child(3)').text() + '"></div>');
             var boxLink = $('<a href="' + mainLink.attr("href") + '" data-ajax="true"></a>');
             // Cover
             boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/' + mainLink.attr("href").replace(new RegExp("/|info|list|#top", "g"), "") + '.jpg">'));
@@ -837,8 +855,11 @@ function showGridStatus() {
             accContent.append(box);
         });
         accContent.append($('<div class="clear"/>'));
-        accordion.append($('<div class="floatRight">' + $(accContent).find('.picList').length + '</div>'));
+        accordion.append($('<div class="counter floatRight">' + $(accContent).find('.picList').length + '</div>'));
     });
+    // add options for medium filter
+    var options = $('[data-medium]').map(function () { return $(this).data('medium'); }).get().filter(function (elem, index, self) { return index === self.indexOf(elem); });
+    options.forEach(function (element) { return $('#mediumFilter').append($('<option value="' + element + '">' + element + '</option>')); });
 }
 function showGridReadlist() {
     $('.inner td[width="50%"]').each(function (idx, td) {
@@ -879,5 +900,41 @@ function updateReadingStatus() {
         if ($(status).css("border-top-color") != "rgba(0, 0, 0, 0)") {
             $('.picTopBorder').eq(idx).css("border-top-color", $(status).css("border-top-color"));
         }
+    });
+}
+function sortList(sortOption) {
+    $('.accContent').each(function (idx, container) {
+        var items = $(container).children('.picList').sort(function (a, b) {
+            if (sortOption == 1 /* stars */) {
+                $('#pefSortStar').addClass("active");
+                $('#pefSortAlpha').removeClass("active");
+                return $(b).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png']").length - $(a).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png']").length;
+            }
+            else {
+                $('#pefSortAlpha').addClass("active");
+                $('#pefSortStar').removeClass("active");
+                var aName = $(a).find(".picText .tip").text().toLowerCase();
+                var bName = $(b).find(".picText .tip").text().toLowerCase();
+                return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
+            }
+        });
+        $(container).find('.clear').before(items);
+    });
+}
+function filterList() {
+    $('.picList').show();
+    var titleFilter = new RegExp($('#titleFilter').val(), 'i');
+    // hide alle elements that don't match the filters
+    $('.picList').filter(function (index, item) {
+        if ($('#mediumFilter').val() == "")
+            // if meduim filter is not active only filter title
+            return !titleFilter.test($(item).find(".picText .tip").text());
+        else
+            // filter title and medium
+            return (!titleFilter.test($(item).find(".picText .tip").text())) || ($(item).data('medium') != $('#mediumFilter').val());
+    }).hide();
+    // update accordion counter after filtering
+    $('.acc').each(function (idx, container) {
+        $(container).find('.counter').text($(container).next('.accContent').find('.picList:not([style*="display: none"])').length);
     });
 }
