@@ -38,3 +38,30 @@
     padding-top: 0.5em;
     color: var(--text-color);
 }
+
+/* Manga Comfort */
+
+.previousChapter {
+    position: fixed;
+    top: 83%;
+    right: 4.6%;
+}
+
+.nextChapter {
+    position: fixed;
+    top: 83%;
+    right: 1.9%;
+}
+
+.bookmark {
+    position: fixed;
+    top: 85.5%;
+    right: 3.25%;
+}
+
+.previousChapter:hover,
+.nextChapter:hover,
+.bookmark:hover {
+    transition: all ease 0.8s;
+    color: var(--accent-color);
+}
