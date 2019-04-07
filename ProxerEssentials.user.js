@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     12-Beta
+// @version     13-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -468,7 +468,7 @@ function removeIgnoredUser(userId) {
 }
 // Longstrip Reader als Standard
 // Longstrip: klick auf Bild scrollt zum nächsten Bild
-// Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
+// Longstrip: Navigation um zu nächstem / letztem Kapitel zu springen (ohne Zwischenseite)
 // Fügt Mangaupdates im Menü Manga und auf Startseite neben Animeupdates hinzu
 // IDEA chapter next/last buttons under scrollTop
 pefModulList.push({
@@ -497,27 +497,68 @@ function mangaComfort() {
         $('#leftNav li:nth-child(3) ul').append($('<li><a data-ajax="true" href="/manga/updates#top">Updates</a></li>'));
     }
     // On Home Page and Links doesn't exist
-    if (window.location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length) {
+    if (location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length) {
         // Add Mangaupdaets like existing Animeupdates and after that
         $('#main li>a[href="/anime/updates#top"]').parent().after($('<li id="pef_mangaupdates"><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
     }
-    if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
+    if (location.pathname.split('/')[1] !== 'read' && location.pathname.split('/')[1] !== 'chapter') {
+        $('.previousChapter, .nextChapter, .bookmark').remove();
         return;
     }
     // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
     if (getCookie('manga_reader') != 'slide') {
         setCookie('manga_reader', 'longstrip');
     }
-    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
     if (getCookie('manga_reader') == 'longstrip') {
+        // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
         $('#reader img').attr('onclick', '');
         $('#reader img').off('click', scrollToNextPage);
         $('#reader img').click(scrollToNextPage);
-        $('#reader img:last-child').attr('onclick', "window.location=nextChapter.replace('chapter','read')+'#top'");
+        // only add buttons once
+        if (!$('.nextChapter').length) {
+            // button previous chapter
+            // don't show button on first chapter
+            if (Number(location.pathname.split('/')[3]) > 1) {
+                var previousChapterButton = $('<i class="previousChapter pointer fa fa-2x fa-chevron-left"/>');
+                $('body').append(previousChapterButton);
+                previousChapterButton.click(function () {
+                    var path = location.pathname.split('/');
+                    path[1] = 'read';
+                    path[3] = String(Number(path[3]) - 1);
+                    path[5] = String(1);
+                    location.pathname = path.join('/');
+                });
+            }
+            // button next chapter
+            var nextChapterButton = $('<i class="nextChapter pointer fa fa-2x fa-chevron-right"/>');
+            $('body').append(nextChapterButton);
+            nextChapterButton.click(function () {
+                var path = location.pathname.split('/');
+                path[1] = 'read';
+                path[3] = String(Number(path[3]) + 1);
+                path[5] = String(1);
+                location.pathname = path.join('/');
+            });
+            // button bookmark this chapter
+            var bookmarkButton = $('<i class="bookmark pointer fa fa-2x fa-bookmark"/>');
+            $('body').append(bookmarkButton);
+            bookmarkButton.click(function () {
+                var path = location;
+                path = String(path).replace('read', 'chapter');
+                var ajaxLink = (path + '?format=json&type=reminder&' + $('#proxerToken').val() + '=1&title=reminder_this');
+                console.log("my ajax:" + ajaxLink);
+                $.post(ajaxLink, {
+                    'check': 1
+                }, function (data) {
+                    createPefMessage(data.msg);
+                    localStorage.listentries_timer = null;
+                });
+            });
+        }
     }
     // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
     if ($('#main img[src="/images/misc/404.png"]').length) {
-        window.location.pathname = window.location.pathname.replace('read', 'chapter');
+        location.pathname = location.pathname.replace('read', 'chapter');
     }
     // Mauszeiger wird auch nur über Bild zur Hand
     $('#reader img').addClass('pointer');
@@ -908,7 +949,7 @@ function sortList(sortOption) {
             if (sortOption == 1 /* stars */) {
                 $('#pefSortStar').addClass("active");
                 $('#pefSortAlpha').removeClass("active");
-                return $(b).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png']").length - $(a).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png']").length;
+                return $(b).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png'], .picText.picBottom img[src='/images/misc/stern.png']").length - $(a).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png'], .picText.picBottom img[src='/images/misc/stern.png']").length;
             }
             else {
                 $('#pefSortAlpha').addClass("active");
