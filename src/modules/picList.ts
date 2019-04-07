@@ -234,7 +234,7 @@ function sortList(sortOption :SortOption){
             if(sortOption == SortOption.stars){
                 $('#pefSortStar').addClass("active");
                 $('#pefSortAlpha').removeClass("active");
-                return $(b).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png']").length-$(a).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png']").length;
+                return $(b).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png'], .picText.picBottom img[src='/images/misc/stern.png']").length-$(a).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png'], .picText.picBottom img[src='/images/misc/stern.png']").length;
             }else {
                 $('#pefSortAlpha').addClass("active");
                 $('#pefSortStar').removeClass("active");
