@@ -1,7 +1,7 @@
 .backToTop {
     position: fixed;
-    top: 80%;
-    right: 3%;
+    bottom: 154px;
+    right: 57px;
     display:none;
 }
 
