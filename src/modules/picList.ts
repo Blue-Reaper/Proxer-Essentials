@@ -207,8 +207,8 @@ function showGridReadlist(){
             box.append(boxLink);
             // Title
             box.append($('<div class="picText">').append(mainLink));
-            // status
-            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(6)')));
+            // number and status
+            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(3)').append($(tr).find('td:nth-child(6) img').addClass('picStatus'))));
             accContent.append(box);
 
         });
@@ -216,6 +216,13 @@ function showGridReadlist(){
         accordion.append($('<div class="floatRight">'+$(accContent).find('.picList').length+'</div>'));
     });
     $('.inner').append($('.inner p:first-child'));
+
+    // open acc with more content
+    if($('a.menu.acc:first div').text() < $('a.menu.acc:eq(1) div').text()){
+        $('a.menu.acc:eq(1)').click();
+    }else if ($('a.menu.acc:first div').text() > $('a.menu.acc:eq(1) div').text()){
+        $('a.menu.acc:first').click();
+    }
 }
 
 // add read-status (e.g. Reading)
