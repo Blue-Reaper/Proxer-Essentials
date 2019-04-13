@@ -148,6 +148,10 @@ function showGridStatus(){
     $('.inner table').each((idx, table)=>{
         let accordion = $('<a class="menu acc">'+$(table).find('th:first').text()+'</a>');
         let accContent = $('<div class="accContent">');
+        if($(table).find('th:first').text() == "Am Schauen" || $(table).find('th:first').text() == "Am Lesen"){
+            accordion.addClass("active");
+            accContent.show();
+        }
         $('.inner').append(accordion);
         $('.inner').append(accContent);
         accordion.click(() => {
