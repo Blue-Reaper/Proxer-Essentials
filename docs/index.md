@@ -63,7 +63,7 @@ Die einzelnen Änderungen für jedes Update stehen [hier](https://github.com/Blu
 # Idee, Wunsch oder Bug
 Für Feedback und neue Ideen bin ich immer dankbar.
 
-So kann man mir Ideen für neue Inhalte, Änderungswünsche oder gefundene Bugs mitteilen:
+Kontakt für Ideen neuer Inhalte, Änderungswünsche oder gefundene Bugs:
 + [GitHub](https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose)
 + [Proxer Forumsbeitrag](https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials)
 + [Proxer private Nachricht](https://proxer.me/user/422227)
