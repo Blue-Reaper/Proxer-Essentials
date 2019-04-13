@@ -63,3 +63,8 @@
 .picBottom {
     bottom:0;
 }
+
+.picStatus {
+    vertical-align: bottom;
+    padding-left: 0.5em;
+}

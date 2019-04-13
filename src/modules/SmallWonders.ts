@@ -37,7 +37,7 @@ function smallWonders() {
 // ############### set cookies ###############
     // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
     setCookie('cookieconsent_dismissed', 'yes');
-    
+
     if ($('#nav a[title="Blue.Reaper"]').length){
         // Keine Erwachenen-Meldung mehr
         setCookie('adult', '1');
@@ -55,9 +55,7 @@ function smallWonders() {
     // Check if Button already added
     if (!$('.backToTop').length) {
         // add button
-        let backToTopButton = $(
-            '<i class="backToTop pointer fa fa-2x fa-chevron-up"/>'
-        );
+        let backToTopButton = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
         $('body').append(backToTopButton);
         // scroll 1000 Pixel
         $(window).scroll(() => {
