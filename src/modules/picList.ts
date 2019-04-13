@@ -212,7 +212,7 @@ function showGridReadlist(){
             // Title
             box.append($('<div class="picText">').append(mainLink));
             // number and status
-            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(3)').append($(tr).find('td:nth-child(6) img').addClass('picStatus'))));
+            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(3)').append($(tr).find('td:nth-child(6) i').addClass('picStatus'))));
             accContent.append(box);
 
         });
@@ -245,7 +245,7 @@ function sortList(sortOption :SortOption){
             if(sortOption == SortOption.stars){
                 $('#pefSortStar').addClass("active");
                 $('#pefSortAlpha').removeClass("active");
-                return $(b).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png'], .picText.picBottom img[src='/images/misc/stern.png']").length-$(a).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png'], .picText.picBottom img[src='/images/misc/stern.png']").length;
+                return $(b).find(".picText.picBottom i.fa-star, .picText.picBottom img[src='/images/misc/stern.png']").length-$(a).find(".picText.picBottom i.fa-star, .picText.picBottom img[src='/images/misc/stern.png']").length;
             }else {
                 $('#pefSortAlpha').addClass("active");
                 $('#pefSortStar').removeClass("active");

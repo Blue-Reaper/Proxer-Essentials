@@ -4,6 +4,23 @@
     font-weight: Lighter;
 }
 
+/* hard coded colors only for specific elements */
+.green {
+    color: #30E864;
+}
+.yellow {
+    color:#F3E044;
+}
+.orange {
+    color: #F1880D;
+}
+.red {
+    color: #ef394a;
+}
+.grey {
+    color: #909090;
+}
+
 body {
     font-size: 1.05em;
     color:  var(--text-color);
@@ -353,24 +370,31 @@ textarea {
     width: 39% !important;
 }
 
-#miscNav {
-    background-image: url(https://logosart.de/proxer2-0/notification.png);
+#miscNav::before{
+    content: "\f0f3";
 }
 
 #requestNav {
     background-image: url(https://logosart.de/proxer2-0/friends.png);
 }
 
-#messageNav {
-    background-image: url(https://logosart.de/proxer2-0/message.png);
+#messageNav::before{
+    content: "\f003";
 }
 
 #newsNav {
     background-image: url(https://logosart.de/proxer2-0/news.png);
 }
 
+#searchNav::before{
+    content: "\f002";
+}
+
+#miscNav,
+#messageNav,
 #searchNav {
-    background-image: url(https://logosart.de/proxer2-0/search.png);
+    background-image: none;
+    font-size: 1.5em;
 }
 
 .hreview-aggregate>span {
@@ -591,8 +615,11 @@ input:focus {
 }
 
 .smallImg{
-    width: 15px !important;
-    height: 15px !important;
+    font-size: 15px;
+}
+
+.normalImg{
+    font-size: 20px;
 }
 
 .borderRadius6{
