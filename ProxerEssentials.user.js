@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     13-Beta
+// @version     14-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -168,13 +168,14 @@ function tabPefSettings() {
     inhalt.append($('<h3 class="floatLeft">Proxer Essentials</h3>'));
     inhalt.append($('<div class="floatLeft creator">by Blue.Reaper</div>'));
     inhalt.append($('<div class="clear">Version: ' + GM_info.script.version + '</div>'));
+    inhalt.append($('<h4><a href="https://blue-reaper.github.io/Proxer-Essentials/">Info-Seite mit detaillierter Beschreibung</a></h4>'));
     inhalt.append($('<h4>Einstellungen</h4>'));
     inhalt.append($('<a data-ajax="true" href="/pef?s=modules#top" class="menu">Module</a>'));
     inhalt.append($('<a data-ajax="true" href="/pef?s=design#top" class="menu marginLeft05">Design</a>'));
-    inhalt.append($('<h4>Nützliche Links</h4>'));
-    inhalt.append($('<div><a href="https://blue-reaper.github.io/Proxer-Essentials/">Alle Infos über Proxer Essentials</a></div>'));
-    inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/releases">Release Notes</a></div>'));
-    inhalt.append($('<div><a href="https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials">Forumsbeitrag</a></div>'));
+    inhalt.append($('<h4>Kontakt für neue Ideen, Wünsche oder Bugs</h4>'));
+    inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose">auf GitHub</a></div>'));
+    inhalt.append($('<div><a href="https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials">oder im Forumsbeitrag</a></div>'));
+    inhalt.append($('<div><a href="https://proxer.me/messages?s=new&id=422227">oder per privater Nachricht</a></div>'));
 }
 // Content of tab 'Module'
 function tabPefModules() {
@@ -749,8 +750,8 @@ function theatermodusOff() {
 // In Anime- / Manga-Liste (Grid Modus) Sortier und Filter Optionen
 pefModulList.push({
     id: "picList",
-    name: "Picture List",
-    description: "Bilder statt Tabellen",
+    name: "Bild-Kacheln",
+    description: "Bilde-Kacheln statt Tabellen",
     link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/pictureList',
     autor: "Blue.Reaper",
     callMethod: function (change) { return picListCall(change); }
@@ -871,6 +872,10 @@ function showGridStatus() {
     $('.inner table').each(function (idx, table) {
         var accordion = $('<a class="menu acc">' + $(table).find('th:first').text() + '</a>');
         var accContent = $('<div class="accContent">');
+        if ($(table).find('th:first').text() == "Am Schauen" || $(table).find('th:first').text() == "Am Lesen") {
+            accordion.addClass("active");
+            accContent.show();
+        }
         $('.inner').append(accordion);
         $('.inner').append(accContent);
         accordion.click(function () {
@@ -925,14 +930,21 @@ function showGridReadlist() {
             box.append(boxLink);
             // Title
             box.append($('<div class="picText">').append(mainLink));
-            // status
-            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(6)')));
+            // number and status
+            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(3)').append($(tr).find('td:nth-child(6) img').addClass('picStatus'))));
             accContent.append(box);
         });
         accContent.append($('<div class="clear"/>'));
         accordion.append($('<div class="floatRight">' + $(accContent).find('.picList').length + '</div>'));
     });
     $('.inner').append($('.inner p:first-child'));
+    // open acc with more content
+    if ($('a.menu.acc:first div').text() < $('a.menu.acc:eq(1) div').text()) {
+        $('a.menu.acc:eq(1)').click();
+    }
+    else if ($('a.menu.acc:first div').text() > $('a.menu.acc:eq(1) div').text()) {
+        $('a.menu.acc:first').click();
+    }
 }
 // add read-status (e.g. Reading)
 function updateReadingStatus() {
