@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     5.2
+// @version     5.3
 // @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -168,13 +168,14 @@ function tabPefSettings() {
     inhalt.append($('<h3 class="floatLeft">Proxer Essentials</h3>'));
     inhalt.append($('<div class="floatLeft creator">by Blue.Reaper</div>'));
     inhalt.append($('<div class="clear">Version: ' + GM_info.script.version + '</div>'));
+    inhalt.append($('<h4><a href="https://blue-reaper.github.io/Proxer-Essentials/">Info-Seite mit detaillierter Beschreibung</a></h4>'));
     inhalt.append($('<h4>Einstellungen</h4>'));
     inhalt.append($('<a data-ajax="true" href="/pef?s=modules#top" class="menu">Module</a>'));
     inhalt.append($('<a data-ajax="true" href="/pef?s=design#top" class="menu marginLeft05">Design</a>'));
-    inhalt.append($('<h4>Nützliche Links</h4>'));
-    inhalt.append($('<div><a href="https://blue-reaper.github.io/Proxer-Essentials/">Alle Infos über Proxer Essentials</a></div>'));
-    inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/releases">Release Notes</a></div>'));
-    inhalt.append($('<div><a href="https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials">Forumsbeitrag</a></div>'));
+    inhalt.append($('<h4>Kontakt für neue Ideen, Wünsche oder Bugs</h4>'));
+    inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose">auf GitHub</a></div>'));
+    inhalt.append($('<div><a href="https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials">oder im Forumsbeitrag</a></div>'));
+    inhalt.append($('<div><a href="https://proxer.me/messages?s=new&id=422227">oder per privater Nachricht</a></div>'));
 }
 // Content of tab 'Module'
 function tabPefModules() {
@@ -468,7 +469,7 @@ function removeIgnoredUser(userId) {
 }
 // Longstrip Reader als Standard
 // Longstrip: klick auf Bild scrollt zum nächsten Bild
-// Longstrtip: letzte Bild springt in nächste Kapitel (ohne Zwischenseite)
+// Longstrip: Navigation um zu nächstem / letztem Kapitel zu springen (ohne Zwischenseite)
 // Fügt Mangaupdates im Menü Manga und auf Startseite neben Animeupdates hinzu
 // IDEA chapter next/last buttons under scrollTop
 pefModulList.push({
@@ -497,27 +498,68 @@ function mangaComfort() {
         $('#leftNav li:nth-child(3) ul').append($('<li><a data-ajax="true" href="/manga/updates#top">Updates</a></li>'));
     }
     // On Home Page and Links doesn't exist
-    if (window.location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length) {
+    if (location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length) {
         // Add Mangaupdaets like existing Animeupdates and after that
         $('#main li>a[href="/anime/updates#top"]').parent().after($('<li id="pef_mangaupdates"><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
     }
-    if (window.location.pathname.split('/')[1] !== 'read' && window.location.pathname.split('/')[1] !== 'chapter') {
+    if (location.pathname.split('/')[1] !== 'read' && location.pathname.split('/')[1] !== 'chapter') {
+        $('.previousChapter, .nextChapter, .bookmark').remove();
         return;
     }
     // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
     if (getCookie('manga_reader') != 'slide') {
         setCookie('manga_reader', 'longstrip');
     }
-    // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
     if (getCookie('manga_reader') == 'longstrip') {
+        // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
         $('#reader img').attr('onclick', '');
         $('#reader img').off('click', scrollToNextPage);
         $('#reader img').click(scrollToNextPage);
-        $('#reader img:last-child').attr('onclick', "window.location=nextChapter.replace('chapter','read')+'#top'");
+        // only add buttons once
+        if (!$('.nextChapter').length) {
+            // button previous chapter
+            // don't show button on first chapter
+            if (Number(location.pathname.split('/')[3]) > 1) {
+                var previousChapterButton = $('<i class="previousChapter pointer fa fa-2x fa-chevron-left"/>');
+                $('body').append(previousChapterButton);
+                previousChapterButton.click(function () {
+                    var path = location.pathname.split('/');
+                    path[1] = 'read';
+                    path[3] = String(Number(path[3]) - 1);
+                    path[5] = String(1);
+                    location.pathname = path.join('/');
+                });
+            }
+            // button next chapter
+            var nextChapterButton = $('<i class="nextChapter pointer fa fa-2x fa-chevron-right"/>');
+            $('body').append(nextChapterButton);
+            nextChapterButton.click(function () {
+                var path = location.pathname.split('/');
+                path[1] = 'read';
+                path[3] = String(Number(path[3]) + 1);
+                path[5] = String(1);
+                location.pathname = path.join('/');
+            });
+            // button bookmark this chapter
+            var bookmarkButton = $('<i class="bookmark pointer fa fa-2x fa-bookmark"/>');
+            $('body').append(bookmarkButton);
+            bookmarkButton.click(function () {
+                var path = location;
+                path = String(path).replace('read', 'chapter');
+                var ajaxLink = (path + '?format=json&type=reminder&' + $('#proxerToken').val() + '=1&title=reminder_this');
+                console.log("my ajax:" + ajaxLink);
+                $.post(ajaxLink, {
+                    'check': 1
+                }, function (data) {
+                    createPefMessage(data.msg);
+                    localStorage.listentries_timer = null;
+                });
+            });
+        }
     }
     // Wenn 404, dann nächste Kapitel nicht verfügbar (Sprung direkt in nächste Kapitel) -> gehe zurück auf Zwichenseite
     if ($('#main img[src="/images/misc/404.png"]').length) {
-        window.location.pathname = window.location.pathname.replace('read', 'chapter');
+        location.pathname = location.pathname.replace('read', 'chapter');
     }
     // Mauszeiger wird auch nur über Bild zur Hand
     $('#reader img').addClass('pointer');
@@ -708,8 +750,8 @@ function theatermodusOff() {
 // In Anime- / Manga-Liste (Grid Modus) Sortier und Filter Optionen
 pefModulList.push({
     id: "picList",
-    name: "Picture List",
-    description: "Bilder statt Tabellen",
+    name: "Bild-Kacheln",
+    description: "Bild-Kacheln statt Tabellen",
     link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/pictureList',
     autor: "Blue.Reaper",
     callMethod: function (change) { return picListCall(change); }
@@ -830,6 +872,10 @@ function showGridStatus() {
     $('.inner table').each(function (idx, table) {
         var accordion = $('<a class="menu acc">' + $(table).find('th:first').text() + '</a>');
         var accContent = $('<div class="accContent">');
+        if ($(table).find('th:first').text() == "Am Schauen" || $(table).find('th:first').text() == "Am Lesen") {
+            accordion.addClass("active");
+            accContent.show();
+        }
         $('.inner').append(accordion);
         $('.inner').append(accContent);
         accordion.click(function () {
@@ -884,14 +930,21 @@ function showGridReadlist() {
             box.append(boxLink);
             // Title
             box.append($('<div class="picText">').append(mainLink));
-            // status
-            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(6)')));
+            // number and status
+            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(3)').append($(tr).find('td:nth-child(6) img').addClass('picStatus'))));
             accContent.append(box);
         });
         accContent.append($('<div class="clear"/>'));
         accordion.append($('<div class="floatRight">' + $(accContent).find('.picList').length + '</div>'));
     });
     $('.inner').append($('.inner p:first-child'));
+    // open acc with more content
+    if ($('a.menu.acc:first div').text() < $('a.menu.acc:eq(1) div').text()) {
+        $('a.menu.acc:eq(1)').click();
+    }
+    else if ($('a.menu.acc:first div').text() > $('a.menu.acc:eq(1) div').text()) {
+        $('a.menu.acc:first').click();
+    }
 }
 // add read-status (e.g. Reading)
 function updateReadingStatus() {
@@ -908,7 +961,7 @@ function sortList(sortOption) {
             if (sortOption == 1 /* stars */) {
                 $('#pefSortStar').addClass("active");
                 $('#pefSortAlpha').removeClass("active");
-                return $(b).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png']").length - $(a).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png']").length;
+                return $(b).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png'], .picText.picBottom img[src='/images/misc/stern.png']").length - $(a).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png'], .picText.picBottom img[src='/images/misc/stern.png']").length;
             }
             else {
                 $('#pefSortAlpha').addClass("active");
