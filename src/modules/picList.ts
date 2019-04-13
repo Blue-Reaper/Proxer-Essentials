@@ -12,8 +12,8 @@ const enum SortOption {
 
 pefModulList.push({
     id:"picList",
-    name:"Picture List",
-    description:"Bilder statt Tabellen",
+    name:"Bild-Kacheln",
+    description:"Bilde-Kacheln statt Tabellen",
     link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/pictureList',
     autor:"Blue.Reaper",
 	callMethod:(change)=>picListCall(change)

@@ -3,10 +3,20 @@ layout: default
 ---
 # Was ist Proxer Essentials?
 Es ist ein Userscript in dem verschiedene Erweiterungen an Proxer.me in einzelnen Modulen zusammengefügt sind.
-Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekommen und bei Bedarf auch einzelne Module deaktiviern. 
+Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekommen und bei Bedarf auch einzelne Module oder das Design deaktivieren.
+### aktuelle Highlights
+ + das neue optionale Design für Proxer
+ + Bild-Kacheln statt Tabellen bei Anime-/Mangaliste, Lesezeichen und Updates
+ + direkte Manga Navigation von Kapitel zu Kapitel ohne Zwischenseite
 
 Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des modularen Aufbaus sehr einfach und das Framework übernimmt bereits grundlegende Funktionen, wie das gesteuerte Aufrufen der Module und die Einstellungen für die Userscript-Manager.
 
+# Wie bekomme ich Proxer Essentials?
+Um Userscripte verwenden zu können benötigt man ein Brwoser Add-In, [Violentmonkey](https://violentmonkey.github.io/) oder [Tampermonkey](https://tampermonkey.net/).
+
+Anschließend [hier](https://github.com/Blue-Reaper/Proxer-Essentials/raw/master/ProxerEssentials.user.js) klicken und das Script wird in das Add-In geladen.
+
+# Was genau ist alles enthalten?
 ## Design
 Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)).
 
@@ -25,23 +35,35 @@ Es ist möglich einzelne Module auszuschalten.
 
 ![Bild der Module](screenshots/modules.png)
 
-### [Kleine Wunder](modules/smallWonders.md)
-### [Manga Komfort](modules/mangaComfort.md)
-### [Picture List](modules/pictureList.md)
-### [Theatermodus](modules/theatermodus.md)
-### [User ignorieren](modules/ignoreUser.md)
+
+### Bild-Kacheln
+Zeigt bei der Anime-/Mangaliste, den Lesezeichen und den Updates Bild-Kacheln statt der Tabellen an, es gibt auch mehr Filtermöglichkeiten.
+
+[detaillierte Beschreibung mit Bildern](modules/pictureList.md)
+### Manga Komfort
+Macht das Lesen der Mangas angenehmer, mit einer Navigation direkt zu den Bildern des nächsten Kapitels und weiteren Kleinigkeiten.
+
+[detaillierte Beschreibung mit Bildern](modules/mangaComfort.md)
+### Kleine Wunder
+Fügt einen "zurück nach oben" Button hinzu und blendet ein paar Dinge aus.
+
+[detaillierte Beschreibung mit Bildern](modules/smallWonders.md)
+### Theatermodus
+Für Animes ist es möglich einen "fast-Fullscreen" zu benutzen um weiterhin die Browserleiste zu sehen.
+
+[detaillierte Beschreibung mit Bildern](modules/theatermodus.md)
+### User ignorieren
+Ermöglicht es Nachrichten von Usern im Forum auszublenden.
+
+[detaillierte Beschreibung mit Bildern](modules/ignoreUser.md)
 
 ## Release Notes
-Die einzelnen Änderungen pro Release stehen [hier](https://github.com/Blue-Reaper/Proxer-Essentials/releases).
-## Kompatibilität
-* [Violentmonkey](https://violentmonkey.github.io/)
-  * [![Firefox](https://img.shields.io/badge/Firefox-getestet-brightgreen.svg)](https://www.mozilla.org/de/firefox/)
-  * [![Chrome](https://img.shields.io/badge/Chrome-getestet-brightgreen.svg)](https://www.google.de/chrome/index.html)
-* [Tampermonkey](https://tampermonkey.net/)
-  * [![Firefox](https://img.shields.io/badge/Firefox-ungetestet-lightgrey.svg)](https://www.mozilla.org/de/firefox/)
-  * [![Chrome](https://img.shields.io/badge/Chrome-getestet-brightgreen.svg)](https://www.google.de/chrome/index.html)
-* [Greasemonkey](https://www.greasespot.net/)
-  * [![Firefox](https://img.shields.io/badge/Firefox-ungetestet-lightgrey.svg)](https://www.mozilla.org/de/firefox/)
+Die einzelnen Änderungen für jedes Update stehen [hier](https://github.com/Blue-Reaper/Proxer-Essentials/releases).
 
-##### Dein Browser ist nicht dabei, oder ungetestet?
-Dann probier es doch einfach aus und hilf Anderen indem du eine Rückmeldung gibst, wie es funktioniert.
+# Idee, Wunsch oder Bug
+Für Feedback und neue Ideen bin ich immer dankbar.
+
+So kann man mir Ideen für neue Inhalte, Änderungswünsche oder gefundene Bugs mitteilen:
++ [GitHub](https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose)
++ [Proxer Forumsbeitrag](https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials)
++ [Proxer private Nachricht](https://proxer.me/user/422227)

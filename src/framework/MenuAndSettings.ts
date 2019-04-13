@@ -61,14 +61,17 @@ function tabPefSettings(){
 
     inhalt.append($('<div class="clear">Version: ' + GM_info.script.version + '</div>'));
 
+    inhalt.append($('<h4><a href="https://blue-reaper.github.io/Proxer-Essentials/">Info-Seite mit detaillierter Beschreibung</a></h4>'));
+
     inhalt.append($('<h4>Einstellungen</h4>'));
     inhalt.append($('<a data-ajax="true" href="/pef?s=modules#top" class="menu">Module</a>'));
     inhalt.append($('<a data-ajax="true" href="/pef?s=design#top" class="menu marginLeft05">Design</a>'));
 
-    inhalt.append($('<h4>Nützliche Links</h4>'));
-    inhalt.append($('<div><a href="https://blue-reaper.github.io/Proxer-Essentials/">Alle Infos über Proxer Essentials</a></div>'));
-    inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/releases">Release Notes</a></div>'));
-    inhalt.append($('<div><a href="https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials">Forumsbeitrag</a></div>'));
+    inhalt.append($('<h4>Für Idee, Wunsch oder Bug hier melden:</h4>'));
+    inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose">auf GitHub</a></div>'));
+    inhalt.append($('<div><a href="https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials">oder im Forumsbeitrag</a></div>'));
+    inhalt.append($('<div><a href="https://proxer.me/messages?s=new&id=422227">oder per privater Nachricht</a></div>'));
+
 }
 
 
