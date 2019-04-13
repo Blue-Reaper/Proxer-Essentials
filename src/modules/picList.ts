@@ -12,8 +12,8 @@ const enum SortOption {
 
 pefModulList.push({
     id:"picList",
-    name:"Picture List",
-    description:"Bilder statt Tabellen",
+    name:"Bild-Kacheln",
+    description:"Bilde-Kacheln statt Tabellen",
     link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/pictureList',
     autor:"Blue.Reaper",
 	callMethod:(change)=>picListCall(change)
@@ -148,6 +148,10 @@ function showGridStatus(){
     $('.inner table').each((idx, table)=>{
         let accordion = $('<a class="menu acc">'+$(table).find('th:first').text()+'</a>');
         let accContent = $('<div class="accContent">');
+        if($(table).find('th:first').text() == "Am Schauen" || $(table).find('th:first').text() == "Am Lesen"){
+            accordion.addClass("active");
+            accContent.show();
+        }
         $('.inner').append(accordion);
         $('.inner').append(accContent);
         accordion.click(() => {
@@ -207,8 +211,8 @@ function showGridReadlist(){
             box.append(boxLink);
             // Title
             box.append($('<div class="picText">').append(mainLink));
-            // status
-            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(6)')));
+            // number and status
+            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(3)').append($(tr).find('td:nth-child(6) img').addClass('picStatus'))));
             accContent.append(box);
 
         });
@@ -216,6 +220,13 @@ function showGridReadlist(){
         accordion.append($('<div class="floatRight">'+$(accContent).find('.picList').length+'</div>'));
     });
     $('.inner').append($('.inner p:first-child'));
+
+    // open acc with more content
+    if($('a.menu.acc:first div').text() < $('a.menu.acc:eq(1) div').text()){
+        $('a.menu.acc:eq(1)').click();
+    }else if ($('a.menu.acc:first div').text() > $('a.menu.acc:eq(1) div').text()){
+        $('a.menu.acc:first').click();
+    }
 }
 
 // add read-status (e.g. Reading)
