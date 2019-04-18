@@ -9,4 +9,5 @@
 # main framework and modules
 *       @blue-reaper
 # design
+/src/framework/img @constantincuy
 /src/framework/css/design.css @constantincuy

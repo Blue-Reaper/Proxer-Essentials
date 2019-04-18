@@ -21,6 +21,10 @@
     color: #909090;
 }
 
+.blue {
+    color: #12BFF9;
+}
+
 body {
     font-size: 1.05em;
     color:  var(--text-color);
@@ -111,8 +115,7 @@ ul#simple-navi li a:hover {
 }
 
 #nav {
-    background: url("https://logosart.de/proxer2-0/shade.png");
-    height: 80px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));;
     border-bottom: 0px;
 }
 
@@ -370,28 +373,30 @@ textarea {
     width: 39% !important;
 }
 
-#miscNav::before{
+#miscNav::before {
     content: "\f0f3";
 }
 
-#requestNav {
-    background-image: url(https://logosart.de/proxer2-0/friends.png);
+#requestNav::before {
+    content: "\f0c0";
 }
 
-#messageNav::before{
+#messageNav::before {
     content: "\f003";
 }
 
-#newsNav {
-    background-image: url(https://logosart.de/proxer2-0/news.png);
+#newsNav::before {
+    content: "\f1ea";
 }
 
-#searchNav::before{
+#searchNav::before {
     content: "\f002";
 }
 
 #miscNav,
+#requestNav,
 #messageNav,
+#newsNav,
 #searchNav {
     background-image: none;
     font-size: 1.5em;
@@ -622,8 +627,16 @@ input:focus {
     font-size: 20px;
 }
 
-.borderRadius6{
-    border-radius: 6px;
+.bigImg{
+    font-size: 30px;
+}
+
+.fa-facebook-square,
+.fa-twitter-square,
+.fa-youtube-square,
+.fa-google-plus-square,
+.fa-amazon {
+    font-size: 32px;
 }
 
 th[style~="color:#EEEE33;"] {
