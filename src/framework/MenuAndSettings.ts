@@ -119,7 +119,7 @@ function tabPefDesign(){
 
     inhalt.append($('<h4>Farbwahl</h4>'));
     inhalt.append($('<div>Hier können die Farben des Designs eingestellt werden, dazu einfach den gewünschten Hexwert eingeben.</div>'));
-    inhalt.append($('<div>Den Hexwert einer Farbe kann man z.B. <a href="https://html-color-codes.info/webfarben_hexcodes/">hier</a> herausfinden.</div>'));
+    inhalt.append($('<div>Den Hexwert einer Farbe kann man z.B. <a href="https://www.color-hex.com/">hier</a> herausfinden.</div>'));
 
     let colorpick =$('<div class="colorpick"/>');
     colorpick.append($('<div class="clear">Akzent: <input id="pefAccentColor" type="text" class="floatRight" value="'+GM_getValue("AccentColor")+'"/></div>'));

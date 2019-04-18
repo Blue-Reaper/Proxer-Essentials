@@ -50,24 +50,16 @@ function supportDesign(){
         $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src','https://logosart.de/proxer2-0/proxer-test-anime.jpg');
         $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src','https://logosart.de/proxer2-0/proxer-test-anime.jpg');
 
-        $('[src~="/images/misc/upload.png"]').attr('src','https://logosart.de/proxer2-0/upload.jpg').addClass('borderRadius6');
-        $('[src~="/images/misc/play.png"]').attr('src','https://logosart.de/proxer2-0/play.jpg').addClass('borderRadius6');
-        $('[src~="/images/misc/info-icon.png"]').attr('src','https://logosart.de/proxer2-0/info.jpg').addClass('borderRadius6');
-
         $('[src~="https://proxer.me/images/misc/proxerfanpage.png"]').attr('src','https://logosart.de/proxer2-0/proxerfanpage.png');
 
         $('[src~="/images/misc/proxerdonate.png"]').attr('src','https://logosart.de/proxer2-0/proxerdonate.png');
         $('[src~="/images/misc/proxeramazon.png"]').attr('src','https://logosart.de/proxer2-0/proxeramazon.png');
 
-        $('[src~="/images/social/facebook.png"]').attr('src','https://logosart.de/proxer2-0/facebook.png');
-        $('[src~="/images/social/twitter.png"]').attr('src','https://logosart.de/proxer2-0/twitter.png');
-        $('[src~="/images/social/youtube2.png"]').attr('src','https://logosart.de/proxer2-0/youtube.png');
-        $('[src~="/images/social/google-plus.png"]').attr('src','https://logosart.de/proxer2-0/gplus.png');
-        $('[src~="/images/social/amazon.png"]').attr('src','https://logosart.de/proxer2-0/amazon.png');
-
         // Bilder durch FontAwesome ersetzen
         $('#miscNav').addClass('fa');
+        $('#requestNav').addClass('fa');
         $('#messageNav').addClass('fa');
+        $('#newsNav').addClass('fa');
         $('#searchNav').addClass('fa');
 
         $('[src~="/images/misc/stern.png"]').replaceWith('<i class="fa fa-star yellow smallImg"/>');
@@ -79,5 +71,16 @@ function supportDesign(){
         $('[src~="/images/status/abgeschlossen.png"]').replaceWith('<i class="fa fa-circle green smallImg"/>');
         $('[src~="/images/status/airing.png"]').replaceWith('<i class="fa fa-circle orange smallImg"/>');
         $('[src~="/images/status/abgebrochen.png"]').replaceWith('<i class="fa fa-circle red smallImg"/>');
+
+        $('[src~="/images/misc/upload.png"]').replaceWith('<i class="fa fa-arrow-circle-o-up bigImg"/>');
+        $('[src~="/images/misc/play.png"]').replaceWith('<i class="fa fa-play-circle-o green bigImg"/>');
+        $('[src~="/images/misc/info-icon.png"]').replaceWith('<i class="fa fa-info-circle blue bigImg"/>');
+        $('[src~="/images/misc/manga.png"]').replaceWith('<i class="fa fa-book orange bigImg"/>');
+
+        $('[src~="/images/social/facebook.png"]').replaceWith('<i class="fa fa-facebook-square"/>');
+        $('[src~="/images/social/twitter.png"]').replaceWith('<i class="fa fa-twitter-square"/>');
+        $('[src~="/images/social/youtube2.png"]').replaceWith('<i class="fa fa-youtube-square"/>');
+        $('[src~="/images/social/google-plus.png"]').replaceWith('<i class="fa fa-google-plus-square"/>');
+        $('[src~="/images/social/amazon.png"]').replaceWith('<i class="fa fa-amazon"/>');
     }
 }
