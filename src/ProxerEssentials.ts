@@ -14,17 +14,24 @@
 // @grant       GM_getResourceURL
 // Konsolenausgabe für Debugging
 // @grant       GM_log
+<<<<<<< HEAD
+// @require     http://code.jquery.com/jquery-3.4.0.min.js
+// @resource    framework_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/framework.css
+// @resource    modules_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/modules.css
+// @resource    design_CSS         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/design.css
+=======
 // @require     lib/jquery-3.4.0.min.js
 // @resource    framework_CSS      src/framework/css/framework.css
 // @resource    modules_CSS        src/modules/css/modules.css
 // @resource    design_CSS         src/framework/css/design.css
+>>>>>>> beta
 // smallWonders
-// @resource    smallWonders_CSS   src/modules/css/smallWonders.css
+// @resource    smallWonders_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/smallWonders.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
-// @resource    theater_CSS        src/modules/css/theaterModus.css
+// @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/theaterModus.css
 // picList
-// @resource    picList_CSS        src/modules/css/picList.css
+// @resource    picList_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/picList.css
 // ==/UserScript==
 
 GM_addStyle (GM_getResourceText ("framework_CSS"));
