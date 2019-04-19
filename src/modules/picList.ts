@@ -151,6 +151,8 @@ function showGridStatus(){
         if($(table).find('th:first').text() == "Am Schauen" || $(table).find('th:first').text() == "Am Lesen"){
             accordion.addClass("active");
             accContent.show();
+        } else {
+            accContent.hide();
         }
         $('.inner').append(accordion);
         $('.inner').append(accContent);
