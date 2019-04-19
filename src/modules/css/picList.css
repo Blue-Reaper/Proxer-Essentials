@@ -21,10 +21,6 @@
     cursor: pointer;
 }
 
-.accContent {
-    display:none;
-}
-
 .picList {
     position: relative;
     margin: 0 5px 5px;
