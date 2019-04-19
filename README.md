@@ -8,14 +8,14 @@ Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekomme
 
 Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des modularen Aufbaus sehr einfach und das Framework übernimmt bereits grundlegende Funktionen, wie das gesteuerte Aufrufen der Module und die Einstellungen für die Userscript-Manager.
 
-# How to get Proxer Essentials?
-To be able to use an userscript a browser add-in is required [Violentmonkey](https://violentmonkey.github.io/) or [Tampermonkey](https://tampermonkey.net/).
+# Wie bekomme ich Proxer Essentials?
+Um Userscripte verwenden zu können benötigt man ein Brwoser Add-In, [Violentmonkey](https://violentmonkey.github.io/) oder [Tampermonkey](https://tampermonkey.net/).
 
-The script can be loaded [here](https://github.com/Blue-Reaper/Proxer-Essentials/raw/master/ProxerEssentials.user.js).
+Anschließend [hier](https://github.com/Blue-Reaper/Proxer-Essentials/raw/master/ProxerEssentials.user.js) klicken und das Script wird in das Add-In geladen.
 
-# What ist all included?
+# Was genau ist alles enthalten?
 
-All information here: https://blue-reaper.github.io/Proxer-Essentials/
+Alle Informationen sind hier zu finden: https://blue-reaper.github.io/Proxer-Essentials/
 
 # How to build
 
@@ -23,7 +23,7 @@ All information here: https://blue-reaper.github.io/Proxer-Essentials/
 - Run `npm run build` to build the compiled userscript
 - Or use [atom](https://atom.io/) with [atom-typescript](https://atom.io/packages/atom-typescript) and compile on save
 
-### Contact for new Ideas, Requests or Bugs:
+### Kontakt für neue Ideen, Anfragen oder Bugs:
 + [GitHub](https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose)
 + [Proxer board](https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials)
 + [Proxer PM](https://proxer.me/user/422227)
