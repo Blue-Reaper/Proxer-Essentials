@@ -14,7 +14,7 @@
 // @grant       GM_getResourceURL
 // Konsolenausgabe für Debugging
 // @grant       GM_log
-// @require     https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/lib/jquery-3.4.0.min.js
+// @require     http://code.jquery.com/jquery-3.4.0.min.js
 // @resource    framework_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/framework.css
 // @resource    modules_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/modules.css
 // @resource    design_CSS         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/design.css
