@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     17-Beta
+// @version     18-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder braucht
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -15,7 +15,7 @@
 // @grant       GM_getResourceURL
 // Konsolenausgabe für Debugging
 // @grant       GM_log
-// @require     lib/jquery-3.4.0.min.js
+// @require     http://code.jquery.com/jquery-3.4.0.min.js
 // @resource    framework_CSS      src/framework/css/framework.css
 // @resource    modules_CSS        src/modules/css/modules.css
 // @resource    design_CSS         src/framework/css/design.css
