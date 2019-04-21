@@ -195,6 +195,7 @@ function showGridReadlist(){
         let accContent = $('<div class="accContent">');
         $('.inner').append(accordion);
         $('.inner').append(accContent);
+        accContent.hide();
         accordion.click(() => {
             accordion.toggleClass("active");
             accContent.toggle();
