@@ -12,7 +12,7 @@ Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekomme
 Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des modularen Aufbaus sehr einfach und das Framework übernimmt bereits grundlegende Funktionen, wie das gesteuerte Aufrufen der Module und die Einstellungen für die Userscript-Manager.
 
 # Wie bekomme ich Proxer Essentials?
-Um Userscripte verwenden zu können benötigt man ein Brwoser Add-In, [Violentmonkey](https://violentmonkey.github.io/) oder [Tampermonkey](https://tampermonkey.net/).
+Um Userscripte verwenden zu können benötigt man ein Browser Add-In, [Violentmonkey](https://violentmonkey.github.io/) oder [Tampermonkey](https://tampermonkey.net/).
 
 Anschließend [hier](https://github.com/Blue-Reaper/Proxer-Essentials/raw/master/ProxerEssentials.user.js) klicken und das Script wird in das Add-In geladen.
 
@@ -66,4 +66,4 @@ Für Feedback und neue Ideen bin ich immer dankbar.
 Kontakt für Ideen neuer Inhalte, Änderungswünsche oder gefundene Bugs:
 + [GitHub](https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose)
 + [Proxer Forumsbeitrag](https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials)
-+ [Proxer private Nachricht](https://proxer.me/user/422227)
++ [Proxer private Nachricht](https://proxer.me/messages?s=new&id=422227)

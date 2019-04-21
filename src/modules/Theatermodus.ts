@@ -1,8 +1,6 @@
 // Theatermodus für Anime
 // blende "Flash-Player | Ladezeit melden! | Hilfe" im Player aus
 
-// IDEA 10 sek zurückspulen einbauen
-
 pefModulList.push({
     id:"theaterMode",
     name:"Theatermodus",

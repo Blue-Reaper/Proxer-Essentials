@@ -4,7 +4,6 @@
 // Fügt Mangaupdates im Menü Manga und auf Startseite neben Animeupdates hinzu
 
 
-// IDEA chapter next/last buttons under scrollTop
 pefModulList.push({
     id: 'mangaComfort',
     name: 'Manga Komfort',

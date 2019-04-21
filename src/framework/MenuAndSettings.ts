@@ -165,7 +165,7 @@ function showModules(pef_module: any) {
 
         moduleBox.append($('<div>' + singleModule.description + '</div>'));
         moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));
-        // IDEA: Button für Details hinzufügen
+        
         let modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="fa fa-2x pointer"/>');
         moduleBox.append(modulStatus);
 
