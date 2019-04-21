@@ -562,7 +562,6 @@ input:focus {
 #loginBubble,
 .customBubble,
 .pointerBubble {
-    top: -40px;
     text-shadow: none;
 }
 
