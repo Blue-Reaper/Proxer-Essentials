@@ -46,8 +46,8 @@ function isLocationStatus():boolean{
     }
     return false;
 }
-// Readlist
-function isLocationReadlist():boolean{
+// bookmarks
+function isLocationBookmarks():boolean{
     if (location.pathname == '/ucp' && location.search.startsWith('?s=reminder')){
         return true;
     }
@@ -57,7 +57,7 @@ function isLocationReadlist():boolean{
 function picList(){
     // console.log(location.pathname);
     // console.log(location.search);
-    if (isLocationUpdates() || isLocationStatus() || isLocationReadlist()){
+    if (isLocationUpdates() || isLocationStatus() || isLocationBookmarks()){
 
     	// add buttons for table- or grid-view
     	if(!$('#pefViewControl').length){
@@ -102,8 +102,8 @@ function picList(){
                     showGridUpdates();
                 } else if (isLocationStatus()){
                     showGridStatus();
-                } else if (isLocationReadlist()){
-                    showGridReadlist();
+                } else if (isLocationBookmarks()){
+                    showGridBookmarks();
                 }
 
     		} else {
@@ -189,7 +189,7 @@ function showGridStatus(){
     options.forEach(element => $('#mediumFilter').append($('<option value="'+element+'">'+element+'</option>')));
 }
 
-function showGridReadlist(){
+function showGridBookmarks(){
     $('.inner td[width="50%"]').each((idx, td)=>{
         let accordion = $('<a class="menu acc">'+$(td).find('h4').text()+'</a>');
         let accContent = $('<div class="accContent">');
@@ -210,12 +210,17 @@ function showGridReadlist(){
             let box = $('<div class="picList"></div>');
             let boxLink = $('<a href="'+mainLink.attr("href")+'" data-ajax="true"></a>');
             // Cover
-            boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/'+mainLink.attr("href").split("/")[2]+'.jpg">'));
+            let cover = $('<img class="coverimage" src="//cdn.proxer.me/cover/'+mainLink.attr("href").split("/")[2]+'.jpg">');
+            // grayout cover if episode offline
+            if($(tr).find('td:nth-child(6) i').hasClass('red')){
+                cover.addClass('grayout');
+            }
+            boxLink.append(cover);
             box.append(boxLink);
             // Title
             box.append($('<div class="picText">').append(mainLink));
-            // number and status
-            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(3)').append($(tr).find('td:nth-child(6) i').addClass('picStatus'))));
+            // number
+            box.append($('<div class="picText picBottom">').append("# ").append($(tr).find('td:nth-child(3)')));
             accContent.append(box);
 
         });

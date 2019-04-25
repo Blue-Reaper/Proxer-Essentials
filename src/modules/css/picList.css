@@ -60,7 +60,7 @@
     bottom:0;
 }
 
-.picStatus {
-    vertical-align: bottom;
-    padding-left: 0.5em;
+.grayout {
+    filter: grayscale(70%);
+    opacity: 0.6;
 }
