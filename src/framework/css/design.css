@@ -556,8 +556,8 @@ input:focus {
 
 .countNav {
     background:  var(--accent-color);
-    right: 5px;
-    left: 0;
+    right: 10px;
+    left: unset;
 }
 
 #notificationBubble,
