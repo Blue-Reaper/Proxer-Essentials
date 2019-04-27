@@ -147,3 +147,15 @@
     background-color: var(--bg-color);
     overflow-y: auto;
 }
+
+.tileText.wrap {
+    white-space: unset;
+}
+
+.tileFA {
+    font-size: 6em;
+    bottom: 30px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
