@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Segeo UI Light";
-    src: url("https://logosart.de/proxer2-0/segoe-ui-webfont.woff") format('woff');
+    src: url("https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/segoe-ui-webfont.woff") format('woff');
     font-weight: Lighter;
 }
 
@@ -204,7 +204,7 @@ a.menu:hover {
 }
 
 .navlogo {
-    background-image: url(https://logosart.de/proxer2-0/logo_proxer.png) !important;
+    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/logo_proxer.png) !important;
 }
 
 *:focus {
@@ -295,7 +295,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-    background-image:url('https://logosart.de/proxer2-0/proxer-checkbox-checked.png');
+    background-image:url('https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-checkbox-checked.png');
     background-position: center;
 }
 
@@ -514,7 +514,7 @@ textarea {
 
 #loading {
     background: var(--main-bg-color);
-    background-image: url(https://logosart.de/proxer2-0/proxer-loader_bak1.gif);
+    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-loader_bak1.gif);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 256px 256px;
@@ -533,11 +533,11 @@ textarea {
 
 .external_player {
     width: 728px !important;
-    background-image: url(https://logosart.de/proxer2-0/player_proxer.png);
+    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/player_proxer.png);
 }
 
 .external_player:hover {
-    background-image: url(https://logosart.de/proxer2-0/player_proxer_hover.png);
+    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/player_proxer_hover.png);
 }
 
 textarea:focus,
@@ -587,20 +587,20 @@ input:focus {
 
 #arrowleft {
     transition: background 0.8s;
-    background-image: url(https://logosart.de/proxer2-0/proxerSliderArrow.png) !important;
+    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerSliderArrow.png) !important;
 }
 
 #arrowright {
     transition: background 0.8s;
-    background-image: url(https://logosart.de/proxer2-0/proxerSliderArrow.png) !important;
+    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerSliderArrow.png) !important;
 }
 
 #arrowleft:hover {
-    background-image: url(https://logosart.de/proxer2-0/proxerSliderArrowHover.png) !important;
+    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerSliderArrowHover.png) !important;
 }
 
 #arrowright:hover {
-    background-image: url(https://logosart.de/proxer2-0/proxerSliderArrowHover.png) !important;
+    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerSliderArrowHover.png) !important;
 }
 
 #notificationBubble:after,
@@ -804,7 +804,7 @@ input#submitSearch0 {
 }
 
 #loginNav.notLoggedIn {
-    background-image: url(https://logosart.de/proxer2-0/login.png) !important;
+    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/login.png) !important;
     background-size: 30px 30px;
 }
 
