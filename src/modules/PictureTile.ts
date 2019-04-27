@@ -84,7 +84,7 @@ function picTile(){
             $('.inner').hide();
 
     		// Grid-List not added
-    		if(!$('.tile').length){
+    		if(!$('.tile.sizeBig').length){
 
                 // sort/filter options
                 if(isLocationStatus()){
