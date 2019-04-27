@@ -45,15 +45,15 @@ function supportDesign(){
         // Set Proxer-Style to gray, needed for Design
         setCookie("style","gray");
         // Bilder ersetzen
-        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src','https://logosart.de/proxer2-0/proxer-test-anime.jpg');
-        $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src','https://logosart.de/proxer2-0/proxer-test-manga.jpg');
-        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src','https://logosart.de/proxer2-0/proxer-test-anime.jpg');
-        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src','https://logosart.de/proxer2-0/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-manga.jpg');
+        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-anime.jpg');
 
-        $('[src~="https://proxer.me/images/misc/proxerfanpage.png"]').attr('src','https://logosart.de/proxer2-0/proxerfanpage.png');
+        $('[src~="https://proxer.me/images/misc/proxerfanpage.png"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerfanpage.png');
 
-        $('[src~="/images/misc/proxerdonate.png"]').attr('src','https://logosart.de/proxer2-0/proxerdonate.png');
-        $('[src~="/images/misc/proxeramazon.png"]').attr('src','https://logosart.de/proxer2-0/proxeramazon.png');
+        $('[src~="/images/misc/proxerdonate.png"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerdonate.png');
+        $('[src~="/images/misc/proxeramazon.png"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxeramazon.png');
 
         // Bilder durch FontAwesome ersetzen
         $('#miscNav').addClass('fa');
