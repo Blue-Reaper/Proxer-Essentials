@@ -81,10 +81,10 @@ function picTile(){
     		$('#pefGrid').addClass("active");
     		$('#pefList').removeClass("active");
 
+            $('.inner').hide();
+
     		// Grid-List not added
     		if(!$('.tile').length){
-
-                $('.inner').hide();
 
                 // sort/filter options
                 if(isLocationStatus()){
