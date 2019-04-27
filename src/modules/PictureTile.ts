@@ -2,6 +2,7 @@
 // - Updates
 // - Manga/Animelist
 // - Lesezeichen
+// - Neuigkeiten
 // Grid-Anzeige als Standard, statt Listenansicht
 // In Anime- / Manga-Liste (Grid Modus) Sortier und Filter Optionen
 
@@ -11,23 +12,23 @@ const enum SortOption {
 }
 
 pefModulList.push({
-    id:"picList",
+    id:"picTile",
     name:"Bild-Kacheln",
     description:"Bild-Kacheln statt Tabellen",
-    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/pictureList',
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/pictureTile',
     autor:"Blue.Reaper",
-	callMethod:(change)=>picListCall(change)
+	callMethod:(change)=>picTileCall(change)
 });
 
-function picListCall (change:ModulCallEvent) {
+function picTileCall (change:ModulCallEvent) {
 	switch(change) {
 		case ModulCallEvent.on:
-			picList();
+			picTile();
 			break;
 		case ModulCallEvent.off:
 			break;
 		case ModulCallEvent.ajax:
-            picList();
+            picTile();
 			break;
 	}
 }
@@ -46,18 +47,23 @@ function isLocationStatus():boolean{
     }
     return false;
 }
-// Readlist
-function isLocationReadlist():boolean{
+// bookmarks
+function isLocationBookmarks():boolean{
     if (location.pathname == '/ucp' && location.search.startsWith('?s=reminder')){
         return true;
     }
     return false;
 }
 
-function picList(){
+function picTile(){
+    // notification bubble is shown but contains no tiles
+    if($('#notificationBubble.miscNav').length && (!$('#notificationBubble.miscNav .tile').length)){
+        redesignNotification();
+    }
+
     // console.log(location.pathname);
     // console.log(location.search);
-    if (isLocationUpdates() || isLocationStatus() || isLocationReadlist()){
+    if (isLocationUpdates() || isLocationStatus() || isLocationBookmarks()){
 
     	// add buttons for table- or grid-view
     	if(!$('#pefViewControl').length){
@@ -75,8 +81,10 @@ function picList(){
     		$('#pefGrid').addClass("active");
     		$('#pefList').removeClass("active");
 
+            $('.inner').hide();
+
     		// Grid-List not added
-    		if(!$('.picList').length){
+    		if(!$('.tile.sizeBig').length){
 
                 // sort/filter options
                 if(isLocationStatus()){
@@ -97,13 +105,12 @@ function picList(){
                     $('#pefViewControl').append(sortStar);
                 }
 
-                GM_addStyle (GM_getResourceText ("picList_CSS"));
                 if(isLocationUpdates()){
                     showGridUpdates();
                 } else if (isLocationStatus()){
                     showGridStatus();
-                } else if (isLocationReadlist()){
-                    showGridReadlist();
+                } else if (isLocationBookmarks()){
+                    showGridBookmarks();
                 }
 
     		} else {
@@ -117,6 +124,8 @@ function picList(){
     		$('#pefGrid').removeClass("active");
     		$('#pefList').addClass("active");
     	}
+    } else {
+        $('.inner').show();
     }
 }
 
@@ -126,21 +135,20 @@ function showGridUpdates(){
         if($(tr).find('th').length){
             return true;
         }
-        let mainLink = $(tr).find('td:nth-child(2) a');
+        let link = $(tr).find('td:nth-child(2) a').attr("href");
+        let title = $(tr).find('td:nth-child(2) a').text();
 
-        let box = $('<div class="picList picTopBorder"></div>');
+        let box = $('<a class="tile sizeBig picTopBorder" href="'+link+'"></a>');
 
-        let boxLink = $('<a href="'+mainLink.attr("href")+'" data-ajax="true"></a>');
         // Cover
-        boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/'+mainLink.attr("href").replace(new RegExp("/|info|list|#top","g"),"")+'.jpg">'));
-        box.append(boxLink);
+        box.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.replace(new RegExp("/|info|list|#top","g"),"")+'.jpg">'));
         // Title
-        box.append($('<div class="picText">').append(mainLink));
+        box.append($('<div class="tileText">').append(title));
         // Date
-        box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(6)').text()));
-        $('.inner').append(box);
+        box.append($('<div class="tileText tileBottom">').append($(tr).find('td:nth-child(6)').text()));
+        $('#main').append(box);
     });
-    $('.inner').append($('<div class="clear"/>'));
+    $('#main').append($('<div class="clear"/>'));
     updateReadingStatus();
 }
 
@@ -154,8 +162,8 @@ function showGridStatus(){
         } else {
             accContent.hide();
         }
-        $('.inner').append(accordion);
-        $('.inner').append(accContent);
+        $('#main').append(accordion);
+        $('#main').append(accContent);
         accordion.click(() => {
             accordion.toggleClass("active");
             accContent.toggle();
@@ -166,22 +174,21 @@ function showGridStatus(){
             if($(tr).find('th').length){
                 return true;
             }
-            let mainLink = $(tr).find('td:nth-child(2) a').attr( "title",'');
+            let link = $(tr).find('td:nth-child(2) a').attr( "title",'').attr("href");
+            let title = $(tr).find('td:nth-child(2) a').attr( "title",'').text();
             // Medium
-            let box = $('<div class="picList" data-medium="'+$(tr).find('td:nth-child(3)').text()+'"></div>');
-            let boxLink = $('<a href="'+mainLink.attr("href")+'" data-ajax="true"></a>');
+            let box = $('<a class="tile sizeBig" href="'+link+'" data-medium="'+$(tr).find('td:nth-child(3)').text()+'" data-title="'+title+'"></a>');
             // Cover
-            boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/'+mainLink.attr("href").replace(new RegExp("/|info|list|#top","g"),"")+'.jpg">'));
-            box.append(boxLink);
+            box.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.replace(new RegExp("/|info|list|#top","g"),"")+'.jpg">'));
             // Title
-            box.append($('<div class="picText">').append(mainLink));
+            box.append($('<div class="tileText">').append(title));
             // rating
-            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(4)')));
+            box.append($('<div class="tileText tileBottom">').append($(tr).find('td:nth-child(4)').children()));
             accContent.append(box);
 
         });
         accContent.append($('<div class="clear"/>'));
-        accordion.append($('<div class="counter floatRight">'+$(accContent).find('.picList').length+'</div>'));
+        accordion.append($('<div class="counter floatRight">'+$(accContent).find('.tile').length+'</div>'));
     });
 
     // add options for medium filter
@@ -189,12 +196,12 @@ function showGridStatus(){
     options.forEach(element => $('#mediumFilter').append($('<option value="'+element+'">'+element+'</option>')));
 }
 
-function showGridReadlist(){
+function showGridBookmarks(){
     $('.inner td[width="50%"]').each((idx, td)=>{
         let accordion = $('<a class="menu acc">'+$(td).find('h4').text()+'</a>');
         let accContent = $('<div class="accContent">');
-        $('.inner').append(accordion);
-        $('.inner').append(accContent);
+        $('#main').append(accordion);
+        $('#main').append(accContent);
         accContent.hide();
         accordion.click(() => {
             accordion.toggleClass("active");
@@ -206,23 +213,28 @@ function showGridReadlist(){
             if($(tr).find('th').length){
                 return true;
             }
-            let mainLink = $(tr).find('td:nth-child(2) a').attr( "title",'');
-            let box = $('<div class="picList"></div>');
-            let boxLink = $('<a href="'+mainLink.attr("href")+'" data-ajax="true"></a>');
+            let link = $(tr).find('td:nth-child(2) a').attr( "title",'').attr("href");
+            let title = $(tr).find('td:nth-child(2) a').attr( "title",'').text();
+
+            let box = $('<a class="tile sizeBig" href="'+link.replace("chapter","read")+'"></a>');
             // Cover
-            boxLink.append($('<img class="coverimage" src="//cdn.proxer.me/cover/'+mainLink.attr("href").split("/")[2]+'.jpg">'));
-            box.append(boxLink);
+            let cover = $('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.split("/")[2]+'.jpg">');
+            // grayout cover if episode offline
+            if($(tr).find('td:nth-child(6) i').hasClass('red')){
+                cover.addClass('grayout');
+            }
+            box.append(cover);
             // Title
-            box.append($('<div class="picText">').append(mainLink));
-            // number and status
-            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(3)').append($(tr).find('td:nth-child(6) i').addClass('picStatus'))));
+            box.append($('<div class="tileText">').append(title));
+            // number
+            box.append($('<div class="tileText tileBottom">').append("# ").append($(tr).find('td:nth-child(3)').text()));
             accContent.append(box);
 
         });
         accContent.append($('<div class="clear"/>'));
-        accordion.append($('<div class="floatRight">'+$(accContent).find('.picList').length+'</div>'));
+        accordion.append($('<div class="floatRight">'+$(accContent).find('.tile').length+'</div>'));
     });
-    $('.inner').append($('.inner p:first-child'));
+    $('#main').append($('.inner p:first-child'));
 
     // open acc with more content
     if($('a.menu.acc:first div').text() < $('a.menu.acc:eq(1) div').text()){
@@ -244,16 +256,16 @@ function updateReadingStatus(){
 
 function sortList(sortOption :SortOption){
     $('.accContent').each((idx,container)=>{
-        let items = $(container).children('.picList').sort((a, b)=> {
+        let items = $(container).children('.tile').sort((a, b)=> {
             if(sortOption == SortOption.stars){
                 $('#pefSortStar').addClass("active");
                 $('#pefSortAlpha').removeClass("active");
-                return $(b).find(".picText.picBottom i.fa-star, .picText.picBottom img[src='/images/misc/stern.png']").length-$(a).find(".picText.picBottom i.fa-star, .picText.picBottom img[src='/images/misc/stern.png']").length;
+                return $(b).find(".tileText.tileBottom i.fa-star, .tileText.tileBottom img[src='/images/misc/stern.png']").length-$(a).find(".tileText.tileBottom i.fa-star, .tileText.tileBottom img[src='/images/misc/stern.png']").length;
             }else {
                 $('#pefSortAlpha').addClass("active");
                 $('#pefSortStar').removeClass("active");
-                let aName = $(a).find(".picText .tip").text().toLowerCase();
-                let bName = $(b).find(".picText .tip").text().toLowerCase();
+                let aName = $(a).data('title').toLowerCase();
+                let bName = $(b).data('title').toLowerCase();
                 return ((aName < bName) ? -1 : ((aName > bName) ? 1 : 0));
             }
         });
@@ -262,21 +274,41 @@ function sortList(sortOption :SortOption){
 }
 
 function filterList(){
-    $('.picList').show();
+    $('.tile').show();
 
     let titleFilter = new RegExp($('#titleFilter').val(),'i');
     // hide alle elements that don't match the filters
-    $('.picList').filter((index,item)=> {
+    $('.tile').filter((index,item)=> {
         if($('#mediumFilter').val() == "")
         // if meduim filter is not active only filter title
-            return !titleFilter.test($(item).find(".picText .tip").text());
+            return !titleFilter.test($(item).data('title'));
         else
         // filter title and medium
-            return (!titleFilter.test($(item).find(".picText .tip").text())) || ($(item).data('medium') != $('#mediumFilter').val());
+            return (!titleFilter.test($(item).data('title')) || ($(item).data('medium') != $('#mediumFilter').val());
     }).hide();
 
     // update accordion counter after filtering
     $('.acc').each((idx,container)=>{
-        $(container).find('.counter').text($(container).next('.accContent').find('.picList:not([style*="display: none"])').length);
+        $(container).find('.counter').text($(container).next('.accContent').find('.tile:not([style*="display: none"])').length);
+    });
+}
+
+function redesignNotification(){
+
+    $('#notificationBubble.miscNav').addClass('redesign');
+    $('#notificationBubble.miscNav::after').hide();
+    $('#notificationBubble.miscNav>div.scrollBar').hide();
+
+    $('#notificationBubble.miscNav .notificationList').each((idx, item)=>{
+        let text = $(item).find('u').text().split('#');
+        let link = $(item).attr("href");
+        // TODO design notification forum entry
+        let picTile = $('<a class="tile sizeSmall" href="'+link.replace("chapter","read")+'" />');
+        $('#notificationBubble.miscNav').append(picTile);
+
+        picTile.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.split("/")[2]+'.jpg">'));
+        picTile.append($('<div class="tileText">').append(text[0]));
+        picTile.append($('<div class="tileText tileBottom">').append('# ').append(text[1]));
+
     });
 }

@@ -66,3 +66,84 @@
     transition: all ease 0.8s;
     color: var(--accent-color);
 }
+
+/* picTile */
+
+#pefViewControl {
+    width: 55% !important;
+    padding-top: 1em;
+}
+
+.acc {
+    display:block !important;
+    cursor: pointer;
+}
+
+.picTopBorder {
+    border-color: #656565;
+    border-width: 6px 0 0;
+    border-style: solid;
+}
+
+.grayout {
+    filter: grayscale(70%);
+    opacity: 0.6;
+}
+
+.tile,
+#nav .tile {
+    position: relative;
+    margin: 0 5px 5px;
+    float: left;
+    margin-bottom: 0.7em;
+    transition: color 0.8s ease;
+    color:  var(--text-color);
+}
+
+.tile.sizeBig {
+    height: 280px;
+    width: 200px;
+}
+
+.tile.sizeSmall {
+    height: 170px;
+    width: 120px;
+}
+
+.tile:hover,
+#nav .tile:hover {
+    color: var(--highlight-text-color);
+}
+
+.tilePic {
+    height: 100%;
+    width: 100%;
+    float: left;
+}
+
+.tileText {
+    position: absolute;
+    background-color: var(--main-bg-color);
+    width: 100%;
+    padding: 0 !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.tileBottom {
+    bottom: 0;
+}
+
+#notificationBubble.miscNav.redesign {
+    position: fixed;
+    top: 40px;
+    right: 0;
+    bottom: 0;
+    width: 30%;
+    margin-top: 0;
+    padding-left: 0.5em;
+    background-color: var(--bg-color);
+    overflow-y: auto;
+}
