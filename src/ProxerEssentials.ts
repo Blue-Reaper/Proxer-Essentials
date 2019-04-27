@@ -23,8 +23,6 @@
 // Theatermodus
 // @include     https://stream.proxer.me/*
 // @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/theaterModus.css
-// picList
-// @resource    picList_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/picList.css
 // ==/UserScript==
 
 GM_addStyle (GM_getResourceText ("framework_CSS"));
