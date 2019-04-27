@@ -2,4 +2,4 @@ debug.user.css
 node_modules
 .idea
 # Ignore the compiled JS and only build it in master and beta branch
-# ProxerEssentials.user.js
+ProxerEssentials.user.js

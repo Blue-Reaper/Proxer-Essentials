@@ -300,15 +300,34 @@ function redesignNotification(){
     $('#notificationBubble.miscNav>div.scrollBar').hide();
 
     $('#notificationBubble.miscNav .notificationList').each((idx, item)=>{
-        let text = $(item).find('u').text().split('#');
         let link = $(item).attr("href");
-        // TODO design notification forum entry
-        let picTile = $('<a class="tile sizeSmall" href="'+link.replace("chapter","read")+'" />');
-        $('#notificationBubble.miscNav').append(picTile);
+        // Manga or Anime
+        if (/chapter/.test(link) || /watch/.test(link)){
+            let text = $(item).find('u').text().split('#');
+            let picTile = $('<a class="tile sizeSmall" href="'+link.replace("chapter","read")+'" />');
+            $('#notificationBubble.miscNav').append(picTile);
 
-        picTile.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.split("/")[2]+'.jpg">'));
-        picTile.append($('<div class="tileText">').append(text[0]));
-        picTile.append($('<div class="tileText tileBottom">').append('# ').append(text[1]));
+            picTile.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.split("/")[2]+'.jpg">'));
+            picTile.append($('<div class="tileText">').append(text[0]));
+            picTile.append($('<div class="tileText tileBottom">').append('# ').append(text[1]));
+        }
+        // board
+        else if (/forum/.test(link)){
+            let text =$(item).find('i').text();
+            text = text.substring(1, text.length-1);
+            let picTile = $('<a class="tile sizeSmall" href="'+link+'" />');
+            $('#notificationBubble.miscNav').append(picTile);
+
+            picTile.append($('<div class="tilePic"> <i class="tileFA fa fa-comments-o" /></div>'));
+            picTile.append($('<div class="tileText wrap">').append(text));
+            picTile.append($('<div class="tileText tileBottom">').append('Forum'));
+        } else {
+            let text =$(item).text()
+            let picTile = $('<a class="tile sizeSmall" href="'+link+'" />');
+            $('#notificationBubble.miscNav').append(picTile);
+            picTile.append($('<div class="tileText wrap">').append(text));
+            picTile.append($('<div class="tileText tileBottom">').append('!!Fehler!!'));
+        }
 
     });
 }
