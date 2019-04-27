@@ -1,8 +1,8 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     5.3
-// @description Nützlicher Erweiterungen für Proxer die jeder haben sollte.
+// @version     5.4
+// @description Nützlicher Erweiterungen für Proxer die jeder braucht
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
 // @include     https://proxer.me/*
@@ -15,9 +15,7 @@
 // @grant       GM_getResourceURL
 // Konsolenausgabe für Debugging
 // @grant       GM_log
-// @require     https://proxer.me/templates/proxer14/js/jquery-1.9.1.min.js
-// @require     https://proxer.me/templates/proxer14/js/jquery-ui-1.10.3.custom.min.js
-// @require     https://proxer.me/templates/proxer14/js/jquery.plugins.js?3
+// @require     http://code.jquery.com/jquery-3.4.0.min.js
 // @resource    framework_CSS      src/framework/css/framework.css
 // @resource    modules_CSS        src/modules/css/modules.css
 // @resource    design_CSS         src/framework/css/design.css
@@ -87,31 +85,35 @@ function supportDesign() {
         // Set Proxer-Style to gray, needed for Design
         setCookie("style", "gray");
         // Bilder ersetzen
-        $('[src~="/images/status/abgeschlossen.png"]').attr('src', 'https://logosart.de/proxer2-0/abgeschlossen.png').addClass('smallImg');
-        $('[src~="/images/status/airing.png"]').attr('src', 'https://logosart.de/proxer2-0/airing.png').addClass('smallImg');
-        $('[src~="/images/status/abgebrochen.png"]').attr('src', 'https://logosart.de/proxer2-0/abgebrochen.png').addClass('smallImg');
-        $('[src~="/components/com_comprofiler/images/updateprofile.gif"]').attr('src', 'https://logosart.de/proxer2-0/edit.png');
-        $('[src~="/images/misc/onlineicon.png"]').attr('src', 'https://logosart.de/proxer2-0/abgeschlossen.png');
-        $('[src~="/images/misc/offlineicon.png"]').attr('src', 'https://logosart.de/proxer2-0/abgebrochen.png');
-        $('[src~="/images/misc/haken.png"]').attr('src', 'https://logosart.de/proxer2-0/check.png');
-        $('[src~="/images/misc/kreuz.png"]').attr('src', 'https://logosart.de/proxer2-0/cross.png');
-        $('[src~="/images/misc/stern.png"]').attr('src', 'https://logosart.de/proxer2-0/star.png').addClass('smallImg');
-        $('[src~="/images/misc/stern_grau.png"]').attr('src', 'https://logosart.de/proxer2-0/star_empty.png').addClass('smallImg');
         $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
         $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-manga.jpg');
         $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
         $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
-        $('[src~="/images/misc/upload.png"]').attr('src', 'https://logosart.de/proxer2-0/upload.jpg').addClass('borderRadius6');
-        $('[src~="/images/misc/play.png"]').attr('src', 'https://logosart.de/proxer2-0/play.jpg').addClass('borderRadius6');
-        $('[src~="/images/misc/info-icon.png"]').attr('src', 'https://logosart.de/proxer2-0/info.jpg').addClass('borderRadius6');
         $('[src~="https://proxer.me/images/misc/proxerfanpage.png"]').attr('src', 'https://logosart.de/proxer2-0/proxerfanpage.png');
         $('[src~="/images/misc/proxerdonate.png"]').attr('src', 'https://logosart.de/proxer2-0/proxerdonate.png');
         $('[src~="/images/misc/proxeramazon.png"]').attr('src', 'https://logosart.de/proxer2-0/proxeramazon.png');
-        $('[src~="/images/social/facebook.png"]').attr('src', 'https://logosart.de/proxer2-0/facebook.png');
-        $('[src~="/images/social/twitter.png"]').attr('src', 'https://logosart.de/proxer2-0/twitter.png');
-        $('[src~="/images/social/youtube2.png"]').attr('src', 'https://logosart.de/proxer2-0/youtube.png');
-        $('[src~="/images/social/google-plus.png"]').attr('src', 'https://logosart.de/proxer2-0/gplus.png');
-        $('[src~="/images/social/amazon.png"]').attr('src', 'https://logosart.de/proxer2-0/amazon.png');
+        // Bilder durch FontAwesome ersetzen
+        $('#miscNav').addClass('fa');
+        $('#requestNav').addClass('fa');
+        $('#messageNav').addClass('fa');
+        $('#newsNav').addClass('fa');
+        $('#searchNav').addClass('fa');
+        $('[src~="/images/misc/stern.png"]').replaceWith('<i class="fa fa-star yellow smallImg"/>');
+        $('[src~="/images/misc/stern_grau.png"]').replaceWith('<i class="fa fa-star-o grey smallImg"/>');
+        $('[src~="/images/misc/offlineicon.png"]').replaceWith('<i class="fa fa-circle red normalImg"/>');
+        $('[src~="/images/misc/onlineicon.png"]').replaceWith('<i class="fa fa-circle green normalImg"/>');
+        $('[src~="/images/status/abgeschlossen.png"]').replaceWith('<i class="fa fa-circle green smallImg"/>');
+        $('[src~="/images/status/airing.png"]').replaceWith('<i class="fa fa-circle orange smallImg"/>');
+        $('[src~="/images/status/abgebrochen.png"]').replaceWith('<i class="fa fa-circle red smallImg"/>');
+        $('[src~="/images/misc/upload.png"]').replaceWith('<i class="fa fa-arrow-circle-o-up bigImg"/>');
+        $('[src~="/images/misc/play.png"]').replaceWith('<i class="fa fa-play-circle-o green bigImg"/>');
+        $('[src~="/images/misc/info-icon.png"]').replaceWith('<i class="fa fa-info-circle blue bigImg"/>');
+        $('[src~="/images/misc/manga.png"]').replaceWith('<i class="fa fa-book orange bigImg"/>');
+        $('[src~="/images/social/facebook.png"]').replaceWith('<i class="fa fa-facebook-square"/>');
+        $('[src~="/images/social/twitter.png"]').replaceWith('<i class="fa fa-twitter-square"/>');
+        $('[src~="/images/social/youtube2.png"]').replaceWith('<i class="fa fa-youtube-square"/>');
+        $('[src~="/images/social/google-plus.png"]').replaceWith('<i class="fa fa-google-plus-square"/>');
+        $('[src~="/images/social/amazon.png"]').replaceWith('<i class="fa fa-amazon"/>');
     }
 }
 // Adds Essentials Menu
@@ -213,7 +215,7 @@ function tabPefDesign() {
     });
     inhalt.append($('<h4>Farbwahl</h4>'));
     inhalt.append($('<div>Hier können die Farben des Designs eingestellt werden, dazu einfach den gewünschten Hexwert eingeben.</div>'));
-    inhalt.append($('<div>Den Hexwert einer Farbe kann man z.B. <a href="https://html-color-codes.info/webfarben_hexcodes/">hier</a> herausfinden.</div>'));
+    inhalt.append($('<div>Den Hexwert einer Farbe kann man z.B. <a href="https://www.color-hex.com/">hier</a> herausfinden.</div>'));
     var colorpick = $('<div class="colorpick"/>');
     colorpick.append($('<div class="clear">Akzent: <input id="pefAccentColor" type="text" class="floatRight" value="' + GM_getValue("AccentColor") + '"/></div>'));
     colorpick.append($('<div class="clear">Haupt-Hintergrund: <input id="pefMainBgColor" type="text" class="floatRight" value="' + GM_getValue("MainBgColor") + '"/></div>'));
@@ -251,7 +253,6 @@ function showModules(pef_module) {
         moduleBox.append($('<h3><a class="pointer" target="_blank" href="' + singleModule.link + '">' + singleModule.name + '</a></h3>'));
         moduleBox.append($('<div>' + singleModule.description + '</div>'));
         moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));
-        // IDEA: Button für Details hinzufügen
         var modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="fa fa-2x pointer"/>');
         moduleBox.append(modulStatus);
         pef_module.append(moduleBox);
@@ -471,7 +472,6 @@ function removeIgnoredUser(userId) {
 // Longstrip: klick auf Bild scrollt zum nächsten Bild
 // Longstrip: Navigation um zu nächstem / letztem Kapitel zu springen (ohne Zwischenseite)
 // Fügt Mangaupdates im Menü Manga und auf Startseite neben Animeupdates hinzu
-// IDEA chapter next/last buttons under scrollTop
 pefModulList.push({
     id: 'mangaComfort',
     name: 'Manga Komfort',
@@ -696,7 +696,6 @@ function smallWonders() {
 }
 // Theatermodus für Anime
 // blende "Flash-Player | Ladezeit melden! | Hilfe" im Player aus
-// IDEA 10 sek zurückspulen einbauen
 pefModulList.push({
     id: "theaterMode",
     name: "Theatermodus",
@@ -876,6 +875,9 @@ function showGridStatus() {
             accordion.addClass("active");
             accContent.show();
         }
+        else {
+            accContent.hide();
+        }
         $('.inner').append(accordion);
         $('.inner').append(accContent);
         accordion.click(function () {
@@ -913,6 +915,7 @@ function showGridReadlist() {
         var accContent = $('<div class="accContent">');
         $('.inner').append(accordion);
         $('.inner').append(accContent);
+        accContent.hide();
         accordion.click(function () {
             accordion.toggleClass("active");
             accContent.toggle();
@@ -931,7 +934,7 @@ function showGridReadlist() {
             // Title
             box.append($('<div class="picText">').append(mainLink));
             // number and status
-            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(3)').append($(tr).find('td:nth-child(6) img').addClass('picStatus'))));
+            box.append($('<div class="picText picBottom">').append($(tr).find('td:nth-child(3)').append($(tr).find('td:nth-child(6) i').addClass('picStatus'))));
             accContent.append(box);
         });
         accContent.append($('<div class="clear"/>'));
@@ -961,7 +964,7 @@ function sortList(sortOption) {
             if (sortOption == 1 /* stars */) {
                 $('#pefSortStar').addClass("active");
                 $('#pefSortAlpha').removeClass("active");
-                return $(b).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png'], .picText.picBottom img[src='/images/misc/stern.png']").length - $(a).find(".picText.picBottom img.smallImg[src='https://logosart.de/proxer2-0/star.png'], .picText.picBottom img[src='/images/misc/stern.png']").length;
+                return $(b).find(".picText.picBottom i.fa-star, .picText.picBottom img[src='/images/misc/stern.png']").length - $(a).find(".picText.picBottom i.fa-star, .picText.picBottom img[src='/images/misc/stern.png']").length;
             }
             else {
                 $('#pefSortAlpha').addClass("active");
