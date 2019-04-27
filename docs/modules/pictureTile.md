@@ -5,6 +5,7 @@
   + Updates
   + Manga/Animelist
   + Lesezeichen
+  + Neuigkeiten
 + Filter- und Sortier-Otionen bei Manga/Animelist mit Bild-Kacheln
   + Sortiere nach Bewertung
   + Sortiere alphabetisch
