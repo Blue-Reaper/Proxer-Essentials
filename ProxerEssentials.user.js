@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     20-Beta
+// @version     21-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder braucht
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -83,13 +83,13 @@ function supportDesign() {
         // Set Proxer-Style to gray, needed for Design
         setCookie("style", "gray");
         // Bilder ersetzen
-        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
-        $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-manga.jpg');
-        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
-        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://logosart.de/proxer2-0/proxer-test-anime.jpg');
-        $('[src~="https://proxer.me/images/misc/proxerfanpage.png"]').attr('src', 'https://logosart.de/proxer2-0/proxerfanpage.png');
-        $('[src~="/images/misc/proxerdonate.png"]').attr('src', 'https://logosart.de/proxer2-0/proxerdonate.png');
-        $('[src~="/images/misc/proxeramazon.png"]').attr('src', 'https://logosart.de/proxer2-0/proxeramazon.png');
+        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src', 'https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src', 'https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-manga.jpg');
+        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src', 'https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src', 'https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-anime.jpg');
+        $('[src~="https://proxer.me/images/misc/proxerfanpage.png"]').attr('src', 'https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerfanpage.png');
+        $('[src~="/images/misc/proxerdonate.png"]').attr('src', 'https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerdonate.png');
+        $('[src~="/images/misc/proxeramazon.png"]').attr('src', 'https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxeramazon.png');
         // Bilder durch FontAwesome ersetzen
         $('#miscNav').addClass('fa');
         $('#requestNav').addClass('fa');
@@ -808,7 +808,7 @@ function picTile() {
             $('#pefList').removeClass("active");
             $('.inner').hide();
             // Grid-List not added
-            if (!$('.tile').length) {
+            if (!$('.tile.sizeBig').length) {
                 // sort/filter options
                 if (isLocationStatus()) {
                     var filterMedium = $('<select id="mediumFilter" class = "marginLeft05 floatRight"/>');
