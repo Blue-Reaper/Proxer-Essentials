@@ -4,6 +4,10 @@
     font-weight: Lighter;
 }
 
+@keyframes pound {
+	to { transform: scale(1.4); }
+}
+
 :root {
     /* hard coded colors only for specific elements */
     --green: #30E864;
@@ -516,21 +520,22 @@ textarea {
 }
 
 #loading {
+    animation: pound .7s infinite alternate;
     background: var(--main-bg-color);
-    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-loader_bak1.gif);
+    background-image: url(https://logosart.de/proxer2-0/proxer_big.png);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 256px 256px;
+    background-size: 30vh;
     border: 0;
+    top: 0;
+    left: 0;
     height: 100vh;
+    width: 100vw;
     z-index: 9999;
     opacity: 0.97;
-    left: 0;
     margin-left: 0;
     margin-top: 0;
     position: fixed;
-    top: 0;
-    width: 100vw;
     box-shadow: none;
 }
 
