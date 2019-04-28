@@ -373,26 +373,6 @@ textarea {
     width: 39% !important;
 }
 
-#miscNav::before {
-    content: "\f0f3";
-}
-
-#requestNav::before {
-    content: "\f0c0";
-}
-
-#messageNav::before {
-    content: "\f003";
-}
-
-#newsNav::before {
-    content: "\f1ea";
-}
-
-#searchNav::before {
-    content: "\f002";
-}
-
 #miscNav,
 #requestNav,
 #messageNav,
@@ -786,8 +766,7 @@ input[placeholder~="Suche"] {
 }
 
 .fa-remove:before,
-.fa-close:before,
-.fa-times:before {
+.fa-close:before {
     content: "\f057";
 }
 

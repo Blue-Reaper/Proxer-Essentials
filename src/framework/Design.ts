@@ -56,11 +56,11 @@ function supportDesign(){
         $('[src~="/images/misc/proxeramazon.png"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxeramazon.png');
 
         // Bilder durch FontAwesome ersetzen
-        $('#miscNav').addClass('fa');
-        $('#requestNav').addClass('fa');
-        $('#messageNav').addClass('fa');
-        $('#newsNav').addClass('fa');
-        $('#searchNav').addClass('fa');
+        $('#miscNav').addClass('fa fa-bell');
+        $('#requestNav').addClass('fa fa-users');
+        $('#messageNav').addClass('fa fa-envelope-o');
+        $('#newsNav').addClass('fa fa-newspaper-o');
+        $('#searchNav').addClass('fa fa-search');
 
         $('[src~="/images/misc/stern.png"]').replaceWith('<i class="fa fa-star yellow smallImg"/>');
         $('[src~="/images/misc/stern_grau.png"]').replaceWith('<i class="fa fa-star-o grey smallImg"/>');
