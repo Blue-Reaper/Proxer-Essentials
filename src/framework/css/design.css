@@ -46,10 +46,10 @@
     color: var(--red);
 }
 .grey {
-    color: var(--blue);
+    color: var(--grey);
 }
 .blue {
-    color: var(--green);
+    color: var(--blue);
 }
 
 body {
