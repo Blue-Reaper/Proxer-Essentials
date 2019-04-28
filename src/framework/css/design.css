@@ -660,16 +660,6 @@ input[placeholder~="Suche"] {
     float:left;
 }
 
-.fa-list::before {
-    content: "";
-    font-weight: lighter;
-}
-
-.fa-th-large:before {
-    content: "";
-    font-weight: lighter;
-}
-
 /* Scrollbar for Firefox */
 * {
     scrollbar-color:var(--accent-color) rgba(0, 0, 0, 0);
@@ -758,16 +748,6 @@ input[placeholder~="Suche"] {
 .fa-warning:before,
 .fa-exclamation-triangle:before {
     color:  var(--accent-color);
-}
-
-.fa-arrows-alt:before {
-    content: "";
-    font-size: 0.9em;
-}
-
-.fa-remove:before,
-.fa-close:before {
-    content: "\f057";
 }
 
 .calendarTable {

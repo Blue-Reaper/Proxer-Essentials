@@ -82,5 +82,9 @@ function supportDesign(){
         $('[src~="/images/social/youtube2.png"]').replaceWith('<i class="fa fa-youtube-square"/>');
         $('[src~="/images/social/google-plus.png"]').replaceWith('<i class="fa fa-google-plus-square"/>');
         $('[src~="/images/social/amazon.png"]').replaceWith('<i class="fa fa-amazon"/>');
+
+        // user better font FontAwesome
+        $('.fa-list').removeClass('fa-list').addClass('fa-bars');
+        $('.fa-th-large').removeClass('fa-th-large').addClass('fa-th');
     }
 }
