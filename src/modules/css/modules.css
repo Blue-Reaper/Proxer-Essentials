@@ -121,6 +121,14 @@
     float: left;
 }
 
+.tileFA {
+    font-size: 6em !important;
+    bottom: 30px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
 .tileText {
     position: absolute;
     background-color: var(--main-bg-color);
@@ -130,6 +138,10 @@
     overflow: hidden;
     white-space: nowrap;
     text-align: center;
+}
+
+.tileText.wrap {
+    white-space: unset;
 }
 
 .tileBottom {
@@ -146,16 +158,4 @@
     padding-left: 0.5em;
     background-color: var(--bg-color);
     overflow-y: auto;
-}
-
-.tileText.wrap {
-    white-space: unset;
-}
-
-.tileFA {
-    font-size: 6em;
-    bottom: 30px;
-    position: absolute;
-    text-align: center;
-    width: 100%;
 }
