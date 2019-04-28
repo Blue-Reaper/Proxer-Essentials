@@ -119,6 +119,7 @@
     height: 100%;
     width: 100%;
     float: left;
+    transition: filter 0.7s;
 }
 
 .tileFA {
@@ -127,6 +128,7 @@
     position: absolute;
     text-align: center;
     width: 100%;
+    transition: filter 0.7s;
 }
 
 .tileText {
@@ -158,4 +160,23 @@
     padding-left: 0.5em;
     background-color: var(--bg-color);
     overflow-y: auto;
+}
+
+.tileTimes,
+#nav .tileTimes {
+    position: absolute;
+    bottom: 1px;
+    right: 2px;
+    font-size: 1.3em;
+    color: var(--text-color);
+}
+
+.tileTimes:hover,
+#nav .tileTimes:hover {
+    color: var(--red);
+}
+
+.tile.delete .tilePic,
+.tile.delete .tileFA{
+    filter: blur(2px);
 }
