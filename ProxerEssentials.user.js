@@ -1,7 +1,7 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     22-Beta
+// @version     23-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder braucht
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -91,11 +91,11 @@ function supportDesign() {
         $('[src~="/images/misc/proxerdonate.png"]').attr('src', 'https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerdonate.png');
         $('[src~="/images/misc/proxeramazon.png"]').attr('src', 'https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxeramazon.png');
         // Bilder durch FontAwesome ersetzen
-        $('#miscNav').addClass('fa');
-        $('#requestNav').addClass('fa');
-        $('#messageNav').addClass('fa');
-        $('#newsNav').addClass('fa');
-        $('#searchNav').addClass('fa');
+        $('#miscNav').addClass('fa fa-bell');
+        $('#requestNav').addClass('fa fa-users');
+        $('#messageNav').addClass('fa fa-envelope-o');
+        $('#newsNav').addClass('fa fa-newspaper-o');
+        $('#searchNav').addClass('fa fa-search');
         $('[src~="/images/misc/stern.png"]').replaceWith('<i class="fa fa-star yellow smallImg"/>');
         $('[src~="/images/misc/stern_grau.png"]').replaceWith('<i class="fa fa-star-o grey smallImg"/>');
         $('[src~="/images/misc/offlineicon.png"]').replaceWith('<i class="fa fa-circle red normalImg"/>');
@@ -112,6 +112,9 @@ function supportDesign() {
         $('[src~="/images/social/youtube2.png"]').replaceWith('<i class="fa fa-youtube-square"/>');
         $('[src~="/images/social/google-plus.png"]').replaceWith('<i class="fa fa-google-plus-square"/>');
         $('[src~="/images/social/amazon.png"]').replaceWith('<i class="fa fa-amazon"/>');
+        // user better font FontAwesome
+        $('.fa-list').removeClass('fa-list').addClass('fa-bars');
+        $('.fa-th-large').removeClass('fa-th-large').addClass('fa-th');
     }
 }
 // Adds Essentials Menu
@@ -545,7 +548,6 @@ function mangaComfort() {
                 var path = location;
                 path = String(path).replace('read', 'chapter');
                 var ajaxLink = (path + '?format=json&type=reminder&' + $('#proxerToken').val() + '=1&title=reminder_this');
-                console.log("my ajax:" + ajaxLink);
                 $.post(ajaxLink, {
                     'check': 1
                 }, function (data) {
@@ -620,125 +622,6 @@ function anotherExampleMethod() {
     // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
     // console.log("Das Mustet-Modul wurde deaktiviert");
 }
-// Wunder:
-// "zurück nach oben" Button
-// Nachricht "Diese Website verwendet Cookies..." wird ausgeblendet
-// setzt "Ja ich bin Erwachsen"
-// blende Abonnieren Button aus (Infoseite), da keine Funktion? https://proxer.me/forum/213-allgemein/386170-abbonieren-button-in-details-seiten-beschreibung
-// blende Werbung auf Anime-Seite aus
-// blende Social Media aus
-// blende Artikel (=Amazon) aus
-// blednde News und Freundschafts Icon aus (oben rechts)
-// blendet Chat aus
-// blendet Spendenaufruf auf Videoplayer aus
-pefModulList.push({
-    id: 'smallWonders',
-    name: 'Kleine Wunder',
-    description: 'Kleine Änderungen, die Wunder wirken',
-    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/smallWonders',
-    autor: 'Blue.Reaper',
-    callMethod: function (change) { return smallWondersCall(change); }
-});
-function smallWondersCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            smallWonders();
-            break;
-        case 1 /* off */:
-            // smallWonders();
-            break;
-        case 2 /* ajax */:
-            // smallWonders();
-            break;
-    }
-}
-function smallWonders() {
-    // ############### set cookies ###############
-    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
-    setCookie('cookieconsent_dismissed', 'yes');
-    if ($('#nav a[title="Blue.Reaper"]').length) {
-        // Keine Erwachenen-Meldung mehr
-        setCookie('adult', '1');
-        // no donate call on videoplayer
-        setCookie('stream_donatecall1', '1');
-        // hide tab 'Artikel'
-        // hide 'Artikel' on chapter Page
-        GM_addStyle('a[href$="article#top"], div.article {display: none !important;}');
-    }
-    // ############### hide elements ###############
-    GM_addStyle(GM_getResourceText("smallWonders_CSS"));
-    // ############### BackToTop ###############
-    // Check if Button already added
-    if (!$('.backToTop').length) {
-        // add button
-        var backToTopButton_1 = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
-        $('body').append(backToTopButton_1);
-        // scroll 1000 Pixel
-        $(window).scroll(function () {
-            var scrollTop = $(window).scrollTop();
-            if (scrollTop && scrollTop > 1000) {
-                backToTopButton_1.fadeIn();
-            }
-            else {
-                backToTopButton_1.fadeOut();
-            }
-        });
-        // click
-        backToTopButton_1.click(function () {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
-    }
-}
-// Theatermodus für Anime
-// blende "Flash-Player | Ladezeit melden! | Hilfe" im Player aus
-pefModulList.push({
-    id: "theaterMode",
-    name: "Theatermodus",
-    description: "Theatermodus für Animes",
-    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/theatermodus',
-    autor: "Blue.Reaper",
-    callMethod: function (change) { return theatreModeCall(change); }
-});
-function theatreModeCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            theatermodus();
-            break;
-        case 1 /* off */:
-            theatermodusOff();
-            break;
-        case 2 /* ajax */:
-            // theatermodus();
-            break;
-    }
-}
-function theatermodus() {
-    if (window.location.hostname !== "stream.proxer.me" && window.location.pathname.split('/')[1] !== 'watch') {
-        theatermodusOff();
-    }
-    // Innerhalb des Iframes
-    if (window.location.hostname === "stream.proxer.me") {
-        GM_addStyle(GM_getResourceText("theater_CSS"));
-    }
-    // normale Proxer Seite
-    if (window.location.pathname.split('/')[1] === 'watch') {
-        // Check if button is already added
-        if (!$('.toggleTheater').length) {
-            var backToTopButton = $('<i class="toggleTheater pointer fa fa-2x fa-arrows-alt"/>');
-            $("body").append(backToTopButton);
-            backToTopButton.click(function () {
-                $('iframe').toggleClass("theaterActive");
-            });
-        }
-    }
-}
-function theatermodusOff() {
-    // Entferne Button wieder
-    $('.toggleTheater').remove();
-}
 // Zeigt Bilder in den Listenansichten an bei:
 // - Updates
 // - Manga/Animelist
@@ -797,7 +680,7 @@ function picTile() {
     if (isLocationUpdates() || isLocationStatus() || isLocationBookmarks()) {
         // add buttons for table- or grid-view
         if (!$('#pefViewControl').length) {
-            $('#main #simple-navi').after($("<div id=\"pefViewControl\" class=\"clear\">\n    \t\t\t\t<a id=\"pefGrid\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-th-large\" onclick=\"set_cookie('entryView','grid',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t\t<a id=\"pefList\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-list\" onclick=\"set_cookie('entryView','tablelist',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t</div>"));
+            $('#main #simple-navi').after($("<div id=\"pefViewControl\" class=\"clear\">\n    \t\t\t\t<a id=\"pefGrid\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-th\" onclick=\"set_cookie('entryView','grid',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t\t<a id=\"pefList\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-list-ul\" onclick=\"set_cookie('entryView','tablelist',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t</div>"));
         }
         // Picture (=Grid) List
         if (getCookie('entryView') != 'tablelist') {
@@ -1008,31 +891,154 @@ function redesignNotification() {
     $('#notificationBubble.miscNav>div.scrollBar').hide();
     $('#notificationBubble.miscNav .notificationList').each(function (idx, item) {
         var link = $(item).attr("href");
+        var picTile = $('<a class="tile sizeSmall" href="' + link.replace("chapter", "read") + '" data-notifyid="' + item.id.substr('12') + '" />');
+        $('#notificationBubble.miscNav').append(picTile);
         // Manga or Anime
         if (/chapter/.test(link) || /watch/.test(link)) {
             var text = $(item).find('u').text().split('#');
-            var picTile_1 = $('<a class="tile sizeSmall" href="' + link.replace("chapter", "read") + '" />');
-            $('#notificationBubble.miscNav').append(picTile_1);
-            picTile_1.append($('<img class="tilePic" src="//cdn.proxer.me/cover/' + link.split("/")[2] + '.jpg">'));
-            picTile_1.append($('<div class="tileText">').append(text[0]));
-            picTile_1.append($('<div class="tileText tileBottom">').append('# ').append(text[1]));
+            picTile.append($('<img class="tilePic" src="//cdn.proxer.me/cover/' + link.split("/")[2] + '.jpg">'));
+            picTile.append($('<div class="tileText">' + text[0] + '</div>'));
+            picTile.append($('<div class="tileText tileBottom"># ' + text[1] + '</div>'));
         }
         // board
         else if (/forum/.test(link)) {
             var text = $(item).find('i').text();
             text = text.substring(1, text.length - 1);
-            var picTile_2 = $('<a class="tile sizeSmall" href="' + link + '" />');
-            $('#notificationBubble.miscNav').append(picTile_2);
-            picTile_2.append($('<div class="tilePic"> <i class="tileFA fa fa-comments-o" /></div>'));
-            picTile_2.append($('<div class="tileText wrap">').append(text));
-            picTile_2.append($('<div class="tileText tileBottom">').append('Forum'));
+            picTile.append($('<div class="tileFA fa fa-comments-o"> </div>'));
+            picTile.append($('<div class="tileText wrap">' + text + '</div>'));
+            picTile.append($('<div class="tileText tileBottom">Forum</div>'));
         }
+        // other than board, anime or manga
         else {
             var text = $(item).text();
-            var picTile_3 = $('<a class="tile sizeSmall" href="' + link + '" />');
-            $('#notificationBubble.miscNav').append(picTile_3);
-            picTile_3.append($('<div class="tileText wrap">').append(text));
-            picTile_3.append($('<div class="tileText tileBottom">').append('!!Fehler!!'));
+            picTile.append($('<div class="tileText wrap">' + text + '</div>'));
+            picTile.append($('<div class="tileText tileBottom">!!Fehler!!</div>'));
         }
+        var close = $('<a class="tileTimes fa fa-times" href="javascript:;">');
+        picTile.append(close);
+        close.hover(function () { return picTile.addClass('delete'); }, function () { return picTile.removeClass('delete'); });
+        close.click(function () {
+            picTile.remove();
+            $.post('/notifications?format=json&s=deleteNotification&' + $('#proxerToken').val() + '=1', { id: $(picTile).data('notifyid') }, function (result) { });
+        });
     });
+}
+// Wunder:
+// "zurück nach oben" Button
+// Nachricht "Diese Website verwendet Cookies..." wird ausgeblendet
+// setzt "Ja ich bin Erwachsen"
+// blende Abonnieren Button aus (Infoseite), da keine Funktion? https://proxer.me/forum/213-allgemein/386170-abbonieren-button-in-details-seiten-beschreibung
+// blende Werbung auf Anime-Seite aus
+// blende Social Media aus
+// blende Artikel (=Amazon) aus
+// blednde News und Freundschafts Icon aus (oben rechts)
+// blendet Chat aus
+// blendet Spendenaufruf auf Videoplayer aus
+pefModulList.push({
+    id: 'smallWonders',
+    name: 'Kleine Wunder',
+    description: 'Kleine Änderungen, die Wunder wirken',
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/smallWonders',
+    autor: 'Blue.Reaper',
+    callMethod: function (change) { return smallWondersCall(change); }
+});
+function smallWondersCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            smallWonders();
+            break;
+        case 1 /* off */:
+            // smallWonders();
+            break;
+        case 2 /* ajax */:
+            // smallWonders();
+            break;
+    }
+}
+function smallWonders() {
+    // ############### set cookies ###############
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    setCookie('cookieconsent_dismissed', 'yes');
+    if ($('#nav a[title="Blue.Reaper"]').length) {
+        // Keine Erwachenen-Meldung mehr
+        setCookie('adult', '1');
+        // no donate call on videoplayer
+        setCookie('stream_donatecall1', '1');
+        // hide tab 'Artikel'
+        // hide 'Artikel' on chapter Page
+        GM_addStyle('a[href$="article#top"], div.article {display: none !important;}');
+    }
+    // ############### hide elements ###############
+    GM_addStyle(GM_getResourceText("smallWonders_CSS"));
+    // ############### BackToTop ###############
+    // Check if Button already added
+    if (!$('.backToTop').length) {
+        // add button
+        var backToTopButton_1 = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
+        $('body').append(backToTopButton_1);
+        // scroll 1000 Pixel
+        $(window).scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop && scrollTop > 1000) {
+                backToTopButton_1.fadeIn();
+            }
+            else {
+                backToTopButton_1.fadeOut();
+            }
+        });
+        // click
+        backToTopButton_1.click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    }
+}
+// Theatermodus für Anime
+// blende "Flash-Player | Ladezeit melden! | Hilfe" im Player aus
+pefModulList.push({
+    id: "theaterMode",
+    name: "Theatermodus",
+    description: "Theatermodus für Animes",
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/theatermodus',
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return theatreModeCall(change); }
+});
+function theatreModeCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            theatermodus();
+            break;
+        case 1 /* off */:
+            theatermodusOff();
+            break;
+        case 2 /* ajax */:
+            // theatermodus();
+            break;
+    }
+}
+function theatermodus() {
+    if (window.location.hostname !== "stream.proxer.me" && window.location.pathname.split('/')[1] !== 'watch') {
+        theatermodusOff();
+    }
+    // Innerhalb des Iframes
+    if (window.location.hostname === "stream.proxer.me") {
+        GM_addStyle(GM_getResourceText("theater_CSS"));
+    }
+    // normale Proxer Seite
+    if (window.location.pathname.split('/')[1] === 'watch') {
+        // Check if button is already added
+        if (!$('.toggleTheater').length) {
+            var backToTopButton = $('<i class="toggleTheater pointer fa fa-2x fa-arrows-alt"/>');
+            $("body").append(backToTopButton);
+            backToTopButton.click(function () {
+                $('iframe').toggleClass("theaterActive");
+            });
+        }
+    }
+}
+function theatermodusOff() {
+    // Entferne Button wieder
+    $('.toggleTheater').remove();
 }
