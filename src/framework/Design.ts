@@ -56,11 +56,11 @@ function supportDesign(){
         $('[src~="/images/misc/proxeramazon.png"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxeramazon.png');
 
         // Bilder durch FontAwesome ersetzen
-        $('#miscNav').addClass('fa');
-        $('#requestNav').addClass('fa');
-        $('#messageNav').addClass('fa');
-        $('#newsNav').addClass('fa');
-        $('#searchNav').addClass('fa');
+        $('#miscNav').addClass('fa fa-bell');
+        $('#requestNav').addClass('fa fa-users');
+        $('#messageNav').addClass('fa fa-envelope-o');
+        $('#newsNav').addClass('fa fa-newspaper-o');
+        $('#searchNav').addClass('fa fa-search');
 
         $('[src~="/images/misc/stern.png"]').replaceWith('<i class="fa fa-star yellow smallImg"/>');
         $('[src~="/images/misc/stern_grau.png"]').replaceWith('<i class="fa fa-star-o grey smallImg"/>');
@@ -82,5 +82,9 @@ function supportDesign(){
         $('[src~="/images/social/youtube2.png"]').replaceWith('<i class="fa fa-youtube-square"/>');
         $('[src~="/images/social/google-plus.png"]').replaceWith('<i class="fa fa-google-plus-square"/>');
         $('[src~="/images/social/amazon.png"]').replaceWith('<i class="fa fa-amazon"/>');
+
+        // user better font FontAwesome
+        $('.fa-list').removeClass('fa-list').addClass('fa-bars');
+        $('.fa-th-large').removeClass('fa-th-large').addClass('fa-th');
     }
 }

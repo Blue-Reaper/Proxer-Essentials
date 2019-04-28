@@ -119,6 +119,16 @@
     height: 100%;
     width: 100%;
     float: left;
+    transition: filter 0.7s;
+}
+
+.tileFA {
+    font-size: 6em !important;
+    bottom: 30px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    transition: filter 0.7s;
 }
 
 .tileText {
@@ -130,6 +140,10 @@
     overflow: hidden;
     white-space: nowrap;
     text-align: center;
+}
+
+.tileText.wrap {
+    white-space: unset;
 }
 
 .tileBottom {
@@ -148,14 +162,21 @@
     overflow-y: auto;
 }
 
-.tileText.wrap {
-    white-space: unset;
+.tileTimes,
+#nav .tileTimes {
+    position: absolute;
+    bottom: 1px;
+    right: 2px;
+    font-size: 1.3em;
+    color: var(--text-color);
 }
 
-.tileFA {
-    font-size: 6em;
-    bottom: 30px;
-    position: absolute;
-    text-align: center;
-    width: 100%;
+.tileTimes:hover,
+#nav .tileTimes:hover {
+    color: var(--red);
+}
+
+.tile.delete .tilePic,
+.tile.delete .tileFA{
+    filter: blur(2px);
 }

@@ -68,8 +68,8 @@ function picTile(){
     	// add buttons for table- or grid-view
     	if(!$('#pefViewControl').length){
     		$('#main #simple-navi').after($(`<div id="pefViewControl" class="clear">
-    				<a id="pefGrid" data-ajax="true" class="marginLeft05 floatRight menu fa fa-th-large" onclick="set_cookie('entryView','grid',cookie_expire);location.reload();" href="javascript:;"/>
-    				<a id="pefList" data-ajax="true" class="marginLeft05 floatRight menu fa fa-list" onclick="set_cookie('entryView','tablelist',cookie_expire);location.reload();" href="javascript:;"/>
+    				<a id="pefGrid" data-ajax="true" class="marginLeft05 floatRight menu fa fa-th" onclick="set_cookie('entryView','grid',cookie_expire);location.reload();" href="javascript:;"/>
+    				<a id="pefList" data-ajax="true" class="marginLeft05 floatRight menu fa fa-list-ul" onclick="set_cookie('entryView','tablelist',cookie_expire);location.reload();" href="javascript:;"/>
     			</div>`));
     	}
 
@@ -301,33 +301,42 @@ function redesignNotification(){
 
     $('#notificationBubble.miscNav .notificationList').each((idx, item)=>{
         let link = $(item).attr("href");
+        let picTile = $('<a class="tile sizeSmall" href="'+link.replace("chapter","read")+'" data-notifyid="'+item.id.substr('12')+'" />');
+        $('#notificationBubble.miscNav').append(picTile);
+
         // Manga or Anime
         if (/chapter/.test(link) || /watch/.test(link)){
             let text = $(item).find('u').text().split('#');
-            let picTile = $('<a class="tile sizeSmall" href="'+link.replace("chapter","read")+'" />');
-            $('#notificationBubble.miscNav').append(picTile);
 
             picTile.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.split("/")[2]+'.jpg">'));
-            picTile.append($('<div class="tileText">').append(text[0]));
-            picTile.append($('<div class="tileText tileBottom">').append('# ').append(text[1]));
+            picTile.append($('<div class="tileText">'+text[0]+'</div>'));
+            picTile.append($('<div class="tileText tileBottom"># '+text[1]+'</div>'));
         }
         // board
         else if (/forum/.test(link)){
             let text =$(item).find('i').text();
             text = text.substring(1, text.length-1);
-            let picTile = $('<a class="tile sizeSmall" href="'+link+'" />');
-            $('#notificationBubble.miscNav').append(picTile);
 
-            picTile.append($('<div class="tilePic"> <i class="tileFA fa fa-comments-o" /></div>'));
-            picTile.append($('<div class="tileText wrap">').append(text));
-            picTile.append($('<div class="tileText tileBottom">').append('Forum'));
-        } else {
+            picTile.append($('<div class="tileFA fa fa-comments-o"> </div>'));
+            picTile.append($('<div class="tileText wrap">'+text+'</div>'));
+            picTile.append($('<div class="tileText tileBottom">Forum</div>'));
+        }
+        // other than board, anime or manga
+        else {
             let text =$(item).text()
-            let picTile = $('<a class="tile sizeSmall" href="'+link+'" />');
-            $('#notificationBubble.miscNav').append(picTile);
-            picTile.append($('<div class="tileText wrap">').append(text));
-            picTile.append($('<div class="tileText tileBottom">').append('!!Fehler!!'));
+            picTile.append($('<div class="tileText wrap">'+text+'</div>'));
+            picTile.append($('<div class="tileText tileBottom">!!Fehler!!</div>'));
         }
 
+        let close = $('<a class="tileTimes fa fa-times" href="javascript:;">');
+        picTile.append(close);
+        close.hover(
+            ()=>picTile.addClass('delete'),
+            ()=>picTile.removeClass('delete')
+        );
+        close.click(() => {
+            picTile.remove();
+            $.post('/notifications?format=json&s=deleteNotification&'+$('#proxerToken').val()+'=1', {id:$(picTile).data('notifyid')},function(result){});
+        });
     });
 }

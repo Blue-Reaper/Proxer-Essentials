@@ -4,25 +4,48 @@
     font-weight: Lighter;
 }
 
-/* hard coded colors only for specific elements */
-.green {
-    color: #30E864;
-}
-.yellow {
-    color:#F3E044;
-}
-.orange {
-    color: #F1880D;
-}
-.red {
-    color: #ef394a;
-}
-.grey {
-    color: #909090;
+:root {
+    /* hard coded colors only for specific elements */
+    --green: #30E864;
+    --yellow: #F3E044;
+    --orange: #F1880D;
+    --red: #ef394a;
+    --grey: #909090;
+    --blue: #12BFF9;
+
+    /* all used colors:
+    #ccc
+    #BFC3C6
+    #999999
+    #a7a7a7
+    #808080
+    #777777
+    #4a4a4a
+    #222327
+    #1b1b1b
+    #000
+    #7F7
+    #F77
+    #5388B4 */
 }
 
+.green {
+    color: var(--green);
+}
+.yellow {
+    color:var(--yellow);
+}
+.orange {
+    color: var(--orange);
+}
+.red {
+    color: var(--red);
+}
+.grey {
+    color: var(--blue);
+}
 .blue {
-    color: #12BFF9;
+    color: var(--green);
 }
 
 body {
@@ -373,26 +396,6 @@ textarea {
     width: 39% !important;
 }
 
-#miscNav::before {
-    content: "\f0f3";
-}
-
-#requestNav::before {
-    content: "\f0c0";
-}
-
-#messageNav::before {
-    content: "\f003";
-}
-
-#newsNav::before {
-    content: "\f1ea";
-}
-
-#searchNav::before {
-    content: "\f002";
-}
-
 #miscNav,
 #requestNav,
 #messageNav,
@@ -680,16 +683,6 @@ input[placeholder~="Suche"] {
     float:left;
 }
 
-.fa-list::before {
-    content: "";
-    font-weight: lighter;
-}
-
-.fa-th-large:before {
-    content: "";
-    font-weight: lighter;
-}
-
 /* Scrollbar for Firefox */
 * {
     scrollbar-color:var(--accent-color) rgba(0, 0, 0, 0);
@@ -780,17 +773,6 @@ input[placeholder~="Suche"] {
     color:  var(--accent-color);
 }
 
-.fa-arrows-alt:before {
-    content: "";
-    font-size: 0.9em;
-}
-
-.fa-remove:before,
-.fa-close:before,
-.fa-times:before {
-    content: "\f057";
-}
-
 .calendarTable {
     border-top: 3px solid #1b1b1b;
     margin-top: 10px;
@@ -813,6 +795,12 @@ input#submitSearch0 {
     background:  var(--bg-color);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border: 0;
+}
+
+/* fix Impressum */
+img[src="/images/misc/miau.png"] {
+    width: initial !important;
+    border-radius: 0 !important;
 }
 
 /* FORUM */
@@ -1071,13 +1059,6 @@ tr.krow2.krow2 {
 #adventskalender {
     display: none;
 }
-
-/* fix Impressum */
-img[src="/images/misc/miau.png"] {
-    width: initial !important;
-    border-radius: 0 !important;
-}
-
 
 #kunena.layout div.kmsgtext-article, #kunena.layout div.kmsgtext-quote, #kunena.layout div.kmsgtext-hide, #kunena.layout div.kmsgtext-confidential {
     background-color: var(--main-bg-color) !important;
