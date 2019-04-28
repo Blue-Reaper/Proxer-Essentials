@@ -69,7 +69,7 @@ function picTile(){
     	if(!$('#pefViewControl').length){
     		$('#main #simple-navi').after($(`<div id="pefViewControl" class="clear">
     				<a id="pefGrid" data-ajax="true" class="marginLeft05 floatRight menu fa fa-th" onclick="set_cookie('entryView','grid',cookie_expire);location.reload();" href="javascript:;"/>
-    				<a id="pefList" data-ajax="true" class="marginLeft05 floatRight menu fa fa-list-ul" onclick="set_cookie('entryView','tablelist',cookie_expire);location.reload();" href="javascript:;"/>
+    				<a id="pefList" data-ajax="true" class="marginLeft05 floatRight menu fa fa-bars" onclick="set_cookie('entryView','tablelist',cookie_expire);location.reload();" href="javascript:;"/>
     			</div>`));
     	}
 
