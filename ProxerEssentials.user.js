@@ -1,11 +1,17 @@
 "use strict";
 // ==UserScript==
-// @name        Proxer Essentials
-// @version     23-Beta
+// @name        Proxer Essentials BETA
+// @version     24-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder braucht
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
+// @homepage    https://blue-reaper.github.io/Proxer-Essentials/
+// @supportURL  https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose
+// @icon        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/logo_proxer.png
+// @updateURL   https://greasyfork.org/scripts/382410-proxer-essentials-beta/code/Proxer%20Essentials%20BETA.user.js
+// @downloadURL https://greasyfork.org/scripts/382410-proxer-essentials-beta/code/Proxer%20Essentials%20BETA.user.js
 // @include     https://proxer.me/*
+// @require     http://code.jquery.com/jquery-3.4.0.min.js
 // @run-at      document-start
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -15,15 +21,14 @@
 // @grant       GM_getResourceURL
 // Konsolenausgabe für Debugging
 // @grant       GM_log
-// @require     http://code.jquery.com/jquery-3.4.0.min.js
-// @resource    framework_CSS      src/framework/css/framework.css
-// @resource    modules_CSS        src/modules/css/modules.css
-// @resource    design_CSS         src/framework/css/design.css
+// @resource    framework_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/beta/src/framework/css/framework.css
+// @resource    modules_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/beta/src/modules/css/modules.css
+// @resource    design_CSS         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/beta/src/framework/css/design.css
 // smallWonders
-// @resource    smallWonders_CSS   src/modules/css/smallWonders.css
+// @resource    smallWonders_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/beta/src/modules/css/smallWonders.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
-// @resource    theater_CSS        src/modules/css/theaterModus.css
+// @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/beta/src/modules/css/theaterModus.css
 // ==/UserScript==
 GM_addStyle(GM_getResourceText("framework_CSS"));
 GM_addStyle(GM_getResourceText("modules_CSS"));
@@ -680,7 +685,7 @@ function picTile() {
     if (isLocationUpdates() || isLocationStatus() || isLocationBookmarks()) {
         // add buttons for table- or grid-view
         if (!$('#pefViewControl').length) {
-            $('#main #simple-navi').after($("<div id=\"pefViewControl\" class=\"clear\">\n    \t\t\t\t<a id=\"pefGrid\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-th\" onclick=\"set_cookie('entryView','grid',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t\t<a id=\"pefList\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-list-ul\" onclick=\"set_cookie('entryView','tablelist',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t</div>"));
+            $('#main #simple-navi').after($("<div id=\"pefViewControl\" class=\"clear\">\n    \t\t\t\t<a id=\"pefGrid\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-th\" onclick=\"set_cookie('entryView','grid',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t\t<a id=\"pefList\" data-ajax=\"true\" class=\"marginLeft05 floatRight menu fa fa-bars\" onclick=\"set_cookie('entryView','tablelist',cookie_expire);location.reload();\" href=\"javascript:;\"/>\n    \t\t\t</div>"));
         }
         // Picture (=Grid) List
         if (getCookie('entryView') != 'tablelist') {
@@ -718,11 +723,6 @@ function picTile() {
                     showGridBookmarks();
                 }
             }
-            else {
-                if (isLocationUpdates()) {
-                    updateReadingStatus();
-                }
-            }
         }
         else {
             // Table List
@@ -743,9 +743,10 @@ function showGridUpdates() {
         }
         var link = $(tr).find('td:nth-child(2) a').attr("href");
         var title = $(tr).find('td:nth-child(2) a').text();
-        var box = $('<a class="tile sizeBig picTopBorder" href="' + link + '"></a>');
+        var tid = link.replace(new RegExp("/|info|list|#top", "g"), "");
+        var box = $('<a class="tile sizeBig picTopBorder" href="' + link + '" data-tid="' + tid + '"></a>');
         // Cover
-        box.append($('<img class="tilePic" src="//cdn.proxer.me/cover/' + link.replace(new RegExp("/|info|list|#top", "g"), "") + '.jpg">'));
+        box.append($('<img class="tilePic" src="//cdn.proxer.me/cover/' + tid + '.jpg">'));
         // Title
         box.append($('<div class="tileText">').append(title));
         // Date
@@ -842,10 +843,35 @@ function showGridBookmarks() {
 }
 // add read-status (e.g. Reading)
 function updateReadingStatus() {
-    var temp = $('.infocelltriangle');
-    temp.each(function (idx, status) {
-        if ($(status).css("border-top-color") != "rgba(0, 0, 0, 0)") {
-            $('.picTopBorder').eq(idx).css("border-top-color", $(status).css("border-top-color"));
+    // @ts-ignore
+    getProxerListEntries(tileStatus);
+}
+function tileStatus(bookmarks) {
+    $.each(bookmarks, function (id, bookmark) {
+        var tile = $('.tile[data-tid="' + bookmark.tid + '"]');
+        if (tile.length) {
+            var color = void 0;
+            switch (bookmark.state) {
+                case "0":
+                    //finished
+                    color = 'var(--darkgreen)';
+                    break;
+                case "1":
+                    //reading
+                    color = 'var(--darkblue)';
+                    break;
+                case "2":
+                    //will be read
+                    color = 'var(--orange)';
+                    break;
+                case "3":
+                    //abortet
+                    color = 'var(--red)';
+                    break;
+                default:
+                    color = 'var(--text-color)';
+            }
+            tile.css('border-color', color);
         }
     });
 }
