@@ -45,22 +45,22 @@ function supportDesign(){
         // Set Proxer-Style to gray, needed for Design
         setCookie("style","gray");
         // Bilder ersetzen
-        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src','https://logosart.de/proxer2-0/proxer-test-anime.jpg');
-        $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src','https://logosart.de/proxer2-0/proxer-test-manga.jpg');
-        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src','https://logosart.de/proxer2-0/proxer-test-anime.jpg');
-        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src','https://logosart.de/proxer2-0/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-manga.jpg');
+        $('[src~="//cdn.proxer.me/cover/2274.jpg"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-anime.jpg');
+        $('[src~="//cdn.proxer.me/cover/2275.jpg"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-anime.jpg');
 
-        $('[src~="https://proxer.me/images/misc/proxerfanpage.png"]').attr('src','https://logosart.de/proxer2-0/proxerfanpage.png');
+        $('[src~="https://proxer.me/images/misc/proxerfanpage.png"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerfanpage.png');
 
-        $('[src~="/images/misc/proxerdonate.png"]').attr('src','https://logosart.de/proxer2-0/proxerdonate.png');
-        $('[src~="/images/misc/proxeramazon.png"]').attr('src','https://logosart.de/proxer2-0/proxeramazon.png');
+        $('[src~="/images/misc/proxerdonate.png"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerdonate.png');
+        $('[src~="/images/misc/proxeramazon.png"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxeramazon.png');
 
         // Bilder durch FontAwesome ersetzen
-        $('#miscNav').addClass('fa');
-        $('#requestNav').addClass('fa');
-        $('#messageNav').addClass('fa');
-        $('#newsNav').addClass('fa');
-        $('#searchNav').addClass('fa');
+        $('#miscNav').addClass('fa fa-bell');
+        $('#requestNav').addClass('fa fa-users');
+        $('#messageNav').addClass('fa fa-envelope-o');
+        $('#newsNav').addClass('fa fa-newspaper-o');
+        $('#searchNav').addClass('fa fa-search');
 
         $('[src~="/images/misc/stern.png"]').replaceWith('<i class="fa fa-star yellow smallImg"/>');
         $('[src~="/images/misc/stern_grau.png"]').replaceWith('<i class="fa fa-star-o grey smallImg"/>');
@@ -82,5 +82,9 @@ function supportDesign(){
         $('[src~="/images/social/youtube2.png"]').replaceWith('<i class="fa fa-youtube-square"/>');
         $('[src~="/images/social/google-plus.png"]').replaceWith('<i class="fa fa-google-plus-square"/>');
         $('[src~="/images/social/amazon.png"]').replaceWith('<i class="fa fa-amazon"/>');
+
+        // user better font FontAwesome
+        $('.fa-list').removeClass('fa-list').addClass('fa-bars');
+        $('.fa-th-large').removeClass('fa-th-large').addClass('fa-th');
     }
 }

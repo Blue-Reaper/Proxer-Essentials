@@ -85,7 +85,6 @@ function mangaComfort(){
                 let path = location;
                 path = String(path).replace('read', 'chapter');
                 let ajaxLink = (path + '?format=json&type=reminder&' + $('#proxerToken').val() + '=1&title=reminder_this');
-                console.log("my ajax:"+ajaxLink);
                 $.post(ajaxLink, {
                     'check': 1
                 }, function(data) {

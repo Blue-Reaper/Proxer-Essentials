@@ -66,3 +66,117 @@
     transition: all ease 0.8s;
     color: var(--accent-color);
 }
+
+/* picTile */
+
+#pefViewControl {
+    width: 55% !important;
+    padding-top: 1em;
+}
+
+.acc {
+    display:block !important;
+    cursor: pointer;
+}
+
+.picTopBorder {
+    border-color: var(--text-color);
+    border-width: 6px 0 0;
+    border-style: solid;
+}
+
+.grayout {
+    filter: grayscale(70%);
+    opacity: 0.6;
+}
+
+.tile,
+#nav .tile {
+    position: relative;
+    margin: 0 5px 5px;
+    float: left;
+    margin-bottom: 0.7em;
+    transition: color 0.8s ease;
+    color:  var(--text-color);
+}
+
+.tile.sizeBig {
+    height: 280px;
+    width: 200px;
+}
+
+.tile.sizeSmall {
+    height: 170px;
+    width: 120px;
+}
+
+.tile:hover,
+#nav .tile:hover {
+    color: var(--highlight-text-color);
+}
+
+.tilePic {
+    height: 100%;
+    width: 100%;
+    float: left;
+    transition: filter 0.7s;
+}
+
+.tileFA {
+    font-size: 6em !important;
+    bottom: 30px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    transition: filter 0.7s;
+}
+
+.tileText {
+    position: absolute;
+    background-color: var(--main-bg-color);
+    width: 100%;
+    padding: 0 !important;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.tileText.wrap {
+    white-space: unset;
+}
+
+.tileBottom {
+    bottom: 0;
+}
+
+#notificationBubble.miscNav.redesign {
+    position: fixed;
+    top: 40px;
+    right: 0;
+    bottom: 0;
+    width: 30%;
+    margin-top: 0;
+    padding-left: 0.5em;
+    background-color: var(--bg-color);
+    overflow-y: auto;
+}
+
+.tileTimes,
+#nav .tileTimes {
+    position: absolute;
+    bottom: 1px;
+    right: 2px;
+    font-size: 1.3em;
+    color: var(--text-color);
+}
+
+.tileTimes:hover,
+#nav .tileTimes:hover {
+    color: var(--red);
+}
+
+.tile.delete .tilePic,
+.tile.delete .tileFA{
+    filter: blur(2px);
+}
