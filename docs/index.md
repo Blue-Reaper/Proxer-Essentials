@@ -14,7 +14,7 @@ Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des
 # Wie bekomme ich Proxer Essentials?
 Um Userscripte verwenden zu können benötigt man ein Browser Add-In, [Violentmonkey](https://violentmonkey.github.io/) oder [Tampermonkey](https://tampermonkey.net/).
 
-Anschließend [hier](https://github.com/Blue-Reaper/Proxer-Essentials/raw/master/ProxerEssentials.user.js) klicken und das Script wird in das Add-In geladen.
+Anschließend kann auf [dieser Seite](https://greasyfork.org/de/scripts/382411-proxer-essentials) das Skript installiert werden.
 
 # Was genau ist alles enthalten?
 ## Design

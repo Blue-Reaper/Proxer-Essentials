@@ -80,7 +80,7 @@
 }
 
 .picTopBorder {
-    border-color: #656565;
+    border-color: var(--text-color);
     border-width: 6px 0 0;
     border-style: solid;
 }

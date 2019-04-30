@@ -69,7 +69,7 @@ function picTile(){
     	if(!$('#pefViewControl').length){
     		$('#main #simple-navi').after($(`<div id="pefViewControl" class="clear">
     				<a id="pefGrid" data-ajax="true" class="marginLeft05 floatRight menu fa fa-th" onclick="set_cookie('entryView','grid',cookie_expire);location.reload();" href="javascript:;"/>
-    				<a id="pefList" data-ajax="true" class="marginLeft05 floatRight menu fa fa-list-ul" onclick="set_cookie('entryView','tablelist',cookie_expire);location.reload();" href="javascript:;"/>
+    				<a id="pefList" data-ajax="true" class="marginLeft05 floatRight menu fa fa-bars" onclick="set_cookie('entryView','tablelist',cookie_expire);location.reload();" href="javascript:;"/>
     			</div>`));
     	}
 
@@ -112,11 +112,6 @@ function picTile(){
                 } else if (isLocationBookmarks()){
                     showGridBookmarks();
                 }
-
-    		} else {
-                if(isLocationUpdates()){
-                    updateReadingStatus();
-                }
     		}
     	}else {
     // Table List
@@ -137,11 +132,12 @@ function showGridUpdates(){
         }
         let link = $(tr).find('td:nth-child(2) a').attr("href");
         let title = $(tr).find('td:nth-child(2) a').text();
+        let tid = link.replace(new RegExp("/|info|list|#top","g"),"");
 
-        let box = $('<a class="tile sizeBig picTopBorder" href="'+link+'"></a>');
+        let box = $('<a class="tile sizeBig picTopBorder" href="'+link+'" data-tid="'+tid+'"></a>');
 
         // Cover
-        box.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.replace(new RegExp("/|info|list|#top","g"),"")+'.jpg">'));
+        box.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+tid+'.jpg">'));
         // Title
         box.append($('<div class="tileText">').append(title));
         // Date
@@ -246,12 +242,38 @@ function showGridBookmarks(){
 
 // add read-status (e.g. Reading)
 function updateReadingStatus(){
-	let temp = $('.infocelltriangle');
-	temp.each((idx, status)=>{
-		if($(status).css("border-top-color") != "rgba(0, 0, 0, 0)"){
-			$('.picTopBorder').eq(idx).css("border-top-color",$(status).css("border-top-color"));
-		}
-	});
+    // @ts-ignore
+    getProxerListEntries(tileStatus);
+}
+
+function tileStatus(bookmarks :JSON) {
+    $.each(bookmarks, function(id,bookmark) {
+        let tile = $('.tile[data-tid="'+bookmark.tid+'"]');
+        if (tile.length) {
+            let color;
+            switch(bookmark.state) {
+                case "0":
+                    //finished
+                    color = 'var(--darkgreen)';
+                    break;
+                case "1":
+                    //reading
+                    color = 'var(--darkblue)';
+                    break;
+                case "2":
+                    //will be read
+                    color = 'var(--orange)';
+                    break;
+                case "3":
+                    //abortet
+                    color = 'var(--red)';
+                    break;
+                default:
+                    color = 'var(--text-color)';
+            }
+            tile.css('border-color', color);
+        }
+    });
 }
 
 function sortList(sortOption :SortOption){

@@ -11,11 +11,13 @@
 :root {
     /* hard coded colors only for specific elements */
     --green: #30E864;
+    --darkgreen: #009933;
     --yellow: #F3E044;
     --orange: #F1880D;
     --red: #ef394a;
     --grey: #909090;
     --blue: #12BFF9;
+    --darkblue: #000066;
 
     /* all used colors:
     #ccc
@@ -46,10 +48,10 @@
     color: var(--red);
 }
 .grey {
-    color: var(--blue);
+    color: var(--grey);
 }
 .blue {
-    color: var(--green);
+    color: var(--blue);
 }
 
 body {
