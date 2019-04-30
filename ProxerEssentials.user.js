@@ -16,6 +16,7 @@
 // Konsolenausgabe für Debugging
 // @grant       GM_log
 // @updateURL https://greasyfork.org/scripts/382408-proxer-essentials/code/Proxer%20Essentials.user.js
+// @downloadURL https://greasyfork.org/scripts/382408-proxer-essentials/code/Proxer%20Essentials.user.js
 // @require     http://code.jquery.com/jquery-3.4.0.min.js
 // @resource    framework_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/framework.css
 // @resource    modules_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/modules.css
