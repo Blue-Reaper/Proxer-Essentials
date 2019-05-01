@@ -1,15 +1,17 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     5.5
+// @version     6.0
 // @description Nützlicher Erweiterungen für Proxer die jeder braucht
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
 // @homepage    https://blue-reaper.github.io/Proxer-Essentials/
 // @supportURL  https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose
 // @icon        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/logo_proxer.png
-// @updateURL   https://greasyfork.org/scripts/382411-proxer-essentials/code/Proxer%20Essentials.user.js
-// @downloadURL https://greasyfork.org/scripts/382411-proxer-essentials/code/Proxer%20Essentials.user.js
+// @updateURL   https://openuserjs.org/meta/Blue.Reaper/Proxer_Essentials.meta.js
+// @downloadURL https://openuserjs.org/install/Blue.Reaper/Proxer_Essentials.user.js
+// @license     MIT
+// @copyright   2019, Blue.Reaper (https://blue-reaper.github.io/Proxer-Essentials/)
 // @include     https://proxer.me/*
 // @require     http://code.jquery.com/jquery-3.4.0.min.js
 // @run-at      document-start
@@ -30,6 +32,9 @@
 // @include     https://stream.proxer.me/*
 // @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/modules/css/theaterModus.css
 // ==/UserScript==
+// ==OpenUserJS==
+// @author Blue.Reaper
+// ==/OpenUserJS==
 GM_addStyle(GM_getResourceText("framework_CSS"));
 GM_addStyle(GM_getResourceText("modules_CSS"));
 // Liste aller Module
@@ -67,7 +72,7 @@ if (GM_getValue("DesignStatus") == null) {
 // add Theme
 if (GM_getValue("DesignStatus") == "on") {
     // Add colors for design
-    GM_addStyle(":root {\n            /* accent color */\n            --accent-color:" + GM_getValue("AccentColor") + ";\n            /* background color */\n            --main-bg-color:" + GM_getValue("MainBgColor") + ";\n            --bg-color:" + GM_getValue("BgColor") + ";\n            /* Button */\n            --button-color:" + GM_getValue("ButtonColor") + ";\n            /* Text */\n            --text-color:" + GM_getValue("TextColor") + ";\n            --link-color:" + GM_getValue("LinkColor") + ";\n            --highlight-text-color:" + GM_getValue("TextHighlightColor") + ";\n        }");
+    GM_addStyle(":root {\n            /* accent color */\n            --accent-color:" + GM_getValue("AccentColor") + ";\n            /* background color */\n            --bg1-color:" + GM_getValue("Bg1Color") + ";\n            --bg2-color:" + GM_getValue("Bg2Color") + ";\n            /* Button */\n            --button-color:" + GM_getValue("ButtonColor") + ";\n            /* Text */\n            --text-color:" + GM_getValue("TextColor") + ";\n            --link-color:" + GM_getValue("LinkColor") + ";\n            --highlight-text-color:" + GM_getValue("TextHighlightColor") + ";\n        }");
     // Add Style after <head> to override css of side (and dont need !important everywhere)
     // But add Before sth is shown to the user
     $("html").append($('<style type="text/css">' + GM_getResourceText("design_CSS") + '</style>'));
@@ -75,8 +80,8 @@ if (GM_getValue("DesignStatus") == "on") {
 function resetDesign() {
     GM_setValue("DesignStatus", "on");
     GM_setValue("AccentColor", "#ef394a");
-    GM_setValue("MainBgColor", "#232428");
-    GM_setValue("BgColor", "#2d2f33");
+    GM_setValue("Bg1Color", "#232428");
+    GM_setValue("Bg2Color", "#2d2f33");
     GM_setValue("ButtonColor", "#3e3e3e");
     GM_setValue("TextColor", "#909090");
     GM_setValue("LinkColor", "#bdbdbd");
@@ -224,8 +229,8 @@ function tabPefDesign() {
     inhalt.append($('<div>Den Hexwert einer Farbe kann man z.B. <a href="https://www.color-hex.com/">hier</a> herausfinden.</div>'));
     var colorpick = $('<div class="colorpick"/>');
     colorpick.append($('<div class="clear">Akzent: <input id="pefAccentColor" type="text" class="floatRight" value="' + GM_getValue("AccentColor") + '"/></div>'));
-    colorpick.append($('<div class="clear">Haupt-Hintergrund: <input id="pefMainBgColor" type="text" class="floatRight" value="' + GM_getValue("MainBgColor") + '"/></div>'));
-    colorpick.append($('<div class="clear">Hintergrund: <input id="pefBgColor" type="text" class="floatRight" value="' + GM_getValue("BgColor") + '"/></div>'));
+    colorpick.append($('<div class="clear">Hintergrund 1: <input id="pefBg1Color" type="text" class="floatRight" value="' + GM_getValue("Bg1Color") + '"/></div>'));
+    colorpick.append($('<div class="clear">Hintergrund 2: <input id="pefBg2Color" type="text" class="floatRight" value="' + GM_getValue("Bg2Color") + '"/></div>'));
     colorpick.append($('<div class="clear">Schaltflächen: <input id="pefButtonColor" type="text" class="floatRight" value="' + GM_getValue("ButtonColor") + '"/></div>'));
     colorpick.append($('<div class="clear">Text: <input id="pefTextColor" type="text" class="floatRight" value="' + GM_getValue("TextColor") + '"/></div>'));
     colorpick.append($('<div class="clear">Links: <input id="pefLinkColor" type="text" class="floatRight" value="' + GM_getValue("LinkColor") + '"/></div>'));
@@ -243,8 +248,8 @@ function tabPefDesign() {
     });
     save.click(function () {
         GM_setValue("AccentColor", $('#pefAccentColor').val());
-        GM_setValue("MainBgColor", $('#pefMainBgColor').val());
-        GM_setValue("BgColor", $('#pefBgColor').val());
+        GM_setValue("Bg1Color", $('#pefBg1Color').val());
+        GM_setValue("Bg2Color", $('#pefBg2Color').val());
         GM_setValue("ButtonColor", $('#pefButtonColor').val());
         GM_setValue("TextColor", $('#pefTextColor').val());
         GM_setValue("LinkColor", $('#pefLinkColor').val());
@@ -627,125 +632,6 @@ function anotherExampleMethod() {
     // Wenn das Modul ausgeschaltet wird passiert evtl. etwas
     // console.log("Das Mustet-Modul wurde deaktiviert");
 }
-// Wunder:
-// "zurück nach oben" Button
-// Nachricht "Diese Website verwendet Cookies..." wird ausgeblendet
-// setzt "Ja ich bin Erwachsen"
-// blende Abonnieren Button aus (Infoseite), da keine Funktion? https://proxer.me/forum/213-allgemein/386170-abbonieren-button-in-details-seiten-beschreibung
-// blende Werbung auf Anime-Seite aus
-// blende Social Media aus
-// blende Artikel (=Amazon) aus
-// blednde News und Freundschafts Icon aus (oben rechts)
-// blendet Chat aus
-// blendet Spendenaufruf auf Videoplayer aus
-pefModulList.push({
-    id: 'smallWonders',
-    name: 'Kleine Wunder',
-    description: 'Kleine Änderungen, die Wunder wirken',
-    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/smallWonders',
-    autor: 'Blue.Reaper',
-    callMethod: function (change) { return smallWondersCall(change); }
-});
-function smallWondersCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            smallWonders();
-            break;
-        case 1 /* off */:
-            // smallWonders();
-            break;
-        case 2 /* ajax */:
-            // smallWonders();
-            break;
-    }
-}
-function smallWonders() {
-    // ############### set cookies ###############
-    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
-    setCookie('cookieconsent_dismissed', 'yes');
-    if ($('#nav a[title="Blue.Reaper"]').length) {
-        // Keine Erwachenen-Meldung mehr
-        setCookie('adult', '1');
-        // no donate call on videoplayer
-        setCookie('stream_donatecall1', '1');
-        // hide tab 'Artikel'
-        // hide 'Artikel' on chapter Page
-        GM_addStyle('a[href$="article#top"], div.article {display: none !important;}');
-    }
-    // ############### hide elements ###############
-    GM_addStyle(GM_getResourceText("smallWonders_CSS"));
-    // ############### BackToTop ###############
-    // Check if Button already added
-    if (!$('.backToTop').length) {
-        // add button
-        var backToTopButton_1 = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
-        $('body').append(backToTopButton_1);
-        // scroll 1000 Pixel
-        $(window).scroll(function () {
-            var scrollTop = $(window).scrollTop();
-            if (scrollTop && scrollTop > 1000) {
-                backToTopButton_1.fadeIn();
-            }
-            else {
-                backToTopButton_1.fadeOut();
-            }
-        });
-        // click
-        backToTopButton_1.click(function () {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
-    }
-}
-// Theatermodus für Anime
-// blende "Flash-Player | Ladezeit melden! | Hilfe" im Player aus
-pefModulList.push({
-    id: "theaterMode",
-    name: "Theatermodus",
-    description: "Theatermodus für Animes",
-    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/theatermodus',
-    autor: "Blue.Reaper",
-    callMethod: function (change) { return theatreModeCall(change); }
-});
-function theatreModeCall(change) {
-    switch (change) {
-        case 0 /* on */:
-            theatermodus();
-            break;
-        case 1 /* off */:
-            theatermodusOff();
-            break;
-        case 2 /* ajax */:
-            // theatermodus();
-            break;
-    }
-}
-function theatermodus() {
-    if (window.location.hostname !== "stream.proxer.me" && window.location.pathname.split('/')[1] !== 'watch') {
-        theatermodusOff();
-    }
-    // Innerhalb des Iframes
-    if (window.location.hostname === "stream.proxer.me") {
-        GM_addStyle(GM_getResourceText("theater_CSS"));
-    }
-    // normale Proxer Seite
-    if (window.location.pathname.split('/')[1] === 'watch') {
-        // Check if button is already added
-        if (!$('.toggleTheater').length) {
-            var backToTopButton = $('<i class="toggleTheater pointer fa fa-2x fa-arrows-alt"/>');
-            $("body").append(backToTopButton);
-            backToTopButton.click(function () {
-                $('iframe').toggleClass("theaterActive");
-            });
-        }
-    }
-}
-function theatermodusOff() {
-    // Entferne Button wieder
-    $('.toggleTheater').remove();
-}
 // Zeigt Bilder in den Listenansichten an bei:
 // - Updates
 // - Manga/Animelist
@@ -1067,4 +953,123 @@ function redesignNotification() {
             $.post('/notifications?format=json&s=deleteNotification&' + $('#proxerToken').val() + '=1', { id: $(picTile).data('notifyid') }, function (result) { });
         });
     });
+}
+// Wunder:
+// "zurück nach oben" Button
+// Nachricht "Diese Website verwendet Cookies..." wird ausgeblendet
+// setzt "Ja ich bin Erwachsen"
+// blende Abonnieren Button aus (Infoseite), da keine Funktion? https://proxer.me/forum/213-allgemein/386170-abbonieren-button-in-details-seiten-beschreibung
+// blende Werbung auf Anime-Seite aus
+// blende Social Media aus
+// blende Artikel (=Amazon) aus
+// blednde News und Freundschafts Icon aus (oben rechts)
+// blendet Chat aus
+// blendet Spendenaufruf auf Videoplayer aus
+pefModulList.push({
+    id: 'smallWonders',
+    name: 'Kleine Wunder',
+    description: 'Kleine Änderungen, die Wunder wirken',
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/smallWonders',
+    autor: 'Blue.Reaper',
+    callMethod: function (change) { return smallWondersCall(change); }
+});
+function smallWondersCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            smallWonders();
+            break;
+        case 1 /* off */:
+            // smallWonders();
+            break;
+        case 2 /* ajax */:
+            // smallWonders();
+            break;
+    }
+}
+function smallWonders() {
+    // ############### set cookies ###############
+    // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
+    setCookie('cookieconsent_dismissed', 'yes');
+    if ($('#nav a[title="Blue.Reaper"]').length) {
+        // Keine Erwachenen-Meldung mehr
+        setCookie('adult', '1');
+        // no donate call on videoplayer
+        setCookie('stream_donatecall1', '1');
+        // hide tab 'Artikel'
+        // hide 'Artikel' on chapter Page
+        GM_addStyle('a[href$="article#top"], div.article {display: none !important;}');
+    }
+    // ############### hide elements ###############
+    GM_addStyle(GM_getResourceText("smallWonders_CSS"));
+    // ############### BackToTop ###############
+    // Check if Button already added
+    if (!$('.backToTop').length) {
+        // add button
+        var backToTopButton_1 = $('<i class="backToTop pointer fa fa-2x fa-chevron-up"/>');
+        $('body').append(backToTopButton_1);
+        // scroll 1000 Pixel
+        $(window).scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop && scrollTop > 1000) {
+                backToTopButton_1.fadeIn();
+            }
+            else {
+                backToTopButton_1.fadeOut();
+            }
+        });
+        // click
+        backToTopButton_1.click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    }
+}
+// Theatermodus für Anime
+// blende "Flash-Player | Ladezeit melden! | Hilfe" im Player aus
+pefModulList.push({
+    id: "theaterMode",
+    name: "Theatermodus",
+    description: "Theatermodus für Animes",
+    link: 'https://blue-reaper.github.io/Proxer-Essentials/modules/theatermodus',
+    autor: "Blue.Reaper",
+    callMethod: function (change) { return theatreModeCall(change); }
+});
+function theatreModeCall(change) {
+    switch (change) {
+        case 0 /* on */:
+            theatermodus();
+            break;
+        case 1 /* off */:
+            theatermodusOff();
+            break;
+        case 2 /* ajax */:
+            // theatermodus();
+            break;
+    }
+}
+function theatermodus() {
+    if (window.location.hostname !== "stream.proxer.me" && window.location.pathname.split('/')[1] !== 'watch') {
+        theatermodusOff();
+    }
+    // Innerhalb des Iframes
+    if (window.location.hostname === "stream.proxer.me") {
+        GM_addStyle(GM_getResourceText("theater_CSS"));
+    }
+    // normale Proxer Seite
+    if (window.location.pathname.split('/')[1] === 'watch') {
+        // Check if button is already added
+        if (!$('.toggleTheater').length) {
+            var backToTopButton = $('<i class="toggleTheater pointer fa fa-2x fa-arrows-alt"/>');
+            $("body").append(backToTopButton);
+            backToTopButton.click(function () {
+                $('iframe').toggleClass("theaterActive");
+            });
+        }
+    }
+}
+function theatermodusOff() {
+    // Entferne Button wieder
+    $('.toggleTheater').remove();
 }
