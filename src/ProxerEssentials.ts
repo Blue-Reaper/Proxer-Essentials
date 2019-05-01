@@ -1,6 +1,7 @@
 // ==UserScript==
 // @name        Proxer Essentials
 // @version     5.4
+// @version     25-Beta
 // @description Nützlicher Erweiterungen für Proxer die jeder braucht
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
@@ -22,14 +23,14 @@
 // @grant       GM_getResourceURL
 // Konsolenausgabe für Debugging
 // @grant       GM_log
-// @resource    framework_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/framework.css
-// @resource    modules_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/modules.css
-// @resource    design_CSS         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/design.css
+// @resource    framework_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/beta/src/framework/css/framework.css
+// @resource    modules_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/beta/src/modules/css/modules.css
+// @resource    design_CSS         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/beta/src/framework/css/design.css
 // smallWonders
-// @resource    smallWonders_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/smallWonders.css
+// @resource    smallWonders_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/beta/src/modules/css/smallWonders.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
-// @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/theaterModus.css
+// @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/beta/src/modules/css/theaterModus.css
 // ==/UserScript==
 
 // ==OpenUserJS==
