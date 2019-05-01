@@ -13,8 +13,8 @@ if (GM_getValue("DesignStatus")=="on"){
             /* accent color */
             --accent-color:`+GM_getValue("AccentColor")+`;
             /* background color */
-            --main-bg-color:`+GM_getValue("MainBgColor")+`;
-            --bg-color:`+GM_getValue("BgColor")+`;
+            --bg1-color:`+GM_getValue("Bg1Color")+`;
+            --bg2-color:`+GM_getValue("Bg2Color")+`;
             /* Button */
             --button-color:`+GM_getValue("ButtonColor")+`;
             /* Text */
@@ -31,8 +31,8 @@ if (GM_getValue("DesignStatus")=="on"){
 function resetDesign(){
     GM_setValue("DesignStatus","on");
     GM_setValue("AccentColor","#ef394a");
-    GM_setValue("MainBgColor","#232428");
-    GM_setValue("BgColor","#2d2f33");
+    GM_setValue("Bg1Color","#232428");
+    GM_setValue("Bg2Color","#2d2f33");
     GM_setValue("ButtonColor","#3e3e3e");
     GM_setValue("TextColor","#909090");
     GM_setValue("LinkColor","#bdbdbd");
