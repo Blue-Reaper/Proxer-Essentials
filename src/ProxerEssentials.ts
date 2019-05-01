@@ -7,8 +7,9 @@
 // @homepage    https://blue-reaper.github.io/Proxer-Essentials/
 // @supportURL  https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose
 // @icon        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/logo_proxer.png
-// @updateURL   https://greasyfork.org/scripts/382411-proxer-essentials/code/Proxer%20Essentials.user.js
-// @downloadURL https://greasyfork.org/scripts/382411-proxer-essentials/code/Proxer%20Essentials.user.js
+// @updateURL https://openuserjs.org/meta/Blue.Reaper/Proxer_Essentials.meta.js
+// @updateURL https://openuserjs.org/install/Blue.Reaper/Proxer_Essentials.user.js
+// @license MIT
 // @include     https://proxer.me/*
 // @require     http://code.jquery.com/jquery-3.4.0.min.js
 // @run-at      document-start
