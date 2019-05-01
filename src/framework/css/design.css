@@ -524,7 +524,7 @@ textarea {
 #loading {
     animation: pound .7s infinite alternate;
     background: var(--main-bg-color);
-    background-image: url(https://logosart.de/proxer2-0/proxer_big.png);
+    background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer_big.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 30vh;
