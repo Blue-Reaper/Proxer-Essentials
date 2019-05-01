@@ -60,12 +60,12 @@ body {
     font-family: "Segoe UI Light", sans-serif !important;
     font-weight: lighter !important;
     font-variant: normal;
-    background:  var(--main-bg-color) !important;
+    background:  var(--bg1-color) !important;
 
 }
 
 .calendarHeadNav table {
-    background-color:  var(--main-bg-color);
+    background-color:  var(--bg1-color);
     border-radius: 0;
     border: 0;
 }
@@ -77,7 +77,7 @@ h1 {
 }
 
 .headDate {
-    border-color:  var(--main-bg-color);
+    border-color:  var(--bg1-color);
 }
 
 ul#simple-navi li,
@@ -87,7 +87,7 @@ ul#simple-navi-wiki li {
 }
 
 .details td {
-    background-color:  var(--bg-color);
+    background-color:  var(--bg2-color);
 }
 
 #notificationBubble,
@@ -165,7 +165,7 @@ ul#simple-navi,
 ul#simple-navi-wiki {
 
     border-radius: 0;
-    background-color:  var(--bg-color);
+    background-color:  var(--bg2-color);
     border: 0;
 
     margin-left: 5px;
@@ -178,12 +178,12 @@ ul#simple-navi-wiki {
     margin-right: 0;
     padding-bottom: 5vh;
     border-radius: 0;
-    background-color:  var(--bg-color);
+    background-color:  var(--bg2-color);
     border: 0;
 }
 
 .topmenu ul {
-    background:  var(--bg-color);
+    background:  var(--bg2-color);
     opacity: 0.9;
     border: 0;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
@@ -244,7 +244,7 @@ select {
     font-family: "Segoe UI Light", sans-serif;
     font-size: 0.8em !important;
     font-weight: lighter;
-    background:  var(--main-bg-color);
+    background:  var(--bg1-color);
     color:  var(--highlight-text-color);
     border: 1px solid  var(--button-color);
     padding: 4px 7px;
@@ -253,7 +253,7 @@ select {
 input[type=text] {
     font-family: "Segoe UI Light", sans-serif;
     padding: 4px 7px;
-    background:  var(--main-bg-color);
+    background:  var(--bg1-color);
     color:  var(--highlight-text-color);
     border: 1px solid  var(--button-color);
 }
@@ -261,7 +261,7 @@ input[type=text] {
 input[type=password] {
     font-family: "Segoe UI Light", sans-serif;
     padding: 4px 7px;
-    background:  var(--main-bg-color);
+    background:  var(--bg1-color);
     color:  var(--highlight-text-color);
     border: 1px solid  var(--button-color);
 }
@@ -293,13 +293,13 @@ input[type="radio"] {
     width: 15px;
     height: 15px;
     margin-right: 5px;
-    background:  var(--main-bg-color);
+    background:  var(--bg1-color);
     border-radius: 50%;
 }
 
 input[type="radio"]:checked {
     background:  var(--accent-color);
-    border: 2px solid  var(--main-bg-color);
+    border: 2px solid  var(--bg1-color);
 }
 
 input[type="radio"]:hover {
@@ -320,7 +320,7 @@ input[type="checkbox"] {
     margin-right: 5px;
     margin-bottom: 0px;
     margin-left: 0px;
-    background:  var(--main-bg-color);
+    background:  var(--bg1-color);
 }
 
 input[type="checkbox"]:checked {
@@ -341,13 +341,13 @@ input[type=button]:hover {
 }
 
 textarea {
-    background:  var(--bg-color);
+    background:  var(--bg2-color);
     border: 1px solid  var(--button-color);
     color: var(--highlight-text-color);
 }
 
 .ui-tooltip {
-    background:  var(--bg-color);
+    background:  var(--bg2-color);
     border: 0;
     font-family: "Segoe UI Light", sans-serif !important;
     color: var(--highlight-text-color);
@@ -357,7 +357,7 @@ textarea {
 }
 
 .message {
-    background:  var(--bg-color) !important;
+    background:  var(--bg2-color) !important;
     border: 0 !important;
     color: var(--highlight-text-color) !important;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2) !important;
@@ -393,7 +393,7 @@ textarea {
 
 #notificationBubble {
     border-radius: 3px;
-    background:  var(--bg-color);
+    background:  var(--bg2-color);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border: 0;
 }
@@ -438,7 +438,7 @@ textarea {
 }
 
 #loginBubble {
-    background:  var(--bg-color);
+    background:  var(--bg2-color);
     text-shadow: none !important;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border: 0;
@@ -464,7 +464,7 @@ textarea {
 
 #box-table-a th {
     font-size: 17px;
-    background:  var(--bg-color);
+    background:  var(--bg2-color);
     font-variant: normal;
     font-weight: normal;
     border-bottom: 1px solid #1b1b1b;
@@ -474,7 +474,7 @@ textarea {
     transition: background ease 0.8s, color ease 0.8s;
     color: var(--text-color);
     border-bottom: 1px solid #1b1b1b;
-    background:  var(--bg-color);
+    background:  var(--bg2-color);
 }
 
 #box-table-a tr {
@@ -523,7 +523,7 @@ textarea {
 
 #loading {
     animation: pound .7s infinite alternate;
-    background: var(--main-bg-color);
+    background: var(--bg1-color);
     background-image: url(https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer_big.png);
     background-position: center center;
     background-repeat: no-repeat;
@@ -580,7 +580,7 @@ input:focus {
 #headerInfo {
     border-radius: 0;
     top: 80px;
-    background: var(--main-bg-color);
+    background: var(--bg1-color);
     border: 0;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
 }
@@ -616,7 +616,7 @@ input:focus {
 #notificationBubble:after,
 #loginBubble:after,
 .pointerBubble:after {
-    border-color:  var(--bg-color) transparent;
+    border-color:  var(--bg2-color) transparent;
 }
 
 #simple-navi {
@@ -664,7 +664,7 @@ input[placeholder~="Suche"] {
 
 .fastSearchEntry {
     color: var(--highlight-text-color);
-    background:  var(--main-bg-color);
+    background:  var(--bg1-color);
     border: 0;
 }
 
@@ -674,7 +674,7 @@ input[placeholder~="Suche"] {
 
 .checkYes {
     padding: 2px;
-    background-color:  var(--bg-color);
+    background-color:  var(--bg2-color);
     border-left: 2px solid #7F7;
     opacity: 0.8;
     display: none;
@@ -683,7 +683,7 @@ input[placeholder~="Suche"] {
 
 .checkNo {
     padding: 2px;
-    background-color:  var(--bg-color);
+    background-color:  var(--bg2-color);
     border-left: 2px solid #F77;
     opacity: 0.8;
     display: none;
@@ -721,9 +721,9 @@ input[placeholder~="Suche"] {
 }
 
 .chatapp_roomtitle {
-    background:  var(--main-bg-color);
+    background:  var(--bg1-color);
     border-bottom: 0px solid;
-    border-color:  var(--main-bg-color);
+    border-color:  var(--bg1-color);
     color:  var(--accent-color);
 }
 
@@ -731,13 +731,13 @@ input[placeholder~="Suche"] {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border-left: 0px solid;
     border-color:  var(--accent-color);
-    background-color:  var(--main-bg-color);
+    background-color:  var(--bg1-color);
 }
 
 .chatapp_room {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border: 0px solid;
-    background-color: var(--bg-color);
+    background-color: var(--bg2-color);
     z-index: 999;
 }
 
@@ -749,7 +749,7 @@ input[placeholder~="Suche"] {
     width: auto;
     border: 0px solid;
     border-color: #777777;
-    background-color:  var(--main-bg-color);
+    background-color:  var(--bg1-color);
     color:  var(--accent-color);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
 }
@@ -767,7 +767,7 @@ input[placeholder~="Suche"] {
     clear: both;
     min-height: 50px;
     padding: 5px;
-    border-bottom: 2px solid var(--main-bg-color);
+    border-bottom: 2px solid var(--bg1-color);
     transition: background ease 0.8s;
 }
 
@@ -799,7 +799,7 @@ input#submitSearch0 {
 
 /* Genre Tooltip */
 #genreBubble {
-    background:  var(--bg-color);
+    background:  var(--bg2-color);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
     border: 0;
 }
@@ -813,26 +813,26 @@ img[src="/images/misc/miau.png"] {
 /* FORUM */
 
 #kunena {
-    background:  var(--bg-color);
+    background:  var(--bg2-color);
     width: 99vw !important;
 }
 
 #kunena.layout #ktop {
-    background-color:  var(--main-bg-color) !important;
+    background-color:  var(--bg1-color) !important;
     border: 0 !important;
 }
 
 .layout#kunena #ktab a {
-    background-color:  var(--main-bg-color) !important;
+    background-color:  var(--bg1-color) !important;
 }
 
 .layout#kunena #ktab ul.menu li.active a,
 .layout#kunena #ktab li#current.selected a {
-    background-color:  var(--bg-color) !important;
+    background-color:  var(--bg2-color) !important;
 }
 
 #kunena.layout .kforum-pathway {
-    background-color:  var(--bg-color) !important;
+    background-color:  var(--bg2-color) !important;
     border: 0 !important;
 }
 
@@ -847,7 +847,7 @@ img[src="/images/misc/miau.png"] {
 }
 
 .layout#kunena div#kannouncement .kanndesc {
-    background:  var(--bg-color) !important;
+    background:  var(--bg2-color) !important;
     color:  var(--text-color);
 }
 
@@ -874,7 +874,7 @@ img[src="/images/misc/miau.png"] {
 }
 
 #kunena.layout .klist-markallcatsread {
-    background-color:  var(--bg-color) !important;
+    background-color:  var(--bg2-color) !important;
     min-height: 27px;
     overflow: hidden;
     border: 0;
@@ -883,7 +883,7 @@ img[src="/images/misc/miau.png"] {
 
 #kunena.layout .button,
 #kunena.layout .kbutton {
-    background-color:  var(--main-bg-color) !important;
+    background-color:  var(--bg1-color) !important;
     color:  var(--highlight-text-color) !important;
     font-size: .917em;
     border: 1px solid #4a4a4a !important;
@@ -897,27 +897,27 @@ img[src="/images/misc/miau.png"] {
 }
 
 tr.krow2.krow2 {
-    background:  var(--bg-color) !important;
+    background:  var(--bg2-color) !important;
 }
 
 #kunena.layout tr.krow1 td {
-    background-color:  var(--main-bg-color) !important;
+    background-color:  var(--bg1-color) !important;
 }
 
 #kunena.layout div.kblock {
-    background-color:  var(--bg-color) !important;
+    background-color:  var(--bg2-color) !important;
     border: 0 !important;
 }
 
 #kunena.layout td.kcol-mid,
 #kunena.layout td.kcol-last {
     border-left: 0px solid #bfc3c6 !important;
-    border-bottom: 1px solid  var(--main-bg-color) !important;
+    border-bottom: 1px solid  var(--bg1-color) !important;
 }
 
 #kunena.layout td.kcol-first {
     border-left: none;
-    border-bottom: 1px solid  var(--main-bg-color) !important;
+    border-bottom: 1px solid  var(--bg1-color) !important;
 }
 
 #kunena.layout div.kthead-child {
@@ -937,14 +937,14 @@ tr.krow2.krow2 {
 }
 
 #kunena.layout .klist-actions {
-    background-color:  var(--bg-color) !important;
+    background-color:  var(--bg2-color) !important;
     color:  var(--highlight-text-color);
     border: 0 !important;
 }
 
 #kunena.layout .kpagination a {
-    background-color:  var(--main-bg-color) !important;
-    border: 1px solid  var(--main-bg-color) !important;
+    background-color:  var(--bg1-color) !important;
+    border: 1px solid  var(--bg1-color) !important;
 }
 
 #kunena.layout .kpagination span {
@@ -978,7 +978,7 @@ tr.krow2.krow2 {
 #kunena.layout .kmessage-left .btn,
 #kunena.layout #topic-actions .btn,
 #kunena.layout .kmessage-buttons-row .btn {
-    background-color:  var(--main-bg-color);
+    background-color:  var(--bg1-color);
 }
 
 .layout#kunena #ktab a:hover {
@@ -1001,11 +1001,11 @@ tr.krow2.krow2 {
     border-top: 1px solid #000;
     min-height: 5px;
     width: 100%;
-    background-color:  var(--main-bg-color) !important;
+    background-color:  var(--bg1-color) !important;
 }
 
 #kunena.layout td.kprofile-left {
-    background-color:  var(--main-bg-color) !important;
+    background-color:  var(--bg1-color) !important;
     border-right: 0px solid #BFC3C6;
 }
 
@@ -1033,17 +1033,17 @@ tr.krow2.krow2 {
 }
 
 #kunena.layout span.kmessage-editmarkup {
-    background:  var(--main-bg-color) no-repeat left center;
-    border-top: 1px solid  var(--main-bg-color);
-    border-right: 1px solid  var(--main-bg-color);
-    border-left: 1px solid  var(--main-bg-color);
+    background:  var(--bg1-color) no-repeat left center;
+    border-top: 1px solid  var(--bg1-color);
+    border-right: 1px solid  var(--bg1-color);
+    border-left: 1px solid  var(--bg1-color);
 }
 
 #kunena.layout span.kmessage-informmarkup {
-    background:  var(--main-bg-color) no-repeat left center;
-    border-top: 1px solid  var(--main-bg-color);
-    border-right: 1px solid  var(--main-bg-color);
-    border-left: 1px solid  var(--main-bg-color);
+    background:  var(--bg1-color) no-repeat left center;
+    border-top: 1px solid  var(--bg1-color);
+    border-right: 1px solid  var(--bg1-color);
+    border-left: 1px solid  var(--bg1-color);
 }
 
 #kunena.layout .kspoiler-title,
@@ -1068,39 +1068,39 @@ tr.krow2.krow2 {
 }
 
 #kunena.layout div.kmsgtext-article, #kunena.layout div.kmsgtext-quote, #kunena.layout div.kmsgtext-hide, #kunena.layout div.kmsgtext-confidential {
-    background-color: var(--main-bg-color) !important;
-    border: 1px solid var(--main-bg-color) !important;
+    background-color: var(--bg1-color) !important;
+    border: 1px solid var(--bg1-color) !important;
 }
 
 .calendarHeadNav table {
-    background-color: var(--main-bg-color) !important;
-    border: 1px solid var(--main-bg-color) !important;
+    background-color: var(--bg1-color) !important;
+    border: 1px solid var(--bg1-color) !important;
 }
 
 .calendarEntryList {
-    background: var(--main-bg-color);
-    border: 1px solid var(--main-bg-color);
+    background: var(--bg1-color);
+    border: 1px solid var(--bg1-color);
 }
 
 .dayTable tr:nth-child(even) {
-    background: var(--main-bg-color);
+    background: var(--bg1-color);
 }
 
 .dayTable tr:nth-child(odd) {
-    background: var(--bg-color);
+    background: var(--bg2-color);
 }
 
 .calendarEntryList th {
-    background: var(--main-bg-color);
-    border: 1px solid var(--main-bg-color);
+    background: var(--bg1-color);
+    border: 1px solid var(--bg1-color);
 }
 
 .today .dayTable tr:nth-child(odd) {
-    background: var(--bg-color) !important;
+    background: var(--bg2-color) !important;
 }
 
 .today .dayTable tr:nth-child(even) {
-    background: var(--main-bg-color)!important;
+    background: var(--bg1-color)!important;
 }
 
 .animeLink {

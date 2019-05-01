@@ -123,8 +123,8 @@ function tabPefDesign(){
 
     let colorpick =$('<div class="colorpick"/>');
     colorpick.append($('<div class="clear">Akzent: <input id="pefAccentColor" type="text" class="floatRight" value="'+GM_getValue("AccentColor")+'"/></div>'));
-    colorpick.append($('<div class="clear">Haupt-Hintergrund: <input id="pefMainBgColor" type="text" class="floatRight" value="'+GM_getValue("MainBgColor")+'"/></div>'));
-    colorpick.append($('<div class="clear">Hintergrund: <input id="pefBgColor" type="text" class="floatRight" value="'+GM_getValue("BgColor")+'"/></div>'));
+    colorpick.append($('<div class="clear">Hintergrund 1: <input id="pefBg1Color" type="text" class="floatRight" value="'+GM_getValue("Bg1Color")+'"/></div>'));
+    colorpick.append($('<div class="clear">Hintergrund 2: <input id="pefBg2Color" type="text" class="floatRight" value="'+GM_getValue("Bg2Color")+'"/></div>'));
     colorpick.append($('<div class="clear">Schaltflächen: <input id="pefButtonColor" type="text" class="floatRight" value="'+GM_getValue("ButtonColor")+'"/></div>'));
     colorpick.append($('<div class="clear">Text: <input id="pefTextColor" type="text" class="floatRight" value="'+GM_getValue("TextColor")+'"/></div>'));
     colorpick.append($('<div class="clear">Links: <input id="pefLinkColor" type="text" class="floatRight" value="'+GM_getValue("LinkColor")+'"/></div>'));
@@ -144,8 +144,8 @@ function tabPefDesign(){
     });
     save.click(() => {
         GM_setValue("AccentColor",$('#pefAccentColor').val());
-        GM_setValue("MainBgColor",$('#pefMainBgColor').val());
-        GM_setValue("BgColor",$('#pefBgColor').val());
+        GM_setValue("Bg1Color",$('#pefBg1Color').val());
+        GM_setValue("Bg2Color",$('#pefBg2Color').val());
         GM_setValue("ButtonColor",$('#pefButtonColor').val());
         GM_setValue("TextColor",$('#pefTextColor').val());
         GM_setValue("LinkColor",$('#pefLinkColor').val());
@@ -165,7 +165,7 @@ function showModules(pef_module: any) {
 
         moduleBox.append($('<div>' + singleModule.description + '</div>'));
         moduleBox.append($('<div class="autor">by ' + singleModule.autor + '</div>'));
-        
+
         let modulStatus = $('<i id="' + singleModule.id + '_StatusImg" class="fa fa-2x pointer"/>');
         moduleBox.append(modulStatus);
 

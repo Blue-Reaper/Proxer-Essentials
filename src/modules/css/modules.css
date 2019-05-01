@@ -22,7 +22,7 @@
 
 /* Ignore User */
 #pefIgnoreUser {
-    background-color: var(--main-bg-color);
+    background-color: var(--bg1-color);
     border-radius: 5px !important;
     color: #fff !important;
     margin-left: 0.5em
@@ -133,7 +133,7 @@
 
 .tileText {
     position: absolute;
-    background-color: var(--main-bg-color);
+    background-color: var(--bg1-color);
     width: 100%;
     padding: 0 !important;
     text-overflow: ellipsis;
@@ -158,7 +158,7 @@
     width: 30%;
     margin-top: 0;
     padding-left: 0.5em;
-    background-color: var(--bg-color);
+    background-color: var(--bg2-color);
     overflow-y: auto;
 }
 
