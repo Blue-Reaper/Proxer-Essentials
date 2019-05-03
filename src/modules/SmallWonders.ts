@@ -37,6 +37,10 @@ function smallWonders() {
 // ############### set cookies ###############
     // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
     setCookie('cookieconsent_dismissed', 'yes');
+    // collapse chat (is sometimes shown for a short time, before script finishes)
+    setCookie('chatapp_open', '0');
+    setCookie('chatapp_open_id', '');
+    setCookie('chatapp_open_type', '');
 
     if ($('#nav a[title="Blue.Reaper"]').length){
         // Keine Erwachenen-Meldung mehr
