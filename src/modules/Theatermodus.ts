@@ -1,5 +1,4 @@
 // Theatermodus für Anime
-// blende "Flash-Player | Ladezeit melden! | Hilfe" im Player aus
 
 pefModulList.push({
     id:"theaterMode",

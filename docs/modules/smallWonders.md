@@ -7,8 +7,7 @@
   + News und Freundschafts Icon (oben rechts neben Profil)
   + Chat auf rechter Seite
   + Nachricht "Diese Website verwendet Cookies..."
-  + Abonnieren Button (Infoseite)
-  + Werbung auf Viedoplayer Seite
   + Social Media Buttons
-  
++ Die Werbung wird nicht mehr ausgeblendet, diese wird von Anti-Tracking Plug-Ins wie z.B. [Ghostery](https://www.ghostery.com/de/) sowieso blockiert.
+
 [Zurück](../)

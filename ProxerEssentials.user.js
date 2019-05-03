@@ -8,8 +8,6 @@
 // @homepage    https://blue-reaper.github.io/Proxer-Essentials/
 // @supportURL  https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose
 // @icon        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/logo_proxer.png
-// @updateURL   https://openuserjs.org/meta/Blue.Reaper/Proxer_Essentials.meta.js
-// @downloadURL https://openuserjs.org/install/Blue.Reaper/Proxer_Essentials.user.js
 // @license     MIT
 // @copyright   2019, Blue.Reaper (https://blue-reaper.github.io/Proxer-Essentials/)
 // @include     https://proxer.me/*
@@ -23,14 +21,14 @@
 // @grant       GM_getResourceURL
 // Konsolenausgabe für Debugging
 // @grant       GM_log
-// @resource    framework_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/css/framework.css
-// @resource    modules_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/modules/css/modules.css
-// @resource    design_CSS         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/css/design.css
+// @resource    framework_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/framework.css
+// @resource    modules_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/modules.css
+// @resource    design_CSS         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/design.css
 // smallWonders
-// @resource    smallWonders_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/modules/css/smallWonders.css
+// @resource    smallWonders_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/smallWonders.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
-// @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/modules/css/theaterModus.css
+// @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/theaterModus.css
 // ==/UserScript==
 // ==OpenUserJS==
 // @author Blue.Reaper
@@ -508,6 +506,10 @@ function mangaComfort() {
     if (!$('#leftNav li:nth-child(3) ul li>a[href="/manga/updates#top').length) {
         $('#leftNav li:nth-child(3) ul').append($('<li><a data-ajax="true" href="/manga/updates#top">Updates</a></li>'));
     }
+    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
+    if (getCookie('manga_reader') != 'slide') {
+        setCookie('manga_reader', 'longstrip');
+    }
     // On Home Page and Links doesn't exist
     if (location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length) {
         // Add Mangaupdaets like existing Animeupdates and after that
@@ -516,10 +518,6 @@ function mangaComfort() {
     if (location.pathname.split('/')[1] !== 'read' && location.pathname.split('/')[1] !== 'chapter') {
         $('.previousChapter, .nextChapter, .bookmark').remove();
         return;
-    }
-    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
-    if (getCookie('manga_reader') != 'slide') {
-        setCookie('manga_reader', 'longstrip');
     }
     if (getCookie('manga_reader') == 'longstrip') {
         // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird

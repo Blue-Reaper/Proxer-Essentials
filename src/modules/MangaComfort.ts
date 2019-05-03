@@ -32,6 +32,10 @@ function mangaComfort(){
     if(!$('#leftNav li:nth-child(3) ul li>a[href="/manga/updates#top').length){
         $('#leftNav li:nth-child(3) ul').append($('<li><a data-ajax="true" href="/manga/updates#top">Updates</a></li>'));
     }
+    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
+    if (getCookie('manga_reader') != 'slide') {
+        setCookie('manga_reader', 'longstrip');
+    }
     // On Home Page and Links doesn't exist
     if (location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length){
         // Add Mangaupdaets like existing Animeupdates and after that
@@ -42,11 +46,6 @@ function mangaComfort(){
         $('.previousChapter, .nextChapter, .bookmark').remove();
         return;
 	}
-
-    // Setzt Longstrip als Standard, wenn noch kein Cookie gesetzt ist
-    if (getCookie('manga_reader') != 'slide') {
-        setCookie('manga_reader', 'longstrip');
-    }
 
     if (getCookie('manga_reader') == 'longstrip') {
         // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird

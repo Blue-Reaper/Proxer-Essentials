@@ -12,12 +12,6 @@
 
 /* hide cookie warning */
 .cc_banner-wrapper,
-/* hide 'Abonnieren' button on /info site */
-a.menu.entry_subscribe,
-/* hide add on /watch site */
-img[src="/images/misc/proxerblock.png"],
-a[href^="https://publisher.anime-unicorn.com"],
-div.mn-related-container,
 /* hide social media */
 li.facebook,
 li.twitter,
@@ -31,7 +25,8 @@ li.googleplus + li.info,
 #newsNav,
 /* hide chat */
 #chatapp_sidebar,
-#chatapp_toggle
+#chatapp_toggle,
+.chatapp_room
 {
     display: none !important;
 }
