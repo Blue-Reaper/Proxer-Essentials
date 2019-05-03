@@ -1,14 +1,9 @@
 // Wunder:
 // "zurück nach oben" Button
 // Nachricht "Diese Website verwendet Cookies..." wird ausgeblendet
-// setzt "Ja ich bin Erwachsen"
-// blende Abonnieren Button aus (Infoseite), da keine Funktion? https://proxer.me/forum/213-allgemein/386170-abbonieren-button-in-details-seiten-beschreibung
-// blende Werbung auf Anime-Seite aus
 // blende Social Media aus
-// blende Artikel (=Amazon) aus
 // blednde News und Freundschafts Icon aus (oben rechts)
 // blendet Chat aus
-// blendet Spendenaufruf auf Videoplayer aus
 
 pefModulList.push({
     id: 'smallWonders',
@@ -41,16 +36,6 @@ function smallWonders() {
     setCookie('chatapp_open', '0');
     setCookie('chatapp_open_id', '');
     setCookie('chatapp_open_type', '');
-
-    if ($('#nav a[title="Blue.Reaper"]').length){
-        // Keine Erwachenen-Meldung mehr
-        setCookie('adult', '1');
-        // no donate call on videoplayer
-        setCookie('stream_donatecall1','1');
-        // hide tab 'Artikel'
-        // hide 'Artikel' on chapter Page
-        GM_addStyle ('a[href$="article#top"], div.article {display: none !important;}');
-    }
 
 // ############### hide elements ###############
     GM_addStyle (GM_getResourceText ("smallWonders_CSS"));
