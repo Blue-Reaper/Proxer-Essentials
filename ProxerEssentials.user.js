@@ -1,13 +1,15 @@
 "use strict";
 // ==UserScript==
 // @name        Proxer Essentials
-// @version     6.2
+// @version     6.3
 // @description Nützlicher Erweiterungen für Proxer die jeder braucht
 // @author      Blue.Reaper
 // @namespace   https://blue-reaper.github.io/Proxer-Essentials/
 // @homepage    https://blue-reaper.github.io/Proxer-Essentials/
 // @supportURL  https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose
 // @icon        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/logo_proxer.png
+// @updateURL   https://openuserjs.org/meta/Blue.Reaper/Proxer_Essentials.meta.js
+// @downloadURL https://openuserjs.org/install/Blue.Reaper/Proxer_Essentials.user.js
 // @license     MIT
 // @copyright   2019, Blue.Reaper (https://blue-reaper.github.io/Proxer-Essentials/)
 // @include     https://proxer.me/*
@@ -21,14 +23,14 @@
 // @grant       GM_getResourceURL
 // Konsolenausgabe für Debugging
 // @grant       GM_log
-// @resource    framework_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/framework.css
-// @resource    modules_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/modules.css
-// @resource    design_CSS         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/framework/css/design.css
+// @resource    framework_CSS      https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/css/framework.css
+// @resource    modules_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/modules/css/modules.css
+// @resource    design_CSS         https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/css/design.css
 // smallWonders
-// @resource    smallWonders_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/smallWonders.css
+// @resource    smallWonders_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/modules/css/smallWonders.css
 // Theatermodus
 // @include     https://stream.proxer.me/*
-// @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/dev/src/modules/css/theaterModus.css
+// @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/modules/css/theaterModus.css
 // ==/UserScript==
 // ==OpenUserJS==
 // @author Blue.Reaper
@@ -955,14 +957,9 @@ function redesignNotification() {
 // Wunder:
 // "zurück nach oben" Button
 // Nachricht "Diese Website verwendet Cookies..." wird ausgeblendet
-// setzt "Ja ich bin Erwachsen"
-// blende Abonnieren Button aus (Infoseite), da keine Funktion? https://proxer.me/forum/213-allgemein/386170-abbonieren-button-in-details-seiten-beschreibung
-// blende Werbung auf Anime-Seite aus
 // blende Social Media aus
-// blende Artikel (=Amazon) aus
 // blednde News und Freundschafts Icon aus (oben rechts)
 // blendet Chat aus
-// blendet Spendenaufruf auf Videoplayer aus
 pefModulList.push({
     id: 'smallWonders',
     name: 'Kleine Wunder',
@@ -988,15 +985,10 @@ function smallWonders() {
     // ############### set cookies ###############
     // Cookie damit Nachricht "Diese Website verwendet Cookies..." nicht kommt
     setCookie('cookieconsent_dismissed', 'yes');
-    if ($('#nav a[title="Blue.Reaper"]').length) {
-        // Keine Erwachenen-Meldung mehr
-        setCookie('adult', '1');
-        // no donate call on videoplayer
-        setCookie('stream_donatecall1', '1');
-        // hide tab 'Artikel'
-        // hide 'Artikel' on chapter Page
-        GM_addStyle('a[href$="article#top"], div.article {display: none !important;}');
-    }
+    // collapse chat (is sometimes shown for a short time, before script finishes)
+    setCookie('chatapp_open', '0');
+    setCookie('chatapp_open_id', '');
+    setCookie('chatapp_open_type', '');
     // ############### hide elements ###############
     GM_addStyle(GM_getResourceText("smallWonders_CSS"));
     // ############### BackToTop ###############
@@ -1025,7 +1017,6 @@ function smallWonders() {
     }
 }
 // Theatermodus für Anime
-// blende "Flash-Player | Ladezeit melden! | Hilfe" im Player aus
 pefModulList.push({
     id: "theaterMode",
     name: "Theatermodus",
