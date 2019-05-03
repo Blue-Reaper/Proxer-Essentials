@@ -8,6 +8,6 @@
   + Chat auf rechter Seite
   + Nachricht "Diese Website verwendet Cookies..."
   + Social Media Buttons
-+ Die Werbung wird nicht mehr ausgeblendet, da diese von Anti-Tracking Plug-Ins wie z.B. [Ghostery](https://www.ghostery.com/de/) sowieso blockiert wird.
++ Die Werbung wird nicht mehr ausgeblendet, diese wird von Anti-Tracking Plug-Ins wie z.B. [Ghostery](https://www.ghostery.com/de/) sowieso blockiert.
 
 [Zurück](../)
