@@ -39,7 +39,7 @@ Es ist möglich einzelne Module auszuschalten.
 ### Bild-Kacheln
 Zeigt bei der Anime-/Mangaliste, den Lesezeichen und den Updates Bild-Kacheln statt der Tabellen an, es gibt auch mehr Filtermöglichkeiten.
 
-[detaillierte Beschreibung mit Bildern](modules/pictureList.md)
+[detaillierte Beschreibung mit Bildern](modules/pictureTile.md)
 ### Manga Komfort
 Macht das Lesen der Mangas angenehmer, mit einer Navigation direkt zu den Bildern des nächsten Kapitels und weiteren Kleinigkeiten.
 
