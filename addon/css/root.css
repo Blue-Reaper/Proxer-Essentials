@@ -1,0 +1,120 @@
+:root {
+    /* accent color */
+    --accent-color: #ef394a;
+    /* background color */
+    --bg1-color: #232428;
+    --bg2-color: #2d2f33;
+    /* Button */
+    --button-color: #3e3e3e;
+    /* Text */
+    --text-color: #909090;
+    --link-color: #bdbdbd;
+    --highlight-text-color: #fff;
+}
+
+/* ######## Font Awesome ######## */
+
+/* class .fa */
+#miscNav,
+#requestNav,
+#messageNav,
+#newsNav,
+#searchNav,
+a[href^="http://www.facebook.com/Anime.Proxer.Me"],
+a[href^="https://twitter.com/proxerme"],
+a[href^="http://www.youtube.com/channel/UC7h-fT9Y9XFxuZ5GZpbcrtA"],
+a[href^="http://www.amazon.de/Anime-DVD-Blu-ray/b/"] {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-list::before {
+    /* content from fa-bars */
+    content: "\f0c9";
+}
+.fa-th-large::before {
+    /* content from fa-th */
+    content: "\f00a";
+}
+#miscNav::before {
+    /* content from fa-bell */
+    content: "\f0f3";
+}
+#requestNav::before {
+    /* content from fa-users */
+    content: "\f0c0";
+}
+#messageNav::before {
+    /* content from fa-envelope-o */
+    content: "\f003";
+}
+#newsNav::before {
+    /* content from fa-newspaper-o */
+    content: "\f1ea";
+}
+#searchNav::before {
+    /* content from fa-search */
+    content: "\f002";
+}
+a[href^="http://www.facebook.com/Anime.Proxer.Me"]::before {
+    content: "\f082";
+}
+a[href^="https://twitter.com/proxerme"]::before {
+    content: "\f081";
+}
+a[href^="http://www.youtube.com/channel/UC7h-fT9Y9XFxuZ5GZpbcrtA"]::before {
+    content: "\f166";
+}
+a[href^="http://www.amazon.de/Anime-DVD-Blu-ray/b/"]::before {
+    content: "\f270";
+}
+
+#miscNav,
+#requestNav,
+#messageNav,
+#newsNav,
+#searchNav {
+    background-image: none;
+    font-size: 1.5em;
+}
+
+a[href^="http://www.facebook.com/Anime.Proxer.Me"],
+a[href^="https://twitter.com/proxerme"],
+a[href^="http://www.youtube.com/channel/UC7h-fT9Y9XFxuZ5GZpbcrtA"],
+a[href^="http://www.amazon.de/Anime-DVD-Blu-ray/b/"] {
+    font-size: 32px;
+}
+img[src~="/images/social/facebook.png"],
+img[src~="/images/social/twitter.png"],
+img[src~="/images/social/youtube2.png"],
+img[src~="/images/social/amazon.png"] {
+    display:none;
+}
+
+/* ######## replace Image ######## */
+
+/* ### banner ### */
+*[src~="/images/misc/proxerdonate.png"],
+*[src~="/images/misc/proxeramazon.png"],
+*[src~="https://proxer.me/images/misc/proxerfanpage.png"] {
+    box-sizing: border-box;
+    width: 728px;
+    height: 90px;
+    padding-left: 728px;
+}
+/* donate */
+*[src~="/images/misc/proxerdonate.png"]{
+    background: url("https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerdonate.png");
+}
+/* amazon */
+*[src~="/images/misc/proxeramazon.png"]{
+    background: url("https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxeramazon.png");
+}
+/* facebook */
+*[src~="https://proxer.me/images/misc/proxerfanpage.png"]{
+    background: url("https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxerfanpage.png");
+}

@@ -1,0 +1,49 @@
+{
+    "manifest_version": 2,
+    "name": "Proxer Essentials",
+    "version": "0.1",
+
+    "description": "The UserScript as Add-On",
+    "author": "Blue.Reaper",
+    "homepage_url": "https://blue-reaper.github.io/Proxer-Essentials",
+    "icons": {
+      "48": "src/framework/img/logo_proxer.png"
+    },
+
+    "permissions": [
+        "tabs",
+         "cookies",
+         "*://*.proxer.me/*"
+    ],
+
+    "background": {
+        "scripts": ["addon/background_scripts/background.js"]
+    },
+
+    "content_scripts": [
+        {
+                "matches": ["*://*.proxer.me/*"],
+                "css": ["addon/css/root.css", "src/framework/css/design.css"],
+                "js": ["addon/content_scripts/jquery-3.4.0.min.js", "addon/content_scripts/design.js"],
+                "run_at": "document_start"
+        },
+        {
+                "matches": ["*://*.proxer.me/*"],
+                "js": ["addon/content_scripts/easyNavigation.js"],
+                "run_at": "document_end"
+        }
+    ],
+
+    "browser_action": {
+        "default_icon": "src/framework/img/logo_proxer.png",
+        "default_title": "Essentials",
+        "browser_style": true
+    },
+
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "ProxerEssentials@blue-reaper.github.io"
+        }
+    }
+
+}
