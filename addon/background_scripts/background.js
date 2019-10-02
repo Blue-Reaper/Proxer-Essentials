@@ -26,40 +26,31 @@ function tapUpdate() {
 }
 
 async function setCSS(){
-    // TODO if mdule smallWonsers is active
-    if(true){
         browser.tabs.insertCSS({runAt: "document_start", file: "src/modules/css/smallWonders.css"});
-    }
 }
 
 async function setCookie(){
     if(!isCookieSet){
-        // TODO if mdule smallWonsers is active
-        if(true){
-            // cookie to accept cookie warning on this site
-            browser.cookies.set({
-                url: "https://proxer.me/",
-                name: "cookieconsent_dismissed",
-                value: "yes"
-            });
-        }
-        // TODO if mdule navigation is active
-        if(true){
-            // longstrip reader as standard (only if cookie isn't set)
-            let getCookieManga = browser.cookies.get({
-                url: "https://proxer.me/",
-                name: "manga_reader"
-            });
-            getCookieManga.then((cookie) => {
-              if (!cookie) {
-                  browser.cookies.set({
-                      url: "https://proxer.me/",
-                      name: "manga_reader",
-                      value: "longstrip"
-                  });
-              }
-            });
-        }
+        // cookie to accept cookie warning on this site
+        browser.cookies.set({
+            url: "https://proxer.me/",
+            name: "cookieconsent_dismissed",
+            value: "yes"
+        });
+        // longstrip reader as standard (only if cookie isn't set)
+        let getCookieManga = browser.cookies.get({
+            url: "https://proxer.me/",
+            name: "manga_reader"
+        });
+        getCookieManga.then((cookie) => {
+          if (!cookie) {
+              browser.cookies.set({
+                  url: "https://proxer.me/",
+                  name: "manga_reader",
+                  value: "longstrip"
+              });
+          }
+        });
 
         isCookieSet = true;
     }
