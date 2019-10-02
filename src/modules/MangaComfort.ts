@@ -36,11 +36,12 @@ function mangaComfort(){
     if (getCookie('manga_reader') != 'slide') {
         setCookie('manga_reader', 'longstrip');
     }
-    // On Home Page and Links doesn't exist
-    if (location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length){
-        // Add Mangaupdaets like existing Animeupdates and after that
-        $('#main li>a[href="/anime/updates#top"]').parent().after($('<li id="pef_mangaupdates"><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
-    }
+    // Now in Standard
+    // // On Home Page and Links doesn't exist
+    // if (location.pathname === '/' && !$('#main li>a[href="/manga/updates#top').length){
+    //     // Add Mangaupdaets like existing Animeupdates and after that
+    //     $('#main li>a[href="/anime/updates#top"]').parent().after($('<li id="pef_mangaupdates"><a data-ajax="true" href="/manga/updates#top">Mangaupdates</a></li>'));
+    // }
 
 	if (location.pathname.split('/')[1] !== 'read' && location.pathname.split('/')[1] !== 'chapter'){
         $('.previousChapter, .nextChapter, .bookmark').remove();
