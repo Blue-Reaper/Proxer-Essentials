@@ -23,7 +23,7 @@
     "content_scripts": [
         {
                 "matches": ["*://*.proxer.me/*"],
-                "css": ["addon/css/root.css", "src/framework/css/design.css"],
+                "css": ["addon/css/design.css", "addon/css/essentials.css"],
                 "js": ["addon/content_scripts/jquery-3.4.0.min.js", "addon/content_scripts/design.js"],
                 "run_at": "document_start"
         },
