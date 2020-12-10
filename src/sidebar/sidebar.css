@@ -1,0 +1,43 @@
+:root {
+  --sidebar-text: black;
+  --sidebar-highlight: rgba(12, 12, 13, 0.2);
+  --sidebar-hover: rgba(12, 12, 13, 0.1);
+}
+
+.box a {
+  color: var(--sidebar-text);
+  background-color: var(--sidebar-highlight);
+  padding: 1em;
+  margin: 1em;
+  display: block;
+  text-decoration: none;
+}
+/* todo .button:active, .button.active */
+.box a:hover,
+.button:hover {
+  background-color: var(--sidebar-hover);
+}
+/* todo make pretty */
+.title,
+.next {
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.count {
+  color: var(--sidebar-text);
+  text-decoration: none;
+}
+
+.button {
+  cursor: pointer;
+  background-color: var(--sidebar-highlight);
+  color: var(--sidebar-text);
+  float: left;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 4px;
+}

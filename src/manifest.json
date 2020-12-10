@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  "name": "Proxer Essentials",
+  "version": "0.0.1",
+
+  "description": "Only essential functions for Proxer",
+  "author": "Blue.Reaper",
+  "icons": {
+    "48": "img/logo_proxer.png"
+  },
+
+  "permissions": ["tabs", "cookies", "*://*.proxer.me/*", "theme", "storage"],
+
+  "background": {
+    "scripts": ["dependencies/jquery.min.js", "background_script.js", "development.js"]
+  },
+  "sidebar_action": {
+    "default_title": "Proxer Essentials",
+    "default_panel": "sidebar/sidebar.html"
+  },
+  "browser_action": {
+    "default_icon": "img/logo_proxer.png",
+    "default_title": "Proxer Essentials",
+    "browser_style": true
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ProxerEssentials@blue-reaper.github.io"
+    }
+  }
+}

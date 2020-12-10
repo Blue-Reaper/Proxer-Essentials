@@ -1,5 +1,3 @@
-debug.user.css
+web-ext-artifacts
 node_modules
-.idea
-# Ignore the compiled JS and only build it in master and beta branch
-ProxerEssentials.user.js
+src/dependencies

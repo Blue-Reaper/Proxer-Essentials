@@ -1,69 +1,38 @@
----
-layout: default
----
-# Was ist Proxer Essentials?
-Es ist ein Userscript in dem verschiedene Erweiterungen an Proxer.me in einzelnen Modulen zusammengefügt sind.
-Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekommen und bei Bedarf auch einzelne Module oder das Design deaktivieren.
-### aktuelle Highlights
- + das neue optionale Design für Proxer
- + Bild-Kacheln statt Tabellen bei Anime-/Mangaliste, Lesezeichen und Updates
- + direkte Manga Navigation von Kapitel zu Kapitel ohne Zwischenseite
+# What is the relaunch of Proxer Essentials?
 
-Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des modularen Aufbaus sehr einfach und das Framework übernimmt bereits grundlegende Funktionen, wie das gesteuerte Aufrufen der Module und die Einstellungen für die Userscript-Manager.
+With the relauch comes a change of philosophy, it will no longer be a userscript where more features can be added by others. The reason is simply that no one used it and so I will conentrate on the main featues and throw out the framework to manage different modules, as it is simply unneeded overhead.
 
-# Wie bekomme ich Proxer Essentials?
-Um Userscripte verwenden zu können benötigt man ein Browser Add-In, [Violentmonkey](https://violentmonkey.github.io/) oder [Tampermonkey](https://tampermonkey.net/).
+The relaunch will be an Firefox Add-On and it will no longer add features to the existing Proxer-Site. It will reduce the funktions to the essentials to create a simple design, where you get what you want with minimal clickcount and no unneded distractions.
 
-Anschließend kann auf [dieser Seite](https://openuserjs.org/scripts/Blue.Reaper/Proxer_Essentials) das Skript installiert werden. Es gibt auch einen [Direktdownload](https://openuserjs.org/install/Blue.Reaper/Proxer_Essentials.user.js).
+To ensure that no unnessesary code or functions are put in the relaunch, it will start from scratch and build up from there.
 
-# Was genau ist alles enthalten?
-## Design
-Das Design benutzt als Grundlage das Theme "Modern Dark" von xYata ([hier der Forumspost](https://proxer.me/forum/anwendungen/383233-theme-proxer-modern-dark)).
+# How to build
 
-<img src="screenshots/design.png" width="50%">
+You'll need [Node.js](https://nodejs.org) installed.
 
-Die Farben sind vollkommen frei einstellbar und es gibt laufend Weiterenwicklungen.
+Clone the source and install all dependencies:
 
-Zu den Einstellungen kommt man oben im Menü unter "Essentials -> Design"
+```
+git clone https://github.com/Blue-Reaper/FolgenFinder.git
+cd folgenfinder
+npm install
+```
 
-<img src="screenshots/design_edit.png" width="70%">
+lint and build the extension:
 
-## Module
-<img src="screenshots/menu.png" width="30%">
+```
+npm run all
+```
 
-Es ist möglich einzelne Module auszuschalten.
+other commands:
 
-![Bild der Module](screenshots/modules.png)
+```
+npm run lint    # run all lint checks
+npm run dev     # run in Firefox-Developer, open console, rebuilding and updating when files change
+npm run run     # run in Firefox, rebuilding and updating when files change
+npm run build   # build extension
+```
 
+### Report ideas, feature requests or bugs:
 
-### Bild-Kacheln
-Zeigt bei der Anime-/Mangaliste, den Lesezeichen und den Updates Bild-Kacheln statt der Tabellen an, es gibt auch mehr Filtermöglichkeiten.
-
-[detaillierte Beschreibung mit Bildern](modules/pictureTile.md)
-### Manga Komfort
-Macht das Lesen der Mangas angenehmer, mit einer Navigation direkt zu den Bildern des nächsten Kapitels und weiteren Kleinigkeiten.
-
-[detaillierte Beschreibung mit Bildern](modules/mangaComfort.md)
-### Kleine Wunder
-Fügt einen "zurück nach oben" Button hinzu und blendet ein paar Dinge aus.
-
-[detaillierte Beschreibung mit Bildern](modules/smallWonders.md)
-### Theatermodus
-Für Animes ist es möglich einen "fast-Fullscreen" zu benutzen um weiterhin die Browserleiste zu sehen.
-
-[detaillierte Beschreibung mit Bildern](modules/theatermodus.md)
-### User ignorieren
-Ermöglicht es Nachrichten von Usern im Forum auszublenden.
-
-[detaillierte Beschreibung mit Bildern](modules/ignoreUser.md)
-
-## Release Notes
-Die einzelnen Änderungen für jedes Update stehen [hier](https://github.com/Blue-Reaper/Proxer-Essentials/releases).
-
-# Idee, Wunsch oder Bug
-Für Feedback und neue Ideen bin ich immer dankbar.
-
-Kontakt für Ideen neuer Inhalte, Änderungswünsche oder gefundene Bugs:
-+ [GitHub](https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose)
-+ [Proxer Forumsbeitrag](https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials)
-+ [Proxer private Nachricht](https://proxer.me/messages?s=new&id=422227)
+- [GitHub](https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose)

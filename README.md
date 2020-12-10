@@ -1,29 +1,38 @@
-# Was ist Proxer Essentials?
-Es ist ein Userscript in dem verschiedene Erweiterungen an Proxer.me in einzelnen Modulen zusammengefügt sind.
-Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekommen und bei Bedarf auch einzelne Module oder das Design deaktivieren.
-### Highlights
- + das neue optionale Design für Proxer
- + Bild-Kacheln statt Tabellen bei Anime-/Mangaliste, Lesezeichen und Updates
- + direkte Manga Navigation von Kapitel zu Kapitel ohne Zwischenseite
+# What is the relaunch of Proxer Essentials?
 
-Auch ein hinzufügen neuer Erweiterungen durch verschiedene Autoren ist dank des modularen Aufbaus sehr einfach und das Framework übernimmt bereits grundlegende Funktionen, wie das gesteuerte Aufrufen der Module und die Einstellungen für die Userscript-Manager.
+With the relauch comes a change of philosophy, it will no longer be a userscript where more features can be added by others. The reason is simply that no one used it and so I will conentrate on the main featues and throw out the framework to manage different modules, as it is simply unneeded overhead.
 
-# Wie bekomme ich Proxer Essentials?
-Um Userscripte verwenden zu können benötigt man ein Browser Add-In, [Violentmonkey](https://violentmonkey.github.io/) oder [Tampermonkey](https://tampermonkey.net/).
+The relaunch will be an Firefox Add-On and it will no longer add features to the existing Proxer-Site. It will reduce the funktions to the essentials to create a simple design, where you get what you want with minimal clickcount and no unneded distractions.
 
-Anschließend kann auf [dieser Seite](https://openuserjs.org/scripts/Blue.Reaper/Proxer_Essentials) das Skript installiert werden. Es gibt auch einen [Direktdownload](https://openuserjs.org/install/Blue.Reaper/Proxer_Essentials.user.js).
-
-# Was genau ist alles enthalten?
-
-Alle Informationen sind hier zu finden: https://blue-reaper.github.io/Proxer-Essentials/
+To ensure that no unnessesary code or functions are put in the relaunch, it will start from scratch and build up from there.
 
 # How to build
 
-- Run `npm i` to install all dependencies
-- Run `npm run build` to build the compiled userscript
-- Or use [atom](https://atom.io/) with [atom-typescript](https://atom.io/packages/atom-typescript) and compile on save
+You'll need [Node.js](https://nodejs.org) installed.
 
-### Kontakt für neue Ideen, Anfragen oder Bugs:
-+ [GitHub](https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose)
-+ [Proxer Forum](https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials)
-+ [Proxer PM](https://proxer.me/messages?s=new&id=422227)
+Clone the source and install all dependencies:
+
+```
+git clone https://github.com/Blue-Reaper/FolgenFinder.git
+cd folgenfinder
+npm install
+```
+
+lint and build the extension:
+
+```
+npm run all
+```
+
+other commands:
+
+```
+npm run lint    # run all lint checks
+npm run dev     # run in Firefox-Developer, open console, rebuilding and updating when files change
+npm run run     # run in Firefox, rebuilding and updating when files change
+npm run build   # build extension
+```
+
+### Report ideas, feature requests or bugs:
+
+- [GitHub](https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose)

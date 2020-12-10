@@ -1,32 +1,17 @@
 {
   "name": "proxer-essentials",
-  "version": "4.3.0",
-  "description": "Proxer Essentials",
-  "directories": {
-    "doc": "docs"
-  },
+  "private": true,
   "scripts": {
-    "build": "rimraf ProxerEssentials.user.js && tsc"
+    "lint": "web-ext lint --source-dir src",
+    "dev": "node scripts/copyDependencies.js && web-ext run -f=firefoxdeveloperedition --browser-console --source-dir src",
+    "run": "node scripts/copyDependencies.js && web-ext run -f=firefox --source-dir src",
+    "build": "node scripts/copyDependencies.js && web-ext build -o --source-dir src",
+    "all": "node scripts/copyDependencies.js && web-ext lint --source-dir src &&  web-ext build -o --source-dir src"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Blue-Reaper/Proxer-Essentials.git"
-  },
-  "keywords": [
-    "proxer",
-    "proxer-essentials",
-    "proxer-redesign"
-  ],
-  "author": "Blue.Reaper",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Blue-Reaper/Proxer-Essentials/issues"
-  },
-  "homepage": "https://github.com/Blue-Reaper/Proxer-Essentials#readme",
   "dependencies": {
-    "@types/greasemonkey": "0.0.28",
-    "@types/jquery": "^3.3.29",
-    "rimraf": "^2.6.3",
-    "typescript": "^3.2.4"
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "web-ext": "^5.4.1"
   }
 }
