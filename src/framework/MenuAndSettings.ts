@@ -69,7 +69,6 @@ function tabPefSettings(){
 
     inhalt.append($('<h4>Kontakt für neue Ideen, Wünsche oder Bugs</h4>'));
     inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose">auf GitHub</a></div>'));
-    inhalt.append($('<div><a href="https://proxer.me/forum/anwendungen/386157-userscript-inkl-theme-proxer-essentials">oder im Forumsbeitrag</a></div>'));
     inhalt.append($('<div><a href="https://proxer.me/messages?s=new&id=422227">oder per privater Nachricht</a></div>'));
 
 }
