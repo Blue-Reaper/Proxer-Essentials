@@ -11,7 +11,7 @@
 // @downloadURL https://openuserjs.org/install/Blue.Reaper/Proxer_Essentials.user.js
 // @license     MIT
 // @copyright   2019, Blue.Reaper (https://blue-reaper.github.io/Proxer-Essentials/)
-// @include     https://proxer.me/*
+// @include     https://proxer.net/*
 // @require     http://code.jquery.com/jquery-3.4.0.min.js
 // @run-at      document-start
 // @grant       GM_setValue
@@ -28,7 +28,7 @@
 // smallWonders
 // @resource    smallWonders_CSS   https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/modules/css/smallWonders.css
 // Theatermodus
-// @include     https://stream.proxer.me/*
+// @include     https://stream.proxer.net/*
 // @resource    theater_CSS        https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/modules/css/theaterModus.css
 // ==/UserScript==
 
