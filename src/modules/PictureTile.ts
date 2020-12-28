@@ -110,6 +110,10 @@ function picTile(){
                 } else if (isLocationStatus()){
                     showGridStatus();
                 } else if (isLocationBookmarks()){
+                    // show "Nur verfügbare anzeigen" at top of page
+                    $('#pefViewControl').append($('.inner p:first-child a.filter_available'));
+                    $('#pefViewControl a.filter_available').addClass("floatRight");
+
                     showGridBookmarks();
                 }
     		}
@@ -203,7 +207,7 @@ function showGridBookmarks(){
             accordion.toggleClass("active");
             accContent.toggle();
         });
-
+        
         $(td).find('table tr').each((idx,tr)=>{
             // skip table header
             if($(tr).find('th').length){
@@ -230,7 +234,7 @@ function showGridBookmarks(){
         accContent.append($('<div class="clear"/>'));
         accordion.append($('<div class="floatRight">'+$(accContent).find('.tile').length+'</div>'));
     });
-    $('#main').append($('.inner p:first-child'));
+    $('#main').append($('.inner p:last-child'));
 
     // open acc with more content
     if($('a.menu.acc:first div').text() < $('a.menu.acc:eq(1) div').text()){
