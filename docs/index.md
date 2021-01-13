@@ -4,8 +4,13 @@ layout: default
 
 # Was ist Proxer Essentials?
 
-Es ist ein Userscript in dem verschiedene Erweiterungen an Proxer.me in einzelnen Modulen zusammengefügt sind.
+Es ist ein Userscript in dem verschiedene Erweiterungen an Proxer.net in einzelnen Modulen zusammengefügt sind.
 Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekommen und bei Bedarf auch einzelne Module oder das Design deaktivieren.
+
+## Umzug Proxer.me auf Proxer.net
+
+Proxer hat die Domain gewechselt, was zu Problemen mit dem Script führt.
+Das Script läuft jetzt wieder auf Proxer.net allerdings gab es auch änderungen im Design, an einer Behebung wird bereits gearbeitet.
 
 ### aktuelle Highlights
 
@@ -84,4 +89,4 @@ Für Feedback und neue Ideen bin ich immer dankbar.
 Kontakt für Ideen neuer Inhalte, Änderungswünsche oder gefundene Bugs:
 
 - [GitHub](https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose)
-- [Proxer private Nachricht](https://proxer.me/messages?s=new&id=422227)
+- [Proxer private Nachricht](https://proxer.net/messages?s=new&id=422227)
