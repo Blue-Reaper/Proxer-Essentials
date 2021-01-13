@@ -44,6 +44,8 @@ function supportDesign(){
     if (GM_getValue("DesignStatus")=="on"){
         // Set Proxer-Style to gray, needed for Design
         setCookie("style","gray");
+        // remove gray.css
+        $('link[href*="gray.css"]').remove();
         // Bilder ersetzen
         $('[src~="//cdn.proxer.me/cover/894.jpg"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-anime.jpg');
         $('[src~="//cdn.proxer.me/cover/2373.jpg"]').attr('src','https://raw.githubusercontent.com/Blue-Reaper/Proxer-Essentials/master/src/framework/img/proxer-test-manga.jpg');
