@@ -2,7 +2,8 @@
   "name": "proxer-essentials",
   "private": true,
   "scripts": {
-    "build": "rimraf ProxerEssentials.user.js && tsc --watch"
+    "dev": "rimraf ProxerEssentials.user.js && tsc --watch",
+    "build": "rimraf ProxerEssentials.user.js && tsc"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.5",
