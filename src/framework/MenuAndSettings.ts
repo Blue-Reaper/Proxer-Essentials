@@ -14,7 +14,7 @@ function addPefMenu() {
 
 // Zeigt die Settings des PEF an
 // Erzeugt die Einstellungs-Seite für PEF
-// Da es proxer.net/pef nicht gibt, wird die Startseite angezeigt
+// Da es proxer.me/pef nicht gibt, wird die Startseite angezeigt
 function createPefSettings() {
     if (window.location.pathname.split('/')[1] === 'pef' && !$('#pef_Settings').length) {
         // // Lösche alle Tabs der Startseite aus Navigations-Leiste
@@ -69,7 +69,7 @@ function tabPefSettings(){
 
     inhalt.append($('<h4>Kontakt für neue Ideen, Wünsche oder Bugs</h4>'));
     inhalt.append($('<div><a href="https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose">auf GitHub</a></div>'));
-    inhalt.append($('<div><a href="https://proxer.net/messages?s=new&id=422227">oder per privater Nachricht</a></div>'));
+    inhalt.append($('<div><a href="https://proxer.me/messages?s=new&id=422227">oder per privater Nachricht</a></div>'));
 
 }
 

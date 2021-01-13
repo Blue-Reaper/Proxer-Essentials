@@ -141,7 +141,7 @@ function showGridUpdates(){
         let box = $('<a class="tile sizeBig picTopBorder" href="'+link+'" data-tid="'+tid+'"></a>');
 
         // Cover
-        box.append($('<img class="tilePic" src="//cdn.proxer.net/cover/'+tid+'.jpg">'));
+        box.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+tid+'.jpg">'));
         // Title
         box.append($('<div class="tileText">').append(title));
         // Date
@@ -179,7 +179,7 @@ function showGridStatus(){
             // Medium
             let box = $('<a class="tile sizeBig" href="'+link+'" data-medium="'+$(tr).find('td:nth-child(3)').text()+'" data-title="'+title+'"></a>');
             // Cover
-            box.append($('<img class="tilePic" src="//cdn.proxer.net/cover/'+link.replace(new RegExp("/|info|list|#top","g"),"")+'.jpg">'));
+            box.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.replace(new RegExp("/|info|list|#top","g"),"")+'.jpg">'));
             // Title
             box.append($('<div class="tileText">').append(title));
             // rating
@@ -218,7 +218,7 @@ function showGridBookmarks(){
 
             let box = $('<a class="tile sizeBig" href="'+link.replace("chapter","read")+'"></a>');
             // Cover
-            let cover = $('<img class="tilePic" src="//cdn.proxer.net/cover/'+link.split("/")[2]+'.jpg">');
+            let cover = $('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.split("/")[2]+'.jpg">');
             // grayout cover if episode offline
             if($(tr).find('td:nth-child(6) i').hasClass('red')){
                 cover.addClass('grayout');
@@ -334,7 +334,7 @@ function redesignNotification(){
         if (/chapter/.test(link) || /watch/.test(link)){
             let text = $(item).find('u').text().split('#');
 
-            picTile.append($('<img class="tilePic" src="//cdn.proxer.net/cover/'+link.split("/")[2]+'.jpg">'));
+            picTile.append($('<img class="tilePic" src="//cdn.proxer.me/cover/'+link.split("/")[2]+'.jpg">'));
             picTile.append($('<div class="tileText">'+text[0]+'</div>'));
             picTile.append($('<div class="tileText tileBottom"># '+text[1]+'</div>'));
         }
