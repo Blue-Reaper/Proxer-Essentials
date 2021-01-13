@@ -24,6 +24,7 @@ Alle Informationen sind hier zu finden: https://blue-reaper.github.io/Proxer-Ess
 # How to build
 
 - Run `npm i` to install all dependencies
+- Run `npm run dev` to build the compiled userscript, rebuilding and updating when files change
 - Run `npm run build` to build the compiled userscript
 
 ### Kontakt für neue Ideen, Anfragen oder Bugs:
