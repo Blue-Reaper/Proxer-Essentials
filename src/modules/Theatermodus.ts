@@ -24,12 +24,12 @@ function theatreModeCall (change:ModulCallEvent) {
 }
 
 function theatermodus(){
-    if (window.location.hostname !== "stream.proxer.net" && window.location.pathname.split('/')[1] !== 'watch'){
+    if (window.location.hostname !== "stream.proxer.me" && window.location.pathname.split('/')[1] !== 'watch'){
         theatermodusOff();
     }
 
 	// Innerhalb des Iframes
-	if(window.location.hostname === "stream.proxer.net"){
+	if(window.location.hostname === "stream.proxer.me"){
         GM_addStyle (GM_getResourceText ("theater_CSS"));
 	}
 	// normale Proxer Seite

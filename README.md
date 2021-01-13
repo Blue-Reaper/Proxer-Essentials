@@ -1,6 +1,6 @@
 # Was ist Proxer Essentials?
 
-Es ist ein Userscript in dem verschiedene Erweiterungen an Proxer.net in einzelnen Modulen zusammengefügt sind.
+Es ist ein Userscript in dem verschiedene Erweiterungen an Proxer.me in einzelnen Modulen zusammengefügt sind.
 Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekommen und bei Bedarf auch einzelne Module oder das Design deaktivieren.
 
 ### Highlights
@@ -24,9 +24,10 @@ Alle Informationen sind hier zu finden: https://blue-reaper.github.io/Proxer-Ess
 # How to build
 
 - Run `npm i` to install all dependencies
+- Run `npm run dev` to build the compiled userscript, rebuilding and updating when files change
 - Run `npm run build` to build the compiled userscript
 
 ### Kontakt für neue Ideen, Anfragen oder Bugs:
 
 - [GitHub](https://github.com/Blue-Reaper/Proxer-Essentials/issues/new/choose)
-- [Proxer PM](https://proxer.net/messages?s=new&id=422227)
+- [Proxer PM](https://proxer.me/messages?s=new&id=422227)

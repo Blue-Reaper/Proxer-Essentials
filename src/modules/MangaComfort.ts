@@ -84,8 +84,7 @@ function mangaComfort(){
             let bookmarkButton = $('<i class="bookmark pointer fa fa-2x fa-bookmark"/>');
             $('body').append(bookmarkButton);
             bookmarkButton.click(() => {
-                let path = location;
-                path = String(path).replace('read', 'chapter');
+                let path = String(location).replace('read', 'chapter');
                 let ajaxLink = (path + '?format=json&type=reminder&' + $('#proxerToken').val() + '=1&title=reminder_this');
                 $.post(ajaxLink, {
                     'check': 1
