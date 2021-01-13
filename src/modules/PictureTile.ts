@@ -310,7 +310,7 @@ function filterList(){
             return !titleFilter.test($(item).data('title'));
         else
         // filter title and medium
-            return (!titleFilter.test($(item).data('title')) || ($(item).data('medium') != $('#mediumFilter').val());
+            return (!titleFilter.test($(item).data('title')) || ($(item).data('medium') != $('#mediumFilter').val()));
     }).hide();
 
     // update accordion counter after filtering
