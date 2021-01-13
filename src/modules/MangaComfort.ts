@@ -1,7 +1,7 @@
 // Longstrip Reader als Standard
-// Longstrip: klick auf Bild scrollt zum nächsten Bild
+// Longstrip: klick auf Bild führt keine Aktion aus
 // Longstrip: Navigation um zu nächstem / letztem Kapitel zu springen (ohne Zwischenseite)
-// Fügt Mangaupdates im Menü Manga und auf Startseite neben Animeupdates hinzu
+// Fügt Mangaupdates im Menü Manga hinzu
 
 
 pefModulList.push({
@@ -51,8 +51,10 @@ function mangaComfort(){
     if (getCookie('manga_reader') == 'longstrip') {
         // Ändere Link auf Bildern, damit nur zum nächsten Bild gesprungen wird
         $('#reader img').attr('onclick', '');
-        $('#reader img').off('click', scrollToNextPage);
-        $('#reader img').click(scrollToNextPage);
+// no longer used
+        // $('#reader img').off('click', scrollToNextPage);
+        // $('#reader img').click(scrollToNextPage);
+
         // only add buttons once
         if(!$('.nextChapter').length){
             // button previous chapter
@@ -100,11 +102,13 @@ function mangaComfort(){
         location.pathname = location.pathname.replace('read', 'chapter');
     }
 
-    // Mauszeiger wird auch nur über Bild zur Hand
-    $('#reader img').addClass('pointer');
+    // Always show default cursor
+    // // Mauszeiger wird auch nur über Bild zur Hand
+    // $('#reader img').addClass('pointer');
     $('#reader a').addClass('cursorAuto');
 }
 
+// no longer used to avoid unwanted scrolling
 function scrollToNextPage() {
     // @ts-ignore
     const image = $('#chapterImage' + current_page).offset();
