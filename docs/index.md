@@ -7,11 +7,6 @@ layout: default
 Es ist ein Userscript in dem verschiedene Erweiterungen an Proxer.me in einzelnen Modulen zusammengefügt sind.
 Dabei kann der Anwender viele nützlichen Funktionen in nur einem Script bekommen und bei Bedarf auch einzelne Module oder das Design deaktivieren.
 
-## Umzug Proxer.me auf Proxer.me
-
-Proxer hat die Domain gewechselt, was zu Problemen mit dem Script führt.
-Das Script läuft jetzt wieder auf Proxer.me allerdings gab es auch änderungen im Design, an einer Behebung wird bereits gearbeitet.
-
 ### aktuelle Highlights
 
 - das neue optionale Design für Proxer
